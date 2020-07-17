@@ -15,13 +15,14 @@ namespace WiFiHeatMap.Tests
             var reader = Substitute.For<ISignalReader>();
             reader.When(r => r.Read()).Throw(new Exception("unit test exception"));
             var parser = Substitute.For<ISignalParser>();
-            var service = new SignalService(reader, parser);
+            var hub = Substitute.For<ISignalHub>();
+            var service = new SignalService(reader, parser, hub);
 
             //act
             await service.StartAsync(CancellationToken.None);
 
             //assert
-            Assert.Equal("unit test exception", service.Status);
+            await hub.Received().SendMessage(Arg.Is<Message>(m => m.Status == "unit test exception"));
         }
 
         [Fact]
@@ -30,7 +31,8 @@ namespace WiFiHeatMap.Tests
             //arrange
             var reader = Substitute.For<ISignalReader>();
             var parser = Substitute.For<ISignalParser>();
-            var service = new SignalService(reader, parser);
+            var hub = Substitute.For<ISignalHub>();
+            var service = new SignalService(reader, parser, hub);
 
             //act
             var task = service.StartAsync(CancellationToken.None);
@@ -47,6 +49,7 @@ namespace WiFiHeatMap.Tests
             //arrange
             var reader = Substitute.For<ISignalReader>();
             var parser = Substitute.For<ISignalParser>();
+            var hub = Substitute.For<ISignalHub>();
             var signals = new[]
             {
                 new Signal
@@ -57,14 +60,14 @@ namespace WiFiHeatMap.Tests
                 }
             };
             parser.Parse(Arg.Any<string>()).Returns(signals);
-            var service = new SignalService(reader, parser);
+            var service = new SignalService(reader, parser, hub);
 
             //act
             var task = service.StartAsync(CancellationToken.None);
             await task;
 
             //assert
-            Assert.Equal(signals, service.Signals);
+            await hub.Received().SendMessage(Arg.Is<Message>(m => m.Signals == signals));
         }
     }
 }

@@ -6,18 +6,17 @@ using Microsoft.Extensions.Hosting;
 
 namespace WiFiHeatMap
 {
-    public class SignalService : BackgroundService, ISignalService
+    public class SignalService : BackgroundService
     {
         private readonly ISignalReader _signalReader;
         private readonly ISignalParser _signalParser;
+        private readonly ISignalHub _signalHub;
 
-        public IEnumerable<Signal> Signals { get; private set; }
-        public string Status { get; private set; }
-
-        public SignalService(ISignalReader signalReader, ISignalParser signalParser)
+        public SignalService(ISignalReader reader, ISignalParser parser, ISignalHub hub)
         {
-            _signalReader = signalReader;
-            _signalParser = signalParser;
+            _signalReader = reader;
+            _signalParser = parser;
+            _signalHub = hub;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -27,13 +26,23 @@ namespace WiFiHeatMap
                 while (!stoppingToken.IsCancellationRequested)
                 {
                     var results = await _signalReader.Read();
-                    Signals = _signalParser.Parse(results);
+                    var signals = _signalParser.Parse(results);
+                    
+                    var message = new Message
+                    {
+                        Status = "Running",
+                        Signals = signals,
+                        LastUpdated = DateTime.Now
+                    };
+                    await _signalHub.SendMessage(message);
+                    
                     await Task.Delay(1, stoppingToken);
                 }
             }
             catch (Exception e)
             {
-                Status = e.Message;
+                var message = new Message { Status = e.Message };
+                await _signalHub.SendMessage(message);
             }
         }
     }
