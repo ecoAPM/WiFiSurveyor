@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WiFiHeatMap
+namespace WiFiHeatMap.Server
 {
     public interface ISignalParser
     {

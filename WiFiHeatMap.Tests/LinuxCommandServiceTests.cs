@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
+using WiFiHeatMap.Server;
 using Xunit;
 
 namespace WiFiHeatMap.Tests
