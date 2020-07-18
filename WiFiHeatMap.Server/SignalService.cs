@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
@@ -28,7 +28,7 @@ namespace WiFiHeatMap.Server
             {
                 try
                 {
-                    _logger.LogInformation(DateTime.Now + ": Reading...");
+                    _logger.LogDebug(DateTime.Now + ": Reading...");
                     var results = await _signalReader.Read();
                     var signals = _signalParser.Parse(results);
 
@@ -38,7 +38,7 @@ namespace WiFiHeatMap.Server
                         Signals = signals,
                         LastUpdated = DateTime.Now
                     };
-                    _logger.LogInformation(message.LastUpdated + ": " + message.Status);
+                    _logger.LogDebug(message.LastUpdated + ": " + JsonSerializer.Serialize(signals));
                     await _signalHub.SendMessage(message);
                 }
 
@@ -50,7 +50,7 @@ namespace WiFiHeatMap.Server
                         LastUpdated = DateTime.Now
                     };
                     await _signalHub.SendMessage(message);
-                    _logger.LogError(message.LastUpdated + ": " + message.Status);
+                    _logger.LogWarning(message.LastUpdated + ": " + message.Status);
                 }
 
                 await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);

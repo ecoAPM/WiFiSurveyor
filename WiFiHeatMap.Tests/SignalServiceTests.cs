@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using WiFiHeatMap.Server;
 using Xunit;
@@ -17,7 +18,8 @@ namespace WiFiHeatMap.Tests
             reader.When(r => r.Read()).Throw(new Exception("unit test exception"));
             var parser = Substitute.For<ISignalParser>();
             var hub = Substitute.For<ISignalHub>();
-            var service = new SignalService(reader, parser, hub);
+            var logger = Substitute.For<ILoggerFactory>();
+            var service = new SignalService(reader, parser, hub, logger);
 
             //act
             await service.StartAsync(CancellationToken.None);
@@ -33,7 +35,8 @@ namespace WiFiHeatMap.Tests
             var reader = Substitute.For<ISignalReader>();
             var parser = Substitute.For<ISignalParser>();
             var hub = Substitute.For<ISignalHub>();
-            var service = new SignalService(reader, parser, hub);
+            var logger = Substitute.For<ILoggerFactory>();
+            var service = new SignalService(reader, parser, hub, logger);
 
             //act
             var task = service.StartAsync(CancellationToken.None);
@@ -61,7 +64,8 @@ namespace WiFiHeatMap.Tests
                 }
             };
             parser.Parse(Arg.Any<string>()).Returns(signals);
-            var service = new SignalService(reader, parser, hub);
+            var logger = Substitute.For<ILoggerFactory>();
+            var service = new SignalService(reader, parser, hub, logger);
 
             //act
             var task = service.StartAsync(CancellationToken.None);

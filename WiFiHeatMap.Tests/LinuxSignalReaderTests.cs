@@ -42,7 +42,7 @@ namespace WiFiHeatMap.Tests
             catch (Exception e)
             {
                 //assert
-                Assert.Contains("\"network-tools\" is installed", e.Message);
+                Assert.Contains("\"wireless-tools\" is installed", e.Message);
             }
         }
 

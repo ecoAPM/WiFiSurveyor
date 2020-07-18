@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace WiFiHeatMap.Server
@@ -8,10 +9,12 @@ namespace WiFiHeatMap.Server
     {
         public IEnumerable<Signal> Parse(string results)
         {
-            //TODO linqify/functionalize
-            
+            var accessPoints = results
+                .Split($"{Environment.NewLine}BSS").AsEnumerable()
+                .Where(r => !string.IsNullOrWhiteSpace(r));
+
             var signals = new List<Signal>();
-            foreach(var result in results.Split($"{Environment.NewLine}BSS"))
+            foreach (var result in accessPoints)
             {
                 var ssid = Regex.Match(result, $"SSID: (.+){Environment.NewLine}").Groups[1].Value;
                 var freq = Regex.Match(result, $"freq: (.+){Environment.NewLine}").Groups[1].Value;
