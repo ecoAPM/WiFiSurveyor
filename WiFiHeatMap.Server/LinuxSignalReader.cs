@@ -18,8 +18,6 @@ namespace WiFiHeatMap.Server
         public async Task<string> Read()
         {
             var info = new ProcessStartInfo("iw", "dev wlan0 scan");
-            {
-            };
 
             try
             {
@@ -30,9 +28,11 @@ namespace WiFiHeatMap.Server
                 switch (e.ErrorCode)
                 {
                     case 2:
-                        throw new Exception($"Executable \"{info.FileName}\" was not found. Please ensure \"network-tools\" is installed.");
+                        throw new Exception($"Executable \"{info.FileName}\" was not found. Please ensure \"wireless-tools\" is installed.");
                     case 13:
                         throw new Exception($"Executable \"{info.FileName}\" was unable to run. Please ensure \"{Assembly.GetExecutingAssembly().FullName}\" is run as root.");
+                    case 16:
+                        throw new Exception($"Executable \"{info.FileName}\" is still busy.");
                     default:
                         throw e;
                 }

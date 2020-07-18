@@ -23,6 +23,7 @@ namespace WiFiHeatMap.Server
             services.AddHostedService<SignalService>();
 
             services.AddCors();
+            services.AddLogging();
             services.AddResponseCompression();
             services.AddSignalR();
         }
