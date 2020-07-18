@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 using NSubstitute;
+using WiFiHeatMap.Server;
 using Xunit;
 
 namespace WiFiHeatMap.Tests
@@ -11,9 +12,10 @@ namespace WiFiHeatMap.Tests
         public async Task SendsUpdateToAllClients()
         {
             //arrange
-            var hub = new SignalHub();
-            hub.Clients = Substitute.For<IHubCallerClients>();
-            hub.Clients.All.Returns(Substitute.For<IClientProxy>());
+            var clients = Substitute.For<IHubCallerClients>();
+            clients.All.Returns(Substitute.For<IClientProxy>());
+            
+            var hub = new SignalHub { Clients = clients };
 
             //act
             await hub.SendMessage(new Message());

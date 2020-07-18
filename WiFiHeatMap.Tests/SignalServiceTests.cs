@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using NSubstitute;
+using WiFiHeatMap.Server;
 using Xunit;
 
 namespace WiFiHeatMap.Tests

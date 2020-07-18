@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace WiFiHeatMap
+namespace WiFiHeatMap.Server
 {
     public interface ICommandService
     {

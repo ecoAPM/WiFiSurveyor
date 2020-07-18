@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 
-namespace WiFiHeatMap
+namespace WiFiHeatMap.Server
 {
     public class SignalService : BackgroundService
     {
@@ -41,7 +41,11 @@ namespace WiFiHeatMap
             }
             catch (Exception e)
             {
-                var message = new Message { Status = e.Message };
+                var message = new Message
+                {
+                    Status = e.Message,
+                    LastUpdated = DateTime.Now
+                };
                 await _signalHub.SendMessage(message);
             }
         }
