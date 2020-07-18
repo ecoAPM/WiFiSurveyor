@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.SignalR.Client;
+
+<h1>WiFiHeatMap</h1>
+
+<ol>
+    @foreach (var message in messages)
+    {
+        <li>@message.Status</li>
+    }
+</ol>
+
+@code {
+    private HubConnection hubConnection;
+    private List<Message> messages = new List<Message>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl("http://localhost:5001")
+            .Build();
+
+        hubConnection.On<Message>("Update", message =>
+        {
+            messages.Add(message);
+            StateHasChanged();
+        });
+
+        await hubConnection.StartAsync();
+        messages.Add(new Message { Status = "Started" });
+    }
+
+    public void Dispose() => _ = hubConnection.DisposeAsync();
+}
