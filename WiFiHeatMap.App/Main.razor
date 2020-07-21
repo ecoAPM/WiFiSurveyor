@@ -6,7 +6,12 @@
 </nav>
 
 <main>
-    x
+    <ul>
+        @foreach (var signal in message.Signals)
+        {
+            <li>@signal.SSID (@signal.Frequency) = @signal.Strength</li>
+        }
+    </ul>
 </main>
 
 @code {
