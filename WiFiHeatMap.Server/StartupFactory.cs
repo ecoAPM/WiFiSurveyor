@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using Windows.Devices.WiFi;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace WiFiHeatMap.Server
@@ -9,7 +11,6 @@ namespace WiFiHeatMap.Server
         {
             services.AddSignalHandlers(Environment.OSVersion.Platform);
             services.AddSingleton<ISignalHub, SignalHub>();
-            services.AddHostedService<SignalService>();
         }
 
         private static void AddSignalHandlers(this IServiceCollection services, PlatformID OS)
@@ -18,18 +19,22 @@ namespace WiFiHeatMap.Server
             {
                 case PlatformID.Unix:
                     services.AddSingleton<ICommandService, LinuxCommandService>();
-                    services.AddSingleton<ISignalReader, LinuxSignalReader>();
-                    services.AddSingleton<ISignalParser, LinuxSignalParser>();
+                    services.AddSingleton<ISignalReader<string>, LinuxSignalReader>();
+                    services.AddSingleton<ISignalParser<string>, LinuxSignalParser>();
+                    services.AddHostedService<SignalService<string>>();
                     break;
 
                 case PlatformID.Win32NT:
-                    services.AddSingleton<ISignalReader, WindowsSignalReader>();
-                    services.AddSingleton<ISignalParser, WindowsSignalParser>();
+                    services.AddSingleton(async s => (await WiFiAdapter.FindAllAdaptersAsync()).First());
+                    services.AddSingleton<ISignalReader<WiFiNetworkReport>, WindowsSignalReader>();
+                    services.AddSingleton<ISignalParser<WiFiNetworkReport>, WindowsSignalParser>();
+                    services.AddHostedService<SignalService<WiFiNetworkReport>>();
                     break;
 
                 case PlatformID.MacOSX:
-                    services.AddSingleton<ISignalReader, MacSignalReader>();
-                    services.AddSingleton<ISignalParser, MacSignalParser>();
+                    services.AddSingleton<ISignalReader<string>, MacSignalReader>();
+                    services.AddSingleton<ISignalParser<string>, MacSignalParser>();
+                    services.AddHostedService<SignalService<string>>();
                     break;
 
                 default:

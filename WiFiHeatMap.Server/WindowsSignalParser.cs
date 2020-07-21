@@ -1,13 +1,22 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Windows.Devices.WiFi;
 
 namespace WiFiHeatMap.Server
 {
-    public class WindowsSignalParser : ISignalParser
+    public class WindowsSignalParser : ISignalParser<WiFiNetworkReport>
     {
-        public IList<Signal> Parse(string results)
+        public IList<Signal> Parse(WiFiNetworkReport results)
         {
-            throw new NotImplementedException("Windows is not currently supported");
+            return results.AvailableNetworks
+                .Select(r => new Signal
+                {
+                    SSID = r.Ssid,
+                    Frequency = r.ChannelCenterFrequencyInKilohertz / 1_000_000 == 5 ? Frequency._5_GHz : Frequency._2_4_GHz,
+                    Strength = Convert.ToDecimal(r.NetworkRssiInDecibelMilliwatts)
+                })
+                .ToList();
         }
     }
 }

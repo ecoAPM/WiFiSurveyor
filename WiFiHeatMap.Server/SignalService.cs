@@ -7,14 +7,14 @@ using Microsoft.Extensions.Logging;
 
 namespace WiFiHeatMap.Server
 {
-    public class SignalService : BackgroundService
+    public class SignalService<T> : BackgroundService
     {
-        private readonly ISignalReader _signalReader;
-        private readonly ISignalParser _signalParser;
+        private readonly ISignalReader<T> _signalReader;
+        private readonly ISignalParser<T> _signalParser;
         private readonly ISignalHub _signalHub;
         private readonly ILogger _logger;
 
-        public SignalService(ISignalReader reader, ISignalParser parser, ISignalHub hub, ILoggerFactory logger)
+        public SignalService(ISignalReader<T> reader, ISignalParser<T> parser, ISignalHub hub, ILoggerFactory logger)
         {
             _signalReader = reader;
             _signalParser = parser;
@@ -32,23 +32,14 @@ namespace WiFiHeatMap.Server
                     var results = await _signalReader.Read();
                     var signals = _signalParser.Parse(results);
 
-                    var message = new Message
-                    {
-                        Status = "Running",
-                        Signals = signals,
-                        LastUpdated = DateTime.Now
-                    };
+                    var message = new Message { Signals = signals };
                     _logger.LogDebug(message.LastUpdated + ": " + JsonSerializer.Serialize(signals));
                     await _signalHub.SendMessage(message);
                 }
 
                 catch (Exception e)
                 {
-                    var message = new Message
-                    {
-                        Status = e.Message,
-                        LastUpdated = DateTime.Now
-                    };
+                    var message = new Message { Status = e.Message };
                     await _signalHub.SendMessage(message);
                     _logger.LogWarning(message.LastUpdated + ": " + message.Status);
                 }

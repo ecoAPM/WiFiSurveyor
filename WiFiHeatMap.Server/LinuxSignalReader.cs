@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WiFiHeatMap.Server
 {
-    public class LinuxSignalReader : ISignalReader
+    public class LinuxSignalReader : ISignalReader<string>
     {
         private readonly ICommandService _commandService;
 
@@ -34,7 +34,7 @@ namespace WiFiHeatMap.Server
                     case 16:
                         throw new Exception($"Executable \"{info.FileName}\" is still busy.");
                     default:
-                        throw e;
+                        throw;
                 }
             }
         }

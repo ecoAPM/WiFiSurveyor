@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace WiFiHeatMap.Server
 {
-    public class LinuxSignalParser : ISignalParser
+    public class LinuxSignalParser : ISignalParser<string>
     {
         public IList<Signal> Parse(string results)
         {

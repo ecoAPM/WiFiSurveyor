@@ -15,12 +15,12 @@ namespace WiFiHeatMap.Tests
         public async Task SetsStatusOnException()
         {
             //arrange
-            var reader = Substitute.For<ISignalReader>();
+            var reader = Substitute.For<ISignalReader<string>>();
             reader.When(r => r.Read()).Throw(new Exception("unit test exception"));
-            var parser = Substitute.For<ISignalParser>();
+            var parser = Substitute.For<ISignalParser<string>>();
             var hub = Substitute.For<ISignalHub>();
             var logger = Substitute.For<ILoggerFactory>();
-            var service = new SignalService(reader, parser, hub, logger);
+            var service = new SignalService<string>(reader, parser, hub, logger);
 
             //act
             await service.StartAsync(CancellationToken.None);
@@ -33,11 +33,11 @@ namespace WiFiHeatMap.Tests
         public async Task StopsReadingOnStop()
         {
             //arrange
-            var reader = Substitute.For<ISignalReader>();
-            var parser = Substitute.For<ISignalParser>();
+            var reader = Substitute.For<ISignalReader<string>>();
+            var parser = Substitute.For<ISignalParser<string>>();
             var hub = Substitute.For<ISignalHub>();
             var logger = Substitute.For<ILoggerFactory>();
-            var service = new SignalService(reader, parser, hub, logger);
+            var service = new SignalService<string>(reader, parser, hub, logger);
 
             //act
             var task = service.StartAsync(CancellationToken.None);
@@ -52,8 +52,8 @@ namespace WiFiHeatMap.Tests
         public async Task SetsSignalsOnUpdate()
         {
             //arrange
-            var reader = Substitute.For<ISignalReader>();
-            var parser = Substitute.For<ISignalParser>();
+            var reader = Substitute.For<ISignalReader<string>>();
+            var parser = Substitute.For<ISignalParser<string>>();
             var hub = Substitute.For<ISignalHub>();
             var signals = new List<Signal>
             {
@@ -66,7 +66,7 @@ namespace WiFiHeatMap.Tests
             };
             parser.Parse(Arg.Any<string>()).Returns(signals);
             var logger = Substitute.For<ILoggerFactory>();
-            var service = new SignalService(reader, parser, hub, logger);
+            var service = new SignalService<string>(reader, parser, hub, logger);
 
             //act
             var task = service.StartAsync(CancellationToken.None);

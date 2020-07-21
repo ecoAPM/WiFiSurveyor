@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.19041.1" />
     <ProjectReference Include="..\WiFiHeatMap\WiFiHeatMap.csproj" />
   </ItemGroup>
 

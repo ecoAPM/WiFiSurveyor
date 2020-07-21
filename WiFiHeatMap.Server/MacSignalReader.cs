@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace WiFiHeatMap.Server
 {
-    public class MacSignalReader : ISignalReader
+    public class MacSignalReader : ISignalReader<string>
     {
         public Task<string> Read()
         {

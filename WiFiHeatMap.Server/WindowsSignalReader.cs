@@ -1,13 +1,22 @@
 using System;
 using System.Threading.Tasks;
+using Windows.Devices.WiFi;
 
 namespace WiFiHeatMap.Server
 {
-    public class WindowsSignalReader : ISignalReader
+    public class WindowsSignalReader : ISignalReader<WiFiNetworkReport>
     {
-        public Task<string> Read()
+        private WiFiAdapter _adapter;
+        private readonly Task<WiFiAdapter> _newAdapter;
+
+        public WindowsSignalReader(Task<WiFiAdapter> adapterFactory)
+            => _newAdapter = adapterFactory;
+
+        public async Task<WiFiNetworkReport> Read()
         {
-            throw new NotImplementedException("Windows is not currently supported");
+            _adapter ??= await _newAdapter;
+            await _adapter.ScanAsync();
+            return _adapter.NetworkReport;
         }
     }
 }

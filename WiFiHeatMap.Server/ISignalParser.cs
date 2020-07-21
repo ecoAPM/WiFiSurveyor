@@ -2,8 +2,8 @@ using System.Collections.Generic;
 
 namespace WiFiHeatMap.Server
 {
-    public interface ISignalParser
+    public interface ISignalParser<in T>
     {
-        IList<Signal> Parse(string results);
+        IList<Signal> Parse(T results);
     }
 }
