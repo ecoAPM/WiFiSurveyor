@@ -9,7 +9,7 @@ namespace WiFiHeatMap.Tests
     public class LinuxSignalParserTests
     {
         [Fact]
-        public async Task ResultsAreParsedIntoSignalsAsync()
+        public async Task ResultsAreParsedIntoSignals()
         {
             //arrange
             var contents = await File.ReadAllTextAsync("iw-output.txt");
