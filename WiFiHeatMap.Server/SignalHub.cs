@@ -5,11 +5,12 @@ namespace WiFiHeatMap.Server
 {
     public class SignalHub : Hub, ISignalHub
     {
-        public async Task SendMessage(Message message) => await
-        (
-            Clients != null
-                ? Clients.All.SendAsync("Update", message)
-                : Task.CompletedTask
-        );
+        private readonly IHubContext<SignalHub> _context;
+
+        public SignalHub(IHubContext<SignalHub> context)
+            => _context = context;
+
+        public async Task SendMessage(Message message)
+            => await _context.Clients.All.SendAsync("Update", message);
     }
 }

@@ -12,16 +12,16 @@ namespace WiFiHeatMap.Tests
         public async Task SendsUpdateToAllClients()
         {
             //arrange
-            var clients = Substitute.For<IHubCallerClients>();
-            clients.All.Returns(Substitute.For<IClientProxy>());
-            
-            var hub = new SignalHub { Clients = clients };
+            var context = Substitute.For<IHubContext<SignalHub>>();
+            context.Clients.All.Returns(Substitute.For<IClientProxy>());
+
+            var hub = new SignalHub(context);
 
             //act
             await hub.SendMessage(new Message());
 
             //assert
-            await hub.Clients.All.Received().SendCoreAsync("Update", Arg.Is<object[]>(array => array[0] is Message));
+            await context.Clients.All.Received().SendCoreAsync("Update", Arg.Is<object[]>(array => array[0] is Message));
         }
     }
 }
