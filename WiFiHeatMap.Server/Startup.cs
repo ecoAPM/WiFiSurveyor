@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,20 +7,7 @@ namespace WiFiHeatMap.Server
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            switch (Environment.OSVersion.Platform)
-            {
-                case PlatformID.Unix:
-                    services.AddSingleton<ICommandService, LinuxCommandService>();
-                    services.AddSingleton<ISignalReader, LinuxSignalReader>();
-                    services.AddSingleton<ISignalParser, LinuxSignalParser>();
-                    break;
-                default:
-                    throw new NotImplementedException($"{Environment.OSVersion.Platform} is not currently supported");
-            }
-
-            services.AddSingleton<ISignalHub, SignalHub>();
-            services.AddHostedService<SignalService>();
-
+            services.AddWiFiHeatMap();
             services.AddCors();
             services.AddLogging();
             services.AddResponseCompression();
