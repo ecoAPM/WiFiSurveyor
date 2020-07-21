@@ -1,17 +1,20 @@
 ﻿@using Microsoft.AspNetCore.SignalR.Client;
 
-<h1>WiFiHeatMap</h1>
+<nav>
+    <h1>WiFiHeatMap</h1>
+    <h2 class="@statusClass">@statusMessage</h2>
+</nav>
 
-<ol>
-    @foreach (var message in messages)
-    {
-        <li>@message.Status</li>
-    }
-</ol>
+<main>
+    x
+</main>
 
 @code {
     private HubConnection hubConnection;
-    private List<Message> messages = new List<Message>();
+    private Message message = new Message { Status = "(starting...)" };
+
+    private string statusClass => message.Status != "Running" ? "error" : "";
+    private string statusMessage => message.Status;
 
     protected override async Task OnInitializedAsync()
     {
@@ -19,14 +22,13 @@
             .WithUrl("http://localhost:5001")
             .Build();
 
-        hubConnection.On<Message>("Update", message =>
+        hubConnection.On<Message>("Update", incoming =>
         {
-            messages.Add(message);
+            message = incoming;
             StateHasChanged();
         });
 
         await hubConnection.StartAsync();
-        messages.Add(new Message { Status = "Started" });
     }
 
     public void Dispose() => _ = hubConnection.DisposeAsync();
