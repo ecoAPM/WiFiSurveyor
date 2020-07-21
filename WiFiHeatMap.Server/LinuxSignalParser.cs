@@ -7,7 +7,7 @@ namespace WiFiHeatMap.Server
 {
     public class LinuxSignalParser : ISignalParser
     {
-        public IEnumerable<Signal> Parse(string results)
+        public IList<Signal> Parse(string results)
         {
             var accessPoints = results
                 .Split($"{Environment.NewLine}BSS").AsEnumerable()

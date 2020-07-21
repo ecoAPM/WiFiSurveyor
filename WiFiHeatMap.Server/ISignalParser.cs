@@ -4,6 +4,6 @@ namespace WiFiHeatMap.Server
 {
     public interface ISignalParser
     {
-        IEnumerable<Signal> Parse(string results);
+        IList<Signal> Parse(string results);
     }
 }

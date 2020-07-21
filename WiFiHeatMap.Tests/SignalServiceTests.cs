@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -54,7 +55,7 @@ namespace WiFiHeatMap.Tests
             var reader = Substitute.For<ISignalReader>();
             var parser = Substitute.For<ISignalParser>();
             var hub = Substitute.For<ISignalHub>();
-            var signals = new[]
+            var signals = new List<Signal>
             {
                 new Signal
                 {
@@ -72,7 +73,7 @@ namespace WiFiHeatMap.Tests
             await task;
 
             //assert
-            await hub.Received().SendMessage(Arg.Is<Message>(m => m.Signals == signals));
+            await hub.Received().SendMessage(Arg.Is<Message>(m => m.Signals.Equals(signals)));
         }
     }
 }
