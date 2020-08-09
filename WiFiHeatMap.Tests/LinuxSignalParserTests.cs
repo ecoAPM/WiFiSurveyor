@@ -1,7 +1,6 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using WiFiHeatMap.Server;
 using Xunit;
 
 namespace WiFiHeatMap.Tests

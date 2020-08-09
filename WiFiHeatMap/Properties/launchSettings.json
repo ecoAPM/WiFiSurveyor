@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "WiFiHeatMap.Server": {
+    "WiFiHeatMap": {
       "commandName": "Project",
       "applicationUrl": "http://localhost:5001"
     }

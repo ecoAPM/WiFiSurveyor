@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace WiFiHeatMap.Server
+namespace WiFiHeatMap
 {
     public interface ISignalReader<T>
     {

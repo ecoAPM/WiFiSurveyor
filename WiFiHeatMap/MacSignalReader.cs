@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace WiFiHeatMap.Server
+namespace WiFiHeatMap
 {
     public class MacSignalReader : ISignalReader<string>
     {

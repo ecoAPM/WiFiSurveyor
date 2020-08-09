@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.Devices.WiFi;
 
-namespace WiFiHeatMap.Server
+namespace WiFiHeatMap
 {
     public class WindowsSignalReader : ISignalReader<WiFiNetworkReport>
     {

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace WiFiHeatMap.Server
+namespace WiFiHeatMap
 {
     public class Startup
     {
@@ -16,10 +16,12 @@ namespace WiFiHeatMap.Server
 
         public void Configure(IApplicationBuilder app)
         {
-            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseCors(builder => builder.AllowCredentials().AllowAnyHeader().WithOrigins("http://localhost:1234"));
             app.UseResponseCompression();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseRouting();
-            app.UseEndpoints(builder => builder.MapHub<SignalHub>(""));
+            app.UseEndpoints(builder => builder.MapHub<SignalHub>("/signals"));
         }
     }
 }

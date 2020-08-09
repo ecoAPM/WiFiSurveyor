@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WiFiHeatMap.Server\WiFiHeatMap.Server.csproj" />
+    <ProjectReference Include="..\WiFiHeatMap\WiFiHeatMap.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace WiFiHeatMap.Server
+namespace WiFiHeatMap
 {
     public class LinuxSignalReader : ISignalReader<string>
     {

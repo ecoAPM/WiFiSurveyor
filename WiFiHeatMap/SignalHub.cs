@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 
-namespace WiFiHeatMap.Server
+namespace WiFiHeatMap
 {
     public class SignalHub : Hub, ISignalHub
     {

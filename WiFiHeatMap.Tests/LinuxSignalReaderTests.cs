@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using NSubstitute;
-using WiFiHeatMap.Server;
 using Xunit;
 
 namespace WiFiHeatMap.Tests

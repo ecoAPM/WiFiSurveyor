@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 using NSubstitute;
-using WiFiHeatMap.Server;
 using Xunit;
 
 namespace WiFiHeatMap.Tests
