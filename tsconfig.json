@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "lib": [
+            "ES2015",
+            "DOM"
+        ],
+        "module": "CommonJS",
+        "outDir": "WiFiHeatMap/wwwroot",
+        "sourceMap": true,
+        "strict": true,
+        "target": "ES5",
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+    }
+}

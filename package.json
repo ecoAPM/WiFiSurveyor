@@ -1,0 +1,44 @@
+{
+  "name": "wifiheatmap",
+  "version": "1.0.0",
+  "description": "Visualize Wi-Fi signal strength over a geographic area",
+  "main": "app.js",
+  "scripts": {
+    "dev": "parcel WiFiHeatMap.App/index.html -d WiFiHeatMap/wwwroot",
+    "build": "parcel build WiFiHeatMap.App/index.html -d WiFiHeatMap/wwwroot",
+    "test": "parcel build WiFiHeatMap.App.Tests/**/*.ts -d dist/tests -t node --no-minify --log-level 2 && xunit dist/tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/stevedesmond-ca/WiFiHeatMap.git"
+  },
+  "keywords": [
+    "WiFi",
+    "Wi-Fi",
+    "HeatMap",
+    "Heat",
+    "Map",
+    "Signal",
+    "Strength",
+    "dBm"
+  ],
+  "author": "Steve Desmond",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/stevedesmond-ca/WiFiHeatMap/issues"
+  },
+  "homepage": "https://github.com/stevedesmond-ca/WiFiHeatMap#readme",
+  "devDependencies": {
+    "@microsoft/signalr": "^3.1.6",
+    "@types/node": "^14.0.27",
+    "@vue/component-compiler-utils": "^3.2.0",
+    "delaunator": "^4.0.1",
+    "glslify-bundle": "^5.1.1",
+    "glslify-deps": "^1.3.1",
+    "parcel": "^1.12.4",
+    "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-template-compiler": "^2.6.11",
+    "xunit.ts": "^0.5.1"
+  }
+}
