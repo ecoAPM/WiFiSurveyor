@@ -1,5 +1,6 @@
 import Point from "./Point";
 import Signal from "./Signal";
+import AccessPoint from "./AccessPoint";
 
 export default class Reading {
     readonly id: number;
@@ -12,12 +13,16 @@ export default class Reading {
         this.signals = signals;
     }
 
-    signalFor(ssid: string, frequency: number|null = null, mac: string|null = null): number|null {
+    signalFor(access_point: AccessPoint): number|null {
+        if (access_point == null)
+            return null;
+
         const signals = this.signals
-            .filter((signal) => (signal.ssid == ssid)
-                && (frequency == null || signal.frequency == frequency)
-                && (mac == null || signal.mac == mac))
+            .filter((signal) => (signal.ssid == access_point.ssid)
+                && (access_point.frequency == null || signal.frequency == access_point.frequency)
+                && (access_point.mac == null || signal.mac == access_point.mac))
             .map((signal) => signal.strength);
+        
         return signals.length > 0 ? Math.max(...signals) : null;
     }
 }

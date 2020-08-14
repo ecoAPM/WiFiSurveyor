@@ -2,6 +2,7 @@ import { Test, TestSuite } from "xunit.ts";
 import Reading from "../WiFiHeatMap.App/Reading";
 import Point from "../WiFiHeatMap.App/Point";
 import Signal from "../WiFiHeatMap.App/Signal";
+import AccessPoint from "../WiFiHeatMap.App/AccessPoint";
 
 export default class ReadingTests extends TestSuite
 {
@@ -20,9 +21,10 @@ export default class ReadingTests extends TestSuite
     async canGetSignalForSingleAP(): Promise<void> {
         //arrange
         const reading = new Reading(1, new Point(2, 3), ReadingTests.signals);
-
+        const access_point = new AccessPoint('ssid1', 5, 'mac3');
+        
         //act
-        const strength = reading.signalFor('ssid1', 5, 'mac3');
+        const strength = reading.signalFor(access_point);
 
         //assert
         this.assert.equal(-45, strength);
@@ -32,9 +34,10 @@ export default class ReadingTests extends TestSuite
     async canGetSignalForSSIDOnSingleFrequency(): Promise<void> {
         //arrange
         const reading = new Reading(1, new Point(2, 3), ReadingTests.signals);
+        const access_point = new AccessPoint('ssid1', 5);
 
         //act
-        const strength = reading.signalFor('ssid1', 5);
+        const strength = reading.signalFor(access_point);
 
         //assert
         this.assert.equal(-40, strength);
@@ -44,9 +47,10 @@ export default class ReadingTests extends TestSuite
     async canGetSignalForSSID(): Promise<void> {
         //arrange
         const reading = new Reading(1, new Point(2, 3), ReadingTests.signals);
+        const access_point = new AccessPoint('ssid2');
 
         //act
-        const strength = reading.signalFor('ssid2');
+        const strength = reading.signalFor(access_point);
 
         //assert
         this.assert.equal(-50, strength);
