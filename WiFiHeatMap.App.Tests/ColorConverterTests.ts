@@ -5,7 +5,7 @@ import Color from '../WiFiHeatMap.App/Color';
 export default class ColorConverterTests extends TestSuite
 {
     @Test()
-    async goodSignalIsGreen(): Promise<void> {
+    async goodSignalIsGreen() {
         //arrange
         const dBm = -32;
 
@@ -17,7 +17,7 @@ export default class ColorConverterTests extends TestSuite
     }
 
     @Test()
-    async mediumSignalIsYellow(): Promise<void> {
+    async mediumSignalIsYellow() {
         //arrange
         const dBm = -64;
 
@@ -29,7 +29,7 @@ export default class ColorConverterTests extends TestSuite
     }
 
     @Test()
-    async BadSignalIsRed(): Promise<void> {
+    async BadSignalIsRed() {
         //arrange
         const dBm = -80;
 

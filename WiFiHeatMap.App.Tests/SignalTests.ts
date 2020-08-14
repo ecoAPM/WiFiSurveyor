@@ -3,7 +3,7 @@ import Signal from "../WiFiHeatMap.App/Signal";
 
 export default class SignalTests extends TestSuite {
     @Test()
-    async canCreateSignal(): Promise<void> {
+    async canCreateSignal() {
         //arrange
         const mac = '12:34:56:78:90:ab', ssid = 'test', frequency = 2, strength = -50;
 

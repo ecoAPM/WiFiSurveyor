@@ -7,7 +7,7 @@ import AccessPoint from "../WiFiHeatMap.App/AccessPoint";
 
 export default class TriangulationTests extends TestSuite {
     @Test()
-    async canConvertReadingsToVertices(): Promise<void> {
+    async canConvertReadingsToVertices() {
         //arrange
         const readings = [
             new Reading(1, new Point(1, 2), []),
@@ -23,7 +23,7 @@ export default class TriangulationTests extends TestSuite {
     }
 
     @Test()
-    async canConvertReadingsToColors(): Promise<void> {
+    async canConvertReadingsToColors() {
         //arrange
         const readings = [
             new Reading(1, new Point(1, 2), [new Signal('12:34:56', 'test', 2, -32)]),

@@ -8,7 +8,7 @@ import Mockito from "ts-mockito";
 export default class SignalServiceTests extends TestSuite
 {
     @Test()
-    async signalsAreUpdatedOnNewMessage(): Promise<void> {
+    async signalsAreUpdatedOnNewMessage() {
         //arrange
         const signal1 = new Signal('mac1', 'ssid1', 2, -50);
         const signal2 = new Signal('mac2', 'ssid2', 2, -40);

@@ -18,7 +18,7 @@ export default class ReadingTests extends TestSuite
     ];
 
     @Test()
-    async canGetSignalForSingleAP(): Promise<void> {
+    async canGetSignalForSingleAP() {
         //arrange
         const reading = new Reading(1, new Point(2, 3), ReadingTests.signals);
         const access_point = new AccessPoint('ssid1', 5, 'mac3');
@@ -31,7 +31,7 @@ export default class ReadingTests extends TestSuite
     }
 
     @Test()
-    async canGetSignalForSSIDOnSingleFrequency(): Promise<void> {
+    async canGetSignalForSSIDOnSingleFrequency() {
         //arrange
         const reading = new Reading(1, new Point(2, 3), ReadingTests.signals);
         const access_point = new AccessPoint('ssid1', 5);
@@ -44,7 +44,7 @@ export default class ReadingTests extends TestSuite
     }
 
     @Test()
-    async canGetSignalForSSID(): Promise<void> {
+    async canGetSignalForSSID() {
         //arrange
         const reading = new Reading(1, new Point(2, 3), ReadingTests.signals);
         const access_point = new AccessPoint('ssid2');

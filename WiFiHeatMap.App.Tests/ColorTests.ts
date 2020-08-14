@@ -4,7 +4,7 @@ import Color from '../WiFiHeatMap.App/Color';
 export default class ColorTests extends TestSuite
 {
     @Test()
-    async canCreateColor(): Promise<void> {
+    async canCreateColor() {
         //arrange
         const red = 12, green = 23, blue = 34, alpha = 45;
 
@@ -19,7 +19,7 @@ export default class ColorTests extends TestSuite
     }
 
     @Test()
-    async componentsAreClamped(): Promise<void> {
+    async componentsAreClamped() {
         //arrange
         const too_low = -1;
         const too_high = 256;
@@ -35,7 +35,7 @@ export default class ColorTests extends TestSuite
     }
 
     @Test()
-    async canConvertToRGB(): Promise<void> {
+    async canConvertToRGB() {
         //arrange
         const color = new Color(12, 23, 34);
 
@@ -47,7 +47,7 @@ export default class ColorTests extends TestSuite
     }
 
     @Test()
-    async canConvertToRGBA(): Promise<void> {
+    async canConvertToRGBA() {
         //arrange
         const color = new Color(12, 23, 34, 45);
 
@@ -59,7 +59,7 @@ export default class ColorTests extends TestSuite
     }
 
     @Test()
-    async canConvertToHEX(): Promise<void> {
+    async canConvertToHEX() {
         //arrange
         const color = new Color(127, 63, 255);
 
@@ -71,7 +71,7 @@ export default class ColorTests extends TestSuite
     }
 
     @Test()
-    async canConvertToHEXA(): Promise<void> {
+    async canConvertToHEXA() {
         //arrange
         const color = new Color(127, 63, 31);
 

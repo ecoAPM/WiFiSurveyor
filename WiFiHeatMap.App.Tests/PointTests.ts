@@ -4,7 +4,7 @@ import Point from "../WiFiHeatMap.App/Point";
 export default class PointTests extends TestSuite
 {
     @Test()
-    async canCreatePoint(): Promise<void> {
+    async canCreatePoint() {
         //arrange
         const x = 12, y = 23;
 
