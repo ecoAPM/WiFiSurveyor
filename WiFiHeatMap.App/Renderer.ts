@@ -19,8 +19,11 @@ export default class Renderer {
         gl.uniform2f(offset_uniform, canvas.clientWidth, canvas.clientHeight);
     }
 
-    private setCoords(readings: Reading[]): void {
-        const coords = Triangulation.getCoords(readings);
+    private setCoords(triangulation: Triangulation): void {
+        const coords = triangulation.getCoords();
+        if (coords.length < 6 || coords.length % 2 !== 0)
+            return;
+
         this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.gl.createBuffer());
         this.gl.bufferData(this.gl.ARRAY_BUFFER, new Uint16Array(coords), this.gl.STREAM_DRAW);
 
@@ -29,8 +32,12 @@ export default class Renderer {
         this.gl.enableVertexAttribArray(coords_attribute);
     }
 
-    private setColors(readings: Reading[], access_point: AccessPoint): void {
-        const colors = Triangulation.getColors(readings, access_point);
+    private setColors(triangulation: Triangulation, access_point: AccessPoint): void {
+        const colors = triangulation.getColors(access_point);
+        
+        if (colors.length < 12 || colors.length % 4 !== 0)
+            return;
+            
         this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.gl.createBuffer());
         this.gl.bufferData(this.gl.ARRAY_BUFFER, new Uint8Array(colors), this.gl.STREAM_DRAW);
 
@@ -40,9 +47,10 @@ export default class Renderer {
     }
 
     render(readings: Reading[], access_point: AccessPoint): void {
+        const triangulation = new Triangulation(readings);
         this.setOffset(this.canvas, this.gl, this.shader_program);
-        this.setCoords(readings);
-        this.setColors(readings, access_point);
+        this.setCoords(triangulation);
+        this.setColors(triangulation, access_point);
         this.gl.drawArrays(this.gl.TRIANGLES, 0, readings.length);
     }
 }
