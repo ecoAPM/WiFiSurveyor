@@ -30,4 +30,40 @@ export default class AccessPointTests extends TestSuite
         this.assert.null(ap.frequency);
         this.assert.null(ap.mac);
     }
+
+    @Test()
+    async canGetLabel() {
+        //arrange
+        const ap = new AccessPoint('test', 2, 'ab:cd:ef');
+
+        //act
+        const label = ap.label();
+
+        //assert
+        this.assert.equal('test @ 2 GHz (ab:cd:ef)', label);
+    }
+
+    @Test()
+    async canGetFrequencyGroupedLabel() {
+        //arrange
+        const ap = new AccessPoint('test', 2);
+
+        //act
+        const label = ap.label();
+
+        //assert
+        this.assert.equal('test @ 2 GHz', label);
+    }
+
+    @Test()
+    async canGetSSIDGroupedLabel() {
+        //arrange
+        const ap = new AccessPoint('test');
+
+        //act
+        const label = ap.label();
+
+        //assert
+        this.assert.equal('test', label);
+    }
 }

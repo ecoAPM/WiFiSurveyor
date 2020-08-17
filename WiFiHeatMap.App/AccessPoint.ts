@@ -10,4 +10,10 @@ export default class AccessPoint
         this.frequency = frequency;
         this.mac = mac;
     }
+
+    label() {
+        return this.ssid
+            + (this.frequency !== null ? ` @ ${this.frequency} GHz` : '')
+            +  (this.mac !== null ? ` (${this.mac})` : '');
+    }
 }
