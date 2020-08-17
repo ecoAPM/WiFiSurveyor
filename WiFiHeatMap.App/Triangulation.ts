@@ -5,35 +5,24 @@ import AccessPoint from "./AccessPoint";
 import Point from './Point';
 
 export default class Triangulation {
-    private readonly readings: Reading[];
-    private readonly output: Delaunator<Point>;
+    readonly vertex_coordinates: number[] = [];
+    readonly vertex_color_parts: number[] = [];
 
-    constructor(readings: Reading[]) {
-        this.readings = readings;
-
+    constructor(readings: Reading[], access_point: AccessPoint) {
         const points = readings.map(reading => reading.location);
-        this.output = Delaunator.from(points, p => p.x, p => p.y);
-    }
-    getCoords(): number[] {
-        const coords: number[] = [];
-        this.output.triangles.forEach(index => {
-            coords.push(this.readings[index].location.x);
-            coords.push(this.readings[index].location.y);
-        });
-        return coords;
-    }
+        const delauney = Delaunator.from(points, p => p.x, p => p.y);
+        
+        delauney.triangles.forEach(index => {
+            const reading = readings[index];
+            this.vertex_coordinates.push(reading.location.x);
+            this.vertex_coordinates.push(reading.location.y);
 
-    getColors(access_point: AccessPoint): number[] {
-        const colors: number[] = [];
-        this.output.triangles.forEach(index => {
-            const reading = this.readings[index];
             const signal = reading.signalFor(access_point);
             const color = ColorConverter.toColor(signal);
-            colors.push(color.red);
-            colors.push(color.green);
-            colors.push(color.blue);
-            colors.push(color.alpha);
+            this.vertex_color_parts.push(color.red);
+            this.vertex_color_parts.push(color.green);
+            this.vertex_color_parts.push(color.blue);
+            this.vertex_color_parts.push(color.alpha);
         });
-        return colors;
     }
 }

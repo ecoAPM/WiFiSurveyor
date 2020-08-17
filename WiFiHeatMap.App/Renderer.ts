@@ -20,26 +20,17 @@ export default class Renderer {
     }
 
     private setCoords(triangulation: Triangulation): void {
-        const coords = triangulation.getCoords();
-        if (coords.length < 6 || coords.length % 2 !== 0)
-            return;
-
         this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.gl.createBuffer());
-        this.gl.bufferData(this.gl.ARRAY_BUFFER, new Uint16Array(coords), this.gl.STREAM_DRAW);
+        this.gl.bufferData(this.gl.ARRAY_BUFFER, new Uint16Array(triangulation.vertex_coordinates), this.gl.STREAM_DRAW);
 
         const coords_attribute = this.gl.getAttribLocation(this.shader_program, "a_coords");
         this.gl.vertexAttribPointer(coords_attribute, 2, this.gl.UNSIGNED_SHORT, false, 0, 0);
         this.gl.enableVertexAttribArray(coords_attribute);
     }
 
-    private setColors(triangulation: Triangulation, access_point: AccessPoint): void {
-        const colors = triangulation.getColors(access_point);
-        
-        if (colors.length < 12 || colors.length % 4 !== 0)
-            return;
-            
+    private setColors(triangulation: Triangulation): void {
         this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.gl.createBuffer());
-        this.gl.bufferData(this.gl.ARRAY_BUFFER, new Uint8Array(colors), this.gl.STREAM_DRAW);
+        this.gl.bufferData(this.gl.ARRAY_BUFFER, new Uint8Array(triangulation.vertex_color_parts), this.gl.STREAM_DRAW);
 
         const color_attribute = this.gl.getAttribLocation(this.shader_program, "a_color");
         this.gl.vertexAttribPointer(color_attribute, 4, this.gl.UNSIGNED_BYTE, false, 0, 0);
@@ -47,10 +38,18 @@ export default class Renderer {
     }
 
     render(readings: Reading[], access_point: AccessPoint): void {
-        const triangulation = new Triangulation(readings);
+        const triangulation = new Triangulation(readings, access_point);
+        if (triangulation.vertex_coordinates.length === 0 || triangulation.vertex_coordinates.length % 6 !== 0
+            || triangulation.vertex_color_parts.length === 0 || triangulation.vertex_color_parts.length % 12 !== 0)
+            return;
+        
         this.setOffset(this.canvas, this.gl, this.shader_program);
         this.setCoords(triangulation);
-        this.setColors(triangulation, access_point);
-        this.gl.drawArrays(this.gl.TRIANGLES, 0, readings.length);
+        this.setColors(triangulation);
+        this.gl.drawArrays(this.gl.TRIANGLES, 0, triangulation.vertex_coordinates.length / 2);
+    }
+
+    clear(): void {
+        this.gl.clear(this.gl.COLOR_BUFFER_BIT);
     }
 }
