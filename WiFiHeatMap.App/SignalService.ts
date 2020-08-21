@@ -13,6 +13,9 @@ export default class SignalService {
 
     update(message: Message): void {
         this.signals.splice(0, this.signals.length);
-        message.signals.forEach(signal => this.signals.push(signal));
+        message.signals.forEach(data => {
+            const signal = new Signal(data.mac, data.ssid, data.frequency, data.strength);
+            this.signals.push(signal);
+        });
     }
 }
