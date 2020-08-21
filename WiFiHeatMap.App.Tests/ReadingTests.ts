@@ -4,8 +4,7 @@ import Point from "../WiFiHeatMap.App/Point";
 import Signal from "../WiFiHeatMap.App/Signal";
 import AccessPoint from "../WiFiHeatMap.App/AccessPoint";
 
-export default class ReadingTests extends TestSuite
-{
+export default class ReadingTests extends TestSuite {
     private static signals: Signal[] = [
         new Signal('mac1', 'ssid1', 2, -35),
         new Signal('mac2', 'ssid1', 2, -30),
@@ -22,7 +21,7 @@ export default class ReadingTests extends TestSuite
         //arrange
         const reading = new Reading(1, new Point(2, 3), ReadingTests.signals);
         const access_point = new AccessPoint('ssid1', 5, 'mac3');
-        
+
         //act
         const strength = reading.signalFor(access_point);
 

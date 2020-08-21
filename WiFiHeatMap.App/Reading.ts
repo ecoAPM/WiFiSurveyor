@@ -13,7 +13,7 @@ export default class Reading {
         this.signals = signals;
     }
 
-    signalFor(access_point: AccessPoint): number|null {
+    signalFor(access_point: AccessPoint): number | null {
         if (access_point == null)
             return null;
 
@@ -22,7 +22,7 @@ export default class Reading {
                 && (access_point.frequency == null || signal.frequency == access_point.frequency)
                 && (access_point.mac == null || signal.mac == access_point.mac))
             .map((signal) => signal.strength);
-        
+
         return signals.length > 0 ? Math.max(...signals) : null;
     }
 }

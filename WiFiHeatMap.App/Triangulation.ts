@@ -11,7 +11,7 @@ export default class Triangulation {
     constructor(readings: Reading[], access_point: AccessPoint) {
         const points = readings.map(reading => reading.location);
         const delauney = Delaunator.from(points, p => p.x, p => p.y);
-        
+
         delauney.triangles.forEach(index => {
             const reading = readings[index];
             this.vertex_coordinates.push(reading.location.x);
