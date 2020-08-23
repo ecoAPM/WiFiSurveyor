@@ -3,8 +3,8 @@ export default class AccessPoint {
     readonly frequency: number | null;
     readonly mac: string | null;
 
-    constructor(ssid: string | null, frequency: number | null = null, mac: string | null = null) {
-        this.ssid = ssid ?? '[hidden]';
+    constructor(ssid: string, frequency: number | null = null, mac: string | null = null) {
+        this.ssid = ssid;
         this.frequency = frequency;
         this.mac = mac;
     }
