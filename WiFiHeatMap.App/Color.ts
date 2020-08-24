@@ -22,7 +22,7 @@ export default class Color {
     }
 
     toRGBA(): string {
-        return `rgba(${this.red},${this.green},${this.blue},${this.alpha})`;
+        return `rgba(${this.red},${this.green},${this.blue},${(this.alpha > 0 ? this.alpha + 1 : this.alpha) / 256})`;
     }
 
     toHEX(): string {

@@ -42,7 +42,7 @@ export default class Renderer {
         if (triangulation.vertex_coordinates.length === 0 || triangulation.vertex_coordinates.length % 6 !== 0
             || triangulation.vertex_color_parts.length === 0 || triangulation.vertex_color_parts.length % 12 !== 0)
             return;
-        
+
         this.setOffset(this.canvas, this.gl, this.shader_program);
         this.setCoords(triangulation);
         this.setColors(triangulation);
@@ -50,6 +50,6 @@ export default class Renderer {
     }
 
     clear(): void {
-        this.gl.clear(this.gl.COLOR_BUFFER_BIT);
+        this.gl.clear(this.gl.DEPTH_BUFFER_BIT);
     }
 }

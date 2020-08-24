@@ -36,6 +36,6 @@ export default class TriangulationTests extends TestSuite {
         const triangulation = new Triangulation(readings, access_point);
 
         //assert
-        this.assert.equal([255, 255, 0, 255, 0, 255, 0, 255, 255, 0, 0, 255], triangulation.vertex_color_parts);
+        this.assert.equal([255, 255, 0, 191, 0, 255, 0, 191, 255, 0, 0, 191], triangulation.vertex_color_parts);
     }
 }

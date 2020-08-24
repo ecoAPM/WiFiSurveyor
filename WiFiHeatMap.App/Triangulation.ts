@@ -2,7 +2,6 @@ import Delaunator from 'delaunator';
 import ColorConverter from "./ColorConverter";
 import Reading from "./Reading";
 import AccessPoint from "./AccessPoint";
-import Point from './Point';
 
 export default class Triangulation {
     readonly vertex_coordinates: number[] = [];
@@ -22,7 +21,7 @@ export default class Triangulation {
             this.vertex_color_parts.push(color.red);
             this.vertex_color_parts.push(color.green);
             this.vertex_color_parts.push(color.blue);
-            this.vertex_color_parts.push(color.alpha);
+            this.vertex_color_parts.push((color.alpha > 0 ? color.alpha + 1 : color.alpha) * 0.75 - (color.alpha > 0 ? 1 : 0));
         });
     }
 }

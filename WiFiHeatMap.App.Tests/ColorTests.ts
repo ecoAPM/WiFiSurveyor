@@ -1,8 +1,7 @@
 import { Test, TestSuite } from 'xunit.ts';
 import Color from '../WiFiHeatMap.App/Color';
 
-export default class ColorTests extends TestSuite
-{
+export default class ColorTests extends TestSuite {
     @Test()
     async canCreateColor() {
         //arrange
@@ -49,13 +48,26 @@ export default class ColorTests extends TestSuite
     @Test()
     async canConvertToRGBA() {
         //arrange
-        const color = new Color(12, 23, 34, 45);
+        const color = new Color(12, 23, 34, 63);
 
         //act
         const rgba_css_string = color.toRGBA();
 
         //assert
-        this.assert.equal('rgba(12,23,34,45)', rgba_css_string);
+        this.assert.equal('rgba(12,23,34,0.25)', rgba_css_string);
+    }
+
+    @Test()
+    async canConvertAlphaFloatCorrectly() {
+        //act
+        const clear = new Color(12, 23, 34, 0).toRGBA();
+        const half = new Color(12, 23, 34, 127).toRGBA();
+        const full = new Color(12, 23, 34, 255).toRGBA();
+
+        //assert
+        this.assert.equal('rgba(12,23,34,0)', clear);
+        this.assert.equal('rgba(12,23,34,0.5)', half);
+        this.assert.equal('rgba(12,23,34,1)', full);
     }
 
     @Test()
