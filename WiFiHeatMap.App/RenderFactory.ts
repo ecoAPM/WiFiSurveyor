@@ -24,7 +24,7 @@ export default class RenderFactory {
 
         const fragment_shader = RenderFactory.getFragmentShader(gl);
         gl.attachShader(shader_program, fragment_shader);
-        
+
         gl.linkProgram(shader_program);
         gl.useProgram(shader_program);
 
@@ -49,7 +49,7 @@ export default class RenderFactory {
 
         gl.shaderSource(fragment_shader, fragment_shader_source);
         gl.compileShader(fragment_shader);
-        
+
         return fragment_shader;
     }
 }

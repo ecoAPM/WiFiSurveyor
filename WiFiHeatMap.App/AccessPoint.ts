@@ -9,7 +9,7 @@ export default class AccessPoint {
         this.mac = mac;
     }
 
-    label() {
+    label(): string {
         return this.ssid
             + (this.frequency !== null ? ` @ ${this.frequency} GHz` : '')
             + (this.mac !== null ? ` (${this.mac})` : '');
