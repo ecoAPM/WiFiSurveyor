@@ -16,4 +16,16 @@ export default class SignalTests extends TestSuite {
         this.assert.equal(2, signal.frequency);
         this.assert.equal(-50, signal.strength);
     }
+
+    @Test()
+    async canGetColorForSignal() {
+        //arrange
+        const signal = new Signal('mac', 'ssid', 2, -32);
+
+        //act
+        const color = signal.color();
+
+        //assert
+        this.assert.equal(255, color.green);
+    }
 }

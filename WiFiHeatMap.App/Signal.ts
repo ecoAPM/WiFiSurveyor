@@ -1,3 +1,6 @@
+import ColorConverter from "./ColorConverter";
+import Color from "./Color";
+
 export default class Signal {
     readonly mac: string;
     readonly ssid: string;
@@ -9,5 +12,9 @@ export default class Signal {
         this.ssid = ssid || '[hidden]';
         this.frequency = frequency;
         this.strength = strength;
+    }
+
+    color(): Color {
+        return ColorConverter.toColor(this.strength);
     }
 }
