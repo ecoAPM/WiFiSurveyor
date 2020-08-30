@@ -42,7 +42,7 @@ export default class ColorTests extends TestSuite {
         const rgb_css_string = color.toRGB();
 
         //assert
-        this.assert.equal('rgb(12,23,34)', rgb_css_string);
+        this.assert.equal('rgb(12, 23, 34)', rgb_css_string);
     }
 
     @Test()
@@ -54,7 +54,7 @@ export default class ColorTests extends TestSuite {
         const rgba_css_string = color.toRGBA();
 
         //assert
-        this.assert.equal('rgba(12,23,34,0.25)', rgba_css_string);
+        this.assert.equal('rgba(12, 23, 34, 0.25)', rgba_css_string);
     }
 
     @Test()
@@ -65,9 +65,9 @@ export default class ColorTests extends TestSuite {
         const full = new Color(12, 23, 34, 255).toRGBA();
 
         //assert
-        this.assert.equal('rgba(12,23,34,0)', clear);
-        this.assert.equal('rgba(12,23,34,0.5)', half);
-        this.assert.equal('rgba(12,23,34,1)', full);
+        this.assert.equal('rgba(12, 23, 34, 0)', clear);
+        this.assert.equal('rgba(12, 23, 34, 0.5)', half);
+        this.assert.equal('rgba(12, 23, 34, 1)', full);
     }
 
     @Test()

@@ -56,7 +56,7 @@
     overflow: scroll;
     background-color: rgba(255, 255, 255, 0.75);
     border: 2px solid black;
-    box-shadow: 0 0 1rem 1rem #0000007f;
+    box-shadow: 0 0 1rem 1rem rgba(0, 0, 0, 0.5);
   }
 
   .debug table td:first-child {

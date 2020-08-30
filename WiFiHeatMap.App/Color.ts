@@ -18,11 +18,11 @@ export default class Color {
     }
 
     toRGB(): string {
-        return `rgb(${this.red},${this.green},${this.blue})`;
+        return `rgb(${this.red}, ${this.green}, ${this.blue})`;
     }
 
     toRGBA(): string {
-        return `rgba(${this.red},${this.green},${this.blue},${(this.alpha > 0 ? this.alpha + 1 : this.alpha) / 256})`;
+        return `rgba(${this.red}, ${this.green}, ${this.blue}, ${(this.alpha > 0 ? this.alpha + 1 : this.alpha) / 256})`;
     }
 
     toHEX(): string {
