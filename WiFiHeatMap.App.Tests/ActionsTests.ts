@@ -5,21 +5,9 @@ import { shallowMount as mount } from '@vue/test-utils';
 
 export default class ActionsTests extends TestSuite {
     @Test()
-    async resetIsDisabledWhenFlagNotSet() {
+    async resetIsEnabledWhenReadingsExist() {
         //arrange
-        const component = mount(Actions);
-
-        //act
-        const button = component.find('#reset');
-
-        //assert
-        this.assert.notNull(button.attributes('disabled'));
-    }
-
-    @Test()
-    async resetIsEnabledWhenFlagSet() {
-        //arrange
-        const component = mount(Actions, { propsData: { can_reset: true } });
+        const component = mount(Actions, { propsData: { readings: [{}] } });
 
         //act
         const button = component.find('#reset');
@@ -29,9 +17,21 @@ export default class ActionsTests extends TestSuite {
     }
 
     @Test()
+    async resetIsDisabledWhenReadingsAreEmpty() {
+        //arrange
+        const component = mount(Actions, { propsData: { readings: [] } });
+
+        //act
+        const button = component.find('#reset');
+
+        //assert
+        this.assert.notNull(button.attributes('disabled'));
+    }
+
+    @Test()
     async clickingResetEmitsEvent() {
         //arrange
-        const component = mount(Actions, { propsData: { can_reset: true } });
+        const component = mount(Actions, { propsData: { readings: [{}] } });
 
         //act
         const button = component.find('#reset');
@@ -44,7 +44,7 @@ export default class ActionsTests extends TestSuite {
     @Test()
     async clickingDebugEmitsEvent() {
         //arrange
-        const component = mount(Actions, { propsData: { can_reset: true } });
+        const component = mount(Actions, { propsData: { readings: [{}] } });
 
         //act
         const checkbox = component.find('#debug');

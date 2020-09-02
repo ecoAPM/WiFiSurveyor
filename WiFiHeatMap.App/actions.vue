@@ -1,6 +1,6 @@
 <template>
   <section class="actions">
-    <button type="button" id="reset" @click="$emit('reset')" :disabled="!can_reset">Clear</button>
+    <button type="button" id="reset" @click="$emit('reset')" :disabled="readings.length === 0">Clear</button>
 
     <label for="debug">
       <input type="checkbox" id="debug" @change="$emit('debug', $event.target.checked)" />
@@ -14,7 +14,7 @@
 
   export default Vue.extend({
     props: {
-      can_reset: Boolean
+      readings: Array
     }
   });
 </script>
