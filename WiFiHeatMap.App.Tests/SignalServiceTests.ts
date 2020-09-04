@@ -5,16 +5,17 @@ import Message from "../WiFiHeatMap.App/Message";
 import { HubConnection } from "@microsoft/signalr";
 import Mockito from "ts-mockito";
 
-export default class SignalServiceTests extends TestSuite
-{
+export default class SignalServiceTests extends TestSuite {
     @Test()
     async signalsAreUpdatedOnNewMessage() {
         //arrange
+        const connection = Mockito.mock<HubConnection>();
+        Mockito.when(connection.start()).thenResolve();
+
         const signal1 = new Signal('mac1', 'ssid1', 2, -50);
         const signal2 = new Signal('mac2', 'ssid2', 2, -40);
         const signals = [signal1, signal2];
-        const connection = Mockito.mock<HubConnection>();
-        const service = new SignalService(connection, signals);
+        const service = new SignalService(Mockito.instance(connection), signals);
 
         const message = new Message();
         const new1 = new Signal('mac1', 'ssid1', 2, -45);
