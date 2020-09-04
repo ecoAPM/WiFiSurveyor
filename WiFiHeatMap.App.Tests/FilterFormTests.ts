@@ -116,7 +116,7 @@ export default class FilterFormTest extends TestSuite {
         const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), []) } });
 
         //act
-        component.find('#background-file').trigger('change');
+        await component.find('#background-file').trigger('change');
 
         //assert
         this.assert.notNull(component.emitted('background'));
@@ -128,7 +128,7 @@ export default class FilterFormTest extends TestSuite {
         const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), []) } });
 
         //act
-        component.find('#pixelate').trigger('change');
+        await component.find('#pixelate').trigger('change');
 
         //assert
         this.assert.notNull(component.emitted('pixelate'));

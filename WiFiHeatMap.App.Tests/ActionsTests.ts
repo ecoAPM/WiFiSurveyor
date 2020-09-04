@@ -35,7 +35,7 @@ export default class ActionsTests extends TestSuite {
 
         //act
         const button = component.find('#reset');
-        button.trigger('click');
+        await button.trigger('click');
 
         //assert
         this.assert.notNull(component.emitted('reset'));
@@ -48,8 +48,8 @@ export default class ActionsTests extends TestSuite {
 
         //act
         const checkbox = component.find('#debug');
-        checkbox.trigger('click');
-        checkbox.trigger('click');
+        await checkbox.trigger('click');
+        await checkbox.trigger('click');
 
         //assert
         const events = component.emitted('debug') as boolean[][];
