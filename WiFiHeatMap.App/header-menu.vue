@@ -13,10 +13,7 @@
   import WiFiStatus from './wifi-status.vue';
   import Actions from './actions.vue';
   import AccessPoint from './AccessPoint';
-  import Signal from './Signal';
   import Reading from './Reading';
-  import ColorConverter from './ColorConverter';
-  import Color from './Color';
 
   export default Vue.extend({
     components: {

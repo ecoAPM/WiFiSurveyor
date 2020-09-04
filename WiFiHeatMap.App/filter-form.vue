@@ -3,7 +3,7 @@
     <section class="access-point">
       <label for="access-point">Access Point:</label>
       <select id="access-point" v-model="selected" @change="$emit('selected', selected)">
-        <option disabled value="" v-if="!access_points">(no signals found)</option>
+        <option disabled value="" v-if="access_points.length === 0">(no signals found)</option>
         <option v-for="ap in access_points" :key="ap.label()" :value="ap">
           {{ap.label()}}
         </option>
@@ -40,29 +40,20 @@
   import Vue from 'vue';
   import AccessPoint from './AccessPoint';
   import Reading from './Reading';
-  import Signal from './Signal';
+  import FilterFormViewModel from './FilterFormViewModel';
 
   export default Vue.extend({
     props: {
       current: Reading
     },
-    data(): object {
-      return {
-        group_by: {
-          ssid: true,
-          frequency: true
-        },
-        selected: null,
-        pixelated: false
-      };
-    },
+    data: () => new FilterFormViewModel(),
     computed: {
       access_points(): AccessPoint[] {
-        return this.current.signals.map((signal: Signal) =>
+        return this.current.signals.map(signal =>
           new AccessPoint(signal.ssid,
             this.group_by.frequency ? null : signal.frequency,
             this.group_by.ssid ? null : signal.mac)
-        ).sort((ap1: AccessPoint, ap2: AccessPoint) =>
+        ).sort((ap1, ap2) =>
           ap1.label() > ap2.label() ? 1
             : ap1.label() < ap2.label() ? -1
               : 0)

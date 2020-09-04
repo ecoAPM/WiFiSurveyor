@@ -37,7 +37,7 @@
     computed: {
       signals_by_strength(): Signal[] {
         const signals = this.signals.slice() as Signal[];
-        return signals.sort((s1: Signal, s2: Signal) => s1.strength < s2.strength ? 1
+        return signals.sort((s1, s2) => s1.strength < s2.strength ? 1
           : s1.strength > s2.strength ? -1
             : s1.ssid < s2.ssid ? 1 : 0);
       }
