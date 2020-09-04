@@ -5788,10 +5788,10 @@ xtend@^2.1.2:
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-2.2.0.tgz#eef6b1f198c1c8deafad8b1765a04dad4a01c5a9"
   integrity sha1-7vax8ZjByN6vrYsXZaBNrUoBxak=
 
-xunit.ts@^0.6:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/xunit.ts/-/xunit.ts-0.6.1.tgz#0c9ee58b10bdd90a7f82d3d48f1d2546e36a899b"
-  integrity sha512-UbL9HtVNjSjLbDzMxdU87NzDOdWpsbXW0yMvIl2p0rXUAoCseHazTvw0ryO33G5muG/XU1K6V6GFX5BZ0EoXLA==
+xunit.ts@^0.7:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/xunit.ts/-/xunit.ts-0.7.0.tgz#1b467c2923189ef6c23960af8b8234a518f2b7f7"
+  integrity sha512-J5/OrWAYoo3mUyNMf4Vi9aBAFAPRZ8E6Q0aFqrsvOH/6pAHJ8KVnX6xTwFeoAAJ5CLMAs8zuKdff9OfTuou/jw==
   dependencies:
     "@types/node" "^14.0"
     colors "^1.4"
