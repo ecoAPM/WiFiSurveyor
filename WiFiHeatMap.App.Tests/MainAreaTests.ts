@@ -11,9 +11,7 @@ export default class MainAreaTests extends TestSuite {
     @Test()
     async showsDataPointForEachReading() {
         //arrange
-        const gl = MockFactory.WebGL2RenderingContext();
-        const canvas = Mockito.mock<HTMLCanvasElement>();
-        Mockito.when(canvas.getContext('webgl2')).thenReturn(Mockito.instance(gl));
+        const canvas = MockFactory.canvas();
         const readings: Reading[] = [
             new Reading(1, new Point(2, 3), []),
             new Reading(2, new Point(3, 4), [])
@@ -27,11 +25,8 @@ export default class MainAreaTests extends TestSuite {
     }
 
     @Test()
-    async backgroundIsSetFromData()
-    {
-        const gl = MockFactory.WebGL2RenderingContext();
-        const canvas = Mockito.mock<HTMLCanvasElement>();
-        Mockito.when(canvas.getContext('webgl2')).thenReturn(Mockito.instance(gl));
+    async backgroundIsSetFromData() {
+        const canvas = MockFactory.canvas();
         const readings: Reading[] = [];
 
         //act
@@ -42,11 +37,8 @@ export default class MainAreaTests extends TestSuite {
     }
 
     @Test()
-    async backgroundIsPixelatedWhenFlagSet()
-    {
-        const gl = MockFactory.WebGL2RenderingContext();
-        const canvas = Mockito.mock<HTMLCanvasElement>();
-        Mockito.when(canvas.getContext('webgl2')).thenReturn(Mockito.instance(gl));
+    async backgroundIsPixelatedWhenFlagSet() {
+        const canvas = MockFactory.canvas();
         const readings: Reading[] = [];
 
         //act
@@ -57,11 +49,8 @@ export default class MainAreaTests extends TestSuite {
     }
 
     @Test()
-    async backgroundIsNotPixelatedWhenFlagNotSet()
-    {
-        const gl = MockFactory.WebGL2RenderingContext();
-        const canvas = Mockito.mock<HTMLCanvasElement>();
-        Mockito.when(canvas.getContext('webgl2')).thenReturn(Mockito.instance(gl));
+    async backgroundIsNotPixelatedWhenFlagNotSet() {
+        const canvas = MockFactory.canvas();
         const readings: Reading[] = [];
 
         //act
@@ -70,13 +59,11 @@ export default class MainAreaTests extends TestSuite {
         //assert
         this.assert.stringDoesNotContain('pixelated', component.find('.background').attributes('class'));
     }
-    
+
     @Test()
     async clickingCanvasAddsReading() {
         //arrange
-        const gl = MockFactory.WebGL2RenderingContext();
-        const canvas = Mockito.mock<HTMLCanvasElement>();
-        Mockito.when(canvas.getContext('webgl2')).thenReturn(Mockito.instance(gl));
+        const canvas = MockFactory.canvas();
         const readings: Reading[] = [];
         const component = mount(MainArea, { propsData: { readings: readings, current: new Reading(0, new Point(0, 0), []), renderer: new Renderer(Mockito.instance(canvas)) } });
 

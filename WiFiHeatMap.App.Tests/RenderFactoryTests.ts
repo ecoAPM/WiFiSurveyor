@@ -9,10 +9,10 @@ export default class RenderFactoryTests extends TestSuite {
         //arrange
         const context = Mockito.mock<WebGL2RenderingContext>();
         const instance = Mockito.instance(context);
-        
+
         const canvas = Mockito.mock<HTMLCanvasElement>();
         Mockito.when(canvas.getContext('webgl2')).thenReturn(instance);
-        
+
         //act
         const gl = RenderFactory.getContext(Mockito.instance(canvas));
 
@@ -23,7 +23,7 @@ export default class RenderFactoryTests extends TestSuite {
     @Test()
     async shaderProgramIsCompiled() {
         //arrange
-        const gl = MockFactory.WebGL2RenderingContext();
+        const gl = MockFactory.webGL2RenderingContext();
 
         //act
         const shader_program = RenderFactory.getShaderProgram(Mockito.instance(gl));

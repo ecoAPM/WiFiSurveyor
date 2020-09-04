@@ -6,13 +6,11 @@ import Point from "../WiFiHeatMap.App/Point";
 import AccessPoint from "../WiFiHeatMap.App/AccessPoint";
 import MockFactory from "./MockFactory";
 
-export default class RendererTests extends TestSuite
-{
+export default class RendererTests extends TestSuite {
     @Test()
-    async renderDrawsTrianglesWithCorrectNumberOfVertices()
-    {
+    async renderDrawsTrianglesWithCorrectNumberOfVertices() {
         //arrange
-        const gl = MockFactory.WebGL2RenderingContext();
+        const gl = MockFactory.webGL2RenderingContext();
         const canvas = Mockito.mock<HTMLCanvasElement>();
         Mockito.when(canvas.getContext('webgl2')).thenReturn(Mockito.instance(gl));
 
@@ -35,7 +33,7 @@ export default class RendererTests extends TestSuite
     @Test()
     async canClearCanvas() {
         //arrange
-        const gl = MockFactory.WebGL2RenderingContext();
+        const gl = MockFactory.webGL2RenderingContext();
         const canvas = Mockito.mock<HTMLCanvasElement>();
         Mockito.when(canvas.getContext('webgl2')).thenReturn(Mockito.instance(gl));
 
