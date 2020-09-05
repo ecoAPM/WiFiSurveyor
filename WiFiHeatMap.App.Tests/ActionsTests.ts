@@ -1,4 +1,4 @@
-require('jsdom-global/register');
+require('global-jsdom')();
 import { Test, TestSuite } from "xunit.ts";
 import Actions from '../WiFiHeatMap.App/actions.vue';
 import { shallowMount as mount } from '@vue/test-utils';

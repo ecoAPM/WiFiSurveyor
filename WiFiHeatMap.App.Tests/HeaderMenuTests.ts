@@ -1,3 +1,4 @@
+require('global-jsdom')();
 import { Test, TestSuite } from "xunit.ts";
 import HeaderMenu from '../WiFiHeatMap.App/header-menu.vue';
 import { shallowMount as mount } from '@vue/test-utils';

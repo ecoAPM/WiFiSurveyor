@@ -1,3 +1,4 @@
+require('global-jsdom')();
 import { Test, TestSuite } from "xunit.ts";
 import MainArea from '../WiFiHeatMap.App/main-area.vue';
 import { shallowMount as mount } from '@vue/test-utils';

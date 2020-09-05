@@ -1,3 +1,4 @@
+require('global-jsdom')();
 import { Test, TestSuite } from "xunit.ts";
 import DataPoint from '../WiFiHeatMap.App/data-point.vue';
 import { shallowMount as mount } from '@vue/test-utils';
@@ -14,7 +15,7 @@ export default class DataPointTests extends TestSuite {
         const selected = new AccessPoint('test');
 
         //act
-        const component = mount(DataPoint, { propsData: { reading: reading, selected: selected }})
+        const component = mount(DataPoint, { propsData: { reading: reading, selected: selected } })
 
         //assert
         this.assert.equal('-30 dBm', component.text());
@@ -27,7 +28,7 @@ export default class DataPointTests extends TestSuite {
         const selected = new AccessPoint('test');
 
         //act
-        const component = mount(DataPoint, { propsData: { reading: reading, selected: selected }})
+        const component = mount(DataPoint, { propsData: { reading: reading, selected: selected } })
 
         //assert
         this.assert.stringContains('left: 12px;', component.html());

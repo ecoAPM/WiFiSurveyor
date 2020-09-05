@@ -1,3 +1,4 @@
+require('global-jsdom')();
 import { Test, TestSuite } from "xunit.ts";
 import FilterForm from '../WiFiHeatMap.App/filter-form.vue';
 import { shallowMount as mount } from '@vue/test-utils';
