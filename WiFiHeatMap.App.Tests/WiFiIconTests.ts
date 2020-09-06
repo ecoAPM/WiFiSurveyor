@@ -23,26 +23,21 @@ export default class WiFiIconTests extends TestSuite {
 
         //act
         const component = mount(WiFiIcon, { propsData: { color: color } });
-        await component.vm.$nextTick();
-        
+
         //assert
-        this.assert.stringDoesNotContain('fading', component.find('svg').html());
+        this.assert.stringDoesNotContain('fading', component.get('svg').html());
     }
 
     @Test()
     async colorFadesAsReadingGoesStale() {
         //arrange
-        const color = 'rgba(0, 255, 0, 1)';
-        const component = mount(WiFiIcon, { propsData: { color: color } });
-        await component.vm.$nextTick();
+        const component = mount(WiFiIcon, { propsData: { color: 'rgba(0, 255, 0, 1)', last_updated: 'earlier' } });
 
         //act
-        component.setProps({color: 'rgba(255, 255, 0, 1)'});
-        await component.vm.$nextTick();
-        await new Promise((resolve) => setTimeout(() => resolve(), 1));
-        await component.vm.$nextTick();
-        
+        await component.setProps({ last_updated: 'now' });
+        await new Promise(resolve => setTimeout(() => resolve(), 1));
+
         //assert
-        this.assert.stringContains('fading', component.find('svg').html());
+        this.assert.stringContains('fading', component.get('svg').html());
     }
 }

@@ -17,7 +17,8 @@
       'wifi-icon': wifi_icon
     },
     props: {
-      signal: Number
+      signal: Number,
+      last_updated: String
     },
     computed: {
       color(): string {

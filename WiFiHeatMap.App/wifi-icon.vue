@@ -14,7 +14,8 @@
 
   export default Vue.extend({
     props: {
-      color: String
+      color: String,
+      last_updated: String
     },
     data(): object {
       return {
@@ -22,7 +23,7 @@
       };
     },
     watch: {
-      async color() {
+      last_updated() {
         this.fading = false;
         setTimeout(() => this.fading = true, 1);
       }

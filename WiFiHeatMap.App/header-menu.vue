@@ -2,7 +2,7 @@
   <header>
     <h1>WiFiHeatMap</h1>
     <filter-form :current="current" @selected="$emit('selected', $event)" @background="$emit('background', $event)" @pixelate="$emit('pixelate', $event)"></filter-form>
-    <wifi-status :signal="current_signal"></wifi-status>
+    <wifi-status :signal="current_signal" :last_updated="last_updated"></wifi-status>
     <actions :readings="readings" @reset="$emit('reset')" @debug="$emit('debug', $event)"></actions>
   </header>
 </template>
@@ -24,7 +24,8 @@
     props: {
       readings: Array,
       current: Reading,
-      selected: AccessPoint
+      selected: AccessPoint,
+      last_updated: String
     },
     computed: {
       current_signal(): number | null {
