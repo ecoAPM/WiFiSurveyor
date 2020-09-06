@@ -39,7 +39,7 @@ export default class WiFiIconTests extends TestSuite {
         //act
         component.setProps({color: 'rgba(255, 255, 0, 1)'});
         await component.vm.$nextTick();
-        await new Promise((resolve) => setTimeout(() => resolve(), 100));
+        await new Promise((resolve) => setTimeout(() => resolve(), 1));
         await component.vm.$nextTick();
         
         //assert

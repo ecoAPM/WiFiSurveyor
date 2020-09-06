@@ -24,7 +24,7 @@
     watch: {
       async color() {
         this.fading = false;
-        setTimeout(() => this.fading = true, 100);
+        setTimeout(() => this.fading = true, 1);
       }
     }
   });
