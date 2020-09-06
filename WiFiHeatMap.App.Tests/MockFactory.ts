@@ -1,6 +1,14 @@
 import Mockito from 'ts-mockito';
+import SignalService from '../WiFiHeatMap.App/SignalService';
 
 export default class MockFactory {
+    static signalService(): SignalService {
+        const signal_service = Mockito.mock<SignalService>();
+        Mockito.when(signal_service.status).thenReturn('');
+        Mockito.when(signal_service.last_updated).thenReturn('');
+        return signal_service;
+    }
+
     static webGL2RenderingContext(): WebGL2RenderingContext {
         const shader = Mockito.mock<WebGLShader>();
         const program = Mockito.mock<WebGLProgram>();

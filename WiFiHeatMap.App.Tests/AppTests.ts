@@ -14,8 +14,7 @@ export default class AppTests extends TestSuite {
     @Test()
     async canCreateApp() {
         //arrange
-        const signal_service = Mockito.mock<SignalService>();
-        Mockito.when(signal_service.status).thenReturn('');
+        const signal_service = MockFactory.signalService();
 
         const canvas = MockFactory.canvas();
         const renderer = new Renderer(Mockito.instance(canvas));
@@ -30,7 +29,7 @@ export default class AppTests extends TestSuite {
     @Test()
     async canGetStatusFromSignalService() {
         //arrange
-        const signal_service = Mockito.mock<SignalService>();
+        const signal_service = MockFactory.signalService();
         Mockito.when(signal_service.status).thenReturn('test message');
 
         const canvas = MockFactory.canvas();
@@ -47,8 +46,7 @@ export default class AppTests extends TestSuite {
     @Test()
     async showsDefaultStatusWhenLoading() {
         //arrange
-        const signal_service = Mockito.mock<SignalService>();
-        Mockito.when(signal_service.status).thenReturn('');
+        const signal_service = MockFactory.signalService();
 
         const canvas = MockFactory.canvas();
         const renderer = new Renderer(Mockito.instance(canvas));
@@ -63,8 +61,7 @@ export default class AppTests extends TestSuite {
     @Test()
     async resetsWhenConfirmed() {
         //arrange
-        const signal_service = Mockito.mock<SignalService>();
-        Mockito.when(signal_service.status).thenReturn('');
+        const signal_service = MockFactory.signalService();
 
         const canvas = MockFactory.canvas();
         const renderer = new Renderer(Mockito.instance(canvas));
@@ -84,8 +81,7 @@ export default class AppTests extends TestSuite {
     @Test()
     async doesNotResetsWhenCancelled() {
         //arrange
-        const signal_service = Mockito.mock<SignalService>();
-        Mockito.when(signal_service.status).thenReturn('');
+        const signal_service = MockFactory.signalService();
 
         const canvas = MockFactory.canvas();
         const renderer = new Renderer(Mockito.instance(canvas));
@@ -105,14 +101,13 @@ export default class AppTests extends TestSuite {
     @Test()
     async setsPixelatedFlagWhenEnabled() {
         //arrange
-        const signal_service = Mockito.mock<SignalService>();
-        Mockito.when(signal_service.status).thenReturn('');
+        const signal_service = MockFactory.signalService();
 
         const canvas = MockFactory.canvas();
         const renderer = new Renderer(Mockito.instance(canvas));
 
         const component = mount(App, { provide: { signal_service: () => Mockito.instance(signal_service), renderer: () => renderer } })
-    
+
         //act
         component.find('header-menu-stub').vm.$emit('pixelate', true);
         await component.vm.$nextTick();
@@ -124,14 +119,13 @@ export default class AppTests extends TestSuite {
     @Test()
     async setsDebugFlagWhenEnabled() {
         //arrange
-        const signal_service = Mockito.mock<SignalService>();
-        Mockito.when(signal_service.status).thenReturn('');
+        const signal_service = MockFactory.signalService();
 
         const canvas = MockFactory.canvas();
         const renderer = new Renderer(Mockito.instance(canvas));
 
         const component = mount(App, { provide: { signal_service: () => Mockito.instance(signal_service), renderer: () => renderer } })
-    
+
         //act
         component.find('header-menu-stub').vm.$emit('debug', true);
         await component.vm.$nextTick();
@@ -143,14 +137,13 @@ export default class AppTests extends TestSuite {
     @Test()
     async setsSelectedAccessPointFromEvent() {
         //arrange
-        const signal_service = Mockito.mock<SignalService>();
-        Mockito.when(signal_service.status).thenReturn('');
+        const signal_service = MockFactory.signalService();
 
         const canvas = MockFactory.canvas();
         const renderer = new Renderer(Mockito.instance(canvas));
 
         const component = mount(App, { provide: { signal_service: () => Mockito.instance(signal_service), renderer: () => renderer } })
-    
+
         //act
         component.find('header-menu-stub').vm.$emit('selected', new AccessPoint('ssid1', 2, 'mac1'));
         await component.vm.$nextTick();
@@ -162,8 +155,7 @@ export default class AppTests extends TestSuite {
     @Test()
     async setsBackgroundToEmptyIfNoFilesSelected() {
         //arrange
-        const signal_service = Mockito.mock<SignalService>();
-        Mockito.when(signal_service.status).thenReturn('');
+        const signal_service = MockFactory.signalService();
 
         const canvas = MockFactory.canvas();
         const renderer = new Renderer(Mockito.instance(canvas));
@@ -182,8 +174,7 @@ export default class AppTests extends TestSuite {
     @Test()
     async setsBackgroundToFileContentsIfNotEmpty() {
         //arrange
-        const signal_service = Mockito.mock<SignalService>();
-        Mockito.when(signal_service.status).thenReturn('');
+        const signal_service = MockFactory.signalService();
 
         const canvas = MockFactory.canvas();
         const renderer = new Renderer(Mockito.instance(canvas));
