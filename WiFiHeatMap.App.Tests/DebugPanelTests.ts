@@ -8,25 +8,25 @@ export default class ActionsTests extends TestSuite {
     @Test()
     async displayedWhenEnabled() {
         //arrange
-        const component = mount(DebugPanel, { propsData: { enabled: true, signals: [] } });
+        const enabled = true;
 
         //act
-        const wrapper = component.get('aside.debug');
+        const component = mount(DebugPanel, { propsData: { enabled: enabled, signals: [] } });
 
         //assert
-        this.assert.null(wrapper.attributes('style'));
+        this.assert.null(component.attributes('style'));
     }
 
     @Test()
     async notDisplayedWhenNotEnabled() {
         //arrange
-        const component = mount(DebugPanel, { propsData: { enabled: false, signals: [] } });
+        const enabled = false;
 
         //act
-        const wrapper = component.get('aside.debug');
+        const component = mount(DebugPanel, { propsData: { enabled: enabled, signals: [] } });
 
         //assert
-        this.assert.stringContains('display: none;', wrapper.attributes('style'));
+        this.assert.stringContains('display: none;', component.attributes('style'));
     }
 
     @Test()
