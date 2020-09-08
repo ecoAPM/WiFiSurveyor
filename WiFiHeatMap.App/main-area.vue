@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="background" :style="{'background-image': `url(${background})`}" :class="{'pixelated': pixelated}"></div>
-    <canvas id="webglcanvas" @click="add($event)"></canvas>
+    <canvas id="webglcanvas" @click="add($event)" :disabled="!enabled"></canvas>
     <data-point v-for="(reading, index) in readings" :key="index" :reading="reading" :selected="selected"></data-point>
   </main>
 </template>
@@ -19,6 +19,7 @@
       'data-point': DataPoint
     },
     props: {
+      enabled: Boolean,
       renderer: Renderer,
       background: String,
       pixelated: Boolean,
@@ -36,6 +37,9 @@
     },
     methods: {
       add(e: MouseEvent): void {
+        if (!this.enabled)
+          return;
+
         const location = new Point(e.offsetX, e.offsetY);
         const reading = new Reading(this.readings.length, location, this.current.signals.concat());
         this.readings.push(reading);
@@ -68,7 +72,7 @@
     background-repeat: no-repeat;
   }
 
-  canvas {
+  canvas:not([disabled]) {
     cursor: pointer;
   }
 

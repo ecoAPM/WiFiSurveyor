@@ -66,7 +66,7 @@ export default class MainAreaTests extends TestSuite {
         //arrange
         const canvas = MockFactory.canvas();
         const readings: Reading[] = [];
-        const component = mount(MainArea, { propsData: { readings: readings, current: new Reading(0, new Point(0, 0), []), renderer: new Renderer(Mockito.instance(canvas)) } });
+        const component = mount(MainArea, { propsData: { enabled: true, readings: readings, current: new Reading(0, new Point(0, 0), []), renderer: new Renderer(Mockito.instance(canvas)) } });
 
         //act
         await component.get('canvas').trigger('click');
@@ -74,5 +74,20 @@ export default class MainAreaTests extends TestSuite {
 
         //assert
         this.assert.equal(1, readings.length);
+    }
+
+    @Test()
+    async clickingCanvasDoesNotAddReadingWhenDisabled() {
+        //arrange
+        const canvas = MockFactory.canvas();
+        const readings: Reading[] = [];
+        const component = mount(MainArea, { propsData: { enabled: false, readings: readings, current: new Reading(0, new Point(0, 0), []), renderer: new Renderer(Mockito.instance(canvas)) } });
+
+        //act
+        await component.get('canvas').trigger('click');
+        await component.vm.$nextTick();
+
+        //assert
+        this.assert.empty(readings);
     }
 }

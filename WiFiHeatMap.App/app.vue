@@ -2,7 +2,7 @@
   <div class="app">
     <status :status="connection_status"></status>
     <header-menu :readings="readings" :current="current" :selected="selected" :last_updated="last_updated" @background="setBackground($event)" @selected="setSelected($event)" @pixelate="setPixelated($event)" @reset="reset()" @debug="setDebug($event)"></header-menu>
-    <main-area :renderer="renderer" :background="background" :pixelated="pixelated" :readings="readings" :current="current" :selected="selected"></main-area>
+    <main-area :enabled="connection_status === ''" :renderer="renderer" :background="background" :pixelated="pixelated" :readings="readings" :current="current" :selected="selected"></main-area>
     <debug-panel :enabled="debug" :signals="current.signals" />
   </div>
 </template>
