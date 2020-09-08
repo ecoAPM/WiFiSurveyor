@@ -34,7 +34,7 @@ export default class MainAreaTests extends TestSuite {
         const component = mount(MainArea, { propsData: { readings: readings, current: new Reading(0, new Point(0, 0), []), renderer: new Renderer(Mockito.instance(canvas)), background: 'test.png' } });
 
         //assert
-        this.assert.stringContains('background-image: url(test.png);', component.find('.background').attributes('style'));
+        this.assert.stringContains('background-image: url(test.png);', component.get('.background').attributes('style'));
     }
 
     @Test()
@@ -46,7 +46,7 @@ export default class MainAreaTests extends TestSuite {
         const component = mount(MainArea, { propsData: { readings: readings, current: new Reading(0, new Point(0, 0), []), renderer: new Renderer(Mockito.instance(canvas)), pixelated: true } });
 
         //assert
-        this.assert.stringContains('pixelated', component.find('.background').attributes('class'));
+        this.assert.stringContains('pixelated', component.get('.background').attributes('class'));
     }
 
     @Test()
@@ -58,7 +58,7 @@ export default class MainAreaTests extends TestSuite {
         const component = mount(MainArea, { propsData: { readings: readings, current: new Reading(0, new Point(0, 0), []), renderer: new Renderer(Mockito.instance(canvas)), pixelated: false } });
 
         //assert
-        this.assert.stringDoesNotContain('pixelated', component.find('.background').attributes('class'));
+        this.assert.stringDoesNotContain('pixelated', component.get('.background').attributes('class'));
     }
 
     @Test()
@@ -69,7 +69,7 @@ export default class MainAreaTests extends TestSuite {
         const component = mount(MainArea, { propsData: { readings: readings, current: new Reading(0, new Point(0, 0), []), renderer: new Renderer(Mockito.instance(canvas)) } });
 
         //act
-        await component.find('canvas').trigger('click');
+        await component.get('canvas').trigger('click');
         await component.vm.$nextTick();
 
         //assert

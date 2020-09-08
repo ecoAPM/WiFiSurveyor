@@ -72,7 +72,7 @@ export default class AppTests extends TestSuite {
         global.confirm = () => true;
 
         //act
-        component.find('header-menu-stub').vm.$emit('reset');
+        component.get('header-menu-stub').vm.$emit('reset');
 
         //assert
         this.assert.empty(component.vm.$data.readings);
@@ -92,7 +92,7 @@ export default class AppTests extends TestSuite {
         global.confirm = () => false;
 
         //act
-        component.find('header-menu-stub').vm.$emit('reset');
+        component.get('header-menu-stub').vm.$emit('reset');
 
         //assert
         this.assert.notEmpty(component.vm.$data.readings);
@@ -109,11 +109,11 @@ export default class AppTests extends TestSuite {
         const component = mount(App, { provide: { signal_service: () => Mockito.instance(signal_service), renderer: () => renderer } })
 
         //act
-        component.find('header-menu-stub').vm.$emit('pixelate', true);
+        component.get('header-menu-stub').vm.$emit('pixelate', true);
         await component.vm.$nextTick();
 
         //assert
-        this.assert.equal('true', component.find('main-area-stub').attributes('pixelated'));
+        this.assert.equal('true', component.get('main-area-stub').attributes('pixelated'));
     }
 
     @Test()
@@ -127,11 +127,11 @@ export default class AppTests extends TestSuite {
         const component = mount(App, { provide: { signal_service: () => Mockito.instance(signal_service), renderer: () => renderer } })
 
         //act
-        component.find('header-menu-stub').vm.$emit('debug', true);
+        component.get('header-menu-stub').vm.$emit('debug', true);
         await component.vm.$nextTick();
 
         //assert
-        this.assert.equal('true', component.find('debug-panel-stub').attributes('enabled'));
+        this.assert.equal('true', component.get('debug-panel-stub').attributes('enabled'));
     }
 
     @Test()
@@ -145,7 +145,7 @@ export default class AppTests extends TestSuite {
         const component = mount(App, { provide: { signal_service: () => Mockito.instance(signal_service), renderer: () => renderer } })
 
         //act
-        component.find('header-menu-stub').vm.$emit('selected', new AccessPoint('ssid1', 2, 'mac1'));
+        component.get('header-menu-stub').vm.$emit('selected', new AccessPoint('ssid1', 2, 'mac1'));
         await component.vm.$nextTick();
 
         //assert
@@ -168,7 +168,7 @@ export default class AppTests extends TestSuite {
         await component.vm.setBackground([]);
 
         //assert
-        this.assert.empty(component.find('main-area-stub').attributes('background'));
+        this.assert.empty(component.get('main-area-stub').attributes('background'));
     }
 
     @Test()
@@ -192,6 +192,6 @@ export default class AppTests extends TestSuite {
         await component.vm.setBackground(Mockito.instance(file_list));
 
         //assert
-        this.assert.stringContains(btoa('file contents'), component.find('main-area-stub').attributes('background'));
+        this.assert.stringContains(btoa('file contents'), component.get('main-area-stub').attributes('background'));
     }
 }

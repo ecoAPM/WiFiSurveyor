@@ -11,7 +11,7 @@ export default class ActionsTests extends TestSuite {
         const component = mount(DebugPanel, { propsData: { enabled: true, signals: [] } });
 
         //act
-        const wrapper = component.find('aside.debug');
+        const wrapper = component.get('aside.debug');
 
         //assert
         this.assert.null(wrapper.attributes('style'));
@@ -23,7 +23,7 @@ export default class ActionsTests extends TestSuite {
         const component = mount(DebugPanel, { propsData: { enabled: false, signals: [] } });
 
         //act
-        const wrapper = component.find('aside.debug');
+        const wrapper = component.get('aside.debug');
 
         //assert
         this.assert.stringContains('display: none;', wrapper.attributes('style'));

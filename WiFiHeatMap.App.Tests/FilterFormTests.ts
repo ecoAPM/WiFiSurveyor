@@ -38,7 +38,7 @@ export default class FilterFormTest extends TestSuite {
         const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), FilterFormTest.signals) } });
 
         //act
-        component.find('#group-by-frequency').setChecked(false);
+        component.get('#group-by-frequency').setChecked(false);
         await component.vm.$nextTick();
 
         //assert
@@ -55,7 +55,7 @@ export default class FilterFormTest extends TestSuite {
         const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), FilterFormTest.signals) } });
 
         //act
-        component.find('#group-by-ssid').setChecked(false);
+        component.get('#group-by-ssid').setChecked(false);
         await component.vm.$nextTick();
 
         //assert
@@ -76,7 +76,7 @@ export default class FilterFormTest extends TestSuite {
         const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), FilterFormTest.signals) } });
 
         //act
-        component.find('option:first-child').setSelected();
+        component.get('option:first-child').setSelected();
 
         //assert
         this.assert.notNull(component.emitted('selected'));
@@ -88,11 +88,11 @@ export default class FilterFormTest extends TestSuite {
         const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), []) } });
 
         //act
-        component.find('#group-by-ssid').setChecked(true);
+        component.get('#group-by-ssid').setChecked(true);
         await component.vm.$nextTick();
 
         //assert
-        const checkbox = component.find('#group-by-frequency');
+        const checkbox = component.get('#group-by-frequency');
         this.assert.null(checkbox.attributes("disabled"));
     }
 
@@ -102,11 +102,11 @@ export default class FilterFormTest extends TestSuite {
         const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), []) } });
 
         //act
-        component.find('#group-by-ssid').setChecked(false);
+        component.get('#group-by-ssid').setChecked(false);
         await component.vm.$nextTick();
 
         //assert
-        const checkbox = component.find('#group-by-frequency');
+        const checkbox = component.get('#group-by-frequency');
         this.assert.notNull(checkbox.attributes("disabled"));
         this.assert.null(checkbox.attributes("checked"));
     }
@@ -117,7 +117,7 @@ export default class FilterFormTest extends TestSuite {
         const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), []) } });
 
         //act
-        await component.find('#background-file').trigger('change');
+        await component.get('#background-file').trigger('change');
 
         //assert
         this.assert.notNull(component.emitted('background'));
@@ -129,7 +129,7 @@ export default class FilterFormTest extends TestSuite {
         const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), []) } });
 
         //act
-        await component.find('#pixelate').trigger('change');
+        await component.get('#pixelate').trigger('change');
 
         //assert
         this.assert.notNull(component.emitted('pixelate'));

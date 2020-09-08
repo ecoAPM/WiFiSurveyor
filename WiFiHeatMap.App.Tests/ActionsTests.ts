@@ -10,7 +10,7 @@ export default class ActionsTests extends TestSuite {
         const component = mount(Actions, { propsData: { readings: [{}] } });
 
         //act
-        const button = component.find('#reset');
+        const button = component.get('#reset');
 
         //assert
         this.assert.null(button.attributes('disabled'));
@@ -22,7 +22,7 @@ export default class ActionsTests extends TestSuite {
         const component = mount(Actions, { propsData: { readings: [] } });
 
         //act
-        const button = component.find('#reset');
+        const button = component.get('#reset');
 
         //assert
         this.assert.notNull(button.attributes('disabled'));
@@ -34,7 +34,7 @@ export default class ActionsTests extends TestSuite {
         const component = mount(Actions, { propsData: { readings: [{}] } });
 
         //act
-        const button = component.find('#reset');
+        const button = component.get('#reset');
         await button.trigger('click');
 
         //assert
@@ -47,7 +47,7 @@ export default class ActionsTests extends TestSuite {
         const component = mount(Actions, { propsData: { readings: [{}] } });
 
         //act
-        const checkbox = component.find('#debug');
+        const checkbox = component.get('#debug');
         await checkbox.trigger('click');
         await checkbox.trigger('click');
 
