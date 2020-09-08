@@ -4,7 +4,7 @@
   "description": "Visualize Wi-Fi signal strength over a geographic area",
   "main": "app.js",
   "scripts": {
-    "dev": "parcel WiFiHeatMap.App/index.html -d WiFiHeatMap/wwwroot",
+    "dev": "parcel WiFiHeatMap.App/index.html -d dist",
     "build": "parcel build WiFiHeatMap.App/index.html -d WiFiHeatMap/wwwroot",
     "test": "parcel build WiFiHeatMap.App.Tests/**/*.ts -d dist/tests -t node --no-minify --log-level 2 && xunit dist/tests"
   },
