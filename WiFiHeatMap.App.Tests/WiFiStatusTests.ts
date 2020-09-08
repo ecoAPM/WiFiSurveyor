@@ -29,4 +29,29 @@ export default class WiFiStatusTests extends TestSuite {
         this.assert.stringContains('rgba(0, 0, 0, 0.5)', component.html())
         this.assert.stringContains('no signal', component.text())
     }
+
+    @Test()
+    async colorIsFullByDefault() {
+        //arrange
+        const color = 'rgba(0, 255, 0, 1)';
+
+        //act
+        const component = mount(WiFiStatus, { propsData: { color: color } });
+
+        //assert
+        this.assert.stringDoesNotContain('fading', component.html());
+    }
+
+    @Test()
+    async colorFadesAsReadingGoesStale() {
+        //arrange
+        const component = mount(WiFiStatus, { propsData: { color: 'rgba(0, 255, 0, 1)', last_updated: 'earlier' } });
+
+        //act
+        await component.setProps({ last_updated: 'now' });
+        await new Promise(resolve => setTimeout(() => resolve(), 1));
+
+        //assert
+        this.assert.stringContains('fading', component.html());
+    }
 }

@@ -1,5 +1,5 @@
 <template>
-  <figure>
+  <figure :class="{'full': !fading, 'fading': fading }">
     <wifi-icon :color="color"></wifi-icon>
     <figcaption v-if="signal">{{signal}} dBm</figcaption>
     <figcaption v-else>(no signal)</figcaption>
@@ -20,11 +20,22 @@
       signal: Number,
       last_updated: String
     },
+    data(): object {
+      return {
+        fading: false
+      };
+    },
     computed: {
       color(): string {
         return this.signal != null
           ? ColorConverter.toColor(this.signal).toRGBA()
           : 'rgba(0, 0, 0, 0.5)';
+      }
+    },
+    watch: {
+      last_updated() {
+        this.fading = false;
+        setTimeout(() => this.fading = true, 1);
       }
     }
   });
@@ -37,5 +48,16 @@
 
   figcaption {
     text-align: center;
+  }
+
+  .fading {
+    opacity: 0.25;
+    transition-delay: 5s;
+    transition-duration: 10s;
+  }
+
+  .full {
+    opacity: 1;
+    transition: all 0s;
   }
 </style>

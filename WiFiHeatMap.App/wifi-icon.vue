@@ -1,5 +1,5 @@
 <template>
-  <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1200" :class="{'full': !fading, 'fading': fading }">
+  <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1200">
     <g transform="translate(0,1200) scale(0.1,-0.1)" stroke="none" :style="{fill: color}">
       <path d="M5955 11789 c-1862 -88 -3646 -714 -5073 -1783 -281 -210 -553 -441 -774 -656 l-108 -105 410 -630 c225 -346 414 -630 420 -630 6 0 61 54 123 121 367 396 793 735 1314 1045 199 119 645 342 863 432 850 351 1700 546 2675 613 303 20 1009 15 1295 -10 1471 -129 2763 -574 3818 -1314 291 -204 521 -399 786 -666 150 -151 200 -196 207 -185 4 8 206 293 449 634 l441 620 -98 94 c-981 939 -2267 1666 -3641 2061 -992 284 -2062 408 -3107 359z" />
       <path d="M6020 8463 c-806 -47 -1635 -238 -2343 -539 -702 -298 -1319 -708 -1804 -1196 l-123 -123 431 -665 c237 -366 434 -668 438 -672 4 -5 38 30 75 77 584 736 1535 1285 2613 1509 363 75 642 105 1044 113 756 14 1426 -101 2099 -362 607 -236 1187 -614 1574 -1027 l92 -98 448 632 c247 348 450 638 451 643 2 6 -49 58 -113 117 -1001 916 -2370 1470 -3912 1584 -175 12 -798 17 -970 7z" />
@@ -14,19 +14,7 @@
 
   export default Vue.extend({
     props: {
-      color: String,
-      last_updated: String
-    },
-    data(): object {
-      return {
-        fading: false
-      };
-    },
-    watch: {
-      last_updated() {
-        this.fading = false;
-        setTimeout(() => this.fading = true, 1);
-      }
+      color: String
     }
   });
 </script>
@@ -35,16 +23,5 @@
   svg {
     width: 100%;
     height: 2rem;
-  }
-
-  .fading {
-    opacity: 0.25;
-    transition-delay: 5s;
-    transition-duration: 10s;
-  }
-
-  .full {
-    opacity: 1;
-    transition: all 0s;
   }
 </style>
