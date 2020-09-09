@@ -1,16 +1,16 @@
 {
-  "name": "wifiheatmap",
+  "name": "wifisurveyor",
   "version": "1.0.0",
   "description": "Visualize Wi-Fi signal strength over a geographic area",
   "main": "app.js",
   "scripts": {
-    "dev": "parcel WiFiHeatMap.App/index.html -d dist",
-    "build": "parcel build WiFiHeatMap.App/index.html -d WiFiHeatMap/wwwroot",
-    "test": "parcel build WiFiHeatMap.App.Tests/**/*.ts -d dist/tests -t node --no-minify --log-level 2 && xunit dist/tests"
+    "dev": "parcel App/index.html -d dist",
+    "build": "parcel build App/index.html -d Server/wwwroot",
+    "test": "parcel build App.Tests/**/*.ts -d dist/tests -t node --no-minify --log-level 2 && xunit dist/tests"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/stevedesmond-ca/WiFiHeatMap.git"
+    "url": "git+ssh://git@github.com/ecoAPM/WiFiSurveyor.git"
   },
   "keywords": [
     "WiFi",
@@ -22,12 +22,12 @@
     "Strength",
     "dBm"
   ],
-  "author": "Steve Desmond",
+  "author": "Steve Desmond, ecoAPM <steve@ecoAPM.com> (https://ecoAPM.com)",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/stevedesmond-ca/WiFiHeatMap/issues"
+    "url": "https://github.com/ecoAPM/WiFiSurveyor/issues"
   },
-  "homepage": "https://github.com/stevedesmond-ca/WiFiHeatMap#readme",
+  "homepage": "https://github.com/ecoAPM/WiFiSurveyor#readme",
   "devDependencies": {
     "@microsoft/signalr": "^3.1",
     "@types/delaunator": "^3.0",

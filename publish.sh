@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-rm -rf publish WiFiHeatMap/wwwroot
+rm -rf publish Server/wwwroot
 yarn install
 yarn build
-dotnet publish WiFiHeatMap -c Release -o publish
+dotnet publish WiFiSurveyor -c Release -o publish

@@ -7,7 +7,7 @@
             "DOM"
         ],
         "module": "CommonJS",
-        "outDir": "WiFiHeatMap/wwwroot",
+        "outDir": "Server/wwwroot",
         "sourceMap": true,
         "strict": true,
         "target": "ES5",
