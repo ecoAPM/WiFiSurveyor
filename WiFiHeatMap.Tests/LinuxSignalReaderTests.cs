@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -25,10 +26,10 @@ namespace WiFiHeatMap.Tests
         }
 
         [Fact]
-        public async Task ReturnsDecentMessageWhenNotInstalled()
+        public async Task ReturnsDecentMessageWhenNotFound()
         {
             //arrange
-            var exception = new ExternalException("x", 2);
+            var exception = new Win32Exception(2, "x");
             var commandService = Substitute.For<ICommandService>();
             commandService.When(c => c.Run(Arg.Any<ProcessStartInfo>())).Throw(exception);
             var reader = new LinuxSignalReader(commandService);
@@ -42,27 +43,7 @@ namespace WiFiHeatMap.Tests
             {
                 //assert
                 Assert.Contains("\"wireless-tools\" is installed", e.Message);
-            }
-        }
-
-        [Fact]
-        public async Task ReturnsDecentMessageWhenNotRunningAsRoot()
-        {
-            //arrange
-            var exception = new ExternalException("x", 13);
-            var commandService = Substitute.For<ICommandService>();
-            commandService.When(c => c.Run(Arg.Any<ProcessStartInfo>())).Throw(exception);
-            var reader = new LinuxSignalReader(commandService);
-
-            try
-            {
-                //act
-                var results = await reader.Read();
-            }
-            catch (Exception e)
-            {
-                //assert
-                Assert.Contains("run as root", e.Message);
+                Assert.Contains("running as root", e.Message);
             }
         }
     }

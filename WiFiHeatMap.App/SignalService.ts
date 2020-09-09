@@ -24,13 +24,13 @@ export default class SignalService {
     }
 
     update(message: Message): void {
-        this.signals.splice(0);
+        this.last_updated = message.lastUpdated;
+        this.status = message.status;
 
+        this.signals.splice(0);
         message.signals.forEach(data => {
             const signal = new Signal(data.mac, data.ssid, data.frequency, data.strength);
             this.signals.push(signal);
         });
-
-        this.last_updated = message.lastUpdated;
     }
 }

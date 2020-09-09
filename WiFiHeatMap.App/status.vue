@@ -29,7 +29,10 @@
     padding: 1rem;
     background: white;
     border: 2px solid black;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     box-shadow: 0 0 1rem 1rem rgba(0, 0, 0, 0.5);
+    max-width: 75%;
+    white-space: pre-wrap;
+    text-align: center;
   }
 </style>

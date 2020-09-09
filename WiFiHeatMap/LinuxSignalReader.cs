@@ -1,7 +1,8 @@
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace WiFiHeatMap
@@ -17,22 +18,19 @@ namespace WiFiHeatMap
 
         public async Task<string> Read()
         {
-            var info = new ProcessStartInfo("iw", "dev wlan0 scan");
+            var info = new ProcessStartInfo("iwlist", "wlan0 scanning");
 
             try
             {
                 return await _commandService.Run(info);
             }
-            catch (ExternalException e)
+            catch (Win32Exception e)
             {
-                switch (e.ErrorCode)
+                switch (e.NativeErrorCode)
                 {
                     case 2:
-                        throw new Exception($"Executable \"{info.FileName}\" was not found. Please ensure \"wireless-tools\" is installed.");
-                    case 13:
-                        throw new Exception($"Executable \"{info.FileName}\" was unable to run. Please ensure \"{Assembly.GetExecutingAssembly().FullName}\" is run as root.");
-                    case 16:
-                        throw new Exception($"Executable \"{info.FileName}\" is still busy.");
+                        var msg = $"Executable \"{info.FileName}\" was not found. Please ensure \"wireless-tools\" is installed and \"{Assembly.GetExecutingAssembly().GetName().Name}\" is running as root.";
+                        throw new FileNotFoundException(msg, info.FileName, e);
                     default:
                         throw;
                 }

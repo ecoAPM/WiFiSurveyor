@@ -22,23 +22,28 @@ namespace WiFiHeatMap
         {
             info.RedirectStandardOutput = true;
 
-            _logger.LogDebug($"{DateTime.Now}: Starting \"{info.FileName} {info.Arguments}\"...");
+            if (_logger.IsEnabled(LogLevel.Debug))
+                _logger.LogDebug($"{DateTime.Now}: Starting \"{info.FileName} {info.Arguments}\"...");
             var process = _startProcess(info);
             if (process == null)
             {
-                _logger.LogWarning($"{DateTime.Now}: Could not start {info.FileName}");
+                if (_logger.IsEnabled(LogLevel.Warning))
+                    _logger.LogWarning($"{DateTime.Now}: Could not start {info.FileName}");
                 return await Task.FromResult(string.Empty);
             }
-            _logger.LogDebug($"{DateTime.Now}: \"{info.FileName} {info.Arguments}\" started");
+            if (_logger.IsEnabled(LogLevel.Debug))
+                _logger.LogDebug($"{DateTime.Now}: \"{info.FileName} {info.Arguments}\" started");
 
             var complete = process.WaitForExit(Convert.ToUInt16(_timeout.TotalMilliseconds));
             if (complete)
             {
-                _logger.LogDebug($"{DateTime.Now}: Process ended successfully");
+                if (_logger.IsEnabled(LogLevel.Debug))
+                    _logger.LogDebug($"{DateTime.Now}: Process ended successfully");
             }
             else
             {
-                _logger.LogWarning($"{DateTime.Now}: Process not complete after {_timeout}, forcing to end...");
+                if (_logger.IsEnabled(LogLevel.Warning))
+                    _logger.LogWarning($"{DateTime.Now}: Process not complete after {_timeout}, forcing to end...");
                 process.Kill(true);
             }
 

@@ -15,7 +15,7 @@ namespace WiFiHeatMap
                     MAC = r.Bssid,
                     SSID = r.Ssid,
                     Frequency = r.ChannelCenterFrequencyInKilohertz / 1_000_000 == 5 ? Frequency._5_GHz : Frequency._2_4_GHz,
-                    Strength = Convert.ToDecimal(r.NetworkRssiInDecibelMilliwatts)
+                    Strength = Convert.ToInt16(r.NetworkRssiInDecibelMilliwatts)
                 })
                 .ToList();
         }

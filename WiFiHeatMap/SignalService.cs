@@ -28,20 +28,22 @@ namespace WiFiHeatMap
             {
                 try
                 {
-                    _logger.LogDebug($"{DateTime.Now}: Receiving Wi-Fi signals...");
+                    if (_logger.IsEnabled(LogLevel.Debug))
+                        _logger.LogDebug($"{DateTime.Now}: Receiving Wi-Fi signals...");
                     var results = await _signalReader.Read();
                     var signals = _signalParser.Parse(results);
 
                     var message = new Message { Signals = signals };
-                    _logger.LogDebug($"{message.LastUpdated}: {JsonSerializer.Serialize(signals)}");
+                    if (_logger.IsEnabled(LogLevel.Debug))
+                        _logger.LogDebug($"{message.LastUpdated}: {JsonSerializer.Serialize(signals)}");
                     await _signalHub.SendMessage(message);
                 }
-
                 catch (Exception e)
                 {
                     var message = new Message { Status = e.Message };
                     await _signalHub.SendMessage(message);
-                    _logger.LogWarning($"{message.LastUpdated}: {message.Status}");
+                    if (_logger.IsEnabled(LogLevel.Error))
+                        _logger.LogError($"{message.LastUpdated}: {message.Status}");
                 }
 
                 await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
