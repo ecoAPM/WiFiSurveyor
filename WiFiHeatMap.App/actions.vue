@@ -1,5 +1,6 @@
 <template>
   <section class="actions">
+    <button type="button" id="undo" @click="$emit('undo')" :disabled="readings.length === 0">Undo</button>
     <button type="button" id="reset" @click="$emit('reset')" :disabled="readings.length === 0">Clear</button>
 
     <label for="debug">

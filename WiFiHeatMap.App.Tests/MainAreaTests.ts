@@ -90,4 +90,18 @@ export default class MainAreaTests extends TestSuite {
         //assert
         this.assert.empty(readings);
     }
+
+    @Test()
+    async deleteEventIsPassedUp() {
+        //arrange
+        const canvas = MockFactory.canvas();
+        const readings: Reading[] = [new Reading(1, new Point(2, 3), [])];
+        const component = mount(MainArea, { propsData: { enabled: false, readings: readings, current: new Reading(0, new Point(0, 0), []), renderer: new Renderer(Mockito.instance(canvas)) } });
+
+        //act
+        component.get('data-point-stub').vm.$emit('delete');
+
+        //assert
+        this.assert.notNull(component.emitted('delete'));
+    }
 }

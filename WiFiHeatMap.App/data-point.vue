@@ -1,5 +1,6 @@
 <template>
   <div class="point" :style="{left: reading.location.x + 'px', top: reading.location.y + 'px', 'background-color': color(reading).toRGBA()}">
+    <div class="delete" @click="$emit('delete')"></div>
     <div class="shadow"></div>
     <div class="value">{{reading.signalFor(selected)}} dBm</div>
   </div>
@@ -14,6 +15,7 @@
 
   export default Vue.extend({
     props: {
+      index: Number,
       reading: Reading,
       selected: AccessPoint
     },
@@ -28,10 +30,10 @@
 <style scoped>
   .point {
     position: absolute;
-    width: 4px;
-    height: 4px;
-    margin: -4px 0 0 -4px;
-    border: 1px solid black;
+    width: 0.25rem;
+    height: 0.25rem;
+    margin: -0.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 50%;
     cursor: default;
   }
@@ -48,5 +50,14 @@
     margin-top: -1rem;
     margin-left: -1.5rem;
     box-shadow: 0 0 1rem 0.5rem rgba(255, 255, 255, 0.5);
+  }
+  
+  .delete {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin: -0.5rem;
+    border-radius: 50%;
+    position: absolute;
+    cursor: not-allowed;
   }
 </style>

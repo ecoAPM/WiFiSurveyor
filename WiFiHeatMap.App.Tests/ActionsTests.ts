@@ -5,6 +5,43 @@ import { shallowMount as mount } from '@vue/test-utils';
 
 export default class ActionsTests extends TestSuite {
     @Test()
+    async undoIsEnabledWhenReadingsExist() {
+        //arrange
+        const component = mount(Actions, { propsData: { readings: [{}] } });
+
+        //act
+        const button = component.get('#undo');
+
+        //assert
+        this.assert.null(button.attributes('disabled'));
+    }
+
+    @Test()
+    async undoIsDisabledWhenReadingsAreEmpty() {
+        //arrange
+        const component = mount(Actions, { propsData: { readings: [] } });
+
+        //act
+        const button = component.get('#undo');
+
+        //assert
+        this.assert.notNull(button.attributes('disabled'));
+    }
+
+    @Test()
+    async clickingUndoEmitsEvent() {
+        //arrange
+        const component = mount(Actions, { propsData: { readings: [{}] } });
+
+        //act
+        const button = component.get('#undo');
+        await button.trigger('click');
+
+        //assert
+        this.assert.notNull(component.emitted('undo'));
+    }
+    
+    @Test()
     async resetIsEnabledWhenReadingsExist() {
         //arrange
         const component = mount(Actions, { propsData: { readings: [{}] } });

@@ -43,6 +43,18 @@ export default class HeaderMenuTests extends TestSuite {
     }
 
     @Test()
+    async undoEventIsPassedUp() {
+        //arrange
+        const component = mount(HeaderMenu, { propsData: { readings: [], current: new Reading(0, new Point(0, 0), []) } });
+
+        //act
+        component.get('actions-stub').vm.$emit('undo');
+
+        //assert
+        this.assert.notNull(component.emitted('undo'));
+    }
+
+    @Test()
     async resetEventIsPassedUp() {
         //arrange
         const component = mount(HeaderMenu, { propsData: { readings: [], current: new Reading(0, new Point(0, 0), []) } });

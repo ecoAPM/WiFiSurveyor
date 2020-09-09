@@ -99,6 +99,46 @@ export default class AppTests extends TestSuite {
     }
 
     @Test()
+    async performsUndoWhenConfirmed() {
+        //arrange
+        const signal_service = MockFactory.signalService();
+
+        const canvas = MockFactory.canvas();
+        const renderer = new Renderer(Mockito.instance(canvas));
+
+        const component = mount(App, { provide: { signal_service: () => Mockito.instance(signal_service), renderer: () => renderer } })
+        component.vm.$data.readings = [new Reading(1, new Point(2, 3), [])];
+
+        global.confirm = () => true;
+
+        //act
+        component.get('header-menu-stub').vm.$emit('undo');
+
+        //assert
+        this.assert.empty(component.vm.$data.readings);
+    }
+
+    @Test()
+    async doesNotUndoWhenCancelled() {
+        //arrange
+        const signal_service = MockFactory.signalService();
+
+        const canvas = MockFactory.canvas();
+        const renderer = new Renderer(Mockito.instance(canvas));
+
+        const component = mount(App, { provide: { signal_service: () => Mockito.instance(signal_service), renderer: () => renderer } })
+        component.vm.$data.readings = [new Reading(1, new Point(2, 3), [])];
+
+        global.confirm = () => false;
+
+        //act
+        component.get('header-menu-stub').vm.$emit('undo');
+
+        //assert
+        this.assert.notEmpty(component.vm.$data.readings);
+    }
+
+    @Test()
     async setsPixelatedFlagWhenEnabled() {
         //arrange
         const signal_service = MockFactory.signalService();
@@ -193,5 +233,47 @@ export default class AppTests extends TestSuite {
 
         //assert
         this.assert.stringContains(btoa('file contents'), component.get('main-area-stub').attributes('background'));
+    }
+
+    @Test()
+    async deletesDataPointWhenConfirmed() {
+        //arrange
+        const signal_service = MockFactory.signalService();
+
+        const canvas = MockFactory.canvas();
+        const renderer = new Renderer(Mockito.instance(canvas));
+
+        const component = mount(App, { provide: { signal_service: () => Mockito.instance(signal_service), renderer: () => renderer } })
+        component.vm.$data.readings = [new Reading(1, new Point(2, 3), []), new Reading(2, new Point(3, 4), []), new Reading(3, new Point(4, 5), [])];
+
+        global.confirm = () => true;
+
+        //act
+        component.get('main-area-stub').vm.$emit('delete', 1);
+
+        //assert
+        this.assert.count(2, component.vm.$data.readings);
+        this.assert.equal(1, component.vm.$data.readings[0].id);
+        this.assert.equal(3, component.vm.$data.readings[1].id);
+    }
+
+    @Test()
+    async doesNotDeleteDataPointWhenNotConfirmed() {
+        //arrange
+        const signal_service = MockFactory.signalService();
+
+        const canvas = MockFactory.canvas();
+        const renderer = new Renderer(Mockito.instance(canvas));
+
+        const component = mount(App, { provide: { signal_service: () => Mockito.instance(signal_service), renderer: () => renderer } })
+        component.vm.$data.readings = [new Reading(1, new Point(2, 3), []), new Reading(2, new Point(3, 4), []), new Reading(3, new Point(4, 5), [])];
+
+        global.confirm = () => false;
+
+        //act
+        component.get('main-area-stub').vm.$emit('delete', 1);
+
+        //assert
+        this.assert.count(3, component.vm.$data.readings);
     }
 }

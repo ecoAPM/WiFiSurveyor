@@ -1,8 +1,8 @@
 <template>
   <div class="app">
     <status :status="connection_status"></status>
-    <header-menu :readings="readings" :current="current" :selected="selected" :last_updated="last_updated" @background="setBackground($event)" @selected="setSelected($event)" @pixelate="setPixelated($event)" @reset="reset()" @debug="setDebug($event)"></header-menu>
-    <main-area :enabled="connection_status === ''" :renderer="renderer" :background="background" :pixelated="pixelated" :readings="readings" :current="current" :selected="selected"></main-area>
+    <header-menu :readings="readings" :current="current" :selected="selected" :last_updated="last_updated" @background="setBackground($event)" @selected="setSelected($event)" @pixelate="setPixelated($event)" @reset="reset()" @debug="setDebug($event)" @undo="deleteDataPoint(readings.length-1)"></header-menu>
+    <main-area :enabled="connection_status === ''" :renderer="renderer" :background="background" :pixelated="pixelated" :readings="readings" :current="current" :selected="selected" @delete="deleteDataPoint($event)"></main-area>
     <debug-panel :enabled="debug" :signals="current.signals" />
   </div>
 </template>
@@ -46,6 +46,15 @@
       this.renderer = this.renderer_factory(canvas);
     },
     methods: {
+      deleteDataPoint(index: number): void {
+        if (confirm('Are you sure you want to delete this reading?')) {
+          this.readings.splice(index, 1);
+          if (this.readings.length >= 3)
+            this.renderer.render(this.readings, this.selected);
+          else
+            this.renderer.clear();
+        }
+      }
       reset(): void {
         if (confirm('Are you sure you want to delete all signal readings?')) {
           this.readings = [];

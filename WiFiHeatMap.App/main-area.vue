@@ -2,7 +2,7 @@
   <main>
     <div class="background" :style="{'background-image': `url(${background})`}" :class="{'pixelated': pixelated}"></div>
     <canvas id="webglcanvas" @click="add($event)" :disabled="!enabled"></canvas>
-    <data-point v-for="(reading, index) in readings" :key="index" :reading="reading" :selected="selected"></data-point>
+    <data-point v-for="(reading, index) in readings" :key="index" :reading="reading" :selected="selected" @delete="$emit('delete', index)"></data-point>
   </main>
 </template>
 
