@@ -11,6 +11,9 @@
         </tr>
       </thead>
       <tbody>
+        <tr v-if="signals.length == 0">
+          <td colspan="5">(no signals found)</td>
+        </tr>
         <tr v-for="signal in signals_by_strength" :key="signal.mac">
           <td :style="{ 'background-color': signal.color().toRGBA() }"></td>
           <td>{{signal.ssid}}</td>
@@ -59,7 +62,8 @@
     box-shadow: 0 0 1rem 1rem rgba(0, 0, 0, 0.5);
   }
 
-  .debug table td:first-child {
+  table th:first-child,
+  table td:first-child {
     width: 1rem;
   }
 </style>
