@@ -1,7 +1,7 @@
 <template>
   <form>
+    <label for="access-point">Access Point</label>
     <section class="access-point">
-      <label for="access-point">Access Point:</label>
       <select id="access-point" v-model="selected" @change="$emit('selected', selected)">
         <option disabled value="" v-if="access_points.length === 0">(no signals found)</option>
         <option v-for="ap in access_points" :key="ap.label()" :value="ap">
@@ -10,29 +10,15 @@
       </select>
     </section>
 
-    <section class="filters">
-      Group by:
+    <label>
+      <input type="checkbox" id="group-by-ssid" v-model="group_by.ssid" @change="update_frequency">
+      Group by SSID
+    </label>
 
-      <label>
-        <input type="checkbox" id="group-by-ssid" v-model="group_by.ssid" @change="update_frequency">
-        SSID
-      </label>
-
-      <label>
-        <input type="checkbox" id="group-by-frequency" v-model="group_by.frequency" :disabled="!group_by.ssid" />
-        2.4 + 5 GHz
-      </label>
-    </section>
-
-    <section class="background-selector">
-      <label for="background-file">Background:</label>
-      <input type="file" id="background-file" @change="$emit('background', $event.target.files)" />
-
-      <label>
-        <input type="checkbox" id="pixelate" v-model="pixelated" @change="$emit('pixelate', $event.target.checked)" />
-        Pixelate
-      </label>
-    </section>
+    <label>
+      <input type="checkbox" id="group-by-frequency" v-model="group_by.frequency" :disabled="!group_by.ssid" />
+      Combine 2.4 + 5 GHz
+    </label>
   </form>
 </template>
 
@@ -40,13 +26,13 @@
   import Vue from 'vue';
   import AccessPoint from './AccessPoint';
   import Reading from './Reading';
-  import FilterFormViewModel from './FilterFormViewModel';
+  import APFormViewModel from './APFormViewModel';
 
   export default Vue.extend({
     props: {
       current: Reading
     },
-    data: () => new FilterFormViewModel(),
+    data: () => new APFormViewModel(),
     computed: {
       access_points(): AccessPoint[] {
         return this.current.signals.map(signal =>

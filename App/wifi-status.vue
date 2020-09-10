@@ -45,6 +45,7 @@
 <style scoped>
   figure {
     width: 5rem;
+    padding: 0.5rem;
   }
 
   figcaption {

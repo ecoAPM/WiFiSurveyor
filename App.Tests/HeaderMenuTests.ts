@@ -12,7 +12,7 @@ export default class HeaderMenuTests extends TestSuite {
         const component = mount(HeaderMenu, { propsData: { readings: [], current: new Reading(0, new Point(0, 0), []) } });
 
         //act
-        component.get('filter-form-stub').vm.$emit('selected');
+        component.get('ap-form-stub').vm.$emit('selected');
 
         //assert
         this.assert.notNull(component.emitted('selected'));
@@ -24,7 +24,7 @@ export default class HeaderMenuTests extends TestSuite {
         const component = mount(HeaderMenu, { propsData: { readings: [], current: new Reading(0, new Point(0, 0), []) } });
 
         //act
-        component.get('filter-form-stub').vm.$emit('background');
+        component.get('background-form-stub').vm.$emit('background');
 
         //assert
         this.assert.notNull(component.emitted('background'));
@@ -36,7 +36,7 @@ export default class HeaderMenuTests extends TestSuite {
         const component = mount(HeaderMenu, { propsData: { readings: [], current: new Reading(0, new Point(0, 0), []) } });
 
         //act
-        component.get('filter-form-stub').vm.$emit('pixelate');
+        component.get('background-form-stub').vm.$emit('pixelate');
 
         //assert
         this.assert.notNull(component.emitted('pixelate'));

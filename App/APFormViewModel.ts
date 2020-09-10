@@ -1,8 +1,7 @@
 import AccessPoint from "./AccessPoint";
 import AccessPointGrouping from "./AccessPointGrouping";
 
-export default class FilterFormViewModel {
-  group_by: AccessPointGrouping = new AccessPointGrouping();
+export default class APFormViewModel {
   selected: AccessPoint | null = null;
-  pixelated: boolean = false;
+  group_by: AccessPointGrouping = new AccessPointGrouping();
 }

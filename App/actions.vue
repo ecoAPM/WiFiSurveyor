@@ -19,3 +19,9 @@
     }
   });
 </script>
+
+<style scoped>
+  button {
+    margin-bottom: 0.5rem;
+  }
+</style>

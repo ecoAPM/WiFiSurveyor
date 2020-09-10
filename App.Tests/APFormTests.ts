@@ -1,12 +1,12 @@
 require('global-jsdom')();
 import { Test, TestSuite } from "xunit.ts";
-import FilterForm from '../App/filter-form.vue';
+import APForm from '../App/ap-form.vue';
 import { shallowMount as mount } from '@vue/test-utils';
 import Reading from "../App/Reading";
 import Point from "../App/Point";
 import Signal from "../App/Signal";
 
-export default class FilterFormTest extends TestSuite {
+export default class APFormTests extends TestSuite {
 
     private static signals = [
         new Signal('mac2', 'ssid2', 2, -30),
@@ -22,7 +22,7 @@ export default class FilterFormTest extends TestSuite {
     @Test()
     async accessPointsAreSortedWhenGroupedBySSIDAndFrequency() {
         //arrange
-        const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), FilterFormTest.signals) } });
+        const component = mount(APForm, { propsData: { current: new Reading(0, new Point(0, 0), APFormTests.signals) } });
 
         //act
         const options = component.findAll('option');
@@ -35,7 +35,7 @@ export default class FilterFormTest extends TestSuite {
     @Test()
     async accessPointsAreSortedWhenGroupedBySSID() {
         //arrange
-        const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), FilterFormTest.signals) } });
+        const component = mount(APForm, { propsData: { current: new Reading(0, new Point(0, 0), APFormTests.signals) } });
 
         //act
         component.get('#group-by-frequency').setChecked(false);
@@ -52,7 +52,7 @@ export default class FilterFormTest extends TestSuite {
     @Test()
     async accessPointsAreSortedWhenNotGrouped() {
         //arrange
-        const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), FilterFormTest.signals) } });
+        const component = mount(APForm, { propsData: { current: new Reading(0, new Point(0, 0), APFormTests.signals) } });
 
         //act
         component.get('#group-by-ssid').setChecked(false);
@@ -73,7 +73,7 @@ export default class FilterFormTest extends TestSuite {
     @Test()
     async selectingAccessPointEmitsEvent() {
         //arrange
-        const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), FilterFormTest.signals) } });
+        const component = mount(APForm, { propsData: { current: new Reading(0, new Point(0, 0), APFormTests.signals) } });
 
         //act
         component.get('option:first-child').setSelected();
@@ -85,7 +85,7 @@ export default class FilterFormTest extends TestSuite {
     @Test()
     async groupBySSIDEnablesGroupByFrequency() {
         //arrange
-        const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), []) } });
+        const component = mount(APForm, { propsData: { current: new Reading(0, new Point(0, 0), []) } });
 
         //act
         component.get('#group-by-ssid').setChecked(true);
@@ -99,7 +99,7 @@ export default class FilterFormTest extends TestSuite {
     @Test()
     async disablingGroupBySSIDDisablesAndUnchecksGroupByFrequency() {
         //arrange
-        const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), []) } });
+        const component = mount(APForm, { propsData: { current: new Reading(0, new Point(0, 0), []) } });
 
         //act
         component.get('#group-by-ssid').setChecked(false);
@@ -109,29 +109,5 @@ export default class FilterFormTest extends TestSuite {
         const checkbox = component.get('#group-by-frequency');
         this.assert.notNull(checkbox.attributes("disabled"));
         this.assert.null(checkbox.attributes("checked"));
-    }
-
-    @Test()
-    async selectingBackgroundFileEmitsEvent() {
-        //arrange
-        const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), []) } });
-
-        //act
-        await component.get('#background-file').trigger('change');
-
-        //assert
-        this.assert.notNull(component.emitted('background'));
-    }
-
-    @Test()
-    async pixelateCheckboxEmitsEvent() {
-        //arrange
-        const component = mount(FilterForm, { propsData: { current: new Reading(0, new Point(0, 0), []) } });
-
-        //act
-        await component.get('#pixelate').trigger('change');
-
-        //assert
-        this.assert.notNull(component.emitted('pixelate'));
     }
 }
