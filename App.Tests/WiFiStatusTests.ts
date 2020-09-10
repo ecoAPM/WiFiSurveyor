@@ -49,7 +49,7 @@ export default class WiFiStatusTests extends TestSuite {
 
         //act
         await component.setProps({ last_updated: 'now' });
-        await new Promise(resolve => setTimeout(() => resolve(), 1));
+        await component.vm.$nextTick();
 
         //assert
         this.assert.stringContains('fading', component.html());

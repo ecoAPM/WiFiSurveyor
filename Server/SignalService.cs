@@ -14,6 +14,8 @@ namespace WiFiSurveyor
         private readonly ISignalHub _signalHub;
         private readonly ILogger _logger;
 
+        private static TimeSpan interval = TimeSpan.FromSeconds(1);
+
         public SignalService(ISignalReader<T> reader, ISignalParser<T> parser, ISignalHub hub, ILogger logger)
         {
             _signalReader = reader;
@@ -46,7 +48,7 @@ namespace WiFiSurveyor
                         _logger.LogError($"{message.LastUpdated}: {message.Status}");
                 }
 
-                await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
+                await Task.Delay(interval, stoppingToken);
             }
         }
     }

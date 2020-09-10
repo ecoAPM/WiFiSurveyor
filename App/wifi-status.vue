@@ -33,9 +33,10 @@
       }
     },
     watch: {
-      last_updated() {
+      async last_updated() {
         this.fading = false;
-        setTimeout(() => this.fading = true, 1);
+        await this.$nextTick();
+        this.fading = true;
       }
     }
   });
@@ -51,13 +52,12 @@
   }
 
   .fading {
-    opacity: 0.25;
-    transition-delay: 5s;
-    transition-duration: 10s;
+    opacity: 0.5;
+    transition-delay: 1s;
+    transition-duration: 5s;
   }
 
   .full {
     opacity: 1;
-    transition: all 0s;
   }
 </style>
