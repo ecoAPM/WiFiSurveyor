@@ -36,7 +36,7 @@
       async last_updated() {
         this.fading = false;
         await this.$nextTick();
-        this.fading = true;
+        await new Promise((resolve) => setTimeout(() => { this.fading = true; resolve(); }, 100));
       }
     }
   });
@@ -60,5 +60,7 @@
 
   .full {
     opacity: 1;
+    transition-delay: 0s;
+    transition-duration: 0s;
   }
 </style>

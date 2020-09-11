@@ -49,6 +49,7 @@ export default class WiFiStatusTests extends TestSuite {
 
         //act
         await component.setProps({ last_updated: 'now' });
+        await new Promise((resolve) => setTimeout(() => resolve(), 100));
         await component.vm.$nextTick();
 
         //assert
