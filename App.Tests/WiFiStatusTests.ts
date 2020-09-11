@@ -7,14 +7,14 @@ export default class WiFiStatusTests extends TestSuite {
     @Test()
     async showsIndicatorWhenSignalFound() {
         //arrange
-        const signal = -32;
+        const signal = -40;
 
         //act
         const component = mount(WiFiStatus, { propsData: { signal: signal } });
 
         //assert
         this.assert.stringContains('rgba(0, 255, 0, 1)', component.html())
-        this.assert.stringContains('-32 dBm', component.text())
+        this.assert.stringContains('-40 dBm', component.text())
     }
 
     @Test()

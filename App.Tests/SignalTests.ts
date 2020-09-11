@@ -20,7 +20,7 @@ export default class SignalTests extends TestSuite {
     @Test()
     async canGetColorForSignal() {
         //arrange
-        const signal = new Signal('mac', 'ssid', 2, -32);
+        const signal = new Signal('mac', 'ssid', 2, -40);
 
         //act
         const color = signal.color();

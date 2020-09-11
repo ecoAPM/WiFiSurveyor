@@ -2,12 +2,11 @@ import { Test, TestSuite } from 'xunit.ts';
 import ColorConverter from '../App/ColorConverter';
 import Color from '../App/Color';
 
-export default class ColorConverterTests extends TestSuite
-{
+export default class ColorConverterTests extends TestSuite {
     @Test()
     async goodSignalIsGreen() {
         //arrange
-        const dBm = -32;
+        const dBm = -40;
 
         //act
         const color = ColorConverter.toColor(dBm);
@@ -19,7 +18,7 @@ export default class ColorConverterTests extends TestSuite
     @Test()
     async mediumSignalIsYellow() {
         //arrange
-        const dBm = -64;
+        const dBm = -60;
 
         //act
         const color = ColorConverter.toColor(dBm);
