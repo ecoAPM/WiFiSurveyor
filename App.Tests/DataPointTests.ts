@@ -22,6 +22,19 @@ export default class DataPointTests extends TestSuite {
     }
 
     @Test()
+    async showsNoSignalWhenNoSignal() {
+        //arrange
+        const reading = new Reading(1, new Point(0, 0), []);
+        const selected = new AccessPoint('test');
+
+        //act
+        const component = mount(DataPoint, { propsData: { reading: reading, selected: selected } });
+
+        //assert
+        this.assert.equal('(no signal)', component.text());
+    }
+
+    @Test()
     async positionMatchesReadingLocation() {
         //arrange
         const reading = new Reading(1, new Point(12, 34), [new Signal('mac', 'test', 2, -30)]);
