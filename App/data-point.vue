@@ -2,7 +2,8 @@
   <div class="point" :style="{left: reading.location.x + 'px', top: reading.location.y + 'px', 'background-color': color(reading).toRGBA()}">
     <div class="delete" @click="$emit('delete')"></div>
     <div class="shadow"></div>
-    <div class="value">{{reading.signalFor(selected)}} dBm</div>
+    <div class="value" v-if="signal">{{signal}} dBm</div>
+    <div class="value" v-if="!signal">(no signal)</div>
   </div>
 </template>
 
@@ -22,6 +23,11 @@
     methods: {
       color(reading: Reading): Color {
         return ColorConverter.toColor(reading.signalFor(this.selected));
+      }
+    },
+    computed: {
+      signal(): number | null {
+        return this.reading.signalFor(this.selected);
       }
     }
   });
@@ -51,7 +57,7 @@
     margin-left: -1.5rem;
     box-shadow: 0 0 1rem 0.5rem rgba(255, 255, 255, 0.5);
   }
-  
+
   .delete {
     width: 1.25rem;
     height: 1.25rem;
