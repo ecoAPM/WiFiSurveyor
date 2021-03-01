@@ -4,8 +4,8 @@
   "description": "Visualize Wi-Fi signal strength over a geographic area",
   "main": "app.js",
   "scripts": {
-    "dev": "parcel App/index.html -d dist",
-    "build": "parcel build App/index.html -d Server/wwwroot",
+    "dev": "vite",
+    "build": "vite build --outDir ../Server/wwwroot --emptyOutDir --assetsDir .",
     "test": "parcel build App.Tests/**/*.ts -d dist/tests -t node --no-minify --log-level 2 && xunit dist/tests"
   },
   "repository": {
@@ -44,6 +44,9 @@
     "ts-mockito": "2.6.1",
     "ts-node": "9.1.1",
     "typescript": "4.2.3",
+    "vite": "2.0.4",
+    "vite-plugin-html": "^2.0.2",
+    "vite-plugin-vue2": "1.2.2",
     "vue": "2.6.12",
     "vue-hot-reload-api": "2.3.4",
     "vue-template-compiler": "2.6.12",
