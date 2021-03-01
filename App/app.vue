@@ -54,7 +54,7 @@
           else
             this.renderer.clear();
         }
-      }
+      },
       reset(): void {
         if (confirm('Are you sure you want to delete all signal readings?')) {
           this.readings = [];

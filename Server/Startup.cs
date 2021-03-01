@@ -16,7 +16,7 @@ namespace WiFiSurveyor
 
         public void Configure(IApplicationBuilder app)
         {
-            app.UseCors(builder => builder.AllowCredentials().AllowAnyHeader().WithOrigins("http://localhost:1234"));
+            app.UseCors(builder => builder.AllowCredentials().AllowAnyHeader().WithOrigins("http://localhost:3000"));
             app.UseResponseCompression();
             app.UseDefaultFiles();
             app.UseStaticFiles();

@@ -1,3 +1,16 @@
+export default class Shaders {
+    static fragment: string = `
+precision highp float;
+
+varying vec4 v_color;
+
+void main()
+{
+    gl_FragColor = v_color / vec4(255);
+}
+`;
+
+    static vertex: string = `
 precision highp float;
 
 uniform vec2 u_offset;
@@ -18,4 +31,6 @@ void main()
     );
 
     gl_Position = vec4(a_coords, 0, 1) * scale_and_translate;
+}
+`;
 }

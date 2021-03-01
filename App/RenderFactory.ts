@@ -1,5 +1,4 @@
-﻿import vertex_shader_source from './triangle.vert';
-import fragment_shader_source from './triangle.frag';
+﻿import Shaders from './shaders';
 
 export default class RenderFactory {
     static getContext(canvas: HTMLCanvasElement): WebGL2RenderingContext {
@@ -36,7 +35,7 @@ export default class RenderFactory {
         if (vertex_shader == null)
             throw new Error("Could not create vertex shader");
 
-        gl.shaderSource(vertex_shader, vertex_shader_source);
+        gl.shaderSource(vertex_shader, Shaders.vertex);
         gl.compileShader(vertex_shader);
 
         return vertex_shader;
@@ -47,7 +46,7 @@ export default class RenderFactory {
         if (fragment_shader == null)
             throw new Error("Could not create fragment shader");
 
-        gl.shaderSource(fragment_shader, fragment_shader_source);
+        gl.shaderSource(fragment_shader, Shaders.fragment);
         gl.compileShader(fragment_shader);
 
         return fragment_shader;
