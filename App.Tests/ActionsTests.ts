@@ -86,7 +86,9 @@ export default class ActionsTests extends TestSuite {
         //act
         const checkbox = component.get('#debug');
         await checkbox.trigger('click');
+        await checkbox.trigger('change');
         await checkbox.trigger('click');
+        await checkbox.trigger('change');
 
         //assert
         const events = component.emitted('debug') as boolean[][];
