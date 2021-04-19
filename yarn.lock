@@ -6731,10 +6731,10 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vite-plugin-html@2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/vite-plugin-html/-/vite-plugin-html-2.0.6.tgz#223fad84f499e763c1e17ff9286c2a0fd1cf9982"
-  integrity sha512-7aeg2T6gvsyWwRrU08ELjfIp2JkPAIx5fbmzAw5E/gEN+o32p1Pz/dOJrPClf/rJjNYWpqJsz3ikJyCDpnYRrw==
+vite-plugin-html@2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/vite-plugin-html/-/vite-plugin-html-2.0.7.tgz#55139ff8a843ba3b3d5cd48610ca6f6afdf7c23d"
+  integrity sha512-c2fFBxRqP+jbJX/uMZ6pTXcOWZHEtjcki+u609+KIOIjhR+nDY6zBbRvCy29n9Sc0X+CBhFcj2pPLLAtS5ERJQ==
   dependencies:
     ejs "^3.1.6"
     fs-extra "^9.1.0"
