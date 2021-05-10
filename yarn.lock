@@ -6701,10 +6701,10 @@ vite-plugin-html@2.0.7:
     fs-extra "^9.1.0"
     html-minifier-terser "^5.1.1"
 
-vite-plugin-vue2@1.4.4:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/vite-plugin-vue2/-/vite-plugin-vue2-1.4.4.tgz#a5d371d295e6bada3d75a11c8b4b99a54b66733f"
-  integrity sha512-ItxvY9DsAeq8HRbcGe9npbsuUVFN2VNltMiqLDT9jBGFnzMAouiq5KfYVTkiAGVEEJ7s/iCZcO6bwsl3SK1OzA==
+vite-plugin-vue2@1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/vite-plugin-vue2/-/vite-plugin-vue2-1.5.1.tgz#3b1bd0b1ccccfe2a4be272b3b35cd46527a6d9ff"
+  integrity sha512-z7TUaSL3f2XvQWU1YmpxBDyPWwIRwH/6O4RTqsZKTzPfRWpCT2r9Ap84C4+YS1MmbPlrYjgWplCIdJd7I0Vr+A==
   dependencies:
     "@babel/core" "^7.11.6"
     "@babel/parser" "^7.13.10"
