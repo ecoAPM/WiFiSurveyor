@@ -44,7 +44,7 @@
     "ts-mockito": "2.6.1",
     "ts-node": "9.1.1",
     "typescript": "4.2.4",
-    "vite": "2.3.0",
+    "vite": "2.3.2",
     "vite-plugin-html": "2.0.7",
     "vite-plugin-vue2": "1.5.1",
     "vue": "2.6.12",
