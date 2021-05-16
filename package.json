@@ -35,7 +35,7 @@
     "@types/node": "15.0.3",
     "@vue/component-compiler-utils": "3.2.0",
     "@vue/test-utils": "1.2.0",
-    "delaunator": "4.0.1",
+    "delaunator": "5.0.0",
     "global-jsdom": "8.1.0",
     "jsdom": "16.5.3",
     "ts-mockito": "2.6.1",
