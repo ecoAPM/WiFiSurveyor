@@ -1,4 +1,3 @@
-require('global-jsdom')();
 import { Test, TestSuite } from "xunit.ts";
 import Status from '../App/status.vue';
 import { shallowMount as mount } from '@vue/test-utils';

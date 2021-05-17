@@ -1,13 +1,17 @@
-require('global-jsdom')();
 import { Test, TestSuite } from "xunit.ts";
 import Actions from '../App/actions.vue';
 import { shallowMount as mount } from '@vue/test-utils';
+import AppViewModel from "../App/AppViewModel";
+import Mockito from "ts-mockito";
+import Reading from "../App/Reading";
 
 export default class ActionsTests extends TestSuite {
     @Test()
     async undoIsEnabledWhenReadingsExist() {
         //arrange
-        const component = mount(Actions, { propsData: { readings: [{}] } });
+        const state = new AppViewModel();
+        state.readings = [ Mockito.instance(Mockito.mock(Reading)) ];
+        const component = mount(Actions, { data: () => ({ state: state }) });
 
         //act
         const button = component.get('#undo');
@@ -19,7 +23,9 @@ export default class ActionsTests extends TestSuite {
     @Test()
     async undoIsDisabledWhenReadingsAreEmpty() {
         //arrange
-        const component = mount(Actions, { propsData: { readings: [] } });
+        const state = new AppViewModel();
+        state.readings = [];
+        const component = mount(Actions, { data: () => ({ state: state }) });
 
         //act
         const button = component.get('#undo');
@@ -29,22 +35,41 @@ export default class ActionsTests extends TestSuite {
     }
 
     @Test()
-    async clickingUndoEmitsEvent() {
+    async clickingUndoRemovesLastReading() {
         //arrange
-        const component = mount(Actions, { propsData: { readings: [{}] } });
+        const state = new AppViewModel();
+        state.readings = [ Mockito.instance(Mockito.mock(Reading)), Mockito.instance(Mockito.mock(Reading)) ];
+        const component = mount(Actions, { data: () => ({ state: state }) });
+        global.confirm = () => true;
 
         //act
-        const button = component.get('#undo');
-        await button.trigger('click');
+        await component.get('#undo').trigger('click');
 
         //assert
-        this.assert.notNull(component.emitted('undo'));
+        this.assert.count(1, state.readings);
     }
-    
+
+    @Test()
+    async cancellingUndoDoesNotRemoveLastReading() {
+        //arrange
+        const state = new AppViewModel();
+        state.readings = [ Mockito.instance(Mockito.mock(Reading)), Mockito.instance(Mockito.mock(Reading)) ];
+        const component = mount(Actions, { data: () => ({ state: state }) });
+        global.confirm = () => false;
+
+        //act
+        await component.get('#undo').trigger('click');
+
+        //assert
+        this.assert.count(2, state.readings);
+    }
+
     @Test()
     async resetIsEnabledWhenReadingsExist() {
         //arrange
-        const component = mount(Actions, { propsData: { readings: [{}] } });
+        const state = new AppViewModel();
+        state.readings = [ Mockito.instance(Mockito.mock(Reading)) ];
+        const component = mount(Actions, { data: () => ({ state: state }) });
 
         //act
         const button = component.get('#reset');
@@ -56,7 +81,9 @@ export default class ActionsTests extends TestSuite {
     @Test()
     async resetIsDisabledWhenReadingsAreEmpty() {
         //arrange
-        const component = mount(Actions, { propsData: { readings: [] } });
+        const state = new AppViewModel();
+        state.readings = [];
+        const component = mount(Actions, { data: () => ({ state: state }) });
 
         //act
         const button = component.get('#reset');
@@ -66,34 +93,48 @@ export default class ActionsTests extends TestSuite {
     }
 
     @Test()
-    async clickingResetEmitsEvent() {
+    async clickingResetClearsReadings() {
         //arrange
-        const component = mount(Actions, { propsData: { readings: [{}] } });
+        const state = new AppViewModel();
+        state.readings = [ Mockito.instance(Mockito.mock(Reading)) ];
+        const component = mount(Actions, { data: () => ({ state: state }) });
+        global.confirm = () => true;
 
         //act
-        const button = component.get('#reset');
-        await button.trigger('click');
+        await component.get('#reset').trigger('click');
 
         //assert
-        this.assert.notNull(component.emitted('reset'));
+        this.assert.empty(state.readings);
     }
 
     @Test()
-    async clickingDebugEmitsEvent() {
+    async cancellingResetDoesNotClearReadings() {
         //arrange
-        const component = mount(Actions, { propsData: { readings: [{}] } });
+        const state = new AppViewModel();
+        state.readings = [ Mockito.instance(Mockito.mock(Reading)) ];
+        const component = mount(Actions, { data: () => ({ state: state }) });
+        global.confirm = () => false;
+
+        //act
+        await component.get('#reset').trigger('click');
+
+        //assert
+        this.assert.notEmpty(state.readings);
+    }
+
+    @Test()
+    async clickingDebugSetsFlag() {
+        //arrange
+        const state = new AppViewModel();
+        state.readings = [ Mockito.instance(Mockito.mock(Reading)) ];
+        const component = mount(Actions, { data: () => ({ state: state }) });
 
         //act
         const checkbox = component.get('#debug');
         await checkbox.trigger('click');
         await checkbox.trigger('change');
-        await checkbox.trigger('click');
-        await checkbox.trigger('change');
 
         //assert
-        const events = component.emitted('debug') as boolean[][];
-        this.assert.equal(2, events.length);
-        this.assert.true(events[0][0]);
-        this.assert.false(events[1][0]);
+        this.assert.true(state.debug);
     }
 }

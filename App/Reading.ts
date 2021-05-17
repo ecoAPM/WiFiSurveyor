@@ -13,7 +13,7 @@ export default class Reading {
         this.signals = signals;
     }
 
-    signalFor(access_point: AccessPoint): number | null {
+    signalFor(access_point: AccessPoint | null): number | null {
         if (access_point == null)
             return null;
 

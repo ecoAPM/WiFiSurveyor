@@ -9,7 +9,6 @@
 <script lang="ts">
   import Vue from 'vue';
   import wifi_icon from './wifi-icon.vue';
-  import Color from './Color';
   import ColorConverter from './ColorConverter';
 
   export default Vue.extend({
