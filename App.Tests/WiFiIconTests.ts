@@ -1,4 +1,3 @@
-require('global-jsdom')();
 import { Test, TestSuite } from "xunit.ts";
 import { shallowMount as mount } from '@vue/test-utils';
 import WiFiIcon from '../App/wifi-icon.vue';

@@ -7,7 +7,7 @@ export default class Triangulation {
     readonly vertex_coordinates: number[] = [];
     readonly vertex_color_parts: number[] = [];
 
-    constructor(readings: Reading[], access_point: AccessPoint) {
+    constructor(readings: Reading[], access_point: AccessPoint | null) {
         const points = readings.map(reading => reading.location);
         const delauney = Delaunator.from(points, p => p.x, p => p.y);
 

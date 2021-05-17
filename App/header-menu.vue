@@ -1,9 +1,9 @@
 <template>
   <header>
     <wifi-status :signal="current_signal" :last_updated="last_updated"></wifi-status>
-    <ap-form :current="current" @selected="$emit('selected', $event)"></ap-form>
-    <background-form @background="$emit('background', $event)" @pixelate="$emit('pixelate', $event)"></background-form>
-    <actions :readings="readings" @undo="$emit('undo')" @reset="$emit('reset')" @debug="$emit('debug', $event)"></actions>
+    <ap-form></ap-form>
+    <background-form></background-form>
+    <actions></actions>
   </header>
 </template>
 
@@ -13,8 +13,7 @@
   import BackgroundForm from './background-form.vue';
   import WiFiStatus from './wifi-status.vue';
   import Actions from './actions.vue';
-  import AccessPoint from './AccessPoint';
-  import Reading from './Reading';
+  import SharedState from "./SharedState";
 
   export default Vue.extend({
     components: {
@@ -24,14 +23,14 @@
       'actions': Actions
     },
     props: {
-      readings: Array,
-      current: Reading,
-      selected: AccessPoint,
       last_updated: String
     },
+    data: () => ({
+      state: SharedState
+    }),
     computed: {
       current_signal(): number | null {
-        return this.current.signalFor(this.selected);
+        return this.state.current.signalFor(this.state.selected);
       }
     }
   });
@@ -41,7 +40,7 @@
   header {
     display: flex;
     justify-content: space-between;
-    align-items: top;
+    align-items: flex-start;
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
     margin-bottom: 0.5rem;
   }

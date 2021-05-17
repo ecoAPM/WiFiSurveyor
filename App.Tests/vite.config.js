@@ -20,6 +20,7 @@ export default defineConfig({
     outDir: '../dist/tests',
     emptyOutDir: true,
     minify: false,
+    sourcemap: true,
     rollupOptions: {
       input: files,
       output: {

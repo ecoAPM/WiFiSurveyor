@@ -1,80 +1,28 @@
-require('global-jsdom')();
 import { Test, TestSuite } from "xunit.ts";
 import HeaderMenu from '../App/header-menu.vue';
 import { shallowMount as mount } from '@vue/test-utils';
+import AppViewModel from "../App/AppViewModel";
+import AccessPoint from "../App/AccessPoint";
 import Reading from "../App/Reading";
 import Point from "../App/Point";
+import Signal from "../App/Signal";
 
 export default class HeaderMenuTests extends TestSuite {
     @Test()
-    async selectedEventIsPassedUp() {
+    async canGetCurrentSignal() {
         //arrange
-        const component = mount(HeaderMenu, { propsData: { readings: [], current: new Reading(0, new Point(0, 0), []) } });
-
+        const signals = [
+            new Signal('123abc', 'test', 2.4, -10)
+        ];
+        const state = new AppViewModel();
+        state.current = new Reading(0, new Point(0, 0), signals);
+        state.selected = new AccessPoint('test');
+        const component = mount(HeaderMenu, { data: () => ({ state: state }) });
+       
         //act
-        component.get('ap-form-stub').vm.$emit('selected');
-
+        const current_signal = component.vm.current_signal;
+        
         //assert
-        this.assert.notNull(component.emitted('selected'));
-    }
-
-    @Test()
-    async bakgroundEventIsPassedUp() {
-        //arrange
-        const component = mount(HeaderMenu, { propsData: { readings: [], current: new Reading(0, new Point(0, 0), []) } });
-
-        //act
-        component.get('background-form-stub').vm.$emit('background');
-
-        //assert
-        this.assert.notNull(component.emitted('background'));
-    }
-
-    @Test()
-    async pixelateEventIsPassedUp() {
-        //arrange
-        const component = mount(HeaderMenu, { propsData: { readings: [], current: new Reading(0, new Point(0, 0), []) } });
-
-        //act
-        component.get('background-form-stub').vm.$emit('pixelate');
-
-        //assert
-        this.assert.notNull(component.emitted('pixelate'));
-    }
-
-    @Test()
-    async undoEventIsPassedUp() {
-        //arrange
-        const component = mount(HeaderMenu, { propsData: { readings: [], current: new Reading(0, new Point(0, 0), []) } });
-
-        //act
-        component.get('actions-stub').vm.$emit('undo');
-
-        //assert
-        this.assert.notNull(component.emitted('undo'));
-    }
-
-    @Test()
-    async resetEventIsPassedUp() {
-        //arrange
-        const component = mount(HeaderMenu, { propsData: { readings: [], current: new Reading(0, new Point(0, 0), []) } });
-
-        //act
-        component.get('actions-stub').vm.$emit('reset');
-
-        //assert
-        this.assert.notNull(component.emitted('reset'));
-    }
-
-    @Test()
-    async debugEventIsPassedUp() {
-        //arrange
-        const component = mount(HeaderMenu, { propsData: { readings: [], current: new Reading(0, new Point(0, 0), []) } });
-
-        //act
-        component.get('actions-stub').vm.$emit('debug');
-
-        //assert
-        this.assert.notNull(component.emitted('debug'));
+        this.assert.equal(-10, current_signal);
     }
 }

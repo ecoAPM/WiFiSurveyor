@@ -37,7 +37,7 @@ export default class Renderer {
         this.gl.enableVertexAttribArray(color_attribute);
     }
 
-    render(readings: Reading[], access_point: AccessPoint): void {
+    render(readings: Reading[], access_point: AccessPoint | null): void {
         const triangulation = new Triangulation(readings, access_point);
         if (triangulation.vertex_coordinates.length === 0 || triangulation.vertex_coordinates.length % 6 !== 0
             || triangulation.vertex_color_parts.length === 0 || triangulation.vertex_color_parts.length % 12 !== 0)
