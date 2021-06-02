@@ -43,7 +43,7 @@
     "vite": "2.3.5",
     "vite-plugin-html": "2.0.7",
     "vite-plugin-vue2": "1.5.1",
-    "vue": "2.6.12",
+    "vue": "2.6.13",
     "xunit.ts": "0.10.2"
   },
   "browserslist": [
