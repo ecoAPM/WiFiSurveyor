@@ -2180,10 +2180,10 @@ vite-plugin-html@2.0.7:
     fs-extra "^9.1.0"
     html-minifier-terser "^5.1.1"
 
-vite-plugin-vue2@1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/vite-plugin-vue2/-/vite-plugin-vue2-1.5.2.tgz#54432cf720082cb7d77850ed16b11e59b56a8c6a"
-  integrity sha512-MtdD6tTT/hD4LwYN51V2c7FgygOYK3xrtik/BnnLyIypRZFwDnVC1vEk5x5xm3e5T932Vwn8C5Pvac5BLRpgjQ==
+vite-plugin-vue2@1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/vite-plugin-vue2/-/vite-plugin-vue2-1.6.2.tgz#e101986d1024fa4435dc5b1dcce189a40e78cd0b"
+  integrity sha512-rQXutoFG8WoQIC1HVdBJCwoGCFbJ3EHyJsgSby252dhmyproGkZRnOKeiLH8SwxVGcjuTR/mMKk2CM76HxBqjA==
   dependencies:
     "@babel/core" "^7.11.6"
     "@babel/parser" "^7.13.10"
@@ -2203,6 +2203,7 @@ vite-plugin-vue2@1.5.2:
     rollup "^2.35.1"
     slash "^3.0.0"
     source-map "^0.7.3"
+    vue-template-compiler "^2.2.0"
     vue-template-es2015-compiler "^1.9.1"
 
 vite@2.3.6:
@@ -2217,7 +2218,7 @@ vite@2.3.6:
   optionalDependencies:
     fsevents "~2.3.1"
 
-vue-template-compiler@^2.6.13:
+vue-template-compiler@^2.2.0, vue-template-compiler@^2.6.13:
   version "2.6.13"
   resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.6.13.tgz#a735b8974e013ce829e7f77e08e4ee5aecbd3005"
   integrity sha512-latKAqpUjCkovB8XppW5gnZbSdYQzkf8pavsMBZYZrQcG6lAnj0EH4Ty7jMwAwFw5Cf4mybKBHlp1UTjnLPOWw==
