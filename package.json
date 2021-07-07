@@ -31,7 +31,7 @@
   "devDependencies": {
     "@microsoft/signalr": "5.0.7",
     "@types/delaunator": "3.0.0",
-    "@types/jsdom": "16.2.12",
+    "@types/jsdom": "16.2.13",
     "@types/node": "16.0.0",
     "@vue/component-compiler-utils": "3.2.2",
     "@vue/test-utils": "1.2.1",
