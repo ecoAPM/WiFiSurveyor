@@ -2180,10 +2180,10 @@ vite-plugin-html@2.0.7:
     fs-extra "^9.1.0"
     html-minifier-terser "^5.1.1"
 
-vite-plugin-vue2@1.7.2:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/vite-plugin-vue2/-/vite-plugin-vue2-1.7.2.tgz#4fcb4293a07fc0fbf65e59c92dfd78e9c917f89c"
-  integrity sha512-lBYF8l61HSdNFEsv8IAFuGCe2Jza0Fae3P4GM5oDcvwY/xETZr9f4TYqdA9aaK1zqhvt43I2Q6emhQcHI6K8ug==
+vite-plugin-vue2@1.7.3:
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/vite-plugin-vue2/-/vite-plugin-vue2-1.7.3.tgz#6c4da246800493283be37b321c2d5041cf9c9f71"
+  integrity sha512-HStclmWA4rQKy6xH1tEniUvoiCAForBZSC6JBO189sB2LoGUhiA7414Cr1RnysDp/ZDnW/PwG+ux+VfXrYP6Ow==
   dependencies:
     "@babel/core" "^7.11.6"
     "@babel/parser" "^7.13.10"
