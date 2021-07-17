@@ -1,5 +1,7 @@
 # Wi-Fi Surveyor
 
+[![Build Status](https://github.com/ecoAPM/WiFiSurveyor/workflows/CI/badge.svg)](https://github.com/ecoAPM/WiFiSurveyor/actions)
+
 Visualize Wi-Fi signal strength over a geographic area
 
 ## Quick Start
