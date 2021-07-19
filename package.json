@@ -29,23 +29,23 @@
   },
   "homepage": "https://github.com/ecoAPM/WiFiSurveyor#readme",
   "devDependencies": {
-    "@microsoft/signalr": "5.0.8",
+    "@microsoft/signalr": "5.0.9",
     "@types/delaunator": "3.0.0",
     "@types/jsdom": "16.2.13",
-    "@types/node": "16.3.2",
+    "@types/node": "16.7.10",
     "@vue/component-compiler-utils": "3.2.2",
-    "@vue/test-utils": "1.2.1",
+    "@vue/test-utils": "1.2.2",
     "delaunator": "5.0.0",
-    "global-jsdom": "8.1.0",
-    "jsdom": "16.6.0",
+    "global-jsdom": "8.2.0",
+    "jsdom": "17.0.0",
     "ts-mockito": "2.6.1",
-    "typescript": "4.3.5",
-    "vite": "2.4.2",
-    "vite-plugin-html": "2.0.7",
-    "vite-plugin-vue2": "1.7.3",
+    "typescript": "4.4.2",
+    "vite": "2.5.2",
+    "vite-plugin-html": "2.1.0",
+    "vite-plugin-vue2": "1.8.1",
     "vue": "2.6.14",
     "vue-template-compiler": "^2.6.14",
-    "xunit.ts": "0.10.2"
+    "xunit.ts": "1.0.0"
   },
   "browserslist": [
     "Firefox ESR"
