@@ -102,7 +102,7 @@ export default class APFormTests extends TestSuite {
 
         //assert
         const checkbox = component.get('#group-by-frequency');
-        this.assert.null(checkbox.attributes("disabled"));
+        this.assert.undefined(checkbox.attributes("disabled"));
     }
 
     @Test()
@@ -118,6 +118,6 @@ export default class APFormTests extends TestSuite {
         //assert
         const checkbox = component.get('#group-by-frequency');
         this.assert.notNull(checkbox.attributes("disabled"));
-        this.assert.null(checkbox.attributes("checked"));
+        this.assert.undefined(checkbox.attributes("checked"));
     }
 }
