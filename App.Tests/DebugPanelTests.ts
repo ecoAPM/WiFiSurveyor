@@ -17,7 +17,7 @@ export default class DebugPanelTests extends TestSuite {
         const component = mount(DebugPanel, { data: () => ({ state: state }) });
 
         //assert
-        this.assert.null(component.attributes('style'));
+        this.assert.undefined(component.attributes('style'));
     }
 
     @Test()

@@ -17,7 +17,7 @@ export default class ActionsTests extends TestSuite {
         const button = component.get('#undo');
 
         //assert
-        this.assert.null(button.attributes('disabled'));
+        this.assert.undefined(button.attributes('disabled'));
     }
 
     @Test()
@@ -75,7 +75,7 @@ export default class ActionsTests extends TestSuite {
         const button = component.get('#reset');
 
         //assert
-        this.assert.null(button.attributes('disabled'));
+        this.assert.undefined(button.attributes('disabled'));
     }
 
     @Test()
