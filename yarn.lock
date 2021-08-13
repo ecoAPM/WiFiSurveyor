@@ -2548,7 +2548,7 @@ xml-name-validator@^3.0.0:
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-3.0.0.tgz#6ae73e06de4d8c6e47f9fb181f78d648ad457c6a"
   integrity sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw==
 
-xml@^1.0.1:
+xml@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/xml/-/xml-1.0.1.tgz#78ba72020029c5bc87b8a81a3cfcd74b4a2fc1e5"
   integrity sha1-eLpyAgApxbyHuKgaPPzXS0ovweU=
@@ -2558,17 +2558,17 @@ xmlchars@^2.2.0:
   resolved "https://registry.yarnpkg.com/xmlchars/-/xmlchars-2.2.0.tgz#060fe1bcb7f9c76fe2a17db86a9bc3ab894210cb"
   integrity sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==
 
-xunit.ts@0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/xunit.ts/-/xunit.ts-0.12.0.tgz#dbcf20ef1624eb699e88c5837983ac33036f0d5e"
-  integrity sha512-qPStwcX8HTGqdpdaR7SPqbpP4PYkI4Fdq/W5kS7xd4Nncr6pVmLzh0XdRmXtmviZWHeLiGzHFE7FsNWQyBWeZw==
+xunit.ts@0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/xunit.ts/-/xunit.ts-0.13.0.tgz#fc375c3c6d8cee6737e86f6e0df99b54405978a1"
+  integrity sha512-QrUAFTVqIocdpW2dG+l+AqqgEVJZqp5cqI+oJnkyGzBUOzhPMRp4NztryyJscVqnfOttjwWTZLkLyxLX0u6YNw==
   dependencies:
     colors "1.4.0"
     command-line-args "5.2.0"
     command-line-usage "6.1.1"
     lodash.isequal "4.5.0"
     typescript "4.3.5"
-    xml "^1.0.1"
+    xml "1.0.1"
 
 yallist@^2.1.2:
   version "2.1.2"
