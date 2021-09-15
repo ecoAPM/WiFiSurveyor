@@ -404,10 +404,10 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
-"@microsoft/signalr@5.0.9":
-  version "5.0.9"
-  resolved "https://registry.yarnpkg.com/@microsoft/signalr/-/signalr-5.0.9.tgz#cff2b0a091298049fd012e7b6cd015a814f8698d"
-  integrity sha512-pQufk3+mChfystnmYpglyRYQFp+036QmOxbZUFr2cFf2iiS8ekBX5uVBOG8OexKcsG4TcJNAU/ref90Y9+3ZiA==
+"@microsoft/signalr@5.0.10":
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/@microsoft/signalr/-/signalr-5.0.10.tgz#4d216dabbf720379bc7932680ed6c299b1475f6e"
+  integrity sha512-7jg6s/cmULyeVvt5/bTB4N9T30HvAF1S06hL+nPcQMODXcclRo34Zcli/dfTLR8lCX31/cVEOmVgxXBOVRQ+Dw==
   dependencies:
     abort-controller "^3.0.0"
     eventsource "^1.0.7"
