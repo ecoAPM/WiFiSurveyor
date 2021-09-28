@@ -2426,10 +2426,10 @@ util-deprecate@^1.0.2:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
-vite-plugin-html@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/vite-plugin-html/-/vite-plugin-html-2.1.0.tgz#77b6ee11d9cdbdf766b5731fd416bacf26744fce"
-  integrity sha512-xdyHA/LdtmQtVTpPVqmrJaO/iuwx0k/r2M0BFnfYBloLCvp9FeCW/fR3yucQePRzE19bU72QldBE6EB1toZACw==
+vite-plugin-html@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/vite-plugin-html/-/vite-plugin-html-2.1.1.tgz#014b44126a72d459cd460bd156800c225d124cbe"
+  integrity sha512-TCLLYzibNDEMwbtRYAYYmI7CqMuU0qFFfoTVhEQ8w4P9Tjfe5Xrh/0+XXydifgd/H7xzuWkFUjSYT6Egy7Y27Q==
   dependencies:
     "@rollup/pluginutils" "^4.1.1"
     dotenv "^10.0.0"
