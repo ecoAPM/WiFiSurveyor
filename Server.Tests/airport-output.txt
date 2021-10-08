@@ -1,0 +1,49 @@
+                            SSID BSSID             RSSI CHANNEL HT CC SECURITY (auth/unicast/group)
+       Windsor Suites Conference 94:bf:c4:bb:0a:38 -60  11      Y  US NONE
+            Windsor Suites Guest 94:bf:c4:3b:0a:38 -60  11      Y  US NONE
+       Windsor Suites Conference 18:7c:0b:b3:55:18 -64  11      Y  US NONE
+            Windsor Suites Guest 18:7c:0b:33:55:18 -64  11      Y  US NONE
+          Hot Dog On A Beach Day 1c:b7:2c:cc:43:00 -56  9       Y  -- WPA2(PSK/AES/AES) 
+             Surveillance van 64 dc:8d:8a:3e:4a:09 -68  6       Y  US WPA(PSK/AES/AES) WPA2(PSK/AES/AES) 
+       Windsor Suites Conference 94:bf:c4:bb:10:88 -57  6       Y  US NONE
+            Windsor Suites Guest 94:bf:c4:3b:10:88 -56  6       Y  US NONE
+                     TP-Link_2.4 90:9a:4a:2f:0e:f2 -62  5       Y  -- WPA2(PSK/AES/AES) 
+                          PEJ2.4 10:0c:6b:a8:30:a0 -66  1       Y  -- WPA2(PSK/AES/AES) 
+            Windsor Suites Guest b4:79:c8:28:87:68 -65  1       Y  US NONE
+                         At Home 2c:7e:81:f9:bb:f4 -46  1       Y  US WPA2(PSK/AES/AES) 
+                           TB6QR f8:e4:fb:ea:22:ad -74  1       Y  -- WPA2(PSK/AES,TKIP/TKIP) 
+              Bahranian Rhapsody e4:bf:fa:bd:0d:4c -71  44      Y  US WPA2(PSK/AES/AES) 
+                     xfinitywifi 5c:76:95:c2:6d:73 -84  44      Y  US NONE
+                     xfinitywifi f6:c1:14:b8:0d:8a -90  44      Y  US NONE
+            Windsor Suites Guest 94:bf:c4:3b:0a:3c -78  44      Y  US NONE
+       Windsor Suites Conference 94:bf:c4:bb:0a:3c -78  44      Y  US NONE
+                     xfinitywifi a8:70:5d:84:04:6e -75  44      Y  US NONE
+                         XFINITY a8:70:5d:86:04:6e -76  44      Y  US WPA2(802.1x/AES/AES) 
+                ThankGodImPretty a8:70:5d:82:04:6e -74  44      Y  US WPA2(PSK/AES/AES) 
+                     xfinitywifi ac:db:48:84:be:7b -51  44      Y  US NONE
+                         XFINITY ac:db:48:86:be:7b -51  44      Y  US WPA2(802.1x/AES/AES) 
+                    Half Windsor ac:db:48:82:be:7b -51  44      Y  US WPA2(PSK/AES/AES) 
+                     xfinitywifi 9e:ad:43:e0:a1:80 -77  36      Y  US NONE
+                         XFINITY 92:ad:43:e0:a1:80 -78  36      Y  US WPA2(802.1x/AES/AES) 
+                         XFINITY 06:ab:82:ba:42:90 -71  36      Y  US WPA2(802.1x/AES/AES) 
+                     xfinitywifi e6:ab:82:ba:42:90 -73  36      Y  US NONE
+       Windsor Suites Conference 18:7c:0b:b3:55:1c -65  36      Y  US NONE
+            Windsor Suites Guest 18:7c:0b:33:55:1c -67  36      Y  US NONE
+                             PEJ 10:0c:6b:aa:05:60 -65  36,+1   Y  -- WPA2(PSK/AES/AES) 
+                it hurts when IP d4:ab:82:ba:42:90 -72  36      Y  US WPA2(PSK/AES/AES) 
+                         XFINITY 08:7e:64:0a:e5:84 -68  157     Y  US WPA2(802.1x/AES/AES) 
+                     xfinitywifi 08:7e:64:0a:e5:82 -68  157     Y  US NONE
+                    XFSETUP-E574 08:7e:64:0a:e5:80 -69  157     Y  US WPA2(PSK/AES/AES) 
+          Hot Dog On A Beach Day 1c:b7:2c:cc:43:04 -73  157     Y  -- WPA2(PSK/AES/AES) 
+                   Grubbs Palace 3c:b7:4b:1f:70:31 -49  157     Y  US WPA2(PSK/AES/AES) 
+      St Vitus Dance speaker.ynm fa:8f:ca:54:a0:ef -63  157     Y  -- NONE
+                         XFINITY 72:63:9c:a9:7c:74 -80  157     Y  US WPA2(802.1x/AES/AES) 
+                     xfinitywifi 6a:63:9c:a9:7c:74 -80  157     Y  US NONE
+       Windsor Suites Conference b4:79:c8:a8:87:6c -82  157     Y  US NONE
+                     xfinitywifi 5e:7d:7d:34:9e:cd -81  157     Y  US NONE
+                     Casinha2020 6c:63:9c:a9:7c:74 -80  157     Y  US WPA2(PSK/AES/AES) 
+            Windsor Suites Guest b4:79:c8:28:87:6c -80  157     Y  US NONE
+       Windsor Suites Conference 94:bf:c4:bb:10:8c -71  149     Y  US NONE
+            Windsor Suites Guest 94:bf:c4:3b:10:8c -71  149     Y  US NONE
+                         At Home 2c:7e:81:f9:bb:f5 -55  149     Y  US WPA2(PSK/AES/AES) 
+                        xxxxxxxx xx:xx:xx:xx:xx:xx -57  149,+1  Y  -- WPA2(PSK/AES/AES) 
