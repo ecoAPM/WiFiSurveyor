@@ -1,0 +1,6 @@
+                            SSID BSSID             RSSI CHANNEL HT CC SECURITY (auth/unicast/group)
+                        MOTO6379 dc:bf:e9:f7:13:b6 -83  11      Y  -- WPA2(PSK/AES/AES)
+                 xxxxxx xx:3d:xx:96:97:xx -82  149     Y  US WPA2(PSK/AES/AES)
+                 xxxxxx xx:3d:xx:96:97:xx -76  11      Y  US WPA2(PSK/AES/AES)
+                 xxxxxx xx:cb:xx:ad:a8:xx -37  6       Y  US WPA2(PSK/AES/AES)
+                 xxxxxx xx:cb:xx:ad:a8:xx -42  149     Y  US WPA2(PSK/AES/AES)
