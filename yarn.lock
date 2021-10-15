@@ -1690,10 +1690,10 @@ glob@^7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-global-jsdom@8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/global-jsdom/-/global-jsdom-8.2.0.tgz#9def6d601ca7249900f9dba0fb97ffc9633139a6"
-  integrity sha512-hKYlzO34bLavgFSaujJc6t+H5iR/jiwELpKds42+S6d6lXg+/jvzyjR8GmoyA6lWo/IAn3NmYNzuX7if6f/B3Q==
+global-jsdom@8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/global-jsdom/-/global-jsdom-8.3.0.tgz#9e9f66e106c4af9e8a8ec4c6d6fa829fbc6c25e8"
+  integrity sha512-Bwe/Op/sKjx7mTlj7AejF3S7SEdDFv2fSVdlU/zsQv54UxeZu2+HlAzpFq2WDYYmmvUn5Rb2Y6nWoQZvwesWEQ==
 
 globals@^11.1.0:
   version "11.12.0"
