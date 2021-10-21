@@ -32,7 +32,7 @@
     "@microsoft/signalr": "5.0.11",
     "@types/delaunator": "3.0.0",
     "@types/jsdom": "16.2.13",
-    "@types/node": "16.11.1",
+    "@types/node": "16.11.2",
     "@vue/component-compiler-utils": "3.2.2",
     "@vue/test-utils": "1.2.2",
     "delaunator": "5.0.0",
