@@ -1,9 +1,8 @@
 using System.Threading.Tasks;
 
-namespace WiFiSurveyor
+namespace WiFiSurveyor;
+
+public interface ISignalHub
 {
-    public interface ISignalHub
-    {
-        Task SendMessage(Message message);
-    }
+	Task SendMessage(Message message);
 }

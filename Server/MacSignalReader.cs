@@ -1,13 +1,12 @@
 using System;
 using System.Threading.Tasks;
 
-namespace WiFiSurveyor
+namespace WiFiSurveyor;
+
+public class MacSignalReader : ISignalReader<string>
 {
-    public class MacSignalReader : ISignalReader<string>
-    {
-        public Task<string> Read()
-        {
-            throw new NotImplementedException("macOS is not currently supported");
-        }
-    }
+	public Task<string> Read()
+	{
+		throw new NotImplementedException("macOS is not currently supported");
+	}
 }

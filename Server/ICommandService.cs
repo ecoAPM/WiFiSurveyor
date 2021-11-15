@@ -1,10 +1,9 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace WiFiSurveyor
+namespace WiFiSurveyor;
+
+public interface ICommandService
 {
-    public interface ICommandService
-    {
-        Task<string> Run(ProcessStartInfo info);
-    }
+	Task<string> Run(ProcessStartInfo info);
 }
