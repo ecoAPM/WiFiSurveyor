@@ -1,13 +1,13 @@
 <template>
   <aside class="debug" v-show="state.debug">
-    <table>
+    <table aria-label="Debug Info">
       <thead>
       <tr>
-        <th></th>
-        <th>SSID</th>
-        <th>Frequency</th>
-        <th>MAC</th>
-        <th>Strength</th>
+        <th scope="col"></th>
+        <th scope="col">SSID</th>
+        <th scope="col">Frequency</th>
+        <th scope="col">MAC</th>
+        <th scope="col">Strength</th>
       </tr>
       </thead>
       <tbody>
@@ -37,10 +37,8 @@ export default Vue.extend({
   }),
   computed: {
     signals_by_strength(): Signal[] {
-      const signals = this.state.current.signals.slice() as Signal[];
-      return signals.sort((s1, s2) => s1.strength < s2.strength ? 1
-          : s1.strength > s2.strength ? -1
-              : s1.ssid < s2.ssid ? 1 : 0);
+      return this.state.current.signals.slice()
+					.sort((s1, s2) => s1.compareTo(s2));
     }
   }
 });

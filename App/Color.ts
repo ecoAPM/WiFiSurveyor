@@ -12,9 +12,7 @@ export default class Color {
     }
 
     private static clamp(value: number): number {
-        return value >= 255 ? 255
-            : value <= 0 ? 0
-                : value;
+        return Math.min(Math.max(value, 0), 255);
     }
 
     toRGB(): string {

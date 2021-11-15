@@ -1,4 +1,4 @@
-﻿export default class Point {
+export default class Point {
     readonly x: number;
     readonly y: number;
 

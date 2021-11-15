@@ -37,10 +37,7 @@
           new AccessPoint(signal.ssid,
             this.state.group_by.frequency ? null : signal.frequency,
             this.state.group_by.ssid ? null : signal.mac)
-        ).sort((ap1, ap2) =>
-          ap1.label() > ap2.label() ? 1
-            : ap1.label() < ap2.label() ? -1
-              : 0)
+        ).sort((ap1, ap2) => ap1.compareTo(ap2))
           .filter((ap, index, array) => array.map(a => a.label()).indexOf(ap.label()) === index);
       }
     }

@@ -1,4 +1,4 @@
-﻿import Reading from "./Reading";
+import Reading from "./Reading";
 import Triangulation from "./Triangulation";
 import RenderFactory from "./RenderFactory";
 import AccessPoint from "./AccessPoint";

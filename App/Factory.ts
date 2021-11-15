@@ -6,7 +6,7 @@ import Signal from "./Signal";
 export default class Factory {
     static renderer(canvas: HTMLCanvasElement) {
         return new Renderer(canvas)
-    };
+    }
 
     static signalService(signals: Signal[]): SignalService {
         const server = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5001';

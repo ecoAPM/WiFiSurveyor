@@ -1,4 +1,4 @@
-﻿import Shaders from './shaders';
+import Shaders from './shaders';
 
 export default class RenderFactory {
     static getContext(canvas: HTMLCanvasElement): WebGL2RenderingContext {

@@ -66,4 +66,23 @@ export default class AccessPointTests extends TestSuite
         //assert
         this.assert.equal('test', label);
     }
+
+	@Test()
+	async canCompareLabels()
+	{
+		//arrange
+		const ap1 = new AccessPoint('test1');
+		const ap2 = new AccessPoint('test2');
+		const ap1again = new AccessPoint('test1');
+
+		//act
+		const less = ap1.compareTo(ap2);
+		const greater = ap2.compareTo(ap1);
+		const equal = ap1.compareTo(ap1again);
+
+		//assert
+		this.assert.equal(-1, less);
+		this.assert.equal(1, greater);
+		this.assert.equal(0, equal);
+	}
 }
