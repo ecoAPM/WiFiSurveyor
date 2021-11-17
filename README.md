@@ -2,6 +2,18 @@
 
 [![Build Status](https://github.com/ecoAPM/WiFiSurveyor/workflows/CI/badge.svg)](https://github.com/ecoAPM/WiFiSurveyor/actions)
 
+App
+[![App Coverage](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_WiFiSurveyor-App&metric=coverage)](https://sonarcloud.io/summary/overall?id=ecoAPM_WiFiSurveyor-App)
+[![App Maintainability](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_WiFiSurveyor-App&metric=sqale_rating)](https://sonarcloud.io/summary/overall?id=ecoAPM_WiFiSurveyor-App)
+[![App Reliability](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_WiFiSurveyor-App&metric=reliability_rating)](https://sonarcloud.io/summary/overall?id=ecoAPM_WiFiSurveyor-App)
+[![App Security](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_WiFiSurveyor-App&metric=security_rating)](https://sonarcloud.io/summary/overall?id=ecoAPM_WiFiSurveyor-App)
+
+Server
+[![Server Coverage](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_WiFiSurveyor-Server&metric=coverage)](https://sonarcloud.io/summary/overall?id=ecoAPM_WiFiSurveyor-Server)
+[![Server Maintainability](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_WiFiSurveyor-Server&metric=sqale_rating)](https://sonarcloud.io/summary/overall?id=ecoAPM_WiFiSurveyor-Server)
+[![Server Reliability](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_WiFiSurveyor-Server&metric=reliability_rating)](https://sonarcloud.io/summary/overall?id=ecoAPM_WiFiSurveyor-Server)
+[![Server Security](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_WiFiSurveyor-Server&metric=security_rating)](https://sonarcloud.io/summary/overall?id=ecoAPM_WiFiSurveyor-Server)
+
 Visualize Wi-Fi signal strength over a geographic area
 
 ## Quick Start
@@ -57,7 +69,7 @@ Contibutions are welcome for improving the following:
 
 ### Building from source
 
-- Run `dotnet run` (with `sudo` for Linux) from the `Server` directory to start the beck-end server
+- Run `dotnet run` (with `sudo` for Linux) from the `Server` directory to start the back-end server
 - Run `yarn dev` from the repo root directory to start the front-end development server
 - Browse to `http://localhost:1234`
 - Back-end and front-end can be stopped and restarted independently during inner dev loop
