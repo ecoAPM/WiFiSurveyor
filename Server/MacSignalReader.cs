@@ -1,12 +1,12 @@
-using System;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace WiFiSurveyor;
 
-public class MacSignalReader : ISignalReader<string>
+public class MacSignalReader : PosixSignalReader
 {
-	public Task<string> Read()
+	protected override ProcessStartInfo Info => new ProcessStartInfo("/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport", " -s");
+
+	public MacSignalReader(ICommandService commandService) : base(commandService)
 	{
-		throw new NotImplementedException("macOS is not currently supported");
 	}
 }

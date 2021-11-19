@@ -7,14 +7,14 @@ using Xunit;
 
 namespace WiFiSurveyor.Tests;
 
-public class LinuxCommandServiceTests
+public class PosixCommandServiceTests
 {
 	[Fact]
 	public async Task CanReadFromStdOut()
 	{
 		//arrange
 		var logger = Substitute.For<ILogger>();
-		var service = new LinuxCommandService(Process.Start, logger);
+		var service = new PosixLinuxCommandService(Process.Start, logger);
 		var info = new ProcessStartInfo("ls");
 
 		//act
@@ -30,7 +30,7 @@ public class LinuxCommandServiceTests
 		//arrange
 		Process startProcess(ProcessStartInfo i) => null;
 		var logger = Substitute.For<ILogger>();
-		var service = new LinuxCommandService(startProcess, logger);
+		var service = new PosixLinuxCommandService(startProcess, logger);
 		var info = new ProcessStartInfo("not installed");
 
 		//act
@@ -46,7 +46,7 @@ public class LinuxCommandServiceTests
 	{
 		//arrange
 		var logger = Substitute.For<ILogger>();
-		var service = new LinuxCommandService(Process.Start, logger, TimeSpan.Zero);
+		var service = new PosixLinuxCommandService(Process.Start, logger, TimeSpan.Zero);
 		var info = new ProcessStartInfo("sleep", "1");
 
 		//act

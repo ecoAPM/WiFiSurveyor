@@ -40,7 +40,7 @@ public static class StartupFactory
 	private static void AddLinuxHandlers(this IServiceCollection services)
 	{
 		services.AddSingleton<Func<ProcessStartInfo, Process>>(Process.Start);
-		services.AddSingleton<ICommandService, LinuxCommandService>();
+		services.AddSingleton<ICommandService, PosixLinuxCommandService>();
 		services.AddSingleton<ISignalReader<string>, LinuxSignalReader>();
 		services.AddSingleton<ISignalParser<string>, LinuxSignalParser>();
 		services.AddHostedService<SignalService<string>>();
@@ -48,7 +48,7 @@ public static class StartupFactory
 
 	private static void AddWindowsHandlers(this IServiceCollection services)
 	{
-		services.AddSingleton(async s => (await WiFiAdapter.FindAllAdaptersAsync()).First());
+		services.AddSingleton(async _ => (await WiFiAdapter.FindAllAdaptersAsync()).First());
 		services.AddSingleton<ISignalReader<WiFiNetworkReport>, WindowsSignalReader>();
 		services.AddSingleton<ISignalParser<WiFiNetworkReport>, WindowsSignalParser>();
 		services.AddHostedService<SignalService<WiFiNetworkReport>>();

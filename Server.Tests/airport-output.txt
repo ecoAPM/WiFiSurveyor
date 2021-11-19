@@ -1,0 +1,6 @@
+                            SSID BSSID             RSSI CHANNEL HT CC SECURITY (auth/unicast/group)
+                            net1 xx:bf:xx:f7:13:xx -83  11      Y  -- WPA2(PSK/AES/AES)
+                           ssid2 xx:3d:xx:96:97:xx -82  149     Y  US WPA2(PSK/AES/AES)
+                  access_point_3 xx:3d:xx:96:97:xx -76  11      Y  US WPA2(PSK/AES/AES)
+                           wap-4 xx:cb:xx:ad:a8:xx -37  6       Y  US WPA2(PSK/AES/AES)
+                         router5 xx:cb:xx:ad:a8:xx -42  149     Y  US WPA2(PSK/AES/AES)
