@@ -18,11 +18,16 @@ Visualize Wi-Fi signal strength over a geographic area
 
 ## Quick Start
 
-1. Download and extract the [latest release](/releases/latest) for your operating system
+1. Download and extract the [latest release](https://github.com/ecoAPM/WiFiSurveyor/releases/latest) for your operating system
+
+1. Extract the ZIP file to your directory of choice
+
+1. MacOS/Linux users will need to `chmod +x WiFiSurveyor` (this will be fixed in future releases)
 
 1. From a command line, run:
-   - `sudo WiFiSurveyor` on Linux (must be `root`)
    - `WiFiSurveyor.exe` on Windows
+   - `WiFiSurveyor` on MacOS
+   - `sudo WiFiSurveyor` on Linux (must be `root`)
 
 1. Browse to `http://localhost:5000/`
  
@@ -54,9 +59,7 @@ Contibutions are welcome for improving the following:
 
 - Linux uses the device named `wlan0`
 
-- Windows uses the first Wi-Fi adapter
-
-- No macOS support (#2)
+- Windows uses the "first" Wi-Fi adapter
 
 - Resizing the browser window will not scale readings with the background image: once you start taking readings, don't resize your window (rotating your device and rotating back should be OK)
 
