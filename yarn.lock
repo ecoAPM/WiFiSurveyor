@@ -2487,11 +2487,6 @@ type-check@~0.3.2:
   dependencies:
     prelude-ls "~1.1.2"
 
-typescript@4.3.5:
-  version "4.3.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.5.tgz#4d1c37cc16e893973c45a06886b7113234f119f4"
-  integrity sha512-DqQgihaQ9cUrskJo9kIyW/+g0Vxsk8cDtZ52a3NGh0YNTfpUSArXSohyUGnvbPazEPLu398C0UxmKSOrPumUzA==
-
 typescript@4.5.2:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.2.tgz#8ac1fba9f52256fdb06fb89e4122fa6a346c2998"
@@ -2694,16 +2689,16 @@ xmlchars@^2.2.0:
   resolved "https://registry.yarnpkg.com/xmlchars/-/xmlchars-2.2.0.tgz#060fe1bcb7f9c76fe2a17db86a9bc3ab894210cb"
   integrity sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==
 
-xunit.ts@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/xunit.ts/-/xunit.ts-1.0.0.tgz#0b4bf2b4ef50af84f8113dd66938181317b01f43"
-  integrity sha512-lJDFP2T2jmzbovFMgLHvMmzR0HH5QLbiajzf9rDNNuP9XMfXK0Jz5WYjbQguLJG0eisg4+FohZp7pDySwYQpZw==
+xunit.ts@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/xunit.ts/-/xunit.ts-1.0.1.tgz#23a46d849a980b4a6858c5d7bf83033f9e13f640"
+  integrity sha512-bkcSgiK+mx6mv8pnq9yHtglazveoe3dY+O1ERbAY7+GddFPiT6I9hCRGYgz2Fn/KHx3SN3okVwsfhL7wMORexA==
   dependencies:
     colors "1.4.0"
     command-line-args "5.2.0"
     command-line-usage "6.1.1"
     lodash.isequal "4.5.0"
-    typescript "4.3.5"
+    typescript "4.5.2"
     xml "1.0.1"
 
 yallist@^2.1.2:
