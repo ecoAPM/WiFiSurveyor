@@ -1,10 +1,12 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace WiFiSurveyor;
@@ -19,11 +21,17 @@ public static class Program
 			.Build();
 
 		host.Start();
-
-		var binding = host.ServerFeatures.Get<IServerAddressesFeature>();
-		var address = binding.Addresses.FirstOrDefault();
-		Process.Start(address);
+		host.LaunchBrowser();
 
 		await host.WaitForShutdownAsync();
+	}
+
+	private static void LaunchBrowser(this IWebHost host)
+	{
+		var binding = host.ServerFeatures.Get<IServerAddressesFeature>();
+		var address = binding.Addresses.FirstOrDefault();
+
+		var browser = host.Services.GetService<BrowserLauncher>();
+		browser.Run(address);
 	}
 }
