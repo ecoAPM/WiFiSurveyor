@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace WiFiSurveyor;
 
-public class LinuxSignalParser : ISignalParser<string>
+public sealed class LinuxSignalParser : ISignalParser<string>
 {
 	public IList<Signal> Parse(string results)
 	{

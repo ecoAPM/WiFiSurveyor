@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace WiFiSurveyor;
 
-public class SignalHub : Hub, ISignalHub
+public sealed class SignalHub : Hub, ISignalHub
 {
 	private readonly IHubContext<SignalHub> _context;
 

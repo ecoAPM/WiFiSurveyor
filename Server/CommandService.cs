@@ -5,13 +5,13 @@ using Microsoft.Extensions.Logging;
 
 namespace WiFiSurveyor;
 
-public class PosixLinuxCommandService : ICommandService
+public sealed class CommandService : ICommandService
 {
 	private readonly Func<ProcessStartInfo, Process> _startProcess;
 	private readonly ILogger _logger;
 	private readonly TimeSpan _timeout;
 
-	public PosixLinuxCommandService(Func<ProcessStartInfo, Process> startProcess, ILogger logger, TimeSpan? timeout = null)
+	public CommandService(Func<ProcessStartInfo, Process> startProcess, ILogger logger, TimeSpan? timeout = null)
 	{
 		_startProcess = startProcess;
 		_logger = logger;

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace WiFiSurveyor;
 
-public class MacSignalParser : ISignalParser<string>
+public sealed class MacSignalParser : ISignalParser<string>
 {
 	public IList<Signal> Parse(string results)
 			=> results.Split("\n", StringSplitOptions.RemoveEmptyEntries)

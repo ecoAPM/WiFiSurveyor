@@ -8,7 +8,7 @@ using Xunit;
 
 namespace WiFiSurveyor.Tests;
 
-public class SignalServiceTests
+public sealed class SignalServiceTests
 {
 	[Fact]
 	public async Task SetsStatusOnException()

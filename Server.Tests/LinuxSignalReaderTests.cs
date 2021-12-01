@@ -7,7 +7,7 @@ using Xunit;
 
 namespace WiFiSurveyor.Tests;
 
-public class LinuxSignalReaderTests
+public sealed class LinuxSignalReaderTests
 {
 	[Fact]
 	public async Task ReturnsOutputFromProcess()

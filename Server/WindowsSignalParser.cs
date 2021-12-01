@@ -5,7 +5,7 @@ using Windows.Devices.WiFi;
 
 namespace WiFiSurveyor;
 
-public class WindowsSignalParser : ISignalParser<WiFiNetworkReport>
+public sealed class WindowsSignalParser : ISignalParser<WiFiNetworkReport>
 {
 	public IList<Signal> Parse(WiFiNetworkReport results)
 	{

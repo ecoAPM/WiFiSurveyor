@@ -5,7 +5,7 @@ using Xunit;
 
 namespace WiFiSurveyor.Tests;
 
-public class LinuxSignalParserTests
+public sealed class LinuxSignalParserTests
 {
 	[Fact]
 	public async Task ResultsAreParsedIntoSignals()

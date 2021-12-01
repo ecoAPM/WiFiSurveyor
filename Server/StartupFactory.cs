@@ -40,7 +40,7 @@ public static class StartupFactory
 	private static void AddLinuxHandlers(this IServiceCollection services)
 	{
 		services.AddSingleton<Func<ProcessStartInfo, Process>>(Process.Start);
-		services.AddSingleton<ICommandService, PosixLinuxCommandService>();
+		services.AddSingleton<ICommandService, CommandService>();
 		services.AddSingleton<ISignalReader<string>, LinuxSignalReader>();
 		services.AddSingleton<ISignalParser<string>, LinuxSignalParser>();
 		services.AddHostedService<SignalService<string>>();

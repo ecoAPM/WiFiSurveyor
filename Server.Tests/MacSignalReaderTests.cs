@@ -5,7 +5,7 @@ using Xunit;
 
 namespace WiFiSurveyor.Tests;
 
-public class MacSignalReaderTests
+public sealed class MacSignalReaderTests
 {
 	[Fact]
 	public async Task ReturnsOutputFromProcess()

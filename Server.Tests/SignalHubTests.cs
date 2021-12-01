@@ -5,7 +5,7 @@ using Xunit;
 
 namespace WiFiSurveyor.Tests;
 
-public class SignalHubTests
+public sealed class SignalHubTests
 {
 	[Fact]
 	public async Task SendsUpdateToAllClients()

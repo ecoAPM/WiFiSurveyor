@@ -4,7 +4,7 @@ using Windows.Devices.WiFi;
 
 namespace WiFiSurveyor;
 
-public class WindowsSignalReader : ISignalReader<WiFiNetworkReport>
+public sealed class WindowsSignalReader : ISignalReader<WiFiNetworkReport>
 {
 	private WiFiAdapter _adapter;
 	private readonly Task<WiFiAdapter> _newAdapter;

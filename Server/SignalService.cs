@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace WiFiSurveyor;
 
-public class SignalService<T> : BackgroundService
+public sealed class SignalService<T> : BackgroundService
 {
 	private readonly ISignalReader<T> _signalReader;
 	private readonly ISignalParser<T> _signalParser;

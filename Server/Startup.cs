@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace WiFiSurveyor;
 
-public class Startup
+public sealed class Startup
 {
 	public void ConfigureServices(IServiceCollection services)
 	{
