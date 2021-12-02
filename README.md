@@ -20,16 +20,14 @@ Visualize Wi-Fi signal strength over a geographic area
 
 1. Download and extract the [latest release](https://github.com/ecoAPM/WiFiSurveyor/releases/latest) for your operating system
 
-1. Extract the ZIP file to your directory of choice
-
-1. MacOS/Linux users will need to `chmod +x WiFiSurveyor` (this will be fixed in future releases)
+1. Extract the archive to your directory of choice
 
 1. From a command line, run:
    - `WiFiSurveyor.exe` on Windows
    - `WiFiSurveyor` on MacOS
    - `sudo WiFiSurveyor` on Linux (must be `root`)
 
-1. Browse to `http://localhost:5000/`
+1. Wait for the app to appear in your browser
  
 1. Under "Background", select a floorplan or map image representing the area to survey 
 

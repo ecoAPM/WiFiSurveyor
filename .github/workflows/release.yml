@@ -1,0 +1,73 @@
+name: Release
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  Publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+      with:
+        ref: ${{ github.ref }}
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+
+    - name: Setup .NET 6
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Run server tests
+      run: dotnet test
+
+    - name: Install app dependencies
+      run: yarn install
+
+    - name: Run app tests
+      run: yarn test
+
+    - name: Build app
+      run: yarn build
+    
+    - name: Publish Windows
+      run: dotnet publish Server --sc -c Release -r win-x64 -o publish/Windows
+
+    - name: Publish Linux
+      run: dotnet publish Server --sc -c Release -r linux-x64 -o publish/Linux
+
+    - name: Publish Mac
+      run: dotnet publish Server --sc -c Release -r osx-x64 -o publish/Mac
+
+    - name: Package Windows release
+      working-directory: publish/Windows
+      run: zip -9 ../WiFiSurveyor.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').Windows.zip *
+
+    - name: Package Linux release
+      working-directory: publish/Linux
+      run: tar -Jcvf ../WiFiSurveyor.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').Linux.tar.xz *
+      env:
+        XZ_OPT: -9
+
+    - name: Package Mac release
+      working-directory: publish/Windows
+      run: tar -Jcvf ../WiFiSurveyor.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').Mac.tar.xz *
+      env:
+        XZ_OPT: -9
+
+    - name: Create release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          publish/WiFiSurveyor.*.Windows.zip
+          publish/WiFiSurveyor.*.Linux.tar.xz
+          publish/WiFiSurveyor.*.Mac.tar.xz
