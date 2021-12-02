@@ -1,5 +1,6 @@
 # Wi-Fi Surveyor
 
+[![Latest Release](https://img.shields.io/github/v/release/ecoAPM/WiFiSurveyor?label=Install&logo=github&include_prereleases)](https://github.com/ecoAPM/WiFiSurveyor/releases)
 [![Build Status](https://github.com/ecoAPM/WiFiSurveyor/workflows/CI/badge.svg)](https://github.com/ecoAPM/WiFiSurveyor/actions)
 
 App
@@ -18,14 +19,14 @@ Visualize Wi-Fi signal strength over a geographic area
 
 ## Quick Start
 
-1. Download and extract the [latest release](https://github.com/ecoAPM/WiFiSurveyor/releases/latest) for your operating system
+1. Download and extract the [latest release](https://github.com/ecoAPM/WiFiSurveyor/releases) for your operating system
 
 1. Extract the archive to your directory of choice
 
-1. From a command line, run:
+1. Launch the executable for your OS:
    - `WiFiSurveyor.exe` on Windows
    - `WiFiSurveyor` on MacOS
-   - `sudo WiFiSurveyor` on Linux (must be `root`)
+   - `sudo ./WiFiSurveyor` on Linux (must be `root`)
 
 1. Wait for the app to appear in your browser
  
