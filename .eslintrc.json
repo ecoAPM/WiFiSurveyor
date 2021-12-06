@@ -1,0 +1,44 @@
+{
+	"env": {
+		"node": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:vue/essential",
+		"plugin:@typescript-eslint/recommended"
+	],
+	"ignorePatterns": [
+		"dist/",
+		"publish/",
+		"Server/"
+	],
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"parser": "@typescript-eslint/parser",
+		"sourceType": "module"
+	},
+	"plugins": [
+		"vue",
+		"@typescript-eslint"
+	],
+	"rules": {
+		"indent": [
+			"warn",
+			"tab"
+		],
+		"quotes": [
+			"warn",
+			"double"
+		],
+		"@typescript-eslint/no-explicit-any": [
+			"off"
+		],
+		"@typescript-eslint/no-inferrable-types": [
+			"off"
+		],
+		"@typescript-eslint/semi": [
+			"warn",
+			"always"
+		]
+	}
+}

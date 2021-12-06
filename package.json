@@ -1,53 +1,57 @@
 {
-  "name": "wifisurveyor",
-  "version": "1.0.0",
-  "description": "Visualize Wi-Fi signal strength over a geographic area",
-  "main": "app.js",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build --outDir ../Server/wwwroot --emptyOutDir --assetsDir .",
-    "test": "vite build App.Tests && xunit dist/tests"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/ecoAPM/WiFiSurveyor.git"
-  },
-  "keywords": [
-    "WiFi",
-    "Wi-Fi",
-    "HeatMap",
-    "Heat",
-    "Map",
-    "Signal",
-    "Strength",
-    "dBm"
-  ],
-  "author": "Steve Desmond, ecoAPM <steve@ecoAPM.com> (https://ecoAPM.com)",
-  "license": "GPL-3.0-or-later",
-  "bugs": {
-    "url": "https://github.com/ecoAPM/WiFiSurveyor/issues"
-  },
-  "homepage": "https://github.com/ecoAPM/WiFiSurveyor#readme",
-  "devDependencies": {
-    "@microsoft/signalr": "6.0.0",
-    "@types/delaunator": "3.0.0",
-    "@types/jsdom": "16.2.13",
-    "@types/node": "16.11.11",
-    "@vue/component-compiler-utils": "3.3.0",
-    "@vue/test-utils": "1.3.0",
-    "delaunator": "5.0.0",
-    "global-jsdom": "8.4.0",
-    "jsdom": "19.0.0",
-    "ts-mockito": "2.6.1",
-    "typescript": "4.5.2",
-    "vite": "2.6.14",
-    "vite-plugin-html": "2.1.1",
-    "vite-plugin-vue2": "1.9.0",
-    "vue": "2.6.14",
-    "vue-template-compiler": "^2.6.14",
-    "xunit.ts": "1.0.2"
-  },
-  "browserslist": [
-    "Firefox ESR"
-  ]
+	"name": "wifisurveyor",
+	"version": "1.0.0",
+	"description": "Visualize Wi-Fi signal strength over a geographic area",
+	"main": "app.js",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build --outDir ../Server/wwwroot --emptyOutDir --assetsDir .",
+		"test": "vite build App.Tests && xunit dist/tests"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/ecoAPM/WiFiSurveyor.git"
+	},
+	"keywords": [
+		"WiFi",
+		"Wi-Fi",
+		"HeatMap",
+		"Heat",
+		"Map",
+		"Signal",
+		"Strength",
+		"dBm"
+	],
+	"author": "Steve Desmond, ecoAPM <steve@ecoAPM.com> (https://ecoAPM.com)",
+	"license": "GPL-3.0-or-later",
+	"bugs": {
+		"url": "https://github.com/ecoAPM/WiFiSurveyor/issues"
+	},
+	"homepage": "https://github.com/ecoAPM/WiFiSurveyor#readme",
+	"devDependencies": {
+		"@microsoft/signalr": "6.0.0",
+		"@types/delaunator": "3.0.0",
+		"@types/jsdom": "16.2.13",
+		"@types/node": "16.11.11",
+		"@typescript-eslint/eslint-plugin": "5.5.0",
+		"@typescript-eslint/parser": "5.5.0",
+		"@vue/component-compiler-utils": "3.3.0",
+		"@vue/test-utils": "1.3.0",
+		"delaunator": "5.0.0",
+		"eslint": "8.4.0",
+		"eslint-plugin-vue": "8.2.0",
+		"global-jsdom": "8.4.0",
+		"jsdom": "19.0.0",
+		"ts-mockito": "2.6.1",
+		"typescript": "4.5.2",
+		"vite": "2.6.14",
+		"vite-plugin-html": "2.1.1",
+		"vite-plugin-vue2": "1.9.0",
+		"vue": "2.6.14",
+		"vue-template-compiler": "^2.6.14",
+		"xunit.ts": "1.0.2"
+	},
+	"browserslist": [
+		"Firefox ESR"
+	]
 }
