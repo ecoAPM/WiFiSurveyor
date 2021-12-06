@@ -10,7 +10,7 @@ export default class Signal {
 
 	constructor(mac: string, ssid: string, frequency: number, strength: number) {
 		this.mac = mac;
-		this.ssid = ssid || '[hidden]';
+		this.ssid = ssid || "[hidden]";
 		this.frequency = frequency;
 		this.strength = strength;
 	}

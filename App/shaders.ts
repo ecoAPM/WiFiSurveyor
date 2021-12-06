@@ -1,5 +1,5 @@
 export default class Shaders {
-    static fragment: string = `
+	static fragment: string = `
 precision highp float;
 
 varying vec4 v_color;
@@ -10,7 +10,7 @@ void main()
 }
 `;
 
-    static vertex: string = `
+	static vertex: string = `
 precision highp float;
 
 uniform vec2 u_offset;

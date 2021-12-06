@@ -1,5 +1,5 @@
-﻿import {Test, TestSuite} from 'xunit.ts';
-import Compare from '../App/Compare';
+﻿import { Test, TestSuite } from "xunit.ts";
+import Compare from "../App/Compare";
 
 export default class CompareTests extends TestSuite {
 	@Test()
@@ -23,9 +23,9 @@ export default class CompareTests extends TestSuite {
 	@Test()
 	async canCompareStrings() {
 		//arrange
-		const s1 = 'test1';
-		const s2 = 'test2';
-		const s1again = 'test1';
+		const s1 = "test1";
+		const s2 = "test2";
+		const s1again = "test1";
 
 		//act
 		const less = Compare.strings(s1, s2);

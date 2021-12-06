@@ -1,7 +1,7 @@
 import Color from "./Color";
 
 export default class ColorConverter {
-	private static stops: number[] = [-20, -40, -60, -80, -100];
+	private static stops: number[] = [ -20, -40, -60, -80, -100 ];
 
 	static toColor(dBm: number | null): Color {
 		return dBm != null
