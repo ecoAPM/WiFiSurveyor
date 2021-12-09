@@ -44,26 +44,6 @@ public sealed class SignalServiceTests
 	}
 
 	[Fact]
-	public async Task StopsReadingOnCancel()
-	{
-		//arrange
-		var reader = Substitute.For<ISignalReader<string>>();
-		var parser = Substitute.For<ISignalParser<string>>();
-		var hub = Substitute.For<ISignalHub>();
-		var logger = Substitute.For<ILogger>();
-		var service = new SignalService<string>(reader, parser, hub, logger);
-		var source = new CancellationTokenSource();
-		var task = service.StartAsync(source.Token);
-
-		//act
-		source.Cancel();
-		await task;
-
-		//assert
-		Assert.True(task.IsCompletedSuccessfully);
-	}
-
-	[Fact]
 	public async Task SetsSignalsOnUpdate()
 	{
 		//arrange

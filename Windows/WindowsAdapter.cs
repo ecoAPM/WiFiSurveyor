@@ -2,7 +2,7 @@
 
 namespace WiFiSurveyor.Windows;
 
-public class WindowsAdapter : IWiFiAdapter
+public sealed class WindowsAdapter : IWiFiAdapter
 {
 	private readonly WiFiAdapter _adapter;
 
@@ -14,4 +14,15 @@ public class WindowsAdapter : IWiFiAdapter
 
 	public IWiFiNetworkReport NetworkReport
 		=> new WindowsNetworkReport(_adapter.NetworkReport);
+
+	public static async Task<IWiFiAdapter> Default()
+	{
+		var adapters = await WiFiAdapter.FindAllAdaptersAsync();
+		if (!adapters.Any())
+		{
+			throw new KeyNotFoundException("No Wi-Fi adapters found");
+		}
+
+		return new WindowsAdapter(adapters[0]);
+	}
 }

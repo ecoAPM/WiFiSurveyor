@@ -1,10 +1,14 @@
+using System.Diagnostics;
+
 namespace WiFiSurveyor.Core;
 
 public static class AppHelpers
 {
 	public static void AddCommonServices(this IServiceCollection services)
 	{
-		services.AddWiFiSurveyor();
+		services.AddSingleton(s => s.GetService<ILoggerFactory>()!.CreateLogger("WiFiSurveyor"));
+		services.AddSingleton<Func<ProcessStartInfo, Process?>>(Process.Start);
+		services.AddSingleton<ISignalHub, SignalHub>();
 		services.AddCors();
 		services.AddLogging();
 		services.AddResponseCompression();
@@ -21,11 +25,17 @@ public static class AppHelpers
 		app.UseEndpoints(builder => builder.MapHub<SignalHub>("/signals"));
 	}
 
+	public static void AddPosixHandlers(this IServiceCollection services)
+	{
+		services.AddSingleton<ICommandService, CommandService>();
+		services.AddHostedService<SignalService<string>>();
+	}
+
 	public static void LaunchBrowser(this WebApplication app)
 	{
 		var address = app.Urls.First();
 
-		var browser = app.Services.GetService<BrowserLauncher>()
+		var browser = app.Services.GetService<IBrowserLauncher>()
 		              ?? throw new NullReferenceException("Could not find browser launcher");
 
 		browser.Run(address);

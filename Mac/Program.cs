@@ -4,10 +4,10 @@ namespace WiFiSurveyor.Mac;
 
 public static class Program
 {
-	private static void AddMacHandlers(IServiceCollection services)
+	public static void AddMacHandlers(this IServiceCollection services)
 	{
 		services.AddPosixHandlers();
-		services.AddSingleton<BrowserLauncher, MacBrowserLauncher>();
+		services.AddSingleton<IBrowserLauncher, MacBrowserLauncher>();
 		services.AddSingleton<ISignalReader<string>, MacSignalReader>();
 		services.AddSingleton<ISignalParser<string>, MacSignalParser>();
 	}

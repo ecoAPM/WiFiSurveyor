@@ -2,7 +2,7 @@
 
 namespace WiFiSurveyor.Windows;
 
-public class WindowsAvailableNetwork : IWiFiAvailableNetwork
+public sealed class WindowsAvailableNetwork : IWiFiAvailableNetwork
 {
 	private readonly WiFiAvailableNetwork _network;
 

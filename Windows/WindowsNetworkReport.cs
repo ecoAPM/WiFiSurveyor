@@ -2,7 +2,7 @@
 
 namespace WiFiSurveyor.Windows;
 
-public class WindowsNetworkReport : IWiFiNetworkReport
+public sealed class WindowsNetworkReport : IWiFiNetworkReport
 {
 	private readonly WiFiNetworkReport _report;
 

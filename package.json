@@ -5,7 +5,7 @@
 	"main": "app.js",
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build --outDir ../Server/wwwroot --emptyOutDir --assetsDir .",
+		"build": "vite build --outDir ../Core/wwwroot --emptyOutDir --assetsDir .",
 		"test": "vite build App.Tests && xunit dist/tests"
 	},
 	"repository": {

@@ -22,35 +22,29 @@ public sealed class SignalService<T> : BackgroundService
 	{
 		while (!stoppingToken.IsCancellationRequested)
 		{
-			try
-			{
-				if (_logger.IsEnabled(LogLevel.Debug))
-				{
-					_logger.LogDebug("{time}: Receiving Wi-Fi signals...", DateTime.Now);
-				}
-
-				var results = await _signalReader.Read();
-				var signals = _signalParser.Parse(results);
-
-				var message = new Message { Signals = signals };
-				if (_logger.IsEnabled(LogLevel.Debug))
-				{
-					_logger.LogDebug("{time}: {signalData}", message.LastUpdated, JsonSerializer.Serialize(signals));
-				}
-
-				await _signalHub.SendMessage(message);
-			}
-			catch (Exception e)
-			{
-				var message = new Message { Status = e.Message };
-				await _signalHub.SendMessage(message);
-				if (_logger.IsEnabled(LogLevel.Error))
-				{
-					_logger.LogError("{updated}: {status}", message.LastUpdated, message.Status);
-				}
-			}
-
+			await GetSignals();
 			await Task.Delay(interval_ms, stoppingToken);
+		}
+	}
+
+	private async Task GetSignals()
+	{
+		try
+		{
+			_logger.LogIf(LogLevel.Debug, "{time}: Receiving Wi-Fi signals...", DateTime.Now);
+			var results = await _signalReader.Read();
+			var signals = _signalParser.Parse(results);
+
+			var message = new Message { Signals = signals };
+			_logger.LogIf(LogLevel.Debug, "{time}: {signalData}", message.LastUpdated, JsonSerializer.Serialize(signals));
+
+			await _signalHub.SendMessage(message);
+		}
+		catch (Exception e)
+		{
+			var message = new Message { Status = e.Message };
+			await _signalHub.SendMessage(message);
+			_logger.LogIf(LogLevel.Error, "{updated}: {status}", message.LastUpdated, message.Status);
 		}
 	}
 }

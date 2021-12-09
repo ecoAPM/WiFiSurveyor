@@ -18,43 +18,25 @@ public sealed class CommandService : ICommandService
 	public async Task<string> Run(ProcessStartInfo info)
 	{
 		info.RedirectStandardOutput = true;
-
-		if (_logger.IsEnabled(LogLevel.Debug))
-		{
-			_logger.LogDebug("{now}: Starting \"{cmd} {args}\"...", DateTime.Now, info.FileName, info.Arguments);
-		}
+		_logger.LogIf(LogLevel.Debug, "{now}: Starting \"{cmd} {args}\"...", DateTime.Now, info.FileName, info.Arguments);
 
 		var process = _startProcess(info);
 		if (process == null)
 		{
-			if (_logger.IsEnabled(LogLevel.Warning))
-			{
-				_logger.LogWarning("{now}: Could not start {cmd}", DateTime.Now, info.FileName);
-			}
-
+			_logger.LogIf(LogLevel.Warning, "{now}: Could not start {cmd}", DateTime.Now, info.FileName);
 			return await Task.FromResult(string.Empty);
 		}
 
-		if (_logger.IsEnabled(LogLevel.Debug))
-		{
-			_logger.LogDebug("{now}: \"{cmd} {args}\" started", DateTime.Now, info.FileName, info.Arguments);
-		}
-
+		_logger.LogIf(LogLevel.Debug, "{now}: \"{cmd} {args}\" started", DateTime.Now, info.FileName, info.Arguments);
 		var complete = process.WaitForExit(Convert.ToUInt16(_timeout.TotalMilliseconds));
+
 		if (complete)
 		{
-			if (_logger.IsEnabled(LogLevel.Debug))
-			{
-				_logger.LogDebug("{now}: Process ended successfully", DateTime.Now);
-			}
+			_logger.LogIf(LogLevel.Debug, "{now}: Process ended successfully", DateTime.Now);
 		}
 		else
 		{
-			if (_logger.IsEnabled(LogLevel.Warning))
-			{
-				_logger.LogWarning("{now}: Process not complete after {time}, forcing to end...", DateTime.Now, _timeout);
-			}
-
+			_logger.LogIf(LogLevel.Warning, "{now}: Process not complete after {time}, forcing to end...", DateTime.Now, _timeout);
 			process.Kill(true);
 		}
 

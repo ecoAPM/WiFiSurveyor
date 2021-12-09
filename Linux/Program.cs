@@ -4,10 +4,10 @@ namespace WiFiSurveyor.Linux;
 
 public static class Program
 {
-	private static void AddLinuxHandlers(IServiceCollection services)
+	public static void AddLinuxHandlers(this IServiceCollection services)
 	{
 		services.AddPosixHandlers();
-		services.AddSingleton<BrowserLauncher, LinuxBrowserLauncher>();
+		services.AddSingleton<IBrowserLauncher, LinuxBrowserLauncher>();
 		services.AddSingleton<ISignalReader<string>, LinuxSignalReader>();
 		services.AddSingleton<ISignalParser<string>, LinuxSignalParser>();
 	}
