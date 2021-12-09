@@ -1,17 +1,16 @@
 using WiFiSurveyor.Core;
-using Windows.Devices.WiFi;
 
 namespace WiFiSurveyor.Windows;
 
-public sealed class WindowsSignalReader : ISignalReader<WiFiNetworkReport>
+public sealed class WindowsSignalReader : ISignalReader<IWiFiNetworkReport>
 {
-	private WiFiAdapter _adapter = null!;
-	private readonly Task<WiFiAdapter> _newAdapter;
+	private readonly Task<IWiFiAdapter> _newAdapter;
+	private IWiFiAdapter? _adapter;
 
-	public WindowsSignalReader(Task<WiFiAdapter> adapterFactory)
+	public WindowsSignalReader(Task<IWiFiAdapter> adapterFactory)
 		=> _newAdapter = adapterFactory;
 
-	public async Task<WiFiNetworkReport> Read()
+	public async Task<IWiFiNetworkReport> Read()
 	{
 		_adapter ??= await _newAdapter;
 		await _adapter.ScanAsync();

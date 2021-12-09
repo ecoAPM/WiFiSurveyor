@@ -5,28 +5,26 @@ namespace WiFiSurveyor.Linux;
 
 public sealed class LinuxSignalParser : ISignalParser<string>
 {
-	public IList<Signal> Parse(string results)
+	public IReadOnlyList<Signal> Parse(string results)
+		=> results
+			.Split(" Cell ")
+			.Skip(1)
+			.Select(GetSignal)
+			.ToArray();
+
+	private static Signal GetSignal(string result)
 	{
-		var accessPoints = results.Split(" Cell ").Skip(1);
+		var mac = Regex.Match(result, "Address: (.+)").Groups[1].Value;
+		var ssid = Regex.Match(result, "SSID:\"(.+)\"").Groups[1].Value;
+		var freq = Regex.Match(result, "Frequency:(\\d)").Groups[1].Value;
+		var dbm = Regex.Match(result, "Signal level=(-\\d+)").Groups[1].Value;
 
-		var signals = new List<Signal>();
-		foreach (var result in accessPoints)
+		return new Signal
 		{
-			var mac = Regex.Match(result, "Address: (.+)").Groups[1].Value;
-			var ssid = Regex.Match(result, "SSID:\"(.+)\"").Groups[1].Value;
-			var freq = Regex.Match(result, "Frequency:(\\d)").Groups[1].Value;
-			var dbm = Regex.Match(result, "Signal level=(-\\d+)").Groups[1].Value;
-
-			var signal = new Signal
-			{
-				MAC = mac,
-				SSID = ssid.Replace(@"\x00", ""),
-				Frequency = (freq == "2" ? Frequency._2_4_GHz : Frequency._5_GHz),
-				Strength = short.Parse(dbm)
-			};
-
-			signals.Add(signal);
-		}
-		return signals;
+			MAC = mac,
+			SSID = ssid.Replace(@"\x00", ""),
+			Frequency = (freq == "2" ? Frequency._2_4_GHz : Frequency._5_GHz),
+			Strength = short.Parse(dbm)
+		};
 	}
 }

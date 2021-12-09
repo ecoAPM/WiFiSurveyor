@@ -2,7 +2,7 @@ namespace WiFiSurveyor.Core;
 
 public sealed class Message
 {
-	public string Status { get; set; } = string.Empty;
-	public IList<Signal> Signals { get; set; } = new List<Signal>();
-	public DateTime LastUpdated { get; set; } = DateTime.Now;
+	public string Status { get; init; } = string.Empty;
+	public IReadOnlyList<Signal> Signals { get; init; } = new List<Signal>();
+	public DateTime LastUpdated { get; init; } = DateTime.Now;
 }

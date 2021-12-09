@@ -4,14 +4,14 @@ namespace WiFiSurveyor.Mac;
 
 public sealed class MacSignalParser : ISignalParser<string>
 {
-	public IList<Signal> Parse(string results)
-			=> results.Split("\n", StringSplitOptions.RemoveEmptyEntries)
-				.Skip(1)
-				.Select(GetSignal)
-				.ToList();
+	public IReadOnlyList<Signal> Parse(string results)
+		=> results.Split("\n", StringSplitOptions.RemoveEmptyEntries)
+			.Skip(1)
+			.Select(GetSignal)
+			.ToArray();
 
 	private static Signal GetSignal(string line)
-		=> new Signal
+		=> new()
 		{
 			SSID = line[..32].Trim(),
 			MAC = line[32..50].Trim(),
