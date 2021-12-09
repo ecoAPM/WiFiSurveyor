@@ -7,12 +7,11 @@ namespace WiFiSurveyor.Core;
 public abstract class PosixSignalReader : ISignalReader<string>
 {
 	private readonly ICommandService _commandService;
-	protected abstract ProcessStartInfo Info { get; }
 
 	protected PosixSignalReader(ICommandService commandService)
-	{
-		_commandService = commandService;
-	}
+		=> _commandService = commandService;
+
+	protected abstract ProcessStartInfo Info { get; }
 
 	public async Task<string> Read()
 	{

@@ -4,8 +4,8 @@ namespace WiFiSurveyor.Core;
 
 public abstract class BrowserLauncher
 {
-	private readonly string _command;
 	private readonly string _baseArgs;
+	private readonly string _command;
 
 	protected BrowserLauncher(string command, string baseArgs = "")
 	{

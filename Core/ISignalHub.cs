@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 namespace WiFiSurveyor.Core;
 
 public interface ISignalHub

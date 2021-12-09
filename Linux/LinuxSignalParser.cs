@@ -23,7 +23,7 @@ public sealed class LinuxSignalParser : ISignalParser<string>
 		{
 			MAC = mac,
 			SSID = ssid.Replace(@"\x00", ""),
-			Frequency = (freq == "2" ? Frequency._2_4_GHz : Frequency._5_GHz),
+			Frequency = freq == "2" ? Frequency._2_4_GHz : Frequency._5_GHz,
 			Strength = short.Parse(dbm)
 		};
 	}

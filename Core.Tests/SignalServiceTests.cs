@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Xunit;
@@ -76,7 +72,7 @@ public sealed class SignalServiceTests
 		var hub = Substitute.For<ISignalHub>();
 		var signals = new List<Signal>
 		{
-			new Signal
+			new()
 			{
 				SSID = "UnitTest",
 				Frequency = Frequency._2_4_GHz,

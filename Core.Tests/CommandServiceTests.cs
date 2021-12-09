@@ -26,9 +26,9 @@ public sealed class CommandServiceTests
 	public async Task FailureToLaunchIsHandled()
 	{
 		//arrange
-		Process startProcess(ProcessStartInfo i) => null!;
+
 		var logger = Substitute.For<ILogger>();
-		var service = new CommandService(startProcess, logger);
+		var service = new CommandService(_ => null!, logger);
 		var info = new ProcessStartInfo("not installed");
 
 		//act

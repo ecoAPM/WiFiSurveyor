@@ -1,20 +1,14 @@
-using System;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace WiFiSurveyor.Core;
 
 public sealed class SignalService<T> : BackgroundService
 {
-	private readonly ISignalReader<T> _signalReader;
-	private readonly ISignalParser<T> _signalParser;
-	private readonly ISignalHub _signalHub;
-	private readonly ILogger _logger;
-
 	private const ushort interval_ms = 1_000;
+	private readonly ILogger _logger;
+	private readonly ISignalHub _signalHub;
+	private readonly ISignalParser<T> _signalParser;
+	private readonly ISignalReader<T> _signalReader;
 
 	public SignalService(ISignalReader<T> reader, ISignalParser<T> parser, ISignalHub hub, ILogger logger)
 	{
@@ -31,13 +25,19 @@ public sealed class SignalService<T> : BackgroundService
 			try
 			{
 				if (_logger.IsEnabled(LogLevel.Debug))
+				{
 					_logger.LogDebug("{time}: Receiving Wi-Fi signals...", DateTime.Now);
+				}
+
 				var results = await _signalReader.Read();
 				var signals = _signalParser.Parse(results);
 
 				var message = new Message { Signals = signals };
 				if (_logger.IsEnabled(LogLevel.Debug))
+				{
 					_logger.LogDebug("{time}: {signalData}", message.LastUpdated, JsonSerializer.Serialize(signals));
+				}
+
 				await _signalHub.SendMessage(message);
 			}
 			catch (Exception e)
@@ -45,7 +45,9 @@ public sealed class SignalService<T> : BackgroundService
 				var message = new Message { Status = e.Message };
 				await _signalHub.SendMessage(message);
 				if (_logger.IsEnabled(LogLevel.Error))
+				{
 					_logger.LogError("{updated}: {status}", message.LastUpdated, message.Status);
+				}
 			}
 
 			await Task.Delay(interval_ms, stoppingToken);
