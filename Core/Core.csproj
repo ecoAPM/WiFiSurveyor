@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<AssemblyName>WiFiSurveyor.Core</AssemblyName>
+		<RootNamespace>WiFiSurveyor.Core</RootNamespace>
+		<LangVersion>latest</LangVersion>
+		<PublishSingleFile>true</PublishSingleFile>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+</Project>

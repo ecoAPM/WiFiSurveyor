@@ -66,7 +66,7 @@ Contibutions are welcome for improving the following:
 
 ### Requirements
 
-- .NET Core SDK 3.1
+- .NET SDK 6
 - Node.JS with `yarn`
 
 ### Building from source

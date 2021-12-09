@@ -3,7 +3,7 @@ on: push
 
 jobs:
   Server-Code-Quality:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     if: github.actor != 'dependabot[bot]'
 
     steps:
@@ -12,10 +12,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+      - name: Setup Java
+        uses: actions/setup-java@v2
         with:
-          dotnet-version: 3.1.x
+          distribution: zulu
+          java-package: jre
+          java-version: 17
 
       - name: Setup .NET 5
         uses: actions/setup-dotnet@v1
@@ -34,7 +36,7 @@ jobs:
         run: dotnet restore
 
       - name: Start Sonar Analysis
-        run: dotnet-sonarscanner begin /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /o:"ecoapm" /k:"ecoAPM_WiFiSurveyor-Server" /d:sonar.cs.vstest.reportsPaths="Server.Tests/**/results.trx" /d:sonar.cs.opencover.reportsPaths="Server.Tests/**/coverage.opencover.xml"
+        run: dotnet-sonarscanner begin /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /o:"ecoapm" /k:"ecoAPM_WiFiSurveyor-Server" /d:sonar.cs.vstest.reportsPaths="*.Tests/**/results.trx" /d:sonar.cs.opencover.reportsPaths="*.Tests/**/coverage.opencover.xml"
 
       - name: Build
         run: dotnet build --no-restore

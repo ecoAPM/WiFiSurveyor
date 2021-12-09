@@ -6,7 +6,7 @@ on:
 
 jobs:
   Publish:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     permissions:
       contents: write
@@ -16,11 +16,6 @@ jobs:
       uses: actions/checkout@v1
       with:
         ref: ${{ github.ref }}
-
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.x
 
     - name: Setup .NET 6
       uses: actions/setup-dotnet@v1
@@ -40,13 +35,13 @@ jobs:
       run: yarn build
     
     - name: Publish Windows
-      run: dotnet publish Server --sc -c Release -r win-x64 -o publish/Windows
+      run: dotnet publish Windows --sc -c Release -r win-x64 -o publish/Windows
 
     - name: Publish Linux
-      run: dotnet publish Server --sc -c Release -r linux-x64 -o publish/Linux
+      run: dotnet publish Linux --sc -c Release -r linux-x64 -o publish/Linux
 
     - name: Publish Mac
-      run: dotnet publish Server --sc -c Release -r osx-x64 -o publish/Mac
+      run: dotnet publish Mac --sc -c Release -r osx-x64 -o publish/Mac
 
     - name: Package Windows release
       working-directory: publish/Windows

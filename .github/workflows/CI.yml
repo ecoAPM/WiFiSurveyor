@@ -3,15 +3,10 @@ on: [ push, pull_request ]
 
 jobs:
   Server:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
-
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.x
 
     - name: Setup .NET 6
       uses: actions/setup-dotnet@v1
@@ -46,88 +41,3 @@ jobs:
 
     - name: Test
       run: yarn test
-
-  Server-Code-Quality:
-    needs: Server
-    runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 3.1.x
-
-      - name: Setup .NET 5
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 5.0.x
-
-      - name: Setup .NET 6
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 6.0.x
-
-      - name: Install Sonar Scanner
-        run: dotnet tool install --global dotnet-sonarscanner
-
-      - name: Install dependencies
-        run: dotnet restore
-
-      - name: Start Sonar Analysis
-        run: dotnet-sonarscanner begin /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /o:"ecoapm" /k:"ecoAPM_WiFiSurveyor-Server" /d:sonar.cs.vstest.reportsPaths="Server.Tests/**/results.trx" /d:sonar.cs.opencover.reportsPaths="Server.Tests/**/coverage.opencover.xml"
-
-      - name: Build
-        run: dotnet build --no-restore
-        env:
-          SONAR_DOTNET_ENABLE_CONCURRENT_EXECUTION: true
-
-      - name: Test
-        run: dotnet test --no-build --logger "trx;LogFileName=results.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-
-      - name: Remove client-side Sonar properties
-        run: rm sonar-project.properties
-
-      - name: Finish Sonar Analysis
-        run: dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-  App-Code-Quality:
-    needs: App
-    runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Install Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16.x
-
-      - name: Install c8
-        run: yarn global add c8
-
-      - name: Install dependencies
-        run: yarn
-
-      - name: Build
-        run: yarn build
-
-      - name: Get code coverage
-        run: c8 -r lcov yarn test -s
-
-      - name: SonarCloud Analysis
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
