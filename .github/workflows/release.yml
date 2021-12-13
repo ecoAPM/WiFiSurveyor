@@ -60,10 +60,9 @@ jobs:
         XZ_OPT: -9
 
     - name: Package Windows release
+      shell: pwsh
       working-directory: publish/Windows
-      run: tar -acvf ../WiFiSurveyor.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').Windows.zip *
-      env:
-        GZIP_OPT: -9
+      run: Compress-Archive -Path * -DestinationPath ../WiFiSurveyor.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').Windows.zip
 
     - name: Create release
       uses: softprops/action-gh-release@v1
