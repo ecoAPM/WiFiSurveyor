@@ -1,6 +1,10 @@
 name: Sonar
 on: push
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   Server-Code-Quality:
     runs-on: windows-latest
@@ -36,7 +40,7 @@ jobs:
         run: dotnet restore
 
       - name: Start Sonar Analysis
-        run: dotnet-sonarscanner begin /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /o:"ecoapm" /k:"ecoAPM_WiFiSurveyor-Server" /d:sonar.cs.vstest.reportsPaths="*.Tests/**/results.trx" /d:sonar.cs.opencover.reportsPaths="*.Tests/**/coverage.opencover.xml"
+        run: dotnet-sonarscanner begin -d:sonar.host.url="https://sonarcloud.io" -d:sonar.login="${{ secrets.SONAR_TOKEN }}" -o:"ecoapm" -k:"ecoAPM_WiFiSurveyor-Server" -d:sonar.cs.vstest.reportsPaths="*.Tests/**/results.trx" -d:sonar.cs.opencover.reportsPaths="*.Tests/**/coverage.opencover.xml"
 
       - name: Build
         run: dotnet build --no-restore
@@ -50,7 +54,7 @@ jobs:
         run: rm sonar-project.properties
 
       - name: Finish Sonar Analysis
-        run: dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+        run: dotnet-sonarscanner end -d:sonar.login="${{ secrets.SONAR_TOKEN }}"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
