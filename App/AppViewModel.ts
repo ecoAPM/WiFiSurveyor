@@ -4,10 +4,9 @@ import Reading from "./Reading";
 import AccessPoint from "./AccessPoint";
 import Point from "./Point";
 import AccessPointGrouping from "./AccessPointGrouping";
+import ImageLoader from "./ImageLoader";
 
 export default class AppViewModel {
-	signal_service: SignalService | null = null;
-	renderer: Renderer | null = null;
 	background: string = "";
 	pixelated: boolean = true;
 	readings: Reading[] = [];
@@ -16,6 +15,10 @@ export default class AppViewModel {
 	group_by: AccessPointGrouping = new AccessPointGrouping();
 	debug: boolean = false;
 
+	signal_service: SignalService | null = null;
+	renderer: Renderer | null = null;
+	image_loader: ImageLoader | null = null;
+
 	async setBackground(files: FileList): Promise<void> {
 		if (files.length !== 1) {
 			this.background = "";
@@ -23,14 +26,9 @@ export default class AppViewModel {
 		}
 
 		const file = files.item(0) as File;
-		const reader = new FileReader();
-		const file_contents = new Promise<string>((resolve, reject) => {
-			reader.onerror = () => reject(new DOMException("sad face"));
-			reader.onload = () => resolve(reader.result as string);
-			reader.readAsDataURL(file);
-		});
+		const file_contents = this.image_loader?.loadImage(file);
 
-		this.background = await file_contents;
+		this.background = await file_contents ?? "";
 	}
 
 	deleteDataPoint(index: number): void {

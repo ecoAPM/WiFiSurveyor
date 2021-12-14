@@ -1,6 +1,6 @@
-import { Test, TestSuite } from "xunit.ts";
+import {Test, TestSuite} from "xunit.ts";
 import App from "../App/app.vue";
-import { shallowMount as mount } from "@vue/test-utils";
+import {shallowMount as mount} from "@vue/test-utils";
 import Mockito from "ts-mockito";
 import Renderer from "../App/Renderer";
 import MockFactory from "./MockFactory";
@@ -14,16 +14,19 @@ export default class AppTests extends TestSuite {
 		const canvas = MockFactory.canvas();
 		const renderer = new Renderer(Mockito.instance(canvas));
 
+		const image_loader = MockFactory.imageLoader();
+
 		//act
 		const component = mount(App, {
 			provide: {
 				signal_service: () => Mockito.instance(signal_service),
-				renderer: () => renderer
+				renderer: () => renderer,
+				image_loader: () => Mockito.instance(image_loader)
 			}
 		});
 
 		//assert
-		this.assert.notEmpty(component.html());
+		this.assert.notEmpty([...component.html()]);
 	}
 
 	@Test()
@@ -35,11 +38,14 @@ export default class AppTests extends TestSuite {
 		const canvas = MockFactory.canvas();
 		const renderer = new Renderer(Mockito.instance(canvas));
 
+		const image_loader = MockFactory.imageLoader();
+
 		//act
 		const component = mount(App, {
 			provide: {
 				signal_service: () => Mockito.instance(signal_service),
-				renderer: () => renderer
+				renderer: () => renderer,
+				image_loader: () => Mockito.instance(image_loader)
 			}
 		});
 		await component.vm.$nextTick();
@@ -55,7 +61,13 @@ export default class AppTests extends TestSuite {
 		const renderer = new Renderer(Mockito.instance(canvas));
 
 		//act
-		const component = mount(App, { provide: { signal_service: () => null, renderer: () => renderer } });
+		const component = mount(App, {
+			provide: {
+				signal_service: () => null,
+				renderer: () => renderer,
+				image_loader: () => null
+			}
+		});
 
 		//assert
 		this.assert.stringContains("loading", component.vm.connection_status);
