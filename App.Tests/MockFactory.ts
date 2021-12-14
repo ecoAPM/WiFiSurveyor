@@ -1,5 +1,6 @@
 import Mockito from "ts-mockito";
 import SignalService from "../App/SignalService";
+import ImageLoader from "../App/ImageLoader";
 
 export default class MockFactory {
 	static signalService(): SignalService {
@@ -27,5 +28,9 @@ export default class MockFactory {
 		Mockito.when(canvas.getContext("webgl2")).thenReturn(Mockito.instance(gl));
 
 		return canvas;
+	}
+
+	static imageLoader(): ImageLoader {
+		return Mockito.mock<ImageLoader>();
 	}
 }
