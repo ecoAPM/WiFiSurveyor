@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.AspNetCore.Hosting.Server.Features;
 
 namespace WiFiSurveyor.Core;
 
@@ -31,13 +33,26 @@ public static class AppHelpers
 		services.AddHostedService<SignalService<string>>();
 	}
 
-	public static void LaunchBrowser(this WebApplication app)
+	public static async Task Run(this IHost app, IWebHostEnvironment env)
 	{
-		var address = app.Urls.First();
+		await app.StartAsync();
 
-		var browser = app.Services.GetService<IBrowserLauncher>()
-		              ?? throw new NullReferenceException("Could not find browser launcher");
+		if (!env.IsDevelopment())
+		{
+			app.LaunchBrowser();
+		}
 
-		browser.Run(address);
+		await app.WaitForShutdownAsync();
+	}
+
+	private static void LaunchBrowser(this IHost app)
+	{
+		var address = app.Services.GetRequiredService<IServer>()
+			.Features.Get<IServerAddressesFeature>()!
+			.Addresses.First();
+
+		var launcher = app.Services.GetRequiredService<IBrowserLauncher>();
+
+		launcher.Run(address);
 	}
 }

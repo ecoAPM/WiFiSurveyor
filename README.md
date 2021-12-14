@@ -29,8 +29,8 @@ Visualize Wi-Fi signal strength over a geographic area
    - `sudo ./WiFiSurveyor` on Linux (must be `root`)
 
 1. Wait for the app to appear in your browser
- 
-1. Under "Background", select a floorplan or map image representing the area to survey 
+
+1. Under "Background", select a floorplan or map image representing the area to survey
 
 1. Select your SSID from the "Access Point" dropdown menu
 
@@ -71,16 +71,12 @@ Contibutions are welcome for improving the following:
 
 ### Building from source
 
-- Run `dotnet run` (with `sudo` for Linux) from the `Server` directory to start the back-end server
+- Run `dotnet run --project {Linux|Mac|Windows} -- dev` (with `sudo` for Linux) from the repo root directory to start the back-end server
 - Run `yarn dev` from the repo root directory to start the front-end development server
-- Browse to `http://localhost:1234`
+- Browse to `http://localhost:3000`
 - Back-end and front-end can be stopped and restarted independently during inner dev loop
 
 ### Running tests
 
 - Run `dotnet test` from the repo root directory for back-end tests
 - Run `yarn test` from the repo root directory for front-end tests
-
-### Publishing
-
-- Run `./publish.sh` from the repo root directory to publish a production-ready version to the `publish` directory

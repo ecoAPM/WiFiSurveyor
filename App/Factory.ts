@@ -9,7 +9,7 @@ export default class Factory {
 	}
 
 	static signalService(signals: Signal[]): SignalService {
-		const server = process.env.NODE_ENV === "production" ? "" : "http://localhost:5001";
+		const server = process.env.NODE_ENV === "production" ? "" : "http://localhost:5000";
 
 		const connection = new HubConnectionBuilder()
 			.withUrl(`${server}/signals`)
