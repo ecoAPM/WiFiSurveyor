@@ -120,4 +120,22 @@ export default class APFormTests extends TestSuite {
 		this.assert.notNull(checkbox.attributes("disabled"));
 		this.assert.undefined(checkbox.attributes("checked"));
 	}
+
+	@Test()
+	async combinesDuplicateLabels() {
+		//arrange
+		const state = new AppViewModel();
+		state.current = new Reading(0, new Point(0, 0), APFormTests.signals);
+		state.readings = [
+			new Reading(1, new Point(3, 4), APFormTests.signals),
+			new Reading(2, new Point(5, 6), APFormTests.signals)
+		];
+		const component = mount(APForm, { data: () => ({ state: state }) });
+
+		//act
+		const signals = component.vm.access_points;
+
+		//assert
+		this.assert.equal(2, signals.length);
+	}
 }

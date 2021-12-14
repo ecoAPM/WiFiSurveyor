@@ -27,19 +27,28 @@
 import Vue from 'vue';
 import AccessPoint from './AccessPoint';
 import SharedState from "./SharedState";
+import Signal from "./Signal";
 
 export default Vue.extend({
 	data: () => ({
 		state: SharedState,
 	}),
 	computed: {
+		all_signals(): Signal[] {
+			return [ ...this.state.current.signals, ...this.state.readings.flatMap(r => r.signals) ];
+		},
+		all_access_points(): AccessPoint[] {
+			return this.all_signals.map(s =>
+					new AccessPoint(s.ssid,
+							this.state.group_by.frequency ? null : s.frequency,
+							this.state.group_by.ssid ? null : s.mac)
+			)
+		},
 		access_points(): AccessPoint[] {
-			return this.state.current.signals.map(signal =>
-					new AccessPoint(signal.ssid,
-							this.state.group_by.frequency ? null : signal.frequency,
-							this.state.group_by.ssid ? null : signal.mac)
-			).sort((ap1, ap2) => ap1.compareTo(ap2))
-					.filter((ap, index, array) => array.map(a => a.label()).indexOf(ap.label()) === index);
+			const labels = this.all_access_points.map(a => a.label());
+			return this.all_access_points
+					.filter((ap, index) => labels.indexOf(ap.label()) === index)
+					.sort((ap1, ap2) => ap1.compareTo(ap2));
 		}
 	}
 });
