@@ -4,22 +4,30 @@ import Signal from "./Signal";
 
 export default class SignalService {
 	private static readonly error_message = "Could not connect to server, please try restarting";
+	private readonly connection: HubConnection;
 	readonly signals: Signal[];
 	status: string = "Connecting...";
 	last_updated: string = "";
 
 	constructor(connection: HubConnection, signals: Signal[]) {
+		this.connection = connection;
 		this.signals = signals;
+	}
 
-		connection.onreconnecting(() => this.status = "Reconnecting...");
-		connection.onreconnected(() => this.status = "");
-		connection.onclose(() => this.status = SignalService.error_message);
+	async start() {
+		this.connection.onreconnecting(() => this.status = "Reconnecting...");
+		this.connection.onreconnected(() => this.status = "");
+		this.connection.onclose(() => this.status = SignalService.error_message);
 
-		connection.on("Update", (message: Message) => this.update(message));
+		this.connection.on("Update", (message: Message) => this.update(message));
 
-		connection.start()
-			.then(() => this.status = "")
-			.catch(() => this.status = SignalService.error_message);
+		try {
+			await this.connection.start();
+			this.status = "";
+		}
+		catch {
+			this.status = SignalService.error_message;
+		}
 	}
 
 	update(message: Message): void {
