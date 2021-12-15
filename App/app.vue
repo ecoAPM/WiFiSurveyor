@@ -3,7 +3,7 @@
 		<status :status="connection_status"></status>
 		<header-menu :last_updated="last_updated" @background="setBackground($event)"></header-menu>
 		<main-area :enabled="!connection_status"></main-area>
-		<debug-panel/>
+		<debug-panel />
 	</div>
 </template>
 
@@ -24,26 +24,29 @@ export default Vue.extend({
 	},
 	inject: {
 		signal_service_factory: "signal_service",
-	  renderer_factory: "renderer",
-	  image_loader_factory: "image_loader",
+		renderer_factory: "renderer",
+		image_loader_factory: "image_loader",
 	},
 	data: () => SharedState,
 	computed: {
 		connection_status(): string {
 			return this.signal_service != null
-					? this.signal_service.status
-					: "(loading...)"
+				? this.signal_service.status
+				: "(loading...)"
 		},
 		last_updated(): string {
 			return this.signal_service != null
-					? this.signal_service.last_updated
-					: "";
+				? this.signal_service.last_updated
+				: "";
 		}
 	},
 	mounted(): void {
-		const canvas = document.getElementById("webglcanvas") as HTMLCanvasElement;
 		this.signal_service = this.signal_service_factory(this.current.signals);
+		this.signal_service?.start();
+
+		const canvas = document.getElementById("webglcanvas") as HTMLCanvasElement;
 		this.renderer = this.renderer_factory(canvas);
+
 		this.image_loader = this.image_loader_factory();
 	},
 	watch: {

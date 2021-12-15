@@ -5,22 +5,27 @@ import Signal from "./Signal";
 import ImageLoader from "./ImageLoader";
 
 export default class Factory {
-	static signalService(signals: Signal[]): SignalService {
-		const server = process.env.NODE_ENV === "production" ? "" : "http://localhost:5000";
+	
+	private readonly server: string;
 
+	constructor(is_local: boolean) {
+		this.server = is_local ? "" : "http://localhost:5000";
+	}
+
+	signalService(signals: Signal[]): SignalService {
 		const connection = new HubConnectionBuilder()
-			.withUrl(`${server}/signals`)
+			.withUrl(`${this.server}/signals`)
 			.withAutomaticReconnect()
 			.build();
 
 		return new SignalService(connection, signals);
 	}
 
-	static renderer(canvas: HTMLCanvasElement): Renderer {
+	renderer(canvas: HTMLCanvasElement): Renderer {
 		return new Renderer(canvas);
 	}
 
-	static imageLoader(): ImageLoader {
+	imageLoader(): ImageLoader {
 		const file_reader = new FileReader();
 		return new ImageLoader(file_reader);
 	}
