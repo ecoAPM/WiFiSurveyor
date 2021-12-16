@@ -30,7 +30,7 @@ export default class MockFactory {
 		return canvas;
 	}
 
-	static FileLoader(): FileLoader {
+	static fileLoader(): FileLoader {
 		return Mockito.mock<FileLoader>();
 	}
 }

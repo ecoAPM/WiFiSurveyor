@@ -14,7 +14,7 @@ export default class AppTests extends TestSuite {
 		const canvas = MockFactory.canvas();
 		const renderer = new Renderer(Mockito.instance(canvas));
 
-		const file_loader = MockFactory.FileLoader();
+		const file_loader = MockFactory.fileLoader();
 
 		//act
 		const component = mount(App, {
@@ -38,7 +38,7 @@ export default class AppTests extends TestSuite {
 		const canvas = MockFactory.canvas();
 		const renderer = new Renderer(Mockito.instance(canvas));
 
-		const file_loader = MockFactory.FileLoader();
+		const file_loader = MockFactory.fileLoader();
 
 		//act
 		const component = mount(App, {
