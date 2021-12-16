@@ -1,19 +1,19 @@
 import { Test, TestSuite } from "xunit.ts";
 import AppViewModel from "../App/AppViewModel";
 import Mockito from "ts-mockito";
-import ImageLoader from "../App/ImageLoader";
+import FileLoader from "../App/FileLoader";
 
 export default class AppViewModelTests extends TestSuite
 {
 	@Test()
-	async canSetBackgroundFromImageLoaderData() {
+	async canSetBackgroundFromFileLoaderData() {
 		//arrange
 		const file = Mockito.mock<File>();
 
-		const loader = Mockito.mock<ImageLoader>();
+		const loader = Mockito.mock<FileLoader>();
 		Mockito.when(loader.loadImage(file)).thenResolve("data:image/png;base64,abc123");
 		const vm = new AppViewModel();
-		vm.image_loader = Mockito.instance(loader);
+		vm.file_loader = Mockito.instance(loader);
 
 		const files = Mockito.mock<FileList>();
 		Mockito.when(files.length).thenReturn(1);

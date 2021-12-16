@@ -25,7 +25,7 @@ export default Vue.extend({
 	inject: {
 		signal_service_factory: "signal_service",
 		renderer_factory: "renderer",
-		image_loader_factory: "image_loader",
+		file_loader_factory: "file_loader",
 	},
 	data: () => SharedState,
 	computed: {
@@ -47,7 +47,7 @@ export default Vue.extend({
 		const canvas = document.getElementById("webglcanvas") as HTMLCanvasElement;
 		this.renderer = this.renderer_factory(canvas);
 
-		this.image_loader = this.image_loader_factory();
+		this.file_loader = this.file_loader_factory();
 	},
 	watch: {
 		selected(): void {

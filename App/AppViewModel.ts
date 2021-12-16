@@ -4,7 +4,7 @@ import Reading from "./Reading";
 import AccessPoint from "./AccessPoint";
 import Point from "./Point";
 import AccessPointGrouping from "./AccessPointGrouping";
-import ImageLoader from "./ImageLoader";
+import FileLoader from "./FileLoader";
 
 export default class AppViewModel {
 	background: string = "";
@@ -17,7 +17,7 @@ export default class AppViewModel {
 
 	signal_service: SignalService | null = null;
 	renderer: Renderer | null = null;
-	image_loader: ImageLoader | null = null;
+	file_loader: FileLoader | null = null;
 
 	async setBackground(files: FileList): Promise<void> {
 		if (files.length !== 1) {
@@ -26,7 +26,7 @@ export default class AppViewModel {
 		}
 
 		const file = files.item(0) as File;
-		const file_contents = this.image_loader?.loadImage(file);
+		const file_contents = this.file_loader?.loadImage(file);
 
 		this.background = await file_contents ?? "";
 	}

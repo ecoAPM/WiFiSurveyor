@@ -2,10 +2,10 @@ import SignalService from "./SignalService";
 import {HubConnectionBuilder} from "@microsoft/signalr";
 import Renderer from "./Renderer";
 import Signal from "./Signal";
-import ImageLoader from "./ImageLoader";
+import FileLoader from "./FileLoader";
 
 export default class Factory {
-	
+
 	static signalService(server: string, signals: Signal[]): SignalService {
 		const connection = new HubConnectionBuilder()
 			.withUrl(`${server}/signals`)
@@ -19,8 +19,8 @@ export default class Factory {
 		return new Renderer(canvas);
 	}
 
-	static imageLoader(): ImageLoader {
+	static fileLoader(): FileLoader {
 		const file_reader = new FileReader();
-		return new ImageLoader(file_reader);
+		return new FileLoader(file_reader);
 	}
 }

@@ -14,6 +14,6 @@ export default new Vue({
 	provide: {
 		signal_service: (signals: Signal[]) => Factory.signalService(server, signals),
 		renderer: Factory.renderer,
-		image_loader: Factory.imageLoader
+		file_loader: Factory.fileLoader
 	}
 });

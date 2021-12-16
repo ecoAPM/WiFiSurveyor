@@ -1,6 +1,6 @@
 import Mockito from "ts-mockito";
 import SignalService from "../App/SignalService";
-import ImageLoader from "../App/ImageLoader";
+import FileLoader from "../App/FileLoader";
 
 export default class MockFactory {
 	static signalService(): SignalService {
@@ -30,7 +30,7 @@ export default class MockFactory {
 		return canvas;
 	}
 
-	static imageLoader(): ImageLoader {
-		return Mockito.mock<ImageLoader>();
+	static FileLoader(): FileLoader {
+		return Mockito.mock<FileLoader>();
 	}
 }

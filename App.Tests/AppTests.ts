@@ -14,14 +14,14 @@ export default class AppTests extends TestSuite {
 		const canvas = MockFactory.canvas();
 		const renderer = new Renderer(Mockito.instance(canvas));
 
-		const image_loader = MockFactory.imageLoader();
+		const file_loader = MockFactory.FileLoader();
 
 		//act
 		const component = mount(App, {
 			provide: {
 				signal_service: () => Mockito.instance(signal_service),
 				renderer: () => renderer,
-				image_loader: () => Mockito.instance(image_loader)
+				file_loader: () => Mockito.instance(file_loader)
 			}
 		});
 
@@ -38,14 +38,14 @@ export default class AppTests extends TestSuite {
 		const canvas = MockFactory.canvas();
 		const renderer = new Renderer(Mockito.instance(canvas));
 
-		const image_loader = MockFactory.imageLoader();
+		const file_loader = MockFactory.FileLoader();
 
 		//act
 		const component = mount(App, {
 			provide: {
 				signal_service: () => Mockito.instance(signal_service),
 				renderer: () => renderer,
-				image_loader: () => Mockito.instance(image_loader)
+				file_loader: () => Mockito.instance(file_loader)
 			}
 		});
 		await component.vm.$nextTick();
@@ -65,7 +65,7 @@ export default class AppTests extends TestSuite {
 			provide: {
 				signal_service: () => null,
 				renderer: () => renderer,
-				image_loader: () => null
+				file_loader: () => null
 			}
 		});
 
