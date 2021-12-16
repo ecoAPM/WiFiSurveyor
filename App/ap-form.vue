@@ -53,3 +53,9 @@ export default Vue.extend({
 	}
 });
 </script>
+
+<style scoped>
+label, select {
+	margin-bottom: 0.25rem;
+}
+</style>

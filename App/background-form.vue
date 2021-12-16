@@ -20,3 +20,9 @@ export default Vue.extend({
 	})
 });
 </script>
+
+<style scoped>
+label, input {
+	margin-bottom: 0.25rem;
+}
+</style>
