@@ -6,26 +6,20 @@ import ImageLoader from "./ImageLoader";
 
 export default class Factory {
 	
-	private readonly server: string;
-
-	constructor(is_local: boolean) {
-		this.server = is_local ? "" : "http://localhost:5000";
-	}
-
-	signalService(signals: Signal[]): SignalService {
+	static signalService(server: string, signals: Signal[]): SignalService {
 		const connection = new HubConnectionBuilder()
-			.withUrl(`${this.server}/signals`)
+			.withUrl(`${server}/signals`)
 			.withAutomaticReconnect()
 			.build();
 
 		return new SignalService(connection, signals);
 	}
 
-	renderer(canvas: HTMLCanvasElement): Renderer {
+	static renderer(canvas: HTMLCanvasElement): Renderer {
 		return new Renderer(canvas);
 	}
 
-	imageLoader(): ImageLoader {
+	static imageLoader(): ImageLoader {
 		const file_reader = new FileReader();
 		return new ImageLoader(file_reader);
 	}

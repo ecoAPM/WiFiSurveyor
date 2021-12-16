@@ -13,10 +13,8 @@ export default class FactoryTests extends TestSuite {
 		//arrange
 		const signals: Signal[] = [];
 
-		const factory = new Factory(false);
-
 		//act
-		const signal_service = factory.signalService(signals);
+		const signal_service = Factory.signalService("http://localhost", signals);
 
 		//assert
 		this.assert.instanceOf(SignalService, signal_service);
@@ -27,10 +25,8 @@ export default class FactoryTests extends TestSuite {
 		//arrange
 		const canvas = MockFactory.canvas();
 
-		const factory = new Factory(true);
-
 		//act
-		const renderer = factory.renderer(Mockito.instance(canvas));
+		const renderer = Factory.renderer(Mockito.instance(canvas));
 
 		//assert
 		this.assert.instanceOf(Renderer, renderer);
@@ -38,11 +34,8 @@ export default class FactoryTests extends TestSuite {
 
 	@Test()
 	async canCreateImageLoader() {
-		//arrange
-		const factory = new Factory(true);
-
 		//act
-		const loader = factory.imageLoader();
+		const loader = Factory.imageLoader();
 
 		//assert
 		this.assert.instanceOf(ImageLoader, loader);
