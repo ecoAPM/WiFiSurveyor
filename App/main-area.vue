@@ -25,7 +25,7 @@ import SharedState from "./SharedState";
 
 export default Vue.extend({
 	components: {
-		"data-point": DataPoint,
+		"data-point": DataPoint
 	},
 	props: {
 		enabled: Boolean
@@ -56,8 +56,8 @@ export default Vue.extend({
 		},
 		refresh(): void {
 			this.state.renderer?.render(this.state.readings, this.state.selected);
-		},
-	},
+		}
+	}
 });
 </script>
 

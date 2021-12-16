@@ -38,12 +38,12 @@ export default Vue.extend({
 		remove(): void {
 			if (confirm("Are you sure you want to remove this reading?"))
 				this.state.deleteDataPoint(this.index);
-		},
+		}
 	},
 	computed: {
 		signal(): number | null {
 			return this.reading.signalFor(this.selected);
-		},
+		}
 	},
 });
 </script>

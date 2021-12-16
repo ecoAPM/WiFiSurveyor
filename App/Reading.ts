@@ -17,12 +17,12 @@ export default class Reading {
 		if (access_point == null)
 			return null;
 
-		const signals = this.signals
-			.filter((signal) => (signal.ssid == access_point.ssid)
+		const strengths = this.signals
+			.filter(signal => (signal.ssid == access_point.ssid)
 				&& (access_point.frequency == null || signal.frequency == access_point.frequency)
 				&& (access_point.mac == null || signal.mac == access_point.mac))
-			.map((signal) => signal.strength);
+			.map(s => s.strength);
 
-		return signals.length > 0 ? Math.max(...signals) : null;
+		return strengths.length > 0 ? Math.max(...strengths) : null;
 	}
 }
