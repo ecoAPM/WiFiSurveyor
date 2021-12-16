@@ -26,9 +26,7 @@ export default class AppViewModel {
 		}
 
 		const file = files.item(0) as File;
-		const file_contents = this.file_loader?.loadImage(file);
-
-		this.background = await file_contents ?? "";
+		this.background = await this.file_loader?.loadData(file) ?? "";
 	}
 
 	deleteDataPoint(index: number): void {

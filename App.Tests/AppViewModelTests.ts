@@ -11,7 +11,7 @@ export default class AppViewModelTests extends TestSuite
 		const file = Mockito.mock<File>();
 
 		const loader = Mockito.mock<FileLoader>();
-		Mockito.when(loader.loadImage(file)).thenResolve("data:image/png;base64,abc123");
+		Mockito.when(loader.loadData(file)).thenResolve("data:image/png;base64,abc123");
 		const vm = new AppViewModel();
 		vm.file_loader = Mockito.instance(loader);
 
