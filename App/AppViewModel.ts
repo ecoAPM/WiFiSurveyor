@@ -5,8 +5,10 @@ import AccessPoint from "./AccessPoint";
 import Point from "./Point";
 import AccessPointGrouping from "./AccessPointGrouping";
 import FileLoader from "./FileLoader";
+import Signal from "./Signal";
 
 export default class AppViewModel {
+	name: string = "";
 	background: string = "";
 	pixelated: boolean = true;
 	readings: Reading[] = [];
@@ -18,6 +20,35 @@ export default class AppViewModel {
 	signal_service: SignalService | null = null;
 	renderer: Renderer | null = null;
 	file_loader: FileLoader | null = null;
+
+	async load(files: FileList): Promise<void> {
+		if (files.length !== 1) {
+			return;
+		}
+
+		const file = files.item(0) as File;
+		const json = await this.file_loader?.loadJSON(file) as AppViewModel;
+
+		this.restore(json);
+	}
+
+	private restore(json: AppViewModel) {
+		this.name = json.name;
+		this.background = json.background;
+		this.pixelated = json.pixelated;
+		this.selected = json.selected;
+
+		if (json.group_by) {
+			this.group_by.ssid = json.group_by.ssid;
+			this.group_by.frequency = json.group_by.frequency;
+		}
+
+		if (json.readings) {
+			this.readings = json.readings.map(r => new Reading(r.id,
+				new Point(r.location.x, r.location.y),
+				r.signals.map(s => new Signal(s.mac, s.ssid, s.frequency, s.strength))));
+		}
+	}
 
 	async setBackground(files: FileList): Promise<void> {
 		if (files.length !== 1) {

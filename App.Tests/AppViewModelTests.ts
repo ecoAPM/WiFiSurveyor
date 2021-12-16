@@ -25,4 +25,25 @@ export default class AppViewModelTests extends TestSuite
 		//assert
 		this.assert.equal("data:image/png;base64,abc123", vm.background);
 	}
+
+	@Test()
+	async canLoadPreviouslySavedData() {
+		//arrange
+		const file = Mockito.mock<File>();
+
+		const loader = Mockito.mock<FileLoader>();
+		Mockito.when(loader.loadJSON(file)).thenResolve({ name: "Test" });
+		const vm = new AppViewModel();
+		vm.file_loader = Mockito.instance(loader);
+
+		const files = Mockito.mock<FileList>();
+		Mockito.when(files.length).thenReturn(1);
+		Mockito.when(files.item(0)).thenReturn(file);
+
+		//act
+		await vm.load(Mockito.instance(files));
+
+		//assert
+		this.assert.equal("Test", vm.name);
+	}
 }
