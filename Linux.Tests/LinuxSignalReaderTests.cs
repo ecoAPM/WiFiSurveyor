@@ -35,13 +35,34 @@ public sealed class LinuxSignalReaderTests
 		try
 		{
 			//act
-			var results = await reader.Read();
+			await reader.Read();
 		}
 		catch (Exception e)
 		{
 			//assert
 			Assert.Contains("\"wireless-tools\" is installed", e.Message);
 			Assert.Contains("running as root", e.Message);
+		}
+	}
+
+	[Fact]
+	public async Task OtherExceptionsAreThrown()
+	{
+		//arrange
+		var exception = new Win32Exception(1, "other error");
+		var commandService = Substitute.For<ICommandService>();
+		commandService.When(c => c.Run(Arg.Any<ProcessStartInfo>())).Throw(exception);
+		var reader = new LinuxSignalReader(commandService);
+
+		try
+		{
+			//act
+			await reader.Read();
+		}
+		catch (Exception e)
+		{
+			//assert
+			Assert.Contains("other error", e.Message);
 		}
 	}
 }

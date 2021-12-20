@@ -1,20 +1,21 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Xunit;
+﻿using Xunit;
 
 namespace WiFiSurveyor.Core.Tests;
 
 public sealed class AppTests
 {
-	[Fact]
-	public void CanConfigureApp()
+	[Theory]
+	[InlineData("dev", "Development")]
+	[InlineData("", "Production")]
+	public void DevFlagSetsEnvironment(string arg, string expected)
 	{
 		//arrange
-		var args = Array.Empty<string>();
+		var args = new[] { arg };
 
 		//act
 		var app = new App(_ => { }, args);
 
 		//assert
-		Assert.IsType<App>(app);
+		Assert.Equal(expected, app.Environment.EnvironmentName);
 	}
 }

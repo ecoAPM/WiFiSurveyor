@@ -3,7 +3,7 @@ namespace WiFiSurveyor.Core;
 public sealed class App
 {
 	private readonly IHost _app;
-	private readonly IWebHostEnvironment _env;
+	public IWebHostEnvironment Environment { get; }
 
 	public App(Action<IServiceCollection> addHandlers, string[] args)
 	{
@@ -17,9 +17,9 @@ public sealed class App
 		};
 
 		var builder = WebApplication.CreateBuilder(options);
-		_env = builder.Environment;
+		Environment = builder.Environment;
 
-		if (!_env.IsDevelopment())
+		if (!Environment.IsDevelopment())
 		{
 			builder.WebHost.UseUrls("http://127.0.0.1:0");
 		}
@@ -34,5 +34,5 @@ public sealed class App
 	}
 
 	public async Task Run()
-		=> await _app.Run(_env);
+		=> await _app.Run(Environment);
 }
