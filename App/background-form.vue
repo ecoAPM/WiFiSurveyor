@@ -1,7 +1,10 @@
 <template>
 	<form>
-		<label for="background-file">Background</label>
-		<input id="background-file" type="file" @change="state.setBackground($event.target.files)"/>
+		<label>Background</label>
+	  <button type="button" @click="$event.target.children[0].click()">
+		  <label for="background-file" @click.stop>Import</label>
+	  </button>
+		<input v-show="false" id="background-file" type="file" accept="image/*" @change="state.setBackground($event.target.files)"/>
 
 		<label>
 			<input id="pixelate" v-model="state.pixelated" type="checkbox"/>
@@ -22,7 +25,7 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-label, input {
+label, button {
 	margin-bottom: 0.25rem;
 }
 </style>

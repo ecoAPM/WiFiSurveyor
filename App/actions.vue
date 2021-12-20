@@ -36,5 +36,6 @@ export default Vue.extend({
 <style scoped>
 button {
 	margin-bottom: 0.5rem;
+	cursor: pointer;
 }
 </style>
