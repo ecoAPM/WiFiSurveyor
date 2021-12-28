@@ -3210,11 +3210,6 @@ type-fest@^0.20.2:
   resolved "https://registry.npmjs.org/type-fest/-/type-fest-0.20.2.tgz"
   integrity sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==
 
-typescript@4.5.2:
-  version "4.5.2"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-4.5.2.tgz"
-  integrity sha512-5BlMof9H1yGt0P8/WF+wPNw6GfctgGjXp5hkblpyT+8rkASSmkUKMXrxR0Xg8ThVCi/JnHQiKXeBaEwCeQwMFw==
-
 typescript@4.5.4:
   version "4.5.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.4.tgz#a17d3a0263bf5c8723b9c52f43c5084edf13c2e8"
@@ -3449,16 +3444,15 @@ xmlchars@^2.2.0:
   resolved "https://registry.npmjs.org/xmlchars/-/xmlchars-2.2.0.tgz"
   integrity sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==
 
-xunit.ts@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/xunit.ts/-/xunit.ts-1.0.2.tgz"
-  integrity sha512-1B2D7B/bqnDLX737IFmRIrLI/JJmKUPpTUfsPMV7cu7pqXFe3n3DP8fg4d8VrB7LkpQphwz1sZD8XvSMF0ww1Q==
+xunit.ts@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/xunit.ts/-/xunit.ts-1.0.3.tgz#2e6abfb6da1b65d72630209016da3b2e3d55d7a4"
+  integrity sha512-5tRv/eSJjHfr8zTAp6uEv/k9n39qK01D0Tk3VMix4Mxstf6HZpiEv0W5X2euwMjfpYvlGJd6EAg+yqqDatVZmw==
   dependencies:
     colors "1.4.0"
     command-line-args "5.2.0"
     command-line-usage "6.1.1"
     lodash.isequal "4.5.0"
-    typescript "4.5.2"
     xml "1.0.1"
 
 yallist@^2.1.2:
