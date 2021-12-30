@@ -38,19 +38,29 @@ Visualize Wi-Fi signal strength over a geographic area
 
 1. Once data has been collected, select other access points or change filters to display updated coverage
 
+1. Save your data to be loaded again later, or shared with other users
+
 ### Access Point Filters
 
 - The default selection of both "Group by SSID" and "Combine 2.4 + 5GHz" will show one option per SSID
 
 - Selecting only "Group by SSID" will show one option for each frequency that an SSID receives
 
-- Unselecting both "Group by SSID" (which disables "Combine 2.4 + 5GHz") will show every device for every SSID available, on both frequencies
+- Unselecting both "Group by SSID" (which also disables "Combine 2.4 + 5GHz") will show every device for every SSID available, on both frequencies
 
 ### Selecting a background
 
 - Supports all file types used for CSS `background-image`
 
 - The "Pixelate" option is good for floor plans with low resolutions (less than 1px/in²) so straight lines maintain hard edges
+
+### Saving/loading data
+
+- Saves all signal data as a JSON file
+
+- Loading this file again will restore all data points and signal info from the file
+
+- See limitation about browser window sizes below
 
 ## Limitations
 
