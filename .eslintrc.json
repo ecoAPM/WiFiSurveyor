@@ -4,13 +4,13 @@
 	},
 	"extends": [
 		"eslint:recommended",
-		"plugin:vue/essential",
+		"plugin:vue/recommended",
 		"plugin:@typescript-eslint/recommended"
 	],
 	"ignorePatterns": [
 		"dist/",
 		"publish/",
-		"Server/"
+		"Core/"
 	],
 	"parserOptions": {
 		"ecmaVersion": 6,
@@ -39,6 +39,39 @@
 		"@typescript-eslint/semi": [
 			"warn",
 			"always"
+		],
+		"vue/component-definition-name-casing": [
+			"off"
+		],
+		"vue/html-indent": [
+			"warn",
+			"tab"
+		],
+		"vue/html-self-closing": [
+			"warn",
+			{
+				"html": {
+					"normal": "never",
+					"void": "always"
+				}
+			}
+		],
+		"vue/max-attributes-per-line": [
+			"off"
+		],
+		"vue/multi-word-component-names": [
+			"off"
+		],
+		"vue/prop-name-casing": [
+			"off"
 		]
-	}
+	},
+	"overrides": [
+		{
+			"files": [
+				"*.vue"
+			],
+			"parser": "vue-eslint-parser"
+		}
+	]
 }

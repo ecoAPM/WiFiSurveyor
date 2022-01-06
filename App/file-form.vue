@@ -1,24 +1,26 @@
 <template>
 	<form>
 		<label for="name">Name</label>
-		<input id="name" type="text" v-model="state.name"/>
+		<input id="name" v-model="state.name" type="text" />
 
 		<section>
-			<a class="button" id="save-file" :download="state.name + '.json'" :href="objectURL()">
+			<a id="save-file" class="button" :download="state.name + '.json'" :href="objectURL()">
 				<button type="button">Save</button>
 			</a>
 
 			<button type="button" @click="$event.target.children[0].click()">
 				<label for="load-file" @click.stop>Load</label>
 			</button>
-			<input v-show="false" id="load-file" type="file" accept="application/json,.json"
-						 @change="state.load($event.target.files)"/>
+			<input
+				v-show="false" id="load-file" type="file" accept="application/json,.json"
+				@change="state.load($event.target.files)"
+			/>
 		</section>
 	</form>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue from "vue";
 import SharedState from "./SharedState";
 
 export default Vue.extend({

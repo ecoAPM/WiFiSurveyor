@@ -1,18 +1,18 @@
 <template>
 	<main>
 		<div
-				:class="{ pixelated: state.pixelated }"
-				:style="{ 'background-image': `url(${state.background})` }"
-				class="background"
+			:class="{ pixelated: state.pixelated }"
+			:style="{ 'background-image': `url(${state.background})` }"
+			class="background"
 		></div>
 		<canvas id="webglcanvas" :disabled="!enabled" @click="add($event)"></canvas>
 		<data-point
-				v-for="(reading, index) in state.readings"
-				:key="index"
-				:index="index"
-				:reading="reading"
-				:selected="state.selected"
-		></data-point>
+			v-for="(reading, index) in state.readings"
+			:key="index"
+			:index="index"
+			:reading="reading"
+			:selected="state.selected"
+		/>
 	</main>
 </template>
 
@@ -47,9 +47,9 @@ export default Vue.extend({
 
 			const location = new Point(e.offsetX, e.offsetY);
 			const reading = new Reading(
-					this.state.readings.length,
-					location,
-					this.state.current.signals.concat()
+				this.state.readings.length,
+				location,
+				this.state.current.signals.concat()
 			);
 			this.state.readings.push(reading);
 			this.refresh();
