@@ -2,33 +2,43 @@
 	<aside v-show="state.debug" class="debug">
 		<table aria-label="Debug Info">
 			<thead>
-			<tr>
-				<th scope="col"></th>
-				<th scope="col">SSID</th>
-				<th scope="col">Frequency</th>
-				<th scope="col">MAC</th>
-				<th scope="col">Strength</th>
-			</tr>
+				<tr>
+					<th scope="col"></th>
+					<th scope="col">
+						SSID
+					</th>
+					<th scope="col">
+						Frequency
+					</th>
+					<th scope="col">
+						MAC
+					</th>
+					<th scope="col">
+						Strength
+					</th>
+				</tr>
 			</thead>
 			<tbody>
-			<tr v-if="state.current.signals.length === 0">
-				<td colspan="5">(no signals found)</td>
-			</tr>
-			<tr v-for="signal in signals_by_strength" :key="signal.ssid + signal.mac">
-				<td :style="{ 'background-color': signal.color().toRGBA() }"></td>
-				<td>{{ signal.ssid }}</td>
-				<td>{{ signal.frequency }} GHz</td>
-				<td>{{ signal.mac }}</td>
-				<td>{{ signal.strength }} dBm</td>
-			</tr>
+				<tr v-if="state.current.signals.length === 0">
+					<td colspan="5">
+						(no signals found)
+					</td>
+				</tr>
+				<tr v-for="signal in signals_by_strength" :key="signal.ssid + signal.mac">
+					<td :style="{ 'background-color': signal.color().toRGBA() }"></td>
+					<td>{{ signal.ssid }}</td>
+					<td>{{ signal.frequency }} GHz</td>
+					<td>{{ signal.mac }}</td>
+					<td>{{ signal.strength }} dBm</td>
+				</tr>
 			</tbody>
 		</table>
 	</aside>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Signal from './Signal';
+import Vue from "vue";
+import Signal from "./Signal";
 import SharedState from "./SharedState";
 
 export default Vue.extend({
@@ -38,7 +48,7 @@ export default Vue.extend({
 	computed: {
 		signals_by_strength(): Signal[] {
 			return this.state.current.signals.slice()
-					.sort((s1, s2) => s1.compareTo(s2));
+				.sort((s1, s2) => s1.compareTo(s2));
 		}
 	}
 });

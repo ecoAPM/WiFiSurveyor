@@ -1,16 +1,13 @@
 <template>
-	<div
-			:style="{
-      left: reading.location.x + 'px',
-      top: reading.location.y + 'px',
-      'background-color': color(reading).toRGBA(),
-    }"
-			class="point"
-	>
+	<div class="point" :style="{ left: reading.location.x + 'px', top: reading.location.y + 'px', 'background-color': color(reading).toRGBA() }">
 		<div class="delete" @click="remove()"></div>
 		<div class="shadow"></div>
-		<div v-if="signal" class="value">{{ signal }} dBm</div>
-		<div v-if="!signal" class="value">(no signal)</div>
+		<div v-if="signal" class="value">
+			{{ signal }} dBm
+		</div>
+		<div v-if="!signal" class="value">
+			(no signal)
+		</div>
 	</div>
 </template>
 
@@ -24,13 +21,21 @@ import SharedState from "./SharedState";
 
 export default Vue.extend({
 	props: {
-		index: Number,
+		index: {
+			type: Number,
+			default: -1
+		},
 		reading: Reading,
 		selected: AccessPoint,
 	},
 	data: () => ({
 		state: SharedState,
 	}),
+	computed: {
+		signal(): number | null {
+			return this.reading.signalFor(this.selected);
+		}
+	},
 	methods: {
 		color(reading: Reading): Color {
 			return ColorConverter.toColor(reading.signalFor(this.selected));
@@ -38,11 +43,6 @@ export default Vue.extend({
 		remove(): void {
 			if (confirm("Are you sure you want to remove this reading?"))
 				this.state.deleteDataPoint(this.index);
-		}
-	},
-	computed: {
-		signal(): number | null {
-			return this.reading.signalFor(this.selected);
 		}
 	},
 });

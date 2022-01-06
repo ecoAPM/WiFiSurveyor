@@ -5,11 +5,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue from "vue";
 
 export default Vue.extend({
 	props: {
-		status: String
+		status: {
+			type: String,
+			default: ""
+		}
 	}
 });
 </script>

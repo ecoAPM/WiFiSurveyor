@@ -1,32 +1,35 @@
 <template>
 	<header>
-		<wifi-status :last_updated="last_updated" :signal="current_signal"></wifi-status>
-		<ap-form></ap-form>
-		<file-form></file-form>
-		<background-form></background-form>
-		<actions></actions>
+		<wifi-status :last_updated="last_updated" :signal="current_signal" />
+		<ap-form />
+		<file-form />
+		<background-form />
+		<actions />
 	</header>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import APForm from './ap-form.vue';
-import BackgroundForm from './background-form.vue';
-import FileForm from './file-form.vue';
-import WiFiStatus from './wifi-status.vue';
-import Actions from './actions.vue';
+import Vue from "vue";
+import APForm from "./ap-form.vue";
+import BackgroundForm from "./background-form.vue";
+import FileForm from "./file-form.vue";
+import WiFiStatus from "./wifi-status.vue";
+import Actions from "./actions.vue";
 import SharedState from "./SharedState";
 
 export default Vue.extend({
 	components: {
-		'ap-form': APForm,
-		'background-form': BackgroundForm,
-		'file-form': FileForm,
-		'wifi-status': WiFiStatus,
-		'actions': Actions
+		"ap-form": APForm,
+		"background-form": BackgroundForm,
+		"file-form": FileForm,
+		"wifi-status": WiFiStatus,
+		"actions": Actions
 	},
 	props: {
-		last_updated: String
+		last_updated: {
+			type: String,
+			default: ""
+		}
 	},
 	data: () => ({
 		state: SharedState

@@ -1,23 +1,33 @@
 <template>
 	<figure :class="{'full': !fading, 'fading': fading }">
-		<wifi-icon :color="color"></wifi-icon>
-		<figcaption v-if="signal">{{ signal }} dBm</figcaption>
-		<figcaption v-else>(no signal)</figcaption>
+		<wifi-icon :color="color" />
+		<figcaption v-if="signal">
+			{{ signal }} dBm
+		</figcaption>
+		<figcaption v-else>
+			(no signal)
+		</figcaption>
 	</figure>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import wifi_icon from './wifi-icon.vue';
-import ColorConverter from './ColorConverter';
+import Vue from "vue";
+import wifi_icon from "./wifi-icon.vue";
+import ColorConverter from "./ColorConverter";
 
 export default Vue.extend({
 	components: {
-		'wifi-icon': wifi_icon
+		"wifi-icon": wifi_icon
 	},
 	props: {
-		signal: Number,
-		last_updated: String
+		signal: {
+			type: Number,
+			default: 0
+		},
+		last_updated: {
+			type: String,
+			default: ""
+		}
 	},
 	data(): object {
 		return {
@@ -27,8 +37,8 @@ export default Vue.extend({
 	computed: {
 		color(): string {
 			return this.signal != null
-					? ColorConverter.toColor(this.signal).toRGBA()
-					: 'rgba(0, 0, 0, 0.5)';
+				? ColorConverter.toColor(this.signal).toRGBA()
+				: "rgba(0, 0, 0, 0.5)";
 		}
 	},
 	watch: {

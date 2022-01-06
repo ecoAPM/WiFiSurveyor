@@ -1,8 +1,8 @@
 <template>
 	<div class="app">
-		<status :status="connection_status"></status>
-		<header-menu :last_updated="last_updated" @background="setBackground($event)"></header-menu>
-		<main-area :enabled="!connection_status"></main-area>
+		<status :status="connection_status" />
+		<header-menu :last_updated="last_updated" @background="setBackground($event)" />
+		<main-area :enabled="!connection_status" />
 		<debug-panel />
 	</div>
 </template>
@@ -32,12 +32,20 @@ export default Vue.extend({
 		connection_status(): string {
 			return this.signal_service != null
 				? this.signal_service.status
-				: "(loading...)"
+				: "(loading...)";
 		},
 		last_updated(): string {
 			return this.signal_service != null
 				? this.signal_service.last_updated
 				: "";
+		}
+	},
+	watch: {
+		selected(): void {
+			if (this.selected != null)
+				this.renderer?.render(this.readings, this.selected);
+			else
+				this.renderer?.clear();
 		}
 	},
 	mounted(): void {
@@ -48,14 +56,6 @@ export default Vue.extend({
 		this.renderer = this.renderer_factory(canvas);
 
 		this.file_loader = this.file_loader_factory();
-	},
-	watch: {
-		selected(): void {
-			if (this.selected != null)
-				this.renderer?.render(this.readings, this.selected);
-			else
-				this.renderer?.clear();
-		}
 	}
 });
 </script>
