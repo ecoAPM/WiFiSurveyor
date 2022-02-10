@@ -1141,15 +1141,15 @@ dot-case@^3.0.4:
     no-case "^3.0.4"
     tslib "^2.0.3"
 
-dotenv-expand@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-6.0.1.tgz#233328515e4b71091a6513e2ffe7e9a24b49bb0c"
-  integrity sha512-GNHcCOyRKLCXWnH3L/+sJ04PQxxgTOZDCPuQQnqkqPMGIilyoxHZ2JUNmh2VWKCfzVKH/AZsqcbuSYlDDVb/xw==
+dotenv-expand@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-8.0.1.tgz#332aa17c14b12e28e2e230f8d183eecc1c014fdc"
+  integrity sha512-j/Ih7bIERDR5PzI89Zu8ayd3tXZ6E3dbY0ljQ9Db0K87qBO8zdLsi2dIvDHMWtjC3Yxb8XixOTHAtia0fDHRpg==
 
-dotenv@^14.3.2:
-  version "14.3.2"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-14.3.2.tgz#7c30b3a5f777c79a3429cb2db358eef6751e8369"
-  integrity sha512-vwEppIphpFdvaMCaHfCEv9IgwcxMljMw2TnAQBB4VWPvzXQLTb82jwmdOKzlEVUL3gNFT4l4TPKO+Bn+sqcrVQ==
+dotenv@^16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.0.tgz#c619001253be89ebb638d027b609c75c26e47411"
+  integrity sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==
 
 editorconfig@^0.15.3:
   version "0.15.3"
@@ -2651,17 +2651,17 @@ v8-compile-cache@^2.0.3:
   resolved "https://registry.npmjs.org/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz"
   integrity sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==
 
-vite-plugin-html@3.0.5:
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/vite-plugin-html/-/vite-plugin-html-3.0.5.tgz#1413dad15803938b3fae880b83d6a5673b910ecd"
-  integrity sha512-0m/BLkjpbALka2ewRP3WlPDV+z1raeIAwkfXYQu5TViKSYR5iN6TOOSAc8xzM1U1xJhrJ51wOiQHNLw3uK8XSw==
+vite-plugin-html@3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/vite-plugin-html/-/vite-plugin-html-3.0.6.tgz#8edebff956aa05529606a9753c71979bb311f634"
+  integrity sha512-B6ZAufvqUqdfPhcV+El8NNI3qV0d3ZntIur2UnP4tcHBV/O2d+6wHF79bJWuqR4WsvmsV7dejCNS3rAYFCisWw==
   dependencies:
     "@rollup/pluginutils" "^4.1.2"
     colorette "^2.0.16"
     connect-history-api-fallback "^1.6.0"
     consola "^2.15.3"
-    dotenv "^14.3.2"
-    dotenv-expand "^6.0.1"
+    dotenv "^16.0.0"
+    dotenv-expand "^8.0.1"
     ejs "^3.1.6"
     fast-glob "^3.2.11"
     fs-extra "^10.0.0"
