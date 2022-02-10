@@ -45,10 +45,10 @@ export default class DebugPanelTests extends TestSuite {
 		const component = mount(DebugPanel, { data: () => ({ state: state }) });
 
 		//act
-		const sorted_signals = component.findAll("table tbody tr");
+		const sorted_signals = component.findAll("table tbody tr td:nth-child(5)").map(s => s.text());
 
 		//assert
-		this.assert.stringContains("-40", sorted_signals.at(0).text());
-		this.assert.stringContains("-50", sorted_signals.at(1).text());
+		this.assert.contains("-40 dBm", sorted_signals);
+		this.assert.contains("-50 dBm", sorted_signals);
 	}
 }
