@@ -24,6 +24,6 @@ export default class StatusTests extends TestSuite {
 		const component = mount(Status, { propsData: { status: status } });
 
 		//assert
-		this.assert.empty(component.html());
+		this.assert.empty(component.text());
 	}
 }

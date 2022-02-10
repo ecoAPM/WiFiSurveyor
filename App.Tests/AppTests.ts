@@ -1,6 +1,6 @@
-import {Test, TestSuite} from "xunit.ts";
+import { Test, TestSuite } from "xunit.ts";
 import App from "../App/app.vue";
-import {shallowMount as mount} from "@vue/test-utils";
+import { shallowMount as mount } from "@vue/test-utils";
 import Mockito from "ts-mockito";
 import Renderer from "../App/Renderer";
 import MockFactory from "./MockFactory";
@@ -18,10 +18,12 @@ export default class AppTests extends TestSuite {
 
 		//act
 		const component = mount(App, {
-			provide: {
-				signal_service: () => Mockito.instance(signal_service),
-				renderer: () => renderer,
-				file_loader: () => Mockito.instance(file_loader)
+			global: {
+				provide: {
+					signal_service: () => Mockito.instance(signal_service),
+					renderer: () => renderer,
+					file_loader: () => Mockito.instance(file_loader)
+				}
 			}
 		});
 
@@ -42,10 +44,12 @@ export default class AppTests extends TestSuite {
 
 		//act
 		const component = mount(App, {
-			provide: {
-				signal_service: () => Mockito.instance(signal_service),
-				renderer: () => renderer,
-				file_loader: () => Mockito.instance(file_loader)
+			global: {
+				provide: {
+					signal_service: () => Mockito.instance(signal_service),
+					renderer: () => renderer,
+					file_loader: () => Mockito.instance(file_loader)
+				}
 			}
 		});
 		await component.vm.$nextTick();
@@ -62,10 +66,12 @@ export default class AppTests extends TestSuite {
 
 		//act
 		const component = mount(App, {
-			provide: {
-				signal_service: () => null,
-				renderer: () => renderer,
-				file_loader: () => null
+			global: {
+				provide: {
+					signal_service: () => null,
+					renderer: () => renderer,
+					file_loader: () => null
+				}
 			}
 		});
 
