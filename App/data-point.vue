@@ -12,14 +12,14 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { defineComponent } from "vue";
 import Color from "./Color";
 import ColorConverter from "./ColorConverter";
 import AccessPoint from "./AccessPoint";
 import Reading from "./Reading";
 import SharedState from "./SharedState";
 
-export default Vue.extend({
+export default defineComponent({
 	props: {
 		index: {
 			type: Number,

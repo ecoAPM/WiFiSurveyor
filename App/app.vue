@@ -8,14 +8,14 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { defineComponent } from "vue";
 import Status from "./status.vue";
 import HeaderMenu from "./header-menu.vue";
 import MainArea from "./main-area.vue";
 import DebugPanel from "./debug-panel.vue";
 import SharedState from "./SharedState";
 
-export default Vue.extend({
+export default defineComponent({
 	components: {
 		"status": Status,
 		"header-menu": HeaderMenu,
