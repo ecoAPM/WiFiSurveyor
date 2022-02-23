@@ -540,10 +540,10 @@ combined-stream@^1.0.8:
   dependencies:
     delayed-stream "~1.0.0"
 
-command-line-args@5.2.0:
-  version "5.2.0"
-  resolved "https://registry.npmjs.org/command-line-args/-/command-line-args-5.2.0.tgz"
-  integrity sha512-4zqtU1hYsSJzcJBOcNZIbW5Fbk9BkjCp1pZVhQKoRaWL5J7N4XphDLwo8aWwdQpTugxwu+jf9u2ZhkXiqp5Z6A==
+command-line-args@5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/command-line-args/-/command-line-args-5.2.1.tgz#c44c32e437a57d7c51157696893c5909e9cec42e"
+  integrity sha512-H4UfQhZyakIjC74I9d34fGYDwk3XpSr17QhEd0Q3I9Xq1CETHo4Hcuo87WyWHpAF1aSLjLRf5lD9ZGX2qStUvg==
   dependencies:
     array-back "^3.1.0"
     find-replace "^3.0.0"
@@ -2260,13 +2260,13 @@ xmlchars@^2.2.0:
   resolved "https://registry.npmjs.org/xmlchars/-/xmlchars-2.2.0.tgz"
   integrity sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==
 
-xunit.ts@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/xunit.ts/-/xunit.ts-1.0.3.tgz#2e6abfb6da1b65d72630209016da3b2e3d55d7a4"
-  integrity sha512-5tRv/eSJjHfr8zTAp6uEv/k9n39qK01D0Tk3VMix4Mxstf6HZpiEv0W5X2euwMjfpYvlGJd6EAg+yqqDatVZmw==
+xunit.ts@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/xunit.ts/-/xunit.ts-1.1.0.tgz#48468d360a8393e9bf3264f2bbe841bf97e8b51b"
+  integrity sha512-SL69F/fOLYV+AtWiNkyc2pX6Mr5d0UP1N7BfJr5rNohj4dKkdvbMVPjhpMsB8qK82pdNdxuDkSXqtss5bWvEbg==
   dependencies:
     colors "1.4.0"
-    command-line-args "5.2.0"
+    command-line-args "5.2.1"
     command-line-usage "6.1.1"
     lodash.isequal "4.5.0"
     xml "1.0.1"
