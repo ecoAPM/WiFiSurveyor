@@ -1159,10 +1159,10 @@ form-data@^4.0.0:
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
-fs-extra@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.npmjs.org/fs-extra/-/fs-extra-10.0.0.tgz"
-  integrity sha512-C5owb14u9eJwizKGdchcDUQeFtlSHHthBk8pbX9Vc1PFZrLombudjDnNns88aYslCyF6IY5SUw3Roz6xShcEIQ==
+fs-extra@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.0.1.tgz#27de43b4320e833f6867cc044bfce29fdf0ef3b8"
+  integrity sha512-NbdoVMZso2Lsrn/QwLXOy6rm0ufY2zEOKCDzJR/0kBsb0E6qed0P3iYK+Ath3BfvXEeu4JhEtXLgILx5psUfag==
   dependencies:
     graceful-fs "^4.2.0"
     jsonfile "^6.0.1"
@@ -2091,10 +2091,10 @@ v8-compile-cache@^2.0.3:
   resolved "https://registry.npmjs.org/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz"
   integrity sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==
 
-vite-plugin-html@3.0.6:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/vite-plugin-html/-/vite-plugin-html-3.0.6.tgz#8edebff956aa05529606a9753c71979bb311f634"
-  integrity sha512-B6ZAufvqUqdfPhcV+El8NNI3qV0d3ZntIur2UnP4tcHBV/O2d+6wHF79bJWuqR4WsvmsV7dejCNS3rAYFCisWw==
+vite-plugin-html@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/vite-plugin-html/-/vite-plugin-html-3.1.0.tgz#64d5ffd1d0e37c1a0d6076a17593862fbea5809a"
+  integrity sha512-ig2XPSSeqG23/k7EQhIh0Pt1Fbm1V75G/qKnZDA3oIqKjIMaA1mF4Otmc2W2ru3AlBuuv5dFv+NQnO+i9QsK2w==
   dependencies:
     "@rollup/pluginutils" "^4.1.2"
     colorette "^2.0.16"
@@ -2104,7 +2104,7 @@ vite-plugin-html@3.0.6:
     dotenv-expand "^8.0.1"
     ejs "^3.1.6"
     fast-glob "^3.2.11"
-    fs-extra "^10.0.0"
+    fs-extra "^10.0.1"
     html-minifier-terser "^6.1.0"
     node-html-parser "^5.2.0"
     pathe "^0.2.0"
