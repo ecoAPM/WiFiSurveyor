@@ -29,7 +29,7 @@
 	},
 	"homepage": "https://github.com/ecoAPM/WiFiSurveyor#readme",
 	"devDependencies": {
-		"@microsoft/signalr": "6.0.2",
+		"@microsoft/signalr": "6.0.3",
 		"@types/delaunator": "5.0.0",
 		"@types/jsdom": "16.2.14",
 		"@types/node": "17.0.21",
