@@ -68,10 +68,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@rollup/pluginutils@^4.1.2":
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.1.2.tgz#ed5821c15e5e05e32816f5fb9ec607cdf5a75751"
-  integrity sha512-ROn4qvkxP9SyPeHaf7uQC/GPFY6L/OWy9+bd9AwcjOAWQwxRscoEyAUD8qCY5o5iL4jqQwoLk2kaTKJPb/HwzQ==
+"@rollup/pluginutils@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.2.0.tgz#a14bbd058fdbba0a5647143b16ed0d86fb60bd08"
+  integrity sha512-2WUyJNRkyH5p487pGnn4tWAsxhEFKN/pT8CMgHshd5H+IXkOnKvKZwsz5ZWz+YCXkleZRAU5kwbfgF8CPfDRqA==
   dependencies:
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
@@ -635,7 +635,7 @@ cross-spawn@^7.0.2:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-css-select@^4.1.3:
+css-select@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/css-select/-/css-select-4.2.1.tgz#9e665d6ae4c7f9d65dbe69d0316e3221fb274cdd"
   integrity sha512-/aUslKhzkTNCQUB2qTX84lVmfia9NyjP3WpDGtj/WxhwBzWBYUV3DgUpurHTme8UTPcPlAD1DJ+b0nN/t50zDQ==
@@ -790,10 +790,10 @@ dot-case@^3.0.4:
     no-case "^3.0.4"
     tslib "^2.0.3"
 
-dotenv-expand@^8.0.1:
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-8.0.1.tgz#332aa17c14b12e28e2e230f8d183eecc1c014fdc"
-  integrity sha512-j/Ih7bIERDR5PzI89Zu8ayd3tXZ6E3dbY0ljQ9Db0K87qBO8zdLsi2dIvDHMWtjC3Yxb8XixOTHAtia0fDHRpg==
+dotenv-expand@^8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-8.0.2.tgz#c75c6f695cff061a9ed9a95a520c6cc84b912188"
+  integrity sha512-vKKAk+VOzAWOV/dPIeSYqhgC/TQY+6L6Ibkzfsr8xd1stdBsTuGu9asCOXgbYbBeS+f2Y6lqqEuw7riOA+xEUQ==
 
 dotenv@^16.0.0:
   version "16.0.0"
@@ -1616,12 +1616,12 @@ node-fetch@^2.6.1:
   dependencies:
     whatwg-url "^5.0.0"
 
-node-html-parser@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/node-html-parser/-/node-html-parser-5.2.0.tgz#6f29fd00d79f65334e7e20200964644207925607"
-  integrity sha512-fmiwLfQu+J2A0zjwSEkztSHexAf5qq/WoiL/Hgo1K7JpfEP+OGWY5maG0kGaM+IFVdixF/1QbyXaQ3h4cGfeLw==
+node-html-parser@^5.3.3:
+  version "5.3.3"
+  resolved "https://registry.yarnpkg.com/node-html-parser/-/node-html-parser-5.3.3.tgz#2845704f3a7331a610e0e551bf5fa02b266341b6"
+  integrity sha512-ncg1033CaX9UexbyA7e1N0aAoAYRDiV8jkTvzEnfd1GDvzFdrsXLzR4p4ik8mwLgnaKP/jyUFWDy9q3jvRT2Jw==
   dependencies:
-    css-select "^4.1.3"
+    css-select "^4.2.1"
     he "1.2.0"
 
 nth-check@^2.0.1:
@@ -2120,22 +2120,22 @@ v8-compile-cache@^2.0.3:
   resolved "https://registry.npmjs.org/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz"
   integrity sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==
 
-vite-plugin-html@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/vite-plugin-html/-/vite-plugin-html-3.1.0.tgz#64d5ffd1d0e37c1a0d6076a17593862fbea5809a"
-  integrity sha512-ig2XPSSeqG23/k7EQhIh0Pt1Fbm1V75G/qKnZDA3oIqKjIMaA1mF4Otmc2W2ru3AlBuuv5dFv+NQnO+i9QsK2w==
+vite-plugin-html@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/vite-plugin-html/-/vite-plugin-html-3.2.0.tgz#0d4df9900642a321a139f1c25c05195ba9d0ec79"
+  integrity sha512-2VLCeDiHmV/BqqNn5h2V+4280KRgQzCFN47cst3WiNK848klESPQnzuC3okH5XHtgwHH/6s1Ho/YV6yIO0pgoQ==
   dependencies:
-    "@rollup/pluginutils" "^4.1.2"
+    "@rollup/pluginutils" "^4.2.0"
     colorette "^2.0.16"
     connect-history-api-fallback "^1.6.0"
     consola "^2.15.3"
     dotenv "^16.0.0"
-    dotenv-expand "^8.0.1"
+    dotenv-expand "^8.0.2"
     ejs "^3.1.6"
     fast-glob "^3.2.11"
     fs-extra "^10.0.1"
     html-minifier-terser "^6.1.0"
-    node-html-parser "^5.2.0"
+    node-html-parser "^5.3.3"
     pathe "^0.2.0"
 
 vite@2.8.6:
