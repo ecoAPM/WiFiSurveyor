@@ -24,7 +24,7 @@ export default defineConfig({
 		rollupOptions: {
 			input: files,
 			output: {
-				intro: "require('global-jsdom')();"
+				intro: "require('global-jsdom/register');"
 			},
 			external: ["xunit.ts", "ts-mockito", "vue", "@vue/test-utils"]
 		}
