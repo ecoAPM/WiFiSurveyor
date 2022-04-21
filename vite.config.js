@@ -1,11 +1,9 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { createHtmlPlugin as html } from "vite-plugin-html";
 
 export default defineConfig({
 	root: "App",
 	plugins: [
-		html({ minify: true }),
 		vue()
 	]
 });
