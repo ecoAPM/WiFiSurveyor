@@ -36,10 +36,10 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@microsoft/signalr@6.0.6":
-  version "6.0.6"
-  resolved "https://registry.yarnpkg.com/@microsoft/signalr/-/signalr-6.0.6.tgz#6ba53623a64df64a80126694db4e37146647d3fe"
-  integrity sha512-3dTLtgwEXUeE9R/3NZQslh1B2WbppeHVXdnpvSZc7Yz+tP5Yiw3KCVUHwKUVnYmd9/2v3DaI/pvCdihrss49zA==
+"@microsoft/signalr@6.0.7":
+  version "6.0.7"
+  resolved "https://registry.yarnpkg.com/@microsoft/signalr/-/signalr-6.0.7.tgz#8651d6807a0430575ce51960c254deab8d682b4c"
+  integrity sha512-CoIz8K0IpaCGbI4rr2W8RHYA8Yq0KqY8DNsJzHw3UEWTJ3KqhWqeVCE8R24czzcsoUrE28xltEQ6qNTXZDHf3g==
   dependencies:
     abort-controller "^3.0.0"
     eventsource "^1.0.7"
