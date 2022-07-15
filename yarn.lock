@@ -1854,10 +1854,10 @@ vue-eslint-parser@9.0.3, vue-eslint-parser@^9.0.1:
     lodash "^4.17.21"
     semver "^7.3.6"
 
-vue-template-compiler@2.7.5:
-  version "2.7.5"
-  resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.7.5.tgz#f3f1c559bfceb7e953fdc9a5b42602026becec87"
-  integrity sha512-f5aofPdhOtoCW2jnK+iehkfVizDSrLuiyHcgIlGrXlkBXpIDfvm3HNX8emrhEduj5o5NyVulVbwpXW+zpRZQNg==
+vue-template-compiler@2.7.6:
+  version "2.7.6"
+  resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.7.6.tgz#5f49cf2d24b3e3a84d55128845cb299d5ea20727"
+  integrity sha512-z0xCDI/4eRTI6NihqDrxGNMkiH6XnUZ7Uh8UPwKRYYPxHyRHCqNuBQVf96+YYExPsJkLABZfexFHz9DClyfoXQ==
   dependencies:
     de-indent "^1.0.2"
     he "^1.2.0"

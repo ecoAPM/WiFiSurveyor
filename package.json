@@ -48,7 +48,7 @@
 		"vite": "2.9.14",
 		"vue": "3.2.37",
 		"vue-eslint-parser": "9.0.3",
-		"vue-template-compiler": "2.7.5",
+		"vue-template-compiler": "2.7.6",
 		"xunit.ts": "1.2.2"
 	},
 	"browserslist": [
