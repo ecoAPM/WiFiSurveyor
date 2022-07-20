@@ -1980,10 +1980,10 @@ xmlchars@^2.2.0:
   resolved "https://registry.npmjs.org/xmlchars/-/xmlchars-2.2.0.tgz"
   integrity sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==
 
-xunit.ts@1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/xunit.ts/-/xunit.ts-1.2.2.tgz#9af3436e9788ac6d61942ffe1229631ae216767c"
-  integrity sha512-NkO2jLOyA5CavMyZ7kD4jQXsbnO2x/+kCY3SgfyNEOleh2WaP5H532MOmi3tKzcwVFu54YqaIXQNvgNWhnymxA==
+xunit.ts@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/xunit.ts/-/xunit.ts-1.3.0.tgz#695bd94654fab403ab0ea1de9d668aa892e72446"
+  integrity sha512-lktAfEwZbL1mNuGoycarzX2T0eYV++/WQwbXlkSDDavUYgsYu+W1mCOkc5mUSJdOatHhs2Tr+Aub2k4FspgfvA==
   dependencies:
     colors "1.4.0"
     command-line-args "5.2.1"
