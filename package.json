@@ -32,7 +32,7 @@
 		"@microsoft/signalr": "6.0.8",
 		"@types/delaunator": "5.0.0",
 		"@types/jsdom": "20.0.0",
-		"@types/node": "18.7.14",
+		"@types/node": "18.7.15",
 		"@typescript-eslint/eslint-plugin": "5.36.1",
 		"@typescript-eslint/parser": "5.36.1",
 		"@vitejs/plugin-vue": "2.3.4",
