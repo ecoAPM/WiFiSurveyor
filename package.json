@@ -1,6 +1,6 @@
 {
 	"name": "wifisurveyor",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Visualize Wi-Fi signal strength over a geographic area",
 	"main": "app.js",
 	"scripts": {
