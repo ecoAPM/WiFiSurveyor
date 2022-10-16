@@ -11,6 +11,9 @@
 						Frequency
 					</th>
 					<th scope="col">
+						Channel
+					</th>
+					<th scope="col">
 						MAC
 					</th>
 					<th scope="col">
@@ -28,6 +31,7 @@
 					<td :style="{ 'background-color': signal.color().toRGBA() }"></td>
 					<td>{{ signal.ssid }}</td>
 					<td>{{ signal.frequency }} GHz</td>
+					<td>{{ signal.channel }}</td>
 					<td>{{ signal.mac }}</td>
 					<td>{{ signal.strength }} dBm</td>
 				</tr>

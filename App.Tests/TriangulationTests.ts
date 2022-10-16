@@ -26,9 +26,9 @@ export default class TriangulationTests extends TestSuite {
 	async canConvertReadingsToColorParts() {
 		//arrange
 		const readings = [
-			new Reading(1, new Point(2, 1), [ new Signal("12:34:56", "test", 2, -40) ]),
-			new Reading(2, new Point(4, 2), [ new Signal("12:34:56", "test", 2, -60) ]),
-			new Reading(3, new Point(3, 3), [ new Signal("12:34:56", "test", 2, -80) ])
+			new Reading(1, new Point(2, 1), [ new Signal("12:34:56", "test", 2, 1, -40) ]),
+			new Reading(2, new Point(4, 2), [ new Signal("12:34:56", "test", 2, 6, -60) ]),
+			new Reading(3, new Point(3, 3), [ new Signal("12:34:56", "test", 2, 11, -80) ])
 		];
 		const access_point = new AccessPoint("test");
 

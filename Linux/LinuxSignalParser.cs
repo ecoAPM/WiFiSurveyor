@@ -17,6 +17,7 @@ public sealed class LinuxSignalParser : ISignalParser<string>
 		var mac = Regex.Match(result, "Address: (.+)").Groups[1].Value;
 		var ssid = Regex.Match(result, "SSID:\"(.+)\"").Groups[1].Value;
 		var freq = Regex.Match(result, "Frequency:(\\d)").Groups[1].Value;
+		var channel = Regex.Match(result, "\\(Channel (\\d+)\\)").Groups[1].Value;
 		var dbm = Regex.Match(result, "Signal level=(-\\d+)").Groups[1].Value;
 
 		return new Signal
@@ -24,6 +25,7 @@ public sealed class LinuxSignalParser : ISignalParser<string>
 			MAC = mac,
 			SSID = ssid.Replace(@"\x00", ""),
 			Frequency = freq == "2" ? Frequency._2_4_GHz : Frequency._5_GHz,
+			Channel = byte.Parse(channel),
 			Strength = short.Parse(dbm)
 		};
 	}

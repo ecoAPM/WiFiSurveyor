@@ -6,14 +6,14 @@ import AccessPoint from "../App/AccessPoint";
 
 export default class ReadingTests extends TestSuite {
 	private static signals: Signal[] = [
-		new Signal("mac1", "ssid1", 2, -35),
-		new Signal("mac2", "ssid1", 2, -30),
-		new Signal("mac3", "ssid1", 5, -45),
-		new Signal("mac4", "ssid1", 5, -40),
-		new Signal("mac5", "ssid2", 2, -55),
-		new Signal("mac6", "ssid2", 2, -50),
-		new Signal("mac7", "ssid2", 5, -65),
-		new Signal("mac8", "ssid2", 5, -60)
+		new Signal("mac1", "ssid1", 2, 1, -35),
+		new Signal("mac2", "ssid1", 2, 11, -30),
+		new Signal("mac3", "ssid1", 5, 36, -45),
+		new Signal("mac4", "ssid1", 5, 157, -40),
+		new Signal("mac5", "ssid2", 2, 1, -55),
+		new Signal("mac6", "ssid2", 2, 11, -50),
+		new Signal("mac7", "ssid2", 5, 36, -65),
+		new Signal("mac8", "ssid2", 5, 157, -60)
 	];
 
 	@Test()

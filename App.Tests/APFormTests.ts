@@ -9,14 +9,14 @@ import AppViewModel from "../App/AppViewModel";
 export default class APFormTests extends TestSuite {
 
 	private static signals = [
-		new Signal("mac2", "ssid2", 2, -30),
-		new Signal("mac5", "ssid2", 2, -50),
-		new Signal("mac3", "ssid2", 5, -30),
-		new Signal("mac4", "ssid2", 5, -60),
-		new Signal("mac1", "ssid1", 2, -40),
-		new Signal("mac7", "ssid1", 5, -70),
-		new Signal("mac6", "ssid1", 5, -90),
-		new Signal("mac8", "ssid1", 2, -80),
+		new Signal("mac2", "ssid2", 2, 1, -30),
+		new Signal("mac5", "ssid2", 2, 11, -50),
+		new Signal("mac3", "ssid2", 5, 36, -30),
+		new Signal("mac4", "ssid2", 5, 157, -60),
+		new Signal("mac1", "ssid1", 2, 1, -40),
+		new Signal("mac7", "ssid1", 5, 36, -70),
+		new Signal("mac6", "ssid1", 5, 157, -90),
+		new Signal("mac8", "ssid1", 2, 11, -80),
 	];
 
 	@Test()

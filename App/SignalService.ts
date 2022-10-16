@@ -36,7 +36,7 @@ export default class SignalService {
 
 		this.signals.splice(0);
 		message.signals.forEach(data => {
-			const signal = new Signal(data.mac, data.ssid, data.frequency, data.strength);
+			const signal = new Signal(data.mac, data.ssid, data.frequency, data.channel, data.strength);
 			this.signals.push(signal);
 		});
 	}

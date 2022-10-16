@@ -11,7 +11,7 @@ export default class DataPointTests extends TestSuite {
 	@Test()
 	async showsSignalOnDataPoint() {
 		//arrange
-		const reading = new Reading(1, new Point(0, 0), [ new Signal("mac", "test", 2, -30) ]);
+		const reading = new Reading(1, new Point(0, 0), [ new Signal("mac", "test", 2, 1, -30) ]);
 		const selected = new AccessPoint("test");
 
 		//act
@@ -37,7 +37,7 @@ export default class DataPointTests extends TestSuite {
 	@Test()
 	async positionMatchesReadingLocation() {
 		//arrange
-		const reading = new Reading(1, new Point(12, 34), [ new Signal("mac", "test", 2, -30) ]);
+		const reading = new Reading(1, new Point(12, 34), [ new Signal("mac", "test", 2, 1, -30) ]);
 		const selected = new AccessPoint("test");
 
 		//act
@@ -57,7 +57,7 @@ export default class DataPointTests extends TestSuite {
 			new Reading(2, new Point(0, 0), []),
 			new Reading(3, new Point(0, 0), [])
 		];
-		const reading = new Reading(1, new Point(12, 34), [ new Signal("mac", "test", 2, -30) ]);
+		const reading = new Reading(1, new Point(12, 34), [ new Signal("mac", "test", 2, 1, -30) ]);
 		const selected = new AccessPoint("test");
 		const component = mount(DataPoint, {
 			data: () => ({ state: state }),
@@ -83,7 +83,7 @@ export default class DataPointTests extends TestSuite {
 			new Reading(2, new Point(0, 0), []),
 			new Reading(3, new Point(0, 0), [])
 		];
-		const reading = new Reading(1, new Point(12, 34), [ new Signal("mac", "test", 2, -30) ]);
+		const reading = new Reading(1, new Point(12, 34), [ new Signal("mac", "test", 2, 1, -30) ]);
 		const selected = new AccessPoint("test");
 		const component = mount(DataPoint, {
 			data: () => ({ state: state }),

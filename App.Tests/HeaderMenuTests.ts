@@ -12,7 +12,7 @@ export default class HeaderMenuTests extends TestSuite {
 	async canGetCurrentSignal() {
 		//arrange
 		const signals = [
-			new Signal("123abc", "test", 2.4, -10)
+			new Signal("123abc", "test", 2, 1, -10)
 		];
 		const state = new AppViewModel();
 		state.current = new Reading(0, new Point(0, 0), signals);

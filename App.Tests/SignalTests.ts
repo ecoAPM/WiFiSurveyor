@@ -5,10 +5,10 @@ export default class SignalTests extends TestSuite {
 	@Test()
 	async canCreateSignal() {
 		//arrange
-		const mac = "12:34:56:78:90:ab", ssid = "test", frequency = 2, strength = -50;
+		const mac = "12:34:56:78:90:ab", ssid = "test", frequency = 2, channel = 1, strength = -50;
 
 		//act
-		const signal = new Signal(mac, ssid, frequency, strength);
+		const signal = new Signal(mac, ssid, frequency, channel, strength);
 
 		//assert
 		this.assert.equal("12:34:56:78:90:ab", signal.mac);
@@ -20,7 +20,7 @@ export default class SignalTests extends TestSuite {
 	@Test()
 	async canGetColorForSignal() {
 		//arrange
-		const signal = new Signal("mac", "ssid", 2, -40);
+		const signal = new Signal("mac", "ssid", 2, 1, -40);
 
 		//act
 		const color = signal.color();
@@ -32,11 +32,11 @@ export default class SignalTests extends TestSuite {
 	@Test()
 	async canCompareSignals() {
 		//arrange
-		const s1 = new Signal("12:34:56:78:90:ab", "test1", 2, -20);
-		const s2 = new Signal("12:34:56:78:90:ac", "test1", 2, -20);
-		const s3 = new Signal("12:34:56:78:90:ad", "test2", 2, -20);
-		const s4 = new Signal("12:34:56:78:90:ae", "test2", 2, -40);
-		const s5 = new Signal("12:34:56:78:90:af", "test2", 5, -40);
+		const s1 = new Signal("12:34:56:78:90:ab", "test1", 2, 1, -20);
+		const s2 = new Signal("12:34:56:78:90:ac", "test1", 2, 11, -20);
+		const s3 = new Signal("12:34:56:78:90:ad", "test2", 2, 6, -20);
+		const s4 = new Signal("12:34:56:78:90:ae", "test2", 2, 11, -40);
+		const s5 = new Signal("12:34:56:78:90:af", "test2", 5, 36, -40);
 
 		//act
 		const less1 = s1.compareTo(s2);

@@ -37,15 +37,15 @@ export default class DebugPanelTests extends TestSuite {
 	async signalsAreSortedByStrength() {
 		//arrange
 		const signals = [
-			new Signal("mac1", "ssid1", 2, -50),
-			new Signal("mac2", "ssid2", 2, -40)
+			new Signal("mac1", "ssid1", 2, 1, -50),
+			new Signal("mac2", "ssid2", 2, 1, -40)
 		];
 		const state = new AppViewModel();
 		state.current = new Reading(0, new Point(0, 0), signals);
 		const component = mount(DebugPanel, { data: () => ({ state: state }) });
 
 		//act
-		const sorted_signals = component.findAll("table tbody tr td:nth-child(5)").map(s => s.text());
+		const sorted_signals = component.findAll("table tbody tr td:nth-child(6)").map(s => s.text());
 
 		//assert
 		this.assert.contains("-40 dBm", sorted_signals);

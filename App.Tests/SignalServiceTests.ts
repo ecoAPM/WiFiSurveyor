@@ -26,14 +26,14 @@ export default class SignalServiceTests extends TestSuite {
 		const connection = Mockito.mock<HubConnection>();
 		Mockito.when(connection.start()).thenResolve();
 
-		const signal1 = new Signal("mac1", "ssid1", 2, -50);
-		const signal2 = new Signal("mac2", "ssid2", 2, -40);
+		const signal1 = new Signal("mac1", "ssid1", 2, 1, -50);
+		const signal2 = new Signal("mac2", "ssid2", 2, 1, -40);
 		const signals = [signal1, signal2];
 		const service = new SignalService(Mockito.instance(connection), signals);
 
 		const message = new Message();
-		const new1 = new Signal("mac1", "ssid1", 2, -45);
-		const new2 = new Signal("mac2", "ssid2", 2, -44);
+		const new1 = new Signal("mac1", "ssid1", 2, 1, -45);
+		const new2 = new Signal("mac2", "ssid2", 2, 1, -44);
 		message.signals = [new1, new2];
 
 		//act

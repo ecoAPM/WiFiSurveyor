@@ -16,11 +16,15 @@ public sealed class MacSignalParser : ISignalParser<string>
 			SSID = line[..32].Trim(),
 			MAC = line[32..50].Trim(),
 			Strength = short.Parse(line[50..55].Trim()),
+			Channel = GetChannel(line[55..64].Trim()),
 			Frequency = GetFrequency(line[55..64].Trim())
 		};
 
-	private static Frequency GetFrequency(string channel)
-		=> int.Parse(channel.Split(',')[0]) < 32
+	private static Frequency GetFrequency(string column)
+		=> GetChannel(column) < 32
 			? Frequency._2_4_GHz
 			: Frequency._5_GHz;
+
+	private static byte GetChannel(string column)
+		=> byte.Parse(column.Split(',')[0]);
 }
