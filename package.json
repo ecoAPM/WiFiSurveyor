@@ -34,7 +34,7 @@
 		"@types/jsdom": "20.0.0",
 		"@types/node": "18.11.0",
 		"@typescript-eslint/eslint-plugin": "5.40.1",
-		"@typescript-eslint/parser": "5.40.0",
+		"@typescript-eslint/parser": "5.40.1",
 		"@vitejs/plugin-vue": "2.3.4",
 		"@vue/component-compiler-utils": "3.3.0",
 		"@vue/test-utils": "2.1.0",
