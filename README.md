@@ -76,7 +76,7 @@ Contibutions are welcome for improving the following:
 
 ### Requirements
 
-- .NET SDK 6
+- .NET SDK 7
 - Node.JS with `yarn`
 
 ### Building from source

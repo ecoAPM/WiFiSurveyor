@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<AssemblyName>WiFiSurveyor.Mac.Tests</AssemblyName>
 		<RootNamespace>WiFiSurveyor.Mac.Tests</RootNamespace>
 		<ImplicitUnsings>enable</ImplicitUnsings>
