@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using WiFiSurveyor.Core;
 
 namespace WiFiSurveyor.Linux;
@@ -14,11 +13,11 @@ public sealed class LinuxSignalParser : ISignalParser<string>
 
 	private static Signal GetSignal(string result)
 	{
-		var mac = Regex.Match(result, "Address: (.+)").Groups[1].Value;
-		var ssid = Regex.Match(result, "SSID:\"(.+)\"").Groups[1].Value;
-		var freq = Regex.Match(result, "Frequency:(\\d)").Groups[1].Value;
-		var channel = Regex.Match(result, "\\(Channel (\\d+)\\)").Groups[1].Value;
-		var dbm = Regex.Match(result, "Signal level=(-\\d+)").Groups[1].Value;
+		var mac = Patterns.Address().Match(result).Groups[1].Value;
+		var ssid = Patterns.SSID().Match(result).Groups[1].Value;
+		var freq = Patterns.Frequency().Match(result).Groups[1].Value;
+		var channel = Patterns.Channel().Match(result).Groups[1].Value;
+		var dbm = Patterns.Signal().Match(result).Groups[1].Value;
 
 		return new Signal
 		{
