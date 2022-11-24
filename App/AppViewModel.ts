@@ -46,7 +46,7 @@ export default class AppViewModel {
 		if (json.readings) {
 			this.readings = json.readings.map(r => new Reading(r.id,
 				new Point(r.location.x, r.location.y),
-				r.signals.map(s => new Signal(s.mac, s.ssid, s.frequency, s.strength))));
+				r.signals.map(s => new Signal(s.mac, s.ssid, s.frequency, s.channel, s.strength))));
 		}
 	}
 
