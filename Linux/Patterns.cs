@@ -13,7 +13,7 @@ public static partial class Patterns
 	[GeneratedRegex("Frequency:(\\d)")]
 	public static partial Regex Frequency();
 
-	[GeneratedRegex("\\(Channel (\\d+)\\)")]
+	[GeneratedRegex("Channel:(\\d+)")]
 	public static partial Regex Channel();
 
 	[GeneratedRegex("Signal level=(-\\d+)")]
