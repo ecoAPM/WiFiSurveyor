@@ -22,6 +22,16 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/noto-sans@4.5.11":
+  version "4.5.11"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans/-/noto-sans-4.5.11.tgz#9074486d876577f3688f884c7ad6196d6dbea27e"
+  integrity sha512-lBX7FCjIjSrQ+iMuXUuO+mbjbnUsJyZANg/04PgkeeAYe+cwnX81ibbgrAk1F56M6/btIrWQoDjxsK6Sz8KoVQ==
+
+"@fontsource/roboto@4.5.8":
+  version "4.5.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.5.8.tgz#56347764786079838faf43f0eeda22dd7328437f"
+  integrity sha512-CnD7zLItIzt86q4Sj3kZUiLcBk1dSk81qcqgMGaZe7SQ1P8hFNxhMl5AZthK1zrDM5m74VVhaOpuMGIL4gagaA==
+
 "@humanwhocodes/config-array@^0.11.6":
   version "0.11.6"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.6.tgz#6a51d603a3aaf8d4cf45b42b3f2ac9318a4adc4b"

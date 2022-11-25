@@ -1,0 +1,42 @@
+@import url("@fontsource/noto-sans/300.css");
+
+:root {
+	font-size: 1rem;
+	--ecogreen: #538d43;
+	--ecogreen-dark: #477939;
+	--ecogreen-darker: #3f6c33;
+	--ecogreen-darkest: #2b4922;
+}
+
+* {
+	font-family: "Roboto", sans-serif;
+	font-weight: 300;
+}
+
+body {
+	margin: auto;
+}
+
+app-title {
+	height: 100vh;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+app-title header {
+	border-radius: 1rem;
+	padding: 0 2rem;
+	background: var(--ecogreen-dark) linear-gradient(var(--ecogreen), var(--ecogreen-dark));
+	box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+}
+
+app-title h1,
+app-title h2,
+app-title h3 {
+	font-family: "Noto Sans", sans-serif;
+	color: white;
+	margin: 0.5rem;
+}

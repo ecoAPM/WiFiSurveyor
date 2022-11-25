@@ -1,5 +1,5 @@
 <template>
-	<figure :class="{'full': !fading, 'fading': fading }">
+	<figure :class="{ 'full': !fading, 'fading': fading }">
 		<wifi-icon :color="color" />
 		<figcaption v-if="signal">
 			{{ signal }} dBm
@@ -29,7 +29,7 @@ export default defineComponent({
 			default: ""
 		}
 	},
-	data(): object {
+	data(): { fading: boolean } {
 		return {
 			fading: false
 		};
@@ -45,7 +45,7 @@ export default defineComponent({
 		async last_updated() {
 			this.fading = false;
 			await this.$nextTick();
-			await new Promise((resolve) => setTimeout(() => {
+			await new Promise<void>((resolve) => setTimeout(() => {
 				this.fading = true;
 				resolve();
 			}, 100));
@@ -62,6 +62,7 @@ figure {
 
 figcaption {
 	text-align: center;
+	margin: 0.5rem 0;
 }
 
 .fading {
