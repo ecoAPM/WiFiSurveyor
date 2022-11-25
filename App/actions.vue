@@ -39,6 +39,5 @@ export default defineComponent({
 <style scoped>
 button {
 	margin-bottom: 0.5rem;
-	cursor: pointer;
 }
 </style>

@@ -1,14 +1,14 @@
 <template>
 	<div class="app">
-		<status :status="connection_status" />
-		<header-menu :last_updated="last_updated" @background="setBackground($event)" />
-		<main-area :enabled="!connection_status" />
-		<debug-panel />
+		<status :status="connection_status"/>
+		<header-menu :last_updated="last_updated" @background="setBackground($event)"/>
+		<main-area :enabled="!connection_status"/>
+		<debug-panel/>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import {defineComponent} from "vue";
 import Status from "./status.vue";
 import HeaderMenu from "./header-menu.vue";
 import MainArea from "./main-area.vue";
@@ -65,5 +65,11 @@ export default defineComponent({
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
+}
+</style>
+
+<style>
+button:not([disabled]), a button:not([disabled]), button label:not([disabled]) {
+	cursor: pointer;
 }
 </style>

@@ -50,11 +50,9 @@ section {
 
 button {
 	padding: 0;
-	cursor: pointer;
 }
 
 a button, button label {
 	padding: 0 1rem;
-	cursor: pointer;
 }
 </style>
