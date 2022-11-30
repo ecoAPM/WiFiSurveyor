@@ -6,9 +6,11 @@ import Point from "./Point";
 import AccessPointGrouping from "./AccessPointGrouping";
 import FileLoader from "./FileLoader";
 import Signal from "./Signal";
+import { Mode } from './Mode';
 
 export default class AppViewModel {
 	name: string = "";
+	mode: Mode = Mode.Signal;
 	background: string = "";
 	pixelated: boolean = true;
 	readings: Reading[] = [];
