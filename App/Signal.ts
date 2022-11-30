@@ -1,5 +1,3 @@
-import ColorConverter from "./ColorConverter";
-import Color from "./Color";
 import Compare from "./Compare";
 
 export default class Signal {
@@ -15,10 +13,6 @@ export default class Signal {
 		this.frequency = frequency;
 		this.channel = channel;
 		this.strength = strength;
-	}
-
-	color(): Color {
-		return ColorConverter.fromSignal(this.strength);
 	}
 
 	compareTo(other: Signal): number {
