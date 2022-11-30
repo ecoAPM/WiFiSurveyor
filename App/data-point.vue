@@ -38,7 +38,7 @@ export default defineComponent({
 	},
 	methods: {
 		color(reading: Reading): Color {
-			return ColorConverter.toColor(reading.signalFor(this.selected));
+			return ColorConverter.fromSignal(reading.signalFor(this.selected));
 		},
 		remove(): void {
 			if (confirm("Are you sure you want to remove this reading?"))
