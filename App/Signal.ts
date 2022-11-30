@@ -18,7 +18,7 @@ export default class Signal {
 	}
 
 	color(): Color {
-		return ColorConverter.toColor(this.strength);
+		return ColorConverter.fromSignal(this.strength);
 	}
 
 	compareTo(other: Signal): number {

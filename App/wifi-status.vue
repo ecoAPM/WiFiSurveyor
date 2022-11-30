@@ -37,7 +37,7 @@ export default defineComponent({
 	computed: {
 		color(): string {
 			return this.signal != null
-				? ColorConverter.toColor(this.signal).toRGBA()
+				? ColorConverter.fromSignal(this.signal).toRGBA()
 				: "rgba(0, 0, 0, 0.5)";
 		}
 	},

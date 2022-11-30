@@ -17,7 +17,7 @@ export default class Triangulation {
 			this.vertex_coordinates.push(reading.location.y);
 
 			const signal = reading.signalFor(access_point);
-			const color = ColorConverter.toColor(signal);
+			const color = ColorConverter.fromSignal(signal);
 			this.vertex_color_parts.push(color.red);
 			this.vertex_color_parts.push(color.green);
 			this.vertex_color_parts.push(color.blue);
