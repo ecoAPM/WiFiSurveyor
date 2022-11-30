@@ -14,15 +14,23 @@ export default class Reading {
 	}
 
 	signalFor(access_point: AccessPoint | null): number | null {
+		return this.mapValue(s => s.strength, access_point);
+	}
+
+	snrFor(access_point: AccessPoint | null): number | null {
+		return this.mapValue(s => s.snr(this.signals), access_point);
+	}
+
+	private mapValue(mapper: (signal: Signal) => number, access_point: AccessPoint | null): number | null {
 		if (access_point == null)
 			return null;
 
-		const strengths = this.signals
+		const values = this.signals
 			.filter(signal => (signal.ssid == access_point.ssid)
 				&& (access_point.frequency == null || signal.frequency == access_point.frequency)
 				&& (access_point.mac == null || signal.mac == access_point.mac))
-			.map(s => s.strength);
+			.map(mapper);
 
-		return strengths.length > 0 ? Math.max(...strengths) : null;
+		return values.length > 0 ? Math.max(...values) : null;
 	}
 }
