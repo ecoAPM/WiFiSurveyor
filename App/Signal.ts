@@ -17,10 +17,6 @@ export default class Signal {
 		this.strength = strength;
 	}
 
-	color(): Color {
-		return ColorConverter.fromSignal(this.strength);
-	}
-
 	compareTo(other: Signal): number {
 		return Compare.numbers(other.strength, this.strength)
 			|| Compare.strings(this.ssid, other.ssid)

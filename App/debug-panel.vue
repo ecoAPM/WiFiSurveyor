@@ -28,7 +28,7 @@
 					</td>
 				</tr>
 				<tr v-for="signal in signals_by_strength" :key="signal.ssid + signal.mac">
-					<td :style="{ 'background-color': signal.color().toRGBA() }"></td>
+					<td :style="{ 'background-color': color(signal) }"></td>
 					<td>{{ signal.ssid }}</td>
 					<td>{{ signal.frequency }} GHz</td>
 					<td>{{ signal.channel }}</td>
@@ -44,6 +44,7 @@
 import { defineComponent } from "vue";
 import Signal from "./Signal";
 import SharedState from "./SharedState";
+import ColorConverter from "./ColorConverter";
 
 export default defineComponent({
 	data: () => ({
@@ -53,6 +54,11 @@ export default defineComponent({
 		signals_by_strength(): Signal[] {
 			return this.state.current.signals.slice()
 				.sort((s1, s2) => s1.compareTo(s2));
+		}
+	},
+	methods: {
+		color(signal: Signal): string {
+			return ColorConverter.fromSignal(signal.strength).toRGBA()
 		}
 	}
 });
