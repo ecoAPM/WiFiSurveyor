@@ -51,4 +51,21 @@ export default class DebugPanelTests extends TestSuite {
 		this.assert.contains("-40 dBm", sorted_signals);
 		this.assert.contains("-50 dBm", sorted_signals);
 	}
+
+	@Test()
+	async canGetColorForSignal() {
+		//arrange
+		const signals = [
+			new Signal("mac", "ssid", 2, 1, -40)
+		];
+		const state = new AppViewModel();
+		state.current = new Reading(0, new Point(0, 0), signals);
+		const component = mount(DebugPanel, { data: () => ({ state: state }) });
+
+		//act
+		const style = component.get('td[style]').attributes('style');
+
+		//assert
+		this.assert.equal('background-color: rgb(0, 255, 0);', style);
+	}
 }

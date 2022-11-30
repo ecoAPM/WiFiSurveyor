@@ -18,18 +18,6 @@ export default class SignalTests extends TestSuite {
 	}
 
 	@Test()
-	async canGetColorForSignal() {
-		//arrange
-		const signal = new Signal("mac", "ssid", 2, 1, -40);
-
-		//act
-		const color = signal.color();
-
-		//assert
-		this.assert.equal(255, color.green);
-	}
-
-	@Test()
 	async canCompareSignals() {
 		//arrange
 		const s1 = new Signal("12:34:56:78:90:ab", "test1", 2, 1, -20);
