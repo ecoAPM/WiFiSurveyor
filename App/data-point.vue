@@ -1,9 +1,9 @@
 <template>
-	<div class="point" :style="{ left: reading.location.x + 'px', top: reading.location.y + 'px', 'background-color': color(reading).toRGBA() }">
+	<div class="point" :style="{ left: reading.location.x + 'px', top: reading.location.y + 'px', 'background-color': color }">
 		<div class="delete" @click="remove()"></div>
 		<div class="shadow"></div>
 		<div v-if="signal" class="value">
-			{{ signal }} dBm
+			{{ signal }} {{ mode }}
 		</div>
 		<div v-if="!signal" class="value">
 			(no signal)
@@ -18,6 +18,7 @@ import ColorConverter from "./ColorConverter";
 import AccessPoint from "./AccessPoint";
 import Reading from "./Reading";
 import SharedState from "./SharedState";
+import { Mode } from "./Mode";
 
 export default defineComponent({
 	props: {
@@ -27,19 +28,27 @@ export default defineComponent({
 		},
 		reading: Reading,
 		selected: AccessPoint,
+		mode: {
+			type: String,
+			default: Mode.Signal
+		}
 	},
 	data: () => ({
 		state: SharedState,
 	}),
 	computed: {
 		signal(): number | null {
-			return this.reading.signalFor(this.selected);
+			return this.mode == Mode.Signal
+				? this.reading.signalFor(this.selected)
+				: this.reading.snrFor(this.selected);
+		},
+		color(): Color {
+			return this.mode == Mode.Signal
+				? ColorConverter.fromSignal(this.signal)
+				: ColorConverter.fromSNR(this.signal);
 		}
 	},
 	methods: {
-		color(reading: Reading): Color {
-			return ColorConverter.fromSignal(reading.signalFor(this.selected));
-		},
 		remove(): void {
 			if (confirm("Are you sure you want to remove this reading?"))
 				this.state.deleteDataPoint(this.index);

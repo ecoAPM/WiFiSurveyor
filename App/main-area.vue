@@ -12,6 +12,7 @@
 			:index="index"
 			:reading="reading"
 			:selected="state.selected"
+			:mode="state.mode"
 		/>
 	</main>
 </template>
@@ -55,7 +56,7 @@ export default defineComponent({
 			this.refresh();
 		},
 		refresh(): void {
-			this.state.renderer?.render(this.state.readings, this.state.selected);
+			this.state.renderer?.render(this.state.mode, this.state.readings, this.state.selected);
 		}
 	}
 });

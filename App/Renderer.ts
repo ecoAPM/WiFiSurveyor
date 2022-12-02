@@ -2,6 +2,7 @@ import Reading from "./Reading";
 import Triangulation from "./Triangulation";
 import RenderFactory from "./RenderFactory";
 import AccessPoint from "./AccessPoint";
+import { Mode } from "./Mode";
 
 export default class Renderer {
 	private canvas: HTMLCanvasElement;
@@ -14,8 +15,8 @@ export default class Renderer {
 		this.shader_program = RenderFactory.getShaderProgram(this.gl);
 	}
 
-	render(readings: Reading[], access_point: AccessPoint | null): void {
-		const triangulation = new Triangulation(readings, access_point);
+	render(mode: Mode, readings: Reading[], access_point: AccessPoint | null): void {
+		const triangulation = new Triangulation(mode, readings, access_point);
 		if (triangulation.vertex_coordinates.length === 0 || triangulation.vertex_coordinates.length % 6 !== 0
 			|| triangulation.vertex_color_parts.length === 0 || triangulation.vertex_color_parts.length % 12 !== 0)
 			return;

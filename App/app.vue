@@ -41,11 +41,11 @@ export default defineComponent({
 		}
 	},
 	watch: {
+		mode(): void {
+			this.refresh();
+		},
 		selected(): void {
-			if (this.selected != null)
-				this.renderer?.render(this.readings, this.selected);
-			else
-				this.renderer?.clear();
+			this.refresh();
 		}
 	},
 	mounted(): void {
@@ -56,6 +56,11 @@ export default defineComponent({
 		this.renderer = this.renderer_factory(canvas);
 
 		this.file_loader = this.file_loader_factory();
+	},
+	methods: {
+		refresh(): void {
+			this.renderer?.render(this.mode, this.readings, this.selected);
+		}
 	}
 });
 </script>

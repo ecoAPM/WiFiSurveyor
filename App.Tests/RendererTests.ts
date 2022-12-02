@@ -5,6 +5,7 @@ import Reading from "../App/Reading";
 import Point from "../App/Point";
 import AccessPoint from "../App/AccessPoint";
 import MockFactory from "./MockFactory";
+import { Mode } from "../App/Mode";
 
 export default class RendererTests extends TestSuite {
 	@Test()
@@ -24,7 +25,7 @@ export default class RendererTests extends TestSuite {
 			new Reading(1, new Point(4, 4), [])
 		];
 		const access_point = new AccessPoint("test");
-		renderer.render(readings, access_point);
+		renderer.render(Mode.Signal, readings, access_point);
 
 		//assert
 		Mockito.verify(gl.drawArrays(Mockito.anything(), Mockito.anything(), 6)).once();

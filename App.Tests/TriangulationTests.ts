@@ -4,6 +4,7 @@ import Point from "../App/Point";
 import Triangulation from "../App/Triangulation";
 import Signal from "../App/Signal";
 import AccessPoint from "../App/AccessPoint";
+import { Mode } from "../App/Mode";
 
 export default class TriangulationTests extends TestSuite {
 	@Test()
@@ -16,26 +17,58 @@ export default class TriangulationTests extends TestSuite {
 		];
 
 		//act
-		const triangulation = new Triangulation(readings, new AccessPoint("test"));
+		const triangulation = new Triangulation(Mode.Signal, readings, new AccessPoint("test"));
 
 		//assert
-		this.assert.equal([ 4, 2, 2, 1, 3, 3 ], triangulation.vertex_coordinates);
+		const expected = [
+			4, 2,
+			2, 1,
+			3, 3
+		];
+		this.assert.equal(expected, triangulation.vertex_coordinates);
 	}
 
 	@Test()
-	async canConvertReadingsToColorParts() {
+	async canConvertSignalsToColorParts() {
 		//arrange
 		const readings = [
-			new Reading(1, new Point(2, 1), [ new Signal("12:34:56", "test", 2, 1, -40) ]),
-			new Reading(2, new Point(4, 2), [ new Signal("12:34:56", "test", 2, 6, -60) ]),
-			new Reading(3, new Point(3, 3), [ new Signal("12:34:56", "test", 2, 11, -80) ])
+			new Reading(1, new Point(2, 1), [new Signal("12:34:56", "test", 2, 1, -40)]),
+			new Reading(2, new Point(4, 2), [new Signal("12:34:56", "test", 2, 1, -60)]),
+			new Reading(3, new Point(3, 3), [new Signal("12:34:56", "test", 2, 1, -80)])
 		];
 		const access_point = new AccessPoint("test");
 
 		//act
-		const triangulation = new Triangulation(readings, access_point);
+		const triangulation = new Triangulation(Mode.Signal, readings, access_point);
 
 		//assert
-		this.assert.equal([ 255, 255, 0, 191, 0, 255, 0, 191, 255, 0, 0, 191 ], triangulation.vertex_color_parts);
+		const expected = [
+			255, 255, 0, 191,
+			0, 255, 0, 191,
+			255, 0, 0, 191
+		];
+		this.assert.equal(expected, triangulation.vertex_color_parts);
+	}
+
+	@Test()
+	async canConvertSNRToColorParts() {
+		//arrange
+		const readings = [
+			new Reading(1, new Point(2, 1), [new Signal("12:34:56", "test", 2, 1, -30)]),
+			new Reading(2, new Point(4, 2), [new Signal("12:34:56", "test", 2, 1, -50)]),
+			new Reading(3, new Point(3, 3), [new Signal("12:34:56", "test", 2, 1, -80)])
+		];
+		const access_point = new AccessPoint("test");
+
+		//act
+		const triangulation = new Triangulation(Mode.SNR, readings, access_point);
+
+		//assert
+		const expected = [
+			0, 255, 0, 191,
+			0, 127, 0, 191,
+			255, 255, 0, 191
+		];
+		this.assert.equal(expected, triangulation.vertex_color_parts);
 	}
 }

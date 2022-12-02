@@ -4,6 +4,8 @@ import { shallowMount as mount } from "@vue/test-utils";
 import Mockito from "ts-mockito";
 import Renderer from "../App/Renderer";
 import MockFactory from "./MockFactory";
+import { Mode } from "../App/Mode";
+import AccessPoint from "../App/AccessPoint";
 
 export default class AppTests extends TestSuite {
 	@Test()
@@ -77,5 +79,49 @@ export default class AppTests extends TestSuite {
 
 		//assert
 		this.assert.stringContains("loading", component.vm.connection_status);
+	}
+
+	@Test()
+	async changingSelectedAPRerenders() {
+		//arrange
+		const renderer = Mockito.mock<Renderer>();
+		const component = mount(App, {
+			global: {
+				provide: {
+					signal_service: () => null,
+					renderer: () => Mockito.instance(renderer),
+					file_loader: () => null
+				}
+			}
+		});
+
+		//act
+		component.vm.$data.selected = new AccessPoint("test");
+		await component.vm.$nextTick();
+
+		//assert
+		Mockito.verify(renderer.render(Mockito.anything(), Mockito.anything(), Mockito.anything())).atLeast(1);
+	}
+
+	@Test()
+	async changingModeRerenders() {
+		//arrange
+		const renderer = Mockito.mock<Renderer>();
+		const component = mount(App, {
+			global: {
+				provide: {
+					signal_service: () => null,
+					renderer: () => Mockito.instance(renderer),
+					file_loader: () => null
+				}
+			}
+		});
+
+		//act
+		component.vm.$data.mode = Mode.SNR;
+		await component.vm.$nextTick();
+
+		//assert
+		Mockito.verify(renderer.render(Mode.SNR, Mockito.anything(), Mockito.anything())).atLeast(1);
 	}
 }

@@ -65,7 +65,7 @@ export default class AppViewModel {
 	deleteDataPoint(index: number): void {
 		this.readings.splice(index, 1);
 		if (this.readings.length >= 3)
-			this.renderer?.render(this.readings, this.selected);
+			this.renderer?.render(this.mode, this.readings, this.selected);
 		else
 			this.renderer?.clear();
 	}
