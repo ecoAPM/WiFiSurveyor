@@ -1,8 +1,8 @@
 <template>
 	<figure :class="{ 'full': !fading, 'fading': fading }">
 		<wifi-icon :color="color" />
-		<figcaption v-if="signal">
-			{{ signal }} dBm
+		<figcaption v-if="value != null">
+			{{ value }} {{ units }}
 		</figcaption>
 		<figcaption v-else>
 			(no signal)
@@ -14,15 +14,20 @@
 import { defineComponent } from "vue";
 import wifi_icon from "./wifi-icon.vue";
 import ColorConverter from "./ColorConverter";
+import { Mode } from "./Mode";
 
 export default defineComponent({
 	components: {
 		"wifi-icon": wifi_icon
 	},
 	props: {
-		signal: {
+		value: {
 			type: Number,
 			default: 0
+		},
+		units: {
+			type: String,
+			default: Mode.Signal
 		},
 		last_updated: {
 			type: String,
@@ -36,9 +41,9 @@ export default defineComponent({
 	},
 	computed: {
 		color(): string {
-			return this.signal != null
-				? ColorConverter.fromSignal(this.signal).toRGBA()
-				: "rgba(0, 0, 0, 0.5)";
+			return this.units == Mode.Signal && this.value != null
+				? ColorConverter.fromSignal(this.value).toRGBA()
+				: ColorConverter.fromSNR(this.value).toRGBA();
 		}
 	},
 	watch: {
