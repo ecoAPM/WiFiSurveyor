@@ -34,6 +34,23 @@ export default class ColorTests extends TestSuite {
 	}
 
 	@Test()
+	async componentsAreFloored() {
+		//arrange
+		const low = 127.25;
+		const mid = 127.5;
+		const high = 127.75;
+
+		//act
+		const color = new Color(low, mid, high, mid);
+
+		//assert
+		this.assert.equal(127, color.red);
+		this.assert.equal(127, color.green);
+		this.assert.equal(127, color.blue);
+		this.assert.equal(127, color.alpha);
+	}
+
+	@Test()
 	async canConvertToRGB() {
 		//arrange
 		const color = new Color(12, 23, 34);
