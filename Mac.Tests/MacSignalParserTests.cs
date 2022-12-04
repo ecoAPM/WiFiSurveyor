@@ -28,7 +28,7 @@ public sealed class MacSignalParserTests
 		Assert.Equal(11, signals[0].Channel);
 		Assert.Equal(-83, signals[0].Strength);
 
-		Assert.Equal("ssid2", signals[1].SSID);
+		Assert.Equal("ssid🏎2", signals[1].SSID);
 		Assert.Equal("xx:3d:xx:96:97:xx", signals[1].MAC);
 		Assert.Equal(Frequency._5_GHz, signals[1].Frequency);
 		Assert.Equal(149, signals[1].Channel);

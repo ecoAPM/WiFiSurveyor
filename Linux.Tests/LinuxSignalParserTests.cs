@@ -29,7 +29,7 @@ public sealed class LinuxSignalParserTests
 		Assert.Equal(36, signals[1].Channel);
 		Assert.Equal(-83, signals[1].Strength);
 
-		Assert.Equal("Net2", signals[2].SSID);
+		Assert.Equal("Net2🏎", signals[2].SSID);
 		Assert.Equal(Frequency._2_4_GHz, signals[2].Frequency);
 		Assert.Equal(5, signals[2].Channel);
 		Assert.Equal(-72, signals[2].Strength);

@@ -22,7 +22,7 @@ public sealed class WindowsSignalParserTests
 		network2.NetworkRssiInDecibelMilliwatts.Returns(-83);
 
 		var network3 = Substitute.For<IWiFiAvailableNetwork>();
-		network3.Ssid.Returns("Net2");
+		network3.Ssid.Returns("Net2🏎");
 		network3.ChannelCenterFrequencyInKilohertz.Returns(2_462_000);
 		network3.NetworkRssiInDecibelMilliwatts.Returns(-72);
 
@@ -59,7 +59,7 @@ public sealed class WindowsSignalParserTests
 		Assert.Equal(36, signals[1].Channel);
 		Assert.Equal(-83, signals[1].Strength);
 
-		Assert.Equal("Net2", signals[2].SSID);
+		Assert.Equal("Net2🏎", signals[2].SSID);
 		Assert.Equal(Frequency._2_4_GHz, signals[2].Frequency);
 		Assert.Equal(11, signals[2].Channel);
 		Assert.Equal(-72, signals[2].Strength);

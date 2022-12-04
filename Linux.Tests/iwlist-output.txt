@@ -2,7 +2,7 @@ wlan0     Scan completed :
           Cell 01 - Address: MAC1
                     Channel:1
                     Frequency:2.412 GHz (Channel 1)
-                    Quality=45/70  Signal level=-65 dBm  
+                    Quality=45/70  Signal level=-65 dBm
                     Encryption key:on
                     ESSID:"Net1"
                     Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s; 18 Mb/s
@@ -32,7 +32,7 @@ wlan0     Scan completed :
           Cell 02 - Address: MAC2
                     Channel:36
                     Frequency:5.18 GHz (Channel 36)
-                    Quality=27/70  Signal level=-83 dBm  
+                    Quality=27/70  Signal level=-83 dBm
                     Encryption key:on
                     ESSID:"Net1"
                     Bit Rates:6 Mb/s; 9 Mb/s; 12 Mb/s; 18 Mb/s; 24 Mb/s
@@ -59,9 +59,9 @@ wlan0     Scan completed :
           Cell 03 - Address: MAC3
                     Channel:5
                     Frequency:2.432 GHz (Channel 5)
-                    Quality=38/70  Signal level=-72 dBm  
+                    Quality=38/70  Signal level=-72 dBm
                     Encryption key:on
-                    ESSID:"Net2"
+                    ESSID:"Net2🏎"
                     Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s; 18 Mb/s
                               24 Mb/s; 36 Mb/s; 54 Mb/s
                     Bit Rates:6 Mb/s; 9 Mb/s; 12 Mb/s; 48 Mb/s
@@ -96,7 +96,7 @@ wlan0     Scan completed :
           Cell 04 - Address: MAC4
                     Channel:6
                     Frequency:2.437 GHz (Channel 6)
-                    Quality=20/70  Signal level=-90 dBm  
+                    Quality=20/70  Signal level=-90 dBm
                     Encryption key:on
                     ESSID:"Net3"
                     Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s; 18 Mb/s
