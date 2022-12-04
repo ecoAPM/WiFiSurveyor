@@ -1,6 +1,8 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using NSubstitute;
 using WiFiSurveyor.Core;
 using Xunit;
 
@@ -12,8 +14,9 @@ public sealed class MacSignalParserTests
 	public async Task ResultsAreParsedIntoSignals()
 	{
 		//arrange
+		var logger = Substitute.For<ILogger>();
+		var signalParser = new MacSignalParser(logger);
 		var contents = await File.ReadAllTextAsync("airport-output.txt");
-		var signalParser = new MacSignalParser();
 
 		//act
 		var signals = signalParser.Parse(contents).ToList();
@@ -32,7 +35,7 @@ public sealed class MacSignalParserTests
 		Assert.Equal(-82, signals[1].Strength);
 
 		Assert.Equal("access_point_3", signals[2].SSID);
-		Assert.Equal("xx:3d:xx:96:97:xx", signals[2].MAC);
+		Assert.Equal("xx:3d:xx:96:98:xx", signals[2].MAC);
 		Assert.Equal(Frequency._2_4_GHz, signals[2].Frequency);
 		Assert.Equal(11, signals[2].Channel);
 		Assert.Equal(-76, signals[2].Strength);
@@ -48,5 +51,24 @@ public sealed class MacSignalParserTests
 		Assert.Equal(Frequency._5_GHz, signals[4].Frequency);
 		Assert.Equal(149, signals[4].Channel);
 		Assert.Equal(-42, signals[4].Strength);
+	}
+
+	[Fact]
+	public async Task IgnoresInvalidResults()
+	{
+		//arrange
+		var logger = Substitute.For<ILogger>();
+		var signalParser = new MacSignalParser(logger);
+		var contents = await File.ReadAllTextAsync("airport-output.txt");
+		contents = contents
+			.Replace("13:xx", "")
+			.Replace("97:xx", "")
+			.Replace("a8:xx", "");
+
+		//act
+		var signals = signalParser.Parse(contents);
+
+		//assert
+		Assert.Equal("access_point_3", signals.Single().SSID);
 	}
 }

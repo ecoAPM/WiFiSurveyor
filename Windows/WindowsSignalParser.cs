@@ -4,20 +4,37 @@ namespace WiFiSurveyor.Windows;
 
 public sealed class WindowsSignalParser : ISignalParser<IWiFiNetworkReport>
 {
+	private readonly ILogger _logger;
+
+	public WindowsSignalParser(ILogger logger)
+		=> _logger = logger;
+
 	public IReadOnlyList<Signal> Parse(IWiFiNetworkReport results)
 		=> results.AvailableNetworks()
 			.Select(GetSignal)
+			.Where(s => s is not null)
+			.Cast<Signal>()
 			.ToArray();
 
-	private static Signal GetSignal(IWiFiAvailableNetwork result)
-		=> new()
+	private Signal? GetSignal(IWiFiAvailableNetwork result)
+	{
+		try
 		{
-			MAC = result.Bssid,
-			SSID = result.Ssid,
-			Frequency = GetFrequency(result.ChannelCenterFrequencyInKilohertz),
-			Channel = GetChannel(result.ChannelCenterFrequencyInKilohertz),
-			Strength = Convert.ToInt16(result.NetworkRssiInDecibelMilliwatts)
-		};
+			return new()
+			{
+				MAC = result.Bssid,
+				SSID = result.Ssid,
+				Frequency = GetFrequency(result.ChannelCenterFrequencyInKilohertz),
+				Channel = GetChannel(result.ChannelCenterFrequencyInKilohertz),
+				Strength = Convert.ToInt16(result.NetworkRssiInDecibelMilliwatts)
+			};
+		}
+		catch (Exception)
+		{
+			_logger.LogIf(LogLevel.Warning, "Could not parse signal data: {0}", result);
+			return null;
+		}
+	}
 
 	private static byte GetChannel(int kHz)
 	{

@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using WiFiSurveyor.Core;
 using Xunit;
@@ -41,7 +42,8 @@ public sealed class WindowsSignalParserTests
 		var report = Substitute.For<IWiFiNetworkReport>();
 		report.AvailableNetworks().Returns(networks);
 
-		var signalParser = new WindowsSignalParser();
+		var logger = Substitute.For<ILogger>();
+		var signalParser = new WindowsSignalParser(logger);
 
 		//act
 		var signals = signalParser.Parse(report).ToList();
@@ -66,5 +68,37 @@ public sealed class WindowsSignalParserTests
 		Assert.Equal(Frequency._2_4_GHz, signals[3].Frequency);
 		Assert.Equal(6, signals[3].Channel);
 		Assert.Equal(-90, signals[3].Strength);
+	}
+
+	[Fact]
+	public void IgnoresInvalidResults()
+	{
+		//arrange
+		var network1 = Substitute.For<IWiFiAvailableNetwork>();
+		network1.Ssid.Returns("Net1");
+		network1.NetworkRssiInDecibelMilliwatts.Returns(double.MinValue);
+
+		var network2 = Substitute.For<IWiFiAvailableNetwork>();
+		network2.Ssid.Returns("Net2");
+		network2.ChannelCenterFrequencyInKilohertz.Returns(2_412_000);
+		network2.NetworkRssiInDecibelMilliwatts.Returns(-50);
+
+		var networks = new[]
+		{
+			network1,
+			network2
+		};
+
+		var report = Substitute.For<IWiFiNetworkReport>();
+		report.AvailableNetworks().Returns(networks);
+
+		var logger = Substitute.For<ILogger>();
+		var signalParser = new WindowsSignalParser(logger);
+
+		//act
+		var result = signalParser.Parse(report);
+
+		//assert
+		Assert.Equal("Net2", result.Single().SSID);
 	}
 }

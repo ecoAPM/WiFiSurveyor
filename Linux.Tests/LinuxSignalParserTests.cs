@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Logging;
+using NSubstitute;
 using WiFiSurveyor.Core;
 using Xunit;
 
@@ -9,8 +11,9 @@ public sealed class LinuxSignalParserTests
 	public async Task ResultsAreParsedIntoSignals()
 	{
 		//arrange
+		var logger = Substitute.For<ILogger>();
+		var signalParser = new LinuxSignalParser(logger);
 		var contents = await File.ReadAllTextAsync("iwlist-output.txt");
-		var signalParser = new LinuxSignalParser();
 
 		//act
 		var signals = signalParser.Parse(contents).ToList();
@@ -35,5 +38,24 @@ public sealed class LinuxSignalParserTests
 		Assert.Equal(Frequency._2_4_GHz, signals[3].Frequency);
 		Assert.Equal(6, signals[3].Channel);
 		Assert.Equal(-90, signals[3].Strength);
+	}
+
+	[Fact]
+	public async Task IgnoresInvalidResults()
+	{
+		//arrange
+		var logger = Substitute.For<ILogger>();
+		var signalParser = new LinuxSignalParser(logger);
+		var contents = await File.ReadAllTextAsync("iwlist-output.txt");
+		contents = contents
+			.Replace("-65 dBm", "X")
+			.Replace("-72 dBm", "X")
+			.Replace("-90 dBm", "X");
+
+		//act
+		var signals = signalParser.Parse(contents);
+
+		//assert
+		Assert.Equal(-83, signals.Single().Strength);
 	}
 }
