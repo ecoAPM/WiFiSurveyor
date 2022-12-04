@@ -47,7 +47,8 @@ export default class AppViewModelTests extends TestSuite {
 	@Test()
 	async canLoadPreviouslySavedData() {
 		//arrange
-		const file = Mockito.mock<File>();
+		const mockFile = Mockito.mock<File>();
+		const file = Mockito.instance(mockFile);
 
 		const loader = Mockito.mock<FileLoader>();
 		Mockito.when(loader.loadJSON(file)).thenResolve(this.data);

@@ -11,10 +11,7 @@
 			<button type="button" @click="$event.target.children[0].click()">
 				<label for="load-file" @click.stop>Load</label>
 			</button>
-			<input
-				v-show="false" id="load-file" type="file" accept="application/json,.json"
-				@change="state.load($event.target.files)"
-			/>
+			<input v-show="false" id="load-file" type="file" accept="application/json,.json" @change="load($event.target as HTMLInputElement)" />
 		</section>
 	</form>
 </template>
@@ -30,15 +27,22 @@ export default defineComponent({
 	methods: {
 		objectURL(): string {
 			const json = JSON.stringify(this.state);
-			const blob = new Blob([ json ], { type: "application/json" });
+			const blob = new Blob([json], { type: "application/json" });
 			return URL.createObjectURL(blob);
+		},
+		async load(target: HTMLInputElement): Promise<void> {
+			if (target.files != null) {
+				await this.state.load(target.files);
+				target.value = "";
+			}
 		}
 	}
 });
 </script>
 
 <style scoped>
-label, input {
+label,
+input {
 	margin-bottom: 0.25rem;
 }
 
@@ -52,7 +56,8 @@ button {
 	padding: 0;
 }
 
-a button, button label {
+a button,
+button label {
 	padding: 0 1rem;
 }
 </style>
