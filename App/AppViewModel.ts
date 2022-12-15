@@ -28,10 +28,11 @@ export default class AppViewModel {
 			return;
 		}
 
-		const file = files.item(0) as File;
-		const json = await this.file_loader?.loadJSON(file) as AppViewModel;
-
-		this.restore(json);
+		const file = files.item(0);
+		if (file != null) {
+			const json = await this.file_loader?.loadJSON(file) as AppViewModel;
+			this.restore(json);
+		}
 	}
 
 	private restore(json: AppViewModel) {
@@ -58,8 +59,10 @@ export default class AppViewModel {
 			return;
 		}
 
-		const file = files.item(0) as File;
-		this.background = await this.file_loader?.loadData(file) ?? "";
+		const file = files.item(0);
+		if (file != null) {
+			this.background = await this.file_loader?.loadData(file) ?? "";
+		}
 	}
 
 	deleteDataPoint(index: number): void {
