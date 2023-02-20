@@ -33,7 +33,7 @@
 	"devDependencies": {
 		"@fontsource/noto-sans": "4.5.11",
 		"@fontsource/roboto": "4.5.8",
-		"@microsoft/signalr": "7.0.2",
+		"@microsoft/signalr": "7.0.3",
 		"@types/delaunator": "5.0.0",
 		"@types/jsdom": "21.1.0",
 		"@types/node": "18.14.0",
