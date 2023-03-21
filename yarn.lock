@@ -1101,10 +1101,10 @@ glob@^7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-global-jsdom@8.7.0:
-  version "8.7.0"
-  resolved "https://registry.yarnpkg.com/global-jsdom/-/global-jsdom-8.7.0.tgz#1557d12a3c124e30100483957adc265db5c936a9"
-  integrity sha512-4k0/8VSY75UgchV48rzaexFfK0k4L6DxkTiyISFobiOiqOFh4IL2Ju3WiLqlT43xh6L1LqKoS2LvDu5Wkr5Bkw==
+global-jsdom@8.8.0:
+  version "8.8.0"
+  resolved "https://registry.yarnpkg.com/global-jsdom/-/global-jsdom-8.8.0.tgz#ebca8960f9bf513cf4dc4255ca70a5223571c788"
+  integrity sha512-7DDRdzE+SYL+LUz5XCTONfmEC95wjKY83KHcfdo3f1tDmXohk2amMR35DWbb9jaZe7OgYsQshbxbe9TWShW80A==
 
 globals@^13.19.0:
   version "13.19.0"
