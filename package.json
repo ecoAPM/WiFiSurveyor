@@ -37,7 +37,7 @@
 		"@types/delaunator": "5.0.0",
 		"@types/jsdom": "21.1.1",
 		"@types/node": "18.15.11",
-		"@typescript-eslint/eslint-plugin": "5.57.1",
+		"@typescript-eslint/eslint-plugin": "5.58.0",
 		"@typescript-eslint/parser": "5.58.0",
 		"@vitejs/plugin-vue": "2.3.4",
 		"@vue/component-compiler-utils": "3.3.0",
