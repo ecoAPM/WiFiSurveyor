@@ -48,14 +48,15 @@ export default defineComponent({
 			this.refresh();
 		}
 	},
-	mounted(): void {
+	async mounted(): void {
 		this.signal_service = this.signal_service_factory(this.current.signals);
-		this.signal_service?.start();
+		const start = this.signal_service?.start();
 
 		const canvas = document.getElementById("webglcanvas") as HTMLCanvasElement;
 		this.renderer = this.renderer_factory(canvas);
-
 		this.file_loader = this.file_loader_factory();
+
+		await start;
 	},
 	methods: {
 		refresh(): void {

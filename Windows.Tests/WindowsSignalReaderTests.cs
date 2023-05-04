@@ -12,7 +12,7 @@ public sealed class WindowsSignalReaderTests
 		var report = Substitute.For<IWiFiNetworkReport>();
 		var adapter = Substitute.For<IWiFiAdapter>();
 		adapter.NetworkReport.Returns(report);
-		var reader = new WindowsSignalReader(Task.FromResult(adapter));
+		var reader = new WindowsSignalReader(() => Task.FromResult(adapter));
 
 		//act
 		var results = await reader.Read();

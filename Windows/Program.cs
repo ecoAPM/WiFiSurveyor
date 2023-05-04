@@ -1,5 +1,4 @@
-﻿using Windows.Devices.WiFi;
-using WiFiSurveyor.Core;
+﻿using WiFiSurveyor.Core;
 
 namespace WiFiSurveyor.Windows;
 
@@ -7,7 +6,7 @@ public static class Program
 {
 	public static void AddWindowsHandlers(this IServiceCollection services)
 	{
-		services.AddSingleton(async _ => await WindowsAdapter.Default());
+		services.AddSingleton<Func<Task<IWiFiAdapter>>>(WindowsAdapter.Default);
 		services.AddSingleton<IBrowserLauncher, WindowsBrowserLauncher>();
 		services.AddSingleton<ISignalReader<IWiFiNetworkReport>, WindowsSignalReader>();
 		services.AddSingleton<ISignalParser<IWiFiNetworkReport>, WindowsSignalParser>();
