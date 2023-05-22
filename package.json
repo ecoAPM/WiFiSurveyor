@@ -43,7 +43,7 @@
 		"@vue/component-compiler-utils": "3.3.0",
 		"@vue/test-utils": "2.2.7",
 		"delaunator": "5.0.0",
-		"eslint": "8.40.0",
+		"eslint": "8.41.0",
 		"eslint-plugin-vue": "9.13.0",
 		"global-jsdom": "9.0.1",
 		"jsdom": "22.0.0",
