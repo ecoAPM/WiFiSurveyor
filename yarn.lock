@@ -167,10 +167,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/noto-sans/-/noto-sans-5.0.7.tgz#05db0644d4392440afc77c9f71cba59705359ac7"
   integrity sha512-fo8mRRAG6W+5dt2METY/iVq3coRwNn+t7yjJvTlJ5waiV94Yoxu4h3ANvyJ7BaG6iYa/0Q/hp+xf/NNTtbOuGA==
 
-"@fontsource/roboto@5.0.6":
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-5.0.6.tgz#36a422decf98995d6ca8e0445a21d8e5a17f1070"
-  integrity sha512-SksyUGbdqY7a71l/ywdX5fm37fepCakgHZEZ3H4uP5A9wDJewrcSACtIzw6yi9QjJIYoj1xArhDSOz4XJxyWow==
+"@fontsource/roboto@5.0.7":
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-5.0.7.tgz#683e3294a5202339d078f784dd557e5862440070"
+  integrity sha512-Hcl5xloy9PH+hCGnKTl9Xg7SOXbvSFIg+AW2JZ5qrsAZBI9IEC4kwma6D/aTl9ywvsdEp+7TeVT2fmFImXyHTw==
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
