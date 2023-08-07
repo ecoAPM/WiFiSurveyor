@@ -1122,10 +1122,10 @@ glob@^8.1.0:
     minimatch "^5.0.1"
     once "^1.3.0"
 
-global-jsdom@9.0.1:
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/global-jsdom/-/global-jsdom-9.0.1.tgz#3c9bd2694ab9f0fbddb4a9395cee17066bee7380"
-  integrity sha512-hIZj+wtgjFThNcPP+NouiEg/L3e86lfqnu+RiRGmgTN/Q8rsaqzBkNqsXERZqjXIne0PfaV13B/3lHqUn5sy7A==
+global-jsdom@9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/global-jsdom/-/global-jsdom-9.1.0.tgz#1adbc6df906ca95f3d4f265e4353026dda789704"
+  integrity sha512-mNjpiQBgCTApFeRZxU3L01pjzulHIbwtk+5rGDdqUDACTupvhHywpgaZtXNMn/97HofZzHEoXdNR5qFNgjZCSg==
 
 globals@^13.19.0:
   version "13.19.0"
