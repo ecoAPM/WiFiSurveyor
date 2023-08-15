@@ -31,7 +31,7 @@
 	},
 	"homepage": "https://github.com/ecoAPM/WiFiSurveyor#readme",
 	"devDependencies": {
-		"@fontsource/noto-sans": "5.0.8",
+		"@fontsource/noto-sans": "5.0.9",
 		"@fontsource/roboto": "5.0.8",
 		"@microsoft/signalr": "7.0.10",
 		"@types/delaunator": "5.0.0",
