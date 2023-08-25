@@ -48,7 +48,7 @@
 		"global-jsdom": "9.1.0",
 		"jsdom": "22.1.0",
 		"ts-mockito": "2.6.1",
-		"typescript": "5.1.6",
+		"typescript": "5.2.2",
 		"vite": "4.4.9",
 		"vue": "3.3.4",
 		"vue-eslint-parser": "9.3.1",
