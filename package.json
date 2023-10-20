@@ -50,7 +50,7 @@
 		"ts-mockito": "2.6.1",
 		"typescript": "5.2.2",
 		"vite": "4.5.0",
-		"vue": "3.3.4",
+		"vue": "3.3.5",
 		"vue-eslint-parser": "9.3.2",
 		"xunit.ts": "1.4.0"
 	},
