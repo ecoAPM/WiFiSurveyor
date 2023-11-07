@@ -34,7 +34,7 @@
 		"@fontsource/noto-sans": "5.0.17",
 		"@fontsource/roboto": "5.0.8",
 		"@microsoft/signalr": "7.0.12",
-		"@types/delaunator": "5.0.1",
+		"@types/delaunator": "5.0.2",
 		"@types/jsdom": "21.1.4",
 		"@types/node": "20.8.10",
 		"@typescript-eslint/eslint-plugin": "5.62.0",
