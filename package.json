@@ -41,7 +41,7 @@
 		"@typescript-eslint/parser": "5.62.0",
 		"@vitejs/plugin-vue": "5.0.4",
 		"@vue/component-compiler-utils": "3.3.0",
-		"@vue/test-utils": "2.4.4",
+		"@vue/test-utils": "2.4.5",
 		"delaunator": "5.0.1",
 		"eslint": "8.57.0",
 		"eslint-plugin-vue": "9.23.0",
