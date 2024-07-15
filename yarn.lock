@@ -320,10 +320,10 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.13.0.tgz#6abd79db7ff8d01a58865ba20a63cfd23d9e2a10"
   integrity sha512-UKXUQNbO3DOhzLRwHSpa0HnhhCgNODvfoPWv2FCXme8N/ANFfhIPMGuOT+QuKd16+B5yxZ0HdpNlqPvTMS1qfw==
 
-"@types/delaunator@5.0.2":
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/@types/delaunator/-/delaunator-5.0.2.tgz#097af927d46957667cc30f37eddf03155f367b37"
-  integrity sha512-lqBrFSZT+7NYMtz454avpNJaAJYz4TAxsR99HOYqZLXYTduPYjpcmm8BonGGHXsE3L67yk5qO6qxKcrHpxXPMA==
+"@types/delaunator@5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@types/delaunator/-/delaunator-5.0.3.tgz#fdd3c09959189ffa898401916632ec3d4a031ed3"
+  integrity sha512-6tTLP8NX0OwtB/fmW9bXp4EWPptawTSsrSGjboWRuzqkxNEEJGyzRPHbr8wnV2DBWfAZ+EPTOvW3B/KysJrl2g==
 
 "@types/estree@1.0.5":
   version "1.0.5"
