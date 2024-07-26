@@ -14,6 +14,6 @@
 		<PackageReference Include="coverlet.collector" Version="6.0.0" />
 		<ProjectReference Include="..\Core\Core.csproj" />
 		<ProjectReference Include="..\Mac\Mac.csproj" />
-		<None Include="airport-output.txt" CopyToOutputDirectory="PreserveNewest" />
+		<None Include="system_profiler.json" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup>
 </Project>

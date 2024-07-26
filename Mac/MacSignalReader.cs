@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Hardware.Info;
 using WiFiSurveyor.Core;
 
 namespace WiFiSurveyor.Mac;
@@ -9,5 +10,5 @@ public sealed class MacSignalReader : PosixSignalReader
 	{
 	}
 
-	protected override ProcessStartInfo Info => new("/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport", " -s");
+	protected override ProcessStartInfo Info => new("system_profiler", "-json SPAirPortDataType");
 }

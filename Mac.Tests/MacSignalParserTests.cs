@@ -16,7 +16,7 @@ public sealed class MacSignalParserTests
 		//arrange
 		var logger = Substitute.For<ILogger>();
 		var signalParser = new MacSignalParser(logger);
-		var contents = await File.ReadAllTextAsync("airport-output.txt");
+		var contents = await File.ReadAllTextAsync("system_profiler.json");
 
 		//act
 		var signals = signalParser.Parse(contents).ToList();
@@ -59,7 +59,7 @@ public sealed class MacSignalParserTests
 		//arrange
 		var logger = Substitute.For<ILogger>();
 		var signalParser = new MacSignalParser(logger);
-		var contents = await File.ReadAllTextAsync("airport-output.txt");
+		var contents = await File.ReadAllTextAsync("system_profiler.json");
 		contents = contents
 			.Replace("13:xx", "")
 			.Replace("97:xx", "")
