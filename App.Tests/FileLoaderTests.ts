@@ -1,5 +1,8 @@
 import {Test, TestSuite} from "xunit.ts";
 import FileLoader from "../App/FileLoader";
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const { window } = new JSDOM();
 
 export default class FileLoaderTests extends TestSuite {
 	@Test()
@@ -9,7 +12,7 @@ export default class FileLoaderTests extends TestSuite {
 		const loader = new FileLoader(reader);
 
 		const blob = ["abc123"];
-		const file = new File(blob, "test.txt", { type: "text/plain" });
+		const file = new window.File(blob, "test.txt", { type: "text/plain" });
 
 		//act
 		const base64 = await loader.loadData(file);
@@ -25,7 +28,7 @@ export default class FileLoaderTests extends TestSuite {
 		const loader = new FileLoader(reader);
 
 		const blob = ["{\"abc\":123}"];
-		const file = new File(blob, "test.json", { type: "application/json" });
+		const file = new window.File(blob, "test.json", { type: "application/json" });
 
 		//act
 		const json = await loader.loadJSON(file) as { abc: number };
