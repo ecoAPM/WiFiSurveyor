@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<PackageVersion>1.2.1</PackageVersion>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<AssemblyName>WiFiSurveyor</AssemblyName>
 		<RootNamespace>WiFiSurveyor.Mac</RootNamespace>
 		<RuntimeIdentifier>osx-x64</RuntimeIdentifier>

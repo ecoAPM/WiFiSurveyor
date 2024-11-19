@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<AssemblyName>WiFiSurveyor.Core.Tests</AssemblyName>
 		<RootNamespace>WiFiSurveyor.Core.Tests</RootNamespace>
 		<LangVersion>latest</LangVersion>
