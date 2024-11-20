@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net9.0-windows10.0.17763.0</TargetFramework>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<AssemblyName>WiFiSurveyor.Windows.Tests</AssemblyName>
 		<RootNamespace>WiFiSurveyor.Windows.Tests</RootNamespace>
 		<ImplicitUsings>enable</ImplicitUsings>

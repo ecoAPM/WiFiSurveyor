@@ -5,6 +5,8 @@ public sealed class App
 	private readonly IHost _app;
 	public IWebHostEnvironment Environment { get; }
 
+	private const string BaseURL = "http://127.0.0.1:0";
+
 	public App(Action<IServiceCollection> addHandlers, string[] args)
 	{
 		var options = new WebApplicationOptions
@@ -21,7 +23,7 @@ public sealed class App
 
 		if (!Environment.IsDevelopment())
 		{
-			builder.WebHost.UseUrls("http://127.0.0.1:0");
+			builder.WebHost.UseUrls(BaseURL);
 		}
 
 		builder.Services.AddCommonServices();
