@@ -17,9 +17,10 @@ public static class AppHelpers
 		services.AddSignalR();
 	}
 
-	public static void AddMiddleware(this IApplicationBuilder app)
+	public static void AddMiddleware(this IApplicationBuilder app, IHostEnvironment env)
 	{
-		app.UseCors(builder => builder.AllowCredentials().AllowAnyHeader().WithOrigins("http://localhost:3000"));
+		var port = env.IsProduction() ? 3000 : 5173;
+		app.UseCors(builder => builder.AllowCredentials().AllowAnyHeader().WithOrigins($"http://localhost:{port}"));
 		app.UseResponseCompression();
 		app.UseDefaultFiles();
 		app.UseStaticFiles();

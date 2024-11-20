@@ -21,7 +21,7 @@ public sealed class App
 		var builder = WebApplication.CreateBuilder(options);
 		Environment = builder.Environment;
 
-		if (!Environment.IsDevelopment())
+		if (Environment.IsProduction())
 		{
 			builder.WebHost.UseUrls(BaseURL);
 		}
@@ -30,7 +30,7 @@ public sealed class App
 		addHandlers(builder.Services);
 
 		var app = builder.Build();
-		app.AddMiddleware();
+		app.AddMiddleware(Environment);
 
 		_app = app;
 	}
