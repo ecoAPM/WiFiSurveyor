@@ -1,6 +1,6 @@
 <template>
 	<form>
-		<label>Mode</label>
+		<label for="mode-signal">Mode</label>
 		<label>
 			<input id="mode-signal" v-model="state.mode" type="radio" name="type" :value="mode.Signal" />
 			Signal
