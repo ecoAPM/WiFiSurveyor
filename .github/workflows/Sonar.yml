@@ -34,7 +34,7 @@ jobs:
         run: dotnet restore
 
       - name: Start Sonar Analysis
-        run: dotnet-sonarscanner begin -d:sonar.host.url="https://sonarcloud.io" -d:sonar.login="${{ secrets.SONAR_TOKEN }}" -o:"ecoapm" -k:"ecoAPM_WiFiSurveyor-Server" -d:sonar.cs.vstest.reportsPaths="*.Tests/**/results.trx" -d:sonar.cs.opencover.reportsPaths="*.Tests/**/coverage.opencover.xml"
+        run: dotnet-sonarscanner begin -d:sonar.host.url="https://sonarcloud.io" -d:sonar.login="${{ secrets.SONAR_TOKEN }}" -o:"ecoapm" -k:"ecoAPM_WiFiSurveyor-Server" -d:sonar.cs.vstest.reportsPaths="*.Tests/**/results.trx" -d:sonar.cs.opencover.reportsPaths="*.Tests/**/coverage.opencover.xml" -d:sonar.exclusions="App*/**"
 
       - name: Build
         run: dotnet build --no-restore
