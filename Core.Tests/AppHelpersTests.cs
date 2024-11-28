@@ -10,6 +10,8 @@ namespace WiFiSurveyor.Core.Tests;
 
 public sealed class AppHelpersTests
 {
+	private static readonly ICollection<string> Addresses = ["http://localhost:1234"];
+
 	[Fact]
 	public void CanRegisterSharedServices()
 	{
@@ -35,7 +37,7 @@ public sealed class AppHelpersTests
 		var launcher = Substitute.For<IBrowserLauncher>();
 
 		var feature = Substitute.For<IServerAddressesFeature>();
-		feature.Addresses.Returns(new[] { "http://localhost:1234" });
+		feature.Addresses.Returns(Addresses);
 
 		var server = Substitute.For<IServer>();
 		server.Features.Get<IServerAddressesFeature>().Returns(feature);
@@ -62,7 +64,7 @@ public sealed class AppHelpersTests
 		var launcher = Substitute.For<IBrowserLauncher>();
 
 		var feature = Substitute.For<IServerAddressesFeature>();
-		feature.Addresses.Returns(new[] { "http://localhost:1234" });
+		feature.Addresses.Returns(Addresses);
 
 		var server = Substitute.For<IServer>();
 		server.Features.Get<IServerAddressesFeature>().Returns(feature);
