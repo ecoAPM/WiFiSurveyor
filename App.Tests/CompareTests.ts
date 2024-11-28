@@ -5,14 +5,14 @@ export default class CompareTests extends TestSuite {
 	@Test()
 	async canCompareNumbers() {
 		//arrange
-		const n1 = 1;
-		const n2 = 2;
-		const n1again = 1;
+		const number1 = 1;
+		const number2 = 2;
+		const number1again = 1;
 
 		//act
-		const less = Compare.numbers(n1, n2);
-		const greater = Compare.numbers(n2, n1);
-		const equal = Compare.numbers(n1, n1again);
+		const less = Compare.numbers(number1, number2);
+		const greater = Compare.numbers(number2, number1);
+		const equal = Compare.numbers(number1, number1again);
 
 		//assert
 		this.assert.equal(-1, less);
@@ -23,14 +23,14 @@ export default class CompareTests extends TestSuite {
 	@Test()
 	async canCompareStrings() {
 		//arrange
-		const s1 = "test1";
-		const s2 = "test2";
-		const s1again = "test1";
+		const string1 = "test1";
+		const string2 = "test2";
+		const string1again = "test1";
 
 		//act
-		const less = Compare.strings(s1, s2);
-		const greater = Compare.strings(s2, s1);
-		const equal = Compare.strings(s1, s1again);
+		const less = Compare.strings(string1, string2);
+		const greater = Compare.strings(string2, string1);
+		const equal = Compare.strings(string1, string1again);
 
 		//assert
 		this.assert.equal(-1, less);

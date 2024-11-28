@@ -7,12 +7,12 @@ export default class Compare {
 		return this.base(s1, s2);
 	}
 
-	private static base(n1: any, n2: any) {
-		if (n1 < n2) {
+	private static base(x: any, y: any): number {
+		if (x < y) {
 			return -1;
 		}
 
-		if (n1 > n2) {
+		if (x > y) {
 			return 1;
 		}
 
