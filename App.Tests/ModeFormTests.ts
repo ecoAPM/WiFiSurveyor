@@ -4,7 +4,7 @@ import ModeForm from "../App/mode-form.vue";
 import AppViewModel from "../App/AppViewModel";
 import { Mode } from "../App/Mode";
 
-export default class modeFormTests extends TestSuite {
+export default class ModeFormTests extends TestSuite {
 	@Test()
 	async canSetModeToSignal() {
 		//arrange
@@ -17,7 +17,7 @@ export default class modeFormTests extends TestSuite {
 		//assert
 		this.assert.equal(Mode.Signal, state.mode);
 	}
-	
+
 	@Test()
 	async canSetModeToSNR() {
 		//arrange
