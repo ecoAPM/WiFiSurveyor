@@ -8,7 +8,7 @@ import AppViewModel from "../App/AppViewModel";
 
 export default class APFormTests extends TestSuite {
 
-	private static signals = [
+	private static readonly signals = [
 		new Signal("mac2", "ssid2", 2, 1, -30),
 		new Signal("mac5", "ssid2", 2, 11, -50),
 		new Signal("mac3", "ssid2", 5, 36, -30),

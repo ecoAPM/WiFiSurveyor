@@ -5,9 +5,9 @@ import AccessPoint from "./AccessPoint";
 import { Mode } from "./Mode";
 
 export default class Renderer {
-	private canvas: HTMLCanvasElement;
-	private gl: WebGL2RenderingContext;
-	private shader_program: WebGLProgram;
+	private readonly canvas: HTMLCanvasElement;
+	private readonly gl: WebGL2RenderingContext;
+	private readonly shader_program: WebGLProgram;
 
 	constructor(canvas: HTMLCanvasElement) {
 		this.canvas = canvas;

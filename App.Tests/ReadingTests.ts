@@ -5,7 +5,7 @@ import Signal from "../App/Signal";
 import AccessPoint from "../App/AccessPoint";
 
 export default class ReadingTests extends TestSuite {
-	private static signals: Signal[] = [
+	private static readonly signals: Signal[] = [
 		new Signal("mac1", "ssid1", 2, 1, -35),
 		new Signal("mac2", "ssid1", 2, 11, -30),
 		new Signal("mac3", "ssid1", 5, 36, -45),

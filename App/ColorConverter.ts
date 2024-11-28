@@ -1,8 +1,8 @@
 import Color from "./Color";
 
 export default class ColorConverter {
-	private static signalStops: number[] = [ -20, -40, -60, -80, -100 ];
-	private static snrStops: number[] = [ 90, 50, 20, 0, -10 ];
+	private static readonly signalStops: number[] = [ -20, -40, -60, -80, -100 ];
+	private static readonly snrStops: number[] = [ 90, 50, 20, 0, -10 ];
 
 	static fromSignal(dBm: number | null): Color {
 		return dBm != null
