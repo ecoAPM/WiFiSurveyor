@@ -1,6 +1,6 @@
 <template>
 	<form>
-		<label>Background</label>
+		<label for="background-file">Background</label>
 		<button type="button" @click="$event.target.children[0].click()">
 			<label for="background-file" @click.stop>Import</label>
 		</button>
