@@ -37,9 +37,10 @@ public sealed class LinuxSignalParser : ISignalParser<string>
 				Strength = short.Parse(dbm)
 			};
 		}
-		catch (Exception)
+		catch (Exception e)
 		{
-			_logger.LogIf(LogLevel.Warning, "Could not parse signal data: {0}", result);
+			_logger.LogIf(LogLevel.Warning, "Could not parse signal data: {result}", result);
+			_logger.LogIf(LogLevel.Debug, "{exception}", e.ToString());
 			return null;
 		}
 	}

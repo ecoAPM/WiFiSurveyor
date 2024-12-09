@@ -31,9 +31,10 @@ public sealed class MacSignalParser : ISignalParser<string>
 				Frequency = GetFrequency(Encoding.UTF8.GetString(line[55..64]).Trim())
 			};
 		}
-		catch (Exception)
+		catch (Exception e)
 		{
-			_logger.LogIf(LogLevel.Warning, "Could not parse signal data: {0}", Encoding.UTF8.GetString(line));
+			_logger.LogIf(LogLevel.Warning, "Could not parse signal data: {data}", Encoding.UTF8.GetString(line));
+			_logger.LogIf(LogLevel.Debug, "{exception}", e.ToString());
 			return null;
 		}
 	}
