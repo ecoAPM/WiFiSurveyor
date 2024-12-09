@@ -45,6 +45,7 @@ public sealed class SignalService<T> : BackgroundService
 			var message = new Message { Status = e.Message };
 			await _signalHub.SendMessage(message);
 			_logger.LogIf(LogLevel.Error, "{updated}: {status}", message.LastUpdated, message.Status);
+			_logger.LogIf(LogLevel.Debug, "{exception}", e.ToString());
 		}
 	}
 }

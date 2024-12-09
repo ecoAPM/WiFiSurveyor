@@ -20,7 +20,7 @@ public sealed class WindowsSignalParser : ISignalParser<IWiFiNetworkReport>
 	{
 		try
 		{
-			return new()
+			return new Signal
 			{
 				MAC = result.Bssid,
 				SSID = result.Ssid,
@@ -29,9 +29,10 @@ public sealed class WindowsSignalParser : ISignalParser<IWiFiNetworkReport>
 				Strength = Convert.ToInt16(result.NetworkRssiInDecibelMilliwatts)
 			};
 		}
-		catch (Exception)
+		catch (Exception e)
 		{
-			_logger.LogIf(LogLevel.Warning, "Could not parse signal data: {0}", result);
+			_logger.LogIf(LogLevel.Warning, "{now}: Could not parse signal data -- {result}", DateTime.Now, result);
+			_logger.LogIf(LogLevel.Debug, "{exception}", e.ToString());
 			return null;
 		}
 	}
