@@ -13,8 +13,8 @@ export default class AccessPoint {
 
 	label(): string {
 		return this.ssid
-			+ (this.frequency !== null ? ` @ ${this.frequency} GHz` : "")
-			+ (this.mac !== null ? ` (${this.mac})` : "");
+			+ (this.frequency ? ` @ ${this.frequency} GHz` : "")
+			+ (this.mac ? ` (${this.mac})` : "");
 	}
 
 	compareTo(other: AccessPoint): number {
