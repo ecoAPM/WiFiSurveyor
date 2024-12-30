@@ -219,10 +219,10 @@
   dependencies:
     levn "^0.4.1"
 
-"@fontsource/noto-sans@5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans/-/noto-sans-5.1.0.tgz#54a5edd1b2b8c8e17bec6a85d4ee3a53b4b89c1f"
-  integrity sha512-P6X+ynPOteCsbUHI7rU4UIpRJcuraJ3OllKqPIjKgxPZS0yPtxFyquADb4SmcgZosRrgqDy34/dcSIhio3Qx4Q==
+"@fontsource/noto-sans@5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans/-/noto-sans-5.1.1.tgz#a708b243100c6c712b5043f4aecc41cce8a5c8e0"
+  integrity sha512-WesuII3BzvzVr0JqYIgnEeJPwXvpFAo9tNCMH1AqoLSCdStKJugMaIcVJ/sT+Pw9ytIlUO3ccbqbe+BhhsXm9g==
 
 "@fontsource/roboto@5.1.1":
   version "5.1.1"
