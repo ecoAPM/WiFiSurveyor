@@ -110,4 +110,16 @@ export default class ColorTests extends TestSuite {
 		//assert
 		this.assert.equal("#7f3f1fff", hex_css_string);
 	}
+
+	@Test()
+	async canConvertBlackToHEXA() {
+		//arrange
+		const color = new Color(0, 0, 0);
+
+		//act
+		const hex_css_string = color.toHEXA();
+
+		//assert
+		this.assert.equal("#000000ff", hex_css_string);
+	}
 }

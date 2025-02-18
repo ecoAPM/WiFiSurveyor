@@ -24,10 +24,13 @@ export default class Color {
 	}
 
 	toHEX(): string {
-		return `#${this.red.toString(16)}${this.green.toString(16)}${this.blue.toString(16)}`;
+		const r = this.red.toString(16);
+		const g = this.green.toString(16);
+		const b = this.blue.toString(16);
+		return `#${r.length == 1 ? "0": ""}${r}${g.length == 1 ? "0": ""}${g}${b.length == 1 ? "0": ""}${b}`;
 	}
 
 	toHEXA(): string {
-		return `#${this.red.toString(16)}${this.green.toString(16)}${this.blue.toString(16)}${this.alpha.toString(16)}`;
+		return `${this.toHEX()}${this.alpha.toString(16)}`;
 	}
 }
