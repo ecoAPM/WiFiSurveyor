@@ -1,5 +1,5 @@
 <template>
-	<div class="point" :style="{ left: reading.location.x + 'px', top: reading.location.y + 'px', 'background-color': color }">
+	<div class="point" :style="{ left: reading.location.x + 'px', top: reading.location.y + 'px', 'background-color': color.toRGBA() }">
 		<div class="delete" @click="remove()"></div>
 		<div class="shadow"></div>
 		<div v-if="signal" class="value">

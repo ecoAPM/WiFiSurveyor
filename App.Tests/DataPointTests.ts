@@ -49,6 +49,19 @@ export default class DataPointTests extends TestSuite {
 	}
 
 	@Test()
+	async colorMatchesReadingStrength() {
+		//arrange
+		const reading = new Reading(1, new Point(12, 34), [ new Signal("mac", "test", 2, 1, -30) ]);
+		const selected = new AccessPoint("test");
+
+		//act
+		const component = mount(DataPoint, { propsData: { reading: reading, selected: selected } });
+
+		//assert
+		this.assert.stringContains("background-color: rgb(0, 127, 0);", component.html());
+	}
+
+	@Test()
 	async clickingDeletesReading() {
 		//arrange
 		const state = new AppViewModel();
