@@ -51,7 +51,7 @@
 		"typescript": "5.7.3",
 		"vite": "6.2.0",
 		"vue": "3.5.13",
-		"vue-eslint-parser": "10.1.0",
+		"vue-eslint-parser": "10.1.1",
 		"xunit.ts": "2.0.0"
 	},
 	"browserslist": [
