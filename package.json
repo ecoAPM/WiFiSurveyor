@@ -44,7 +44,7 @@
 		"@vue/test-utils": "2.4.6",
 		"delaunator": "5.0.1",
 		"eslint": "9.21.0",
-		"eslint-plugin-vue": "9.33.0",
+		"eslint-plugin-vue": "10.0.0",
 		"global-jsdom": "26.0.0",
 		"jsdom": "26.0.0",
 		"ts-mockito": "2.6.1",
