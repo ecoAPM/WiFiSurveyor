@@ -1001,10 +1001,10 @@ escape-string-regexp@^4.0.0:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz#14ba83a5d373e3d311e5afca29cf5bfad965bf34"
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
 
-eslint-plugin-vue@10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-10.0.0.tgz#42707bfb8c4490b0b1a4be6f11a416fb16c3d11c"
-  integrity sha512-XKckedtajqwmaX6u1VnECmZ6xJt+YvlmMzBPZd+/sI3ub2lpYZyFnsyWo7c3nMOQKJQudeyk1lw/JxdgeKT64w==
+eslint-plugin-vue@10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-10.0.1.tgz#5194318eb76f98ccf7b7d28f0c7103842c7f480f"
+  integrity sha512-A5dRYc3eQ5i2rJFBW8J6F69ur/H7YfYg+5SCg6v829FU0BhM4fUTrRVR2d4MdZgzw0ioJEk6otYHEAnoGFqO4A==
   dependencies:
     "@eslint-community/eslint-utils" "^4.4.0"
     natural-compare "^1.4.0"
