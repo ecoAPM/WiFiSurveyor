@@ -49,7 +49,7 @@
 		"jsdom": "26.1.0",
 		"ts-mockito": "2.6.1",
 		"typescript": "5.8.3",
-		"vite": "6.3.4",
+		"vite": "6.3.5",
 		"vue": "3.5.13",
 		"vue-eslint-parser": "10.1.3",
 		"xunit.ts": "2.0.0"
