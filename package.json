@@ -39,7 +39,7 @@
 		"@types/node": "22.15.17",
 		"@typescript-eslint/eslint-plugin": "8.32.0",
 		"@typescript-eslint/parser": "8.32.0",
-		"@vitejs/plugin-vue": "5.2.3",
+		"@vitejs/plugin-vue": "5.2.4",
 		"@vue/component-compiler-utils": "3.3.0",
 		"@vue/test-utils": "2.4.6",
 		"delaunator": "5.0.1",
