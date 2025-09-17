@@ -262,10 +262,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/noto-sans/-/noto-sans-5.2.9.tgz#c0961983fc15a4d7449e2a18791434ba84d5d131"
   integrity sha512-Kp686d+qiUYzdc/EWxOpbOHmRzX15LDl3nk+uTvA82EM10LjsGTWCMBVJRSU4rkTqsZjPfv5pn86KDoC+yuPdA==
 
-"@fontsource/roboto@5.2.7":
-  version "5.2.7"
-  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-5.2.7.tgz#4c8e06c6abf17bc6c18cd8b1ce26112803346c9c"
-  integrity sha512-fca6Jtyxn6kPR51+TTTMCFm0FOhnKaLEYYiAQc8P/4iFCKoKGR0aX89QR4CfP+N64RPXJus64UxhJaVENnSM6Q==
+"@fontsource/roboto@5.2.8":
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-5.2.8.tgz#73411c434b9162019b8ca18abd8245489809cca9"
+  integrity sha512-oh9g4Cg3loVMz9MWeKWfDI+ooxxG1aRVetkiKIb2ESS2rrryGecQ/y4pAj4z5A5ebyw450dYRi/c4k/I3UBhHA==
 
 "@humanfs/core@^0.19.1":
   version "0.19.1"
