@@ -257,10 +257,10 @@
     "@eslint/core" "^0.15.2"
     levn "^0.4.1"
 
-"@fontsource/noto-sans@5.2.9":
-  version "5.2.9"
-  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans/-/noto-sans-5.2.9.tgz#c0961983fc15a4d7449e2a18791434ba84d5d131"
-  integrity sha512-Kp686d+qiUYzdc/EWxOpbOHmRzX15LDl3nk+uTvA82EM10LjsGTWCMBVJRSU4rkTqsZjPfv5pn86KDoC+yuPdA==
+"@fontsource/noto-sans@5.2.10":
+  version "5.2.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans/-/noto-sans-5.2.10.tgz#74476071b53fda1554ac009b98f18d763d0f7135"
+  integrity sha512-J58RVfS/C0Z2VBF+PoU260Tx8cdRGYuS+e3yQe4hYaIYDl0sEVn5CzlLo5zVRvQD0HaIUTV8AZMfqR7rtdEpqQ==
 
 "@fontsource/roboto@5.2.8":
   version "5.2.8"
