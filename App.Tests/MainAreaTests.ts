@@ -32,7 +32,7 @@ export default class MainAreaTests extends TestSuite {
 		const component = mount(MainArea, { data: () => ({ state: state }) });
 
 		//assert
-		this.assert.stringContains("background-image: url(test.png);", component.get(".background").attributes("style"));
+		this.assert.stringContains("background-image: url(\"test.png\");", component.get(".background").attributes("style"));
 	}
 
 	@Test()
