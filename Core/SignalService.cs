@@ -27,7 +27,7 @@ public sealed class SignalService<T> : BackgroundService
 		}
 	}
 
-	private async Task GetSignals()
+	public async Task GetSignals()
 	{
 		try
 		{

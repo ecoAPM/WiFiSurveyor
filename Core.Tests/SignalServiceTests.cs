@@ -18,7 +18,7 @@ public sealed class SignalServiceTests
 		var service = new SignalService<string>(reader, parser, hub, logger);
 
 		//act
-		await service.StartAsync(CancellationToken.None);
+		await service.GetSignals();
 
 		//assert
 		await hub.Received().SendMessage(Arg.Is<Message>(m => m.Status == "unit test exception"));
@@ -64,7 +64,7 @@ public sealed class SignalServiceTests
 		var service = new SignalService<string>(reader, parser, hub, logger);
 
 		//act
-		await service.StartAsync(CancellationToken.None);
+		await service.GetSignals();
 
 		//assert
 		await hub.Received().SendMessage(Arg.Is<Message>(m => m.Signals.Equals(signals)));
