@@ -30,7 +30,7 @@ jobs:
       run: dotnet test
 
     - name: Install app dependencies
-      run: yarn install
+      run: yarn
 
     - name: Run app tests
       run: yarn test
