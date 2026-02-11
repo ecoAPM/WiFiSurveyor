@@ -34,7 +34,7 @@ jobs:
         run: dotnet restore
 
       - name: Start Sonar Analysis
-        run: dotnet-sonarscanner begin -d:sonar.host.url="https://sonarcloud.io" -d:sonar.login="$SONAR_TOKEN" -o:"ecoapm" -k:"ecoAPM_WiFiSurveyor-Server" -d:sonar.cs.vstest.reportsPaths="*.Tests/**/results.trx" -d:sonar.cs.opencover.reportsPaths="*.Tests/**/coverage.opencover.xml" -d:sonar.exclusions="App*/**"
+        run: dotnet-sonarscanner begin -d:sonar.host.url="https://sonarcloud.io" -d:sonar.token="$SONAR_TOKEN" -o:"ecoapm" -k:"ecoAPM_WiFiSurveyor-Server" -d:sonar.cs.vstest.reportsPaths="*.Tests/**/results.trx" -d:sonar.cs.opencover.reportsPaths="*.Tests/**/coverage.opencover.xml" -d:sonar.exclusions="App*/**"
         env:
           SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
 
@@ -50,7 +50,7 @@ jobs:
         run: rm sonar-project.properties
 
       - name: Finish Sonar Analysis
-        run: dotnet-sonarscanner end -d:sonar.login="$SONAR_TOKEN"
+        run: dotnet-sonarscanner end -d:sonar.token="$SONAR_TOKEN"
         env:
           SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -83,7 +83,7 @@ jobs:
         run: c8 -r lcov yarn test -s
 
       - name: SonarCloud Analysis
-        uses: sonarsource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v7.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
