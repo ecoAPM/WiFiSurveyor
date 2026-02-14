@@ -5,10 +5,10 @@ export default class Color {
 	alpha: number = 0;
 
 	constructor(red: number, green: number, blue: number, alpha: number = 255) {
-		this.red = ~~Color.clamp(red);
-		this.green = ~~Color.clamp(green);
-		this.blue = ~~Color.clamp(blue);
-		this.alpha = ~~Color.clamp(alpha);
+		this.red = Math.trunc(Color.clamp(red));
+		this.green = Math.trunc(Color.clamp(green));
+		this.blue = Math.trunc(Color.clamp(blue));
+		this.alpha = Math.trunc(Color.clamp(alpha));
 	}
 
 	private static clamp(value: number): number {
