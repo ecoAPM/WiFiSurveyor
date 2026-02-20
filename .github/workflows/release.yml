@@ -16,58 +16,59 @@ jobs:
       contents: write
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        ref: ${{ github.ref }}
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.ref }}
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 10.0.x
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
 
-    - name: Run server tests
-      run: dotnet test
+      - name: Run server tests
+        run: dotnet test
 
-    - name: Install app dependencies
-      run: yarn
+      - name: Install app dependencies
+        run: yarn
 
-    - name: Run app tests
-      run: yarn test
+      - name: Run app tests
+        run: yarn test
 
-    - name: Build app
-      run: yarn build
+      - name: Build app
+        run: yarn build
 
-    - name: Publish Linux
-      run: dotnet publish Linux --sc -c Release -r linux-x64 -o publish/Linux
+      - name: Publish Linux
+        run: dotnet publish Linux --sc -c Release -r linux-x64 -o publish/Linux
 
-    - name: Publish Mac
-      run: dotnet publish Mac --sc -c Release -r osx-x64 -o publish/Mac
+      - name: Publish Mac
+        run: dotnet publish Mac --sc -c Release -r osx-x64 -o publish/Mac
 
-    - name: Publish Windows
-      run: dotnet publish Windows --sc -c Release -r win-x64 -o publish/Windows
+      - name: Publish Windows
+        run: dotnet publish Windows --sc -c Release -r win-x64 -o publish/Windows
 
-    - name: Package Linux release
-      working-directory: publish/Linux
-      run: tar -Jcvf ../WiFiSurveyor.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').Linux.tar.xz *
-      env:
-        XZ_OPT: -9
+      - name: Package Linux release
+        working-directory: publish/Linux
+        run: tar -Jcvf ../WiFiSurveyor.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').Linux.tar.xz *
+        env:
+          XZ_OPT: -9
 
-    - name: Package Mac release
-      working-directory: publish/Mac
-      run: tar -Jcvf ../WiFiSurveyor.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').Mac.tar.xz *
-      env:
-        XZ_OPT: -9
+      - name: Package Mac release
+        working-directory: publish/Mac
+        run: tar -Jcvf ../WiFiSurveyor.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').Mac.tar.xz *
+        env:
+          XZ_OPT: -9
 
-    - name: Package Windows release
-      shell: pwsh
-      working-directory: publish/Windows
-      run: Compress-Archive -Path * -DestinationPath ../WiFiSurveyor.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').Windows.zip
+      - name: Package Windows release
+        shell: pwsh
+        working-directory: publish/Windows
+        run: Compress-Archive -Path * -DestinationPath ../WiFiSurveyor.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').Windows.zip
 
-    - name: Create release
-      uses: softprops/action-gh-release@v2.5.0
-      with:
-        files: |
-          publish/WiFiSurveyor.*.Linux.tar.xz
-          publish/WiFiSurveyor.*.Mac.tar.xz
-          publish/WiFiSurveyor.*.Windows.zip
+      - name: Create release
+        uses: softprops/action-gh-release@v2.5.0
+        with:
+          files: |
+            publish/WiFiSurveyor.*.Linux.tar.xz
+            publish/WiFiSurveyor.*.Mac.tar.xz
+            publish/WiFiSurveyor.*.Windows.zip
