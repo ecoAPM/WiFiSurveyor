@@ -4,9 +4,8 @@ import Reading from "./Reading";
 import AccessPoint from "./AccessPoint";
 import Point from "./Point";
 import AccessPointGrouping from "./AccessPointGrouping";
-import FileLoader from "./FileLoader";
 import Signal from "./Signal";
-import { Mode } from './Mode';
+import {Mode} from './Mode';
 
 export default class AppViewModel {
 	name: string = "";
@@ -21,7 +20,6 @@ export default class AppViewModel {
 
 	signal_service: SignalService | null = null;
 	renderer: Renderer | null = null;
-	file_loader: FileLoader | null = null;
 
 	async load(files: FileList): Promise<void> {
 		if (files.length !== 1) {
@@ -30,7 +28,7 @@ export default class AppViewModel {
 
 		const file = files.item(0);
 		if (file != null) {
-			const json = await this.file_loader?.loadJSON(file) as AppViewModel;
+			const json = JSON.parse(await file.text()) as AppViewModel;
 			this.restore(json);
 		}
 	}
@@ -61,7 +59,8 @@ export default class AppViewModel {
 
 		const file = files.item(0);
 		if (file != null) {
-			this.background = await this.file_loader?.loadData(file) ?? "";
+			const buffer = Buffer.from(await file.arrayBuffer());
+			this.background = "data:" + file.type + ';base64,' + buffer.toString('base64');
 		}
 	}
 

@@ -2,7 +2,6 @@ import SignalService from "./SignalService";
 import {HubConnectionBuilder} from "@microsoft/signalr";
 import Renderer from "./Renderer";
 import Signal from "./Signal";
-import FileLoader from "./FileLoader";
 
 export default class Factory {
 
@@ -17,10 +16,5 @@ export default class Factory {
 
 	static renderer(canvas: HTMLCanvasElement): Renderer {
 		return new Renderer(canvas);
-	}
-
-	static fileLoader(): FileLoader {
-		const file_reader = new FileReader();
-		return new FileLoader(file_reader);
 	}
 }

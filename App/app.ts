@@ -9,8 +9,7 @@ const server = local ? "" : "http://localhost:5000";
 const app = createApp({
 	provide: () => ({
 		signal_service: (signals: Signal[]) => Factory.signalService(server, signals),
-		renderer: Factory.renderer,
-		file_loader: Factory.fileLoader
+		renderer: Factory.renderer
 	}),
 	render: () => h(App)
 });

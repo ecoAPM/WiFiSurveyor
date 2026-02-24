@@ -1,28 +1,29 @@
 import {Test, TestSuite} from "xunit.ts";
 import AppViewModel from "../App/AppViewModel";
 import Mockito from "ts-mockito";
-import FileLoader from "../App/FileLoader";
 
 export default class AppViewModelTests extends TestSuite {
 	@Test()
-	async canSetBackgroundFromFileLoaderData() {
+	async canSetBackgroundFromFileData() {
 		//arrange
-		const file = Mockito.mock<File>();
+		const data = new TextEncoder().encode("abc123");
 
-		const loader = Mockito.mock<FileLoader>();
-		Mockito.when(loader.loadData(file)).thenResolve("data:image/png;base64,abc123");
-		const vm = new AppViewModel();
-		vm.file_loader = Mockito.instance(loader);
+		const mockFile = Mockito.mock<File>();
+		Mockito.when(mockFile.type).thenReturn("image/png")
+		Mockito.when(mockFile.arrayBuffer()).thenResolve(data.buffer);
+		const file = Mockito.instance(mockFile);
 
 		const files = Mockito.mock<FileList>();
 		Mockito.when(files.length).thenReturn(1);
 		Mockito.when(files.item(0)).thenReturn(file);
 
+		const vm = new AppViewModel();
+
 		//act
 		await vm.setBackground(Mockito.instance(files));
 
 		//assert
-		this.assert.equal("data:image/png;base64,abc123", vm.background);
+		this.assert.equal("data:image/png;base64,YWJjMTIz", vm.background);
 	}
 
 	private readonly data: object = {
@@ -47,17 +48,16 @@ export default class AppViewModelTests extends TestSuite {
 	@Test()
 	async canLoadPreviouslySavedData() {
 		//arrange
+		const json = JSON.stringify(this.data);
 		const mockFile = Mockito.mock<File>();
+		Mockito.when(mockFile.text()).thenResolve(json);
 		const file = Mockito.instance(mockFile);
-
-		const loader = Mockito.mock<FileLoader>();
-		Mockito.when(loader.loadJSON(file)).thenResolve(this.data);
-		const vm = new AppViewModel();
-		vm.file_loader = Mockito.instance(loader);
 
 		const files = Mockito.mock<FileList>();
 		Mockito.when(files.length).thenReturn(1);
 		Mockito.when(files.item(0)).thenReturn(file);
+
+		const vm = new AppViewModel();
 
 		//act
 		await vm.load(Mockito.instance(files));

@@ -24,8 +24,7 @@ export default defineComponent({
 	},
 	inject: {
 		signal_service_factory: "signal_service",
-		renderer_factory: "renderer",
-		file_loader_factory: "file_loader",
+		renderer_factory: "renderer"
 	},
 	data: () => SharedState,
 	computed: {

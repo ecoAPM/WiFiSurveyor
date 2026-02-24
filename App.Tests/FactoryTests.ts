@@ -5,7 +5,6 @@ import SignalService from "../App/SignalService";
 import MockFactory from "./MockFactory";
 import Mockito from "ts-mockito";
 import Renderer from "../App/Renderer";
-import FileLoader from "../App/FileLoader";
 
 export default class FactoryTests extends TestSuite {
 	@Test()
@@ -30,14 +29,5 @@ export default class FactoryTests extends TestSuite {
 
 		//assert
 		this.assert.instanceOf(Renderer, renderer);
-	}
-
-	@Test()
-	async canCreateFileLoader() {
-		//act
-		const loader = Factory.fileLoader();
-
-		//assert
-		this.assert.instanceOf(FileLoader, loader);
 	}
 }

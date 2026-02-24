@@ -16,15 +16,12 @@ export default class AppTests extends TestSuite {
 		const canvas = MockFactory.canvas();
 		const renderer = new Renderer(Mockito.instance(canvas));
 
-		const file_loader = MockFactory.fileLoader();
-
 		//act
 		const component = mount(App, {
 			global: {
 				provide: {
 					signal_service: () => Mockito.instance(signal_service),
-					renderer: () => renderer,
-					file_loader: () => Mockito.instance(file_loader)
+					renderer: () => renderer
 				}
 			}
 		});
@@ -42,15 +39,12 @@ export default class AppTests extends TestSuite {
 		const canvas = MockFactory.canvas();
 		const renderer = new Renderer(Mockito.instance(canvas));
 
-		const file_loader = MockFactory.fileLoader();
-
 		//act
 		const component = mount(App, {
 			global: {
 				provide: {
 					signal_service: () => Mockito.instance(signal_service),
-					renderer: () => renderer,
-					file_loader: () => Mockito.instance(file_loader)
+					renderer: () => renderer
 				}
 			}
 		});
@@ -71,8 +65,7 @@ export default class AppTests extends TestSuite {
 			global: {
 				provide: {
 					signal_service: () => null,
-					renderer: () => renderer,
-					file_loader: () => null
+					renderer: () => renderer
 				}
 			}
 		});
@@ -89,8 +82,7 @@ export default class AppTests extends TestSuite {
 			global: {
 				provide: {
 					signal_service: () => null,
-					renderer: () => Mockito.instance(renderer),
-					file_loader: () => null
+					renderer: () => Mockito.instance(renderer)
 				}
 			}
 		});
@@ -111,8 +103,7 @@ export default class AppTests extends TestSuite {
 			global: {
 				provide: {
 					signal_service: () => null,
-					renderer: () => Mockito.instance(renderer),
-					file_loader: () => null
+					renderer: () => Mockito.instance(renderer)
 				}
 			}
 		});
