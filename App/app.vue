@@ -30,14 +30,10 @@ export default defineComponent({
 	data: () => SharedState,
 	computed: {
 		connection_status(): string {
-			return this.signal_service != null
-				? this.signal_service.status
-				: "(loading...)";
+			return this.signal_service?.status ??  "(loading...)";
 		},
 		last_updated(): string {
-			return this.signal_service != null
-				? this.signal_service.last_updated
-				: "";
+			return this.signal_service?.last_updated ?? "";
 		}
 	},
 	watch: {
@@ -54,7 +50,6 @@ export default defineComponent({
 
 		const canvas = document.getElementById("webglcanvas") as HTMLCanvasElement;
 		this.renderer = this.renderer_factory(canvas);
-		this.file_loader = this.file_loader_factory();
 
 		await start;
 	},

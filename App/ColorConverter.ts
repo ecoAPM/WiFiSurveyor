@@ -5,15 +5,15 @@ export default class ColorConverter {
 	private static readonly snrStops: number[] = [ 90, 50, 20, 0, -10 ];
 
 	static fromSignal(dBm: number | null): Color {
-		return dBm != null
-			? new Color(this.base(dBm, 1, this.signalStops), this.base(dBm, 0, this.signalStops), 0)
-			: new Color(0, 0, 0, 127);
+		return dBm == null
+			? new Color(0, 0, 0, 127)
+			: new Color(this.base(dBm, 1, this.signalStops), this.base(dBm, 0, this.signalStops), 0);
 	}
 
 	static fromSNR(dB: number | null): Color {
-		return dB != null
-			? new Color(this.base(dB, 1, this.snrStops), this.base(dB, 0, this.snrStops), 0)
-			: new Color(0, 0, 0, 127);
+		return dB == null
+			? new Color(0, 0, 0, 127)
+			: new Color(this.base(dB, 1, this.snrStops), this.base(dB, 0, this.snrStops), 0);
 	}
 
 	private static base(value: number, offset: number, stops: number[]): number {
