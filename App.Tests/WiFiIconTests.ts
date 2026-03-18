@@ -6,12 +6,12 @@ export default class WiFiIconTests extends TestSuite {
 	@Test()
 	async colorGetsPassedToSVG() {
 		//arrange
-		const color = "rgba(0, 255, 0, 1)";
+		const color = "rgb(0, 255, 0)";
 
 		//act
 		const component = mount(WiFiIcon, { propsData: { color: color } });
 
 		//assert
-		this.assert.stringContains("style=\"fill: rgba(0, 255, 0, 1);\"", component.html());
+		this.assert.stringContains("style=\"fill: rgb(0, 255, 0);\"", component.html());
 	}
 }
