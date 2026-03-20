@@ -46,7 +46,7 @@
 		"eslint": "10.0.3",
 		"eslint-plugin-vue": "10.8.0",
 		"global-jsdom": "29.0.0",
-		"jsdom": "29.0.0",
+		"jsdom": "29.0.1",
 		"ts-mockito": "2.6.1",
 		"typescript": "5.9.3",
 		"vite": "8.0.1",
