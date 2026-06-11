@@ -9,7 +9,7 @@ import MockFactory from "./MockFactory";
 
 export default class FactoryTests extends TestSuite {
 	@Test()
-	async canCreateSignalService() {
+	canCreateSignalService() {
 		//arrange
 		const signals: Signal[] = [];
 
@@ -21,7 +21,7 @@ export default class FactoryTests extends TestSuite {
 	}
 
 	@Test()
-	async canCreateRenderer() {
+	canCreateRenderer() {
 		//arrange
 		const canvas = MockFactory.canvas();
 

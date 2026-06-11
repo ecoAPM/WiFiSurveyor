@@ -10,7 +10,7 @@ import Signal from "../App/Signal";
 
 export default class DataPointTests extends TestSuite {
 	@Test()
-	async showsSignalOnDataPoint() {
+	showsSignalOnDataPoint() {
 		//arrange
 		const reading = new Reading(1, new Point(0, 0), [ new Signal("mac", "test", 2, 1, -30) ]);
 		const selected = new AccessPoint("test");
@@ -23,7 +23,7 @@ export default class DataPointTests extends TestSuite {
 	}
 
 	@Test()
-	async showsNoSignalWhenNoSignal() {
+	showsNoSignalWhenNoSignal() {
 		//arrange
 		const reading = new Reading(1, new Point(0, 0), []);
 		const selected = new AccessPoint("test");
@@ -36,7 +36,7 @@ export default class DataPointTests extends TestSuite {
 	}
 
 	@Test()
-	async positionMatchesReadingLocation() {
+	positionMatchesReadingLocation() {
 		//arrange
 		const reading = new Reading(1, new Point(12, 34), [ new Signal("mac", "test", 2, 1, -30) ]);
 		const selected = new AccessPoint("test");
@@ -50,7 +50,7 @@ export default class DataPointTests extends TestSuite {
 	}
 
 	@Test()
-	async colorMatchesReadingStrength() {
+	colorMatchesReadingStrength() {
 		//arrange
 		const reading = new Reading(1, new Point(12, 34), [ new Signal("mac", "test", 2, 1, -30) ]);
 		const selected = new AccessPoint("test");

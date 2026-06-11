@@ -6,7 +6,7 @@ import WiFiStatus from "../App/wifi-status.vue";
 
 export default class WiFiStatusTests extends TestSuite {
 	@Test()
-	async showsIndicatorWhenSignalFound() {
+	showsIndicatorWhenSignalFound() {
 		//arrange
 		const signal = -40;
 		const units = Mode.Signal;
@@ -20,7 +20,7 @@ export default class WiFiStatusTests extends TestSuite {
 	}
 
 	@Test()
-	async showsCorrectUnits() {
+	showsCorrectUnits() {
 		//arrange
 		const value = 50;
 		const units = Mode.SNR;
@@ -34,7 +34,7 @@ export default class WiFiStatusTests extends TestSuite {
 	}
 
 	@Test()
-	async showsIndicatorWhenNoSignal() {
+	showsIndicatorWhenNoSignal() {
 		//arrange
 		const signal = null;
 		const units = Mode.Signal;
@@ -48,7 +48,7 @@ export default class WiFiStatusTests extends TestSuite {
 	}
 
 	@Test()
-	async colorIsFullByDefault() {
+	colorIsFullByDefault() {
 		//arrange
 		const color = "rgba(0, 255, 0, 1)";
 

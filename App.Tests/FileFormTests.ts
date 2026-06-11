@@ -6,7 +6,7 @@ import FileForm from "../App/file-form.vue";
 
 export default class FileFormTests extends TestSuite {
 	@Test()
-	async canGetObjectURL() {
+	canGetObjectURL() {
 		//arrange
 		const state = new AppViewModel();
 		state.name = "Test";

@@ -10,7 +10,7 @@ import Signal from "../App/Signal";
 
 export default class HeaderMenuTests extends TestSuite {
 	@Test()
-	async canGetCurrentSignal() {
+	canGetCurrentSignal() {
 		//arrange
 		const signals = [
 			new Signal("123abc", "test", 2, 1, -10)

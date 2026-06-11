@@ -8,7 +8,7 @@ import Reading from "../App/Reading";
 
 export default class MainAreaTests extends TestSuite {
 	@Test()
-	async showsDataPointForEachReading() {
+	showsDataPointForEachReading() {
 		//arrange
 		const state = new AppViewModel();
 		state.readings = [
@@ -24,7 +24,7 @@ export default class MainAreaTests extends TestSuite {
 	}
 
 	@Test()
-	async backgroundIsSetFromData() {
+	backgroundIsSetFromData() {
 		//arrange
 		const state = new AppViewModel();
 		state.background = "test.png";
@@ -37,7 +37,7 @@ export default class MainAreaTests extends TestSuite {
 	}
 
 	@Test()
-	async backgroundIsPixelatedWhenFlagSet() {
+	backgroundIsPixelatedWhenFlagSet() {
 		//arrange
 		const state = new AppViewModel();
 		state.pixelated = true;
@@ -50,7 +50,7 @@ export default class MainAreaTests extends TestSuite {
 	}
 
 	@Test()
-	async backgroundIsNotPixelatedWhenFlagNotSet() {
+	backgroundIsNotPixelatedWhenFlagNotSet() {
 		//arrange
 		const state = new AppViewModel();
 		state.pixelated = false;

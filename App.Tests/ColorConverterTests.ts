@@ -5,7 +5,7 @@ import ColorConverter from "../App/ColorConverter";
 
 export default class ColorConverterTests extends TestSuite {
 	@Test()
-	async goodSignalIsGreen() {
+	goodSignalIsGreen() {
 		//arrange
 		const dBm = -40;
 
@@ -17,7 +17,7 @@ export default class ColorConverterTests extends TestSuite {
 	}
 
 	@Test()
-	async mediumSignalIsYellow() {
+	mediumSignalIsYellow() {
 		//arrange
 		const dBm = -60;
 
@@ -29,7 +29,7 @@ export default class ColorConverterTests extends TestSuite {
 	}
 
 	@Test()
-	async BadSignalIsRed() {
+	BadSignalIsRed() {
 		//arrange
 		const dBm = -80;
 
@@ -41,7 +41,7 @@ export default class ColorConverterTests extends TestSuite {
 	}
 
 	@Test()
-	async goodSNRIsGreen() {
+	goodSNRIsGreen() {
 		//arrange
 		const dB = 50;
 
@@ -53,7 +53,7 @@ export default class ColorConverterTests extends TestSuite {
 	}
 
 	@Test()
-	async mediumSNRIsYellow() {
+	mediumSNRIsYellow() {
 		//arrange
 		const dB = 20;
 
@@ -65,7 +65,7 @@ export default class ColorConverterTests extends TestSuite {
 	}
 
 	@Test()
-	async BadSNRIsRed() {
+	BadSNRIsRed() {
 		//arrange
 		const dB = 0;
 

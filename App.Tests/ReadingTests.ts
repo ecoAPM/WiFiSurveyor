@@ -18,7 +18,7 @@ export default class ReadingTests extends TestSuite {
 	];
 
 	@Test()
-	async canGetSignalForSingleAP() {
+	canGetSignalForSingleAP() {
 		//arrange
 		const reading = new Reading(1, new Point(2, 3), ReadingTests.signals);
 		const access_point = new AccessPoint("ssid1", 5, "mac3");
@@ -31,7 +31,7 @@ export default class ReadingTests extends TestSuite {
 	}
 
 	@Test()
-	async canGetSignalForSSIDOnSingleFrequency() {
+	canGetSignalForSSIDOnSingleFrequency() {
 		//arrange
 		const reading = new Reading(1, new Point(2, 3), ReadingTests.signals);
 		const access_point = new AccessPoint("ssid1", 5);
@@ -44,7 +44,7 @@ export default class ReadingTests extends TestSuite {
 	}
 
 	@Test()
-	async canGetSignalForSSID() {
+	canGetSignalForSSID() {
 		//arrange
 		const reading = new Reading(1, new Point(2, 3), ReadingTests.signals);
 		const access_point = new AccessPoint("ssid2");
@@ -57,7 +57,7 @@ export default class ReadingTests extends TestSuite {
 	}
 
 	@Test()
-	async canGetSNRForSingleAP() {
+	canGetSNRForSingleAP() {
 		//arrange
 		const reading = new Reading(1, new Point(2, 3), ReadingTests.signals);
 		const access_point = new AccessPoint("ssid1", 5, "mac3");
@@ -70,7 +70,7 @@ export default class ReadingTests extends TestSuite {
 	}
 
 	@Test()
-	async canGetSNRForSSIDOnSingleFrequency() {
+	canGetSNRForSSIDOnSingleFrequency() {
 		//arrange
 		const reading = new Reading(1, new Point(2, 3), ReadingTests.signals);
 		const access_point = new AccessPoint("ssid1", 5);
@@ -83,7 +83,7 @@ export default class ReadingTests extends TestSuite {
 	}
 
 	@Test()
-	async canGetSNRForSSID() {
+	canGetSNRForSSID() {
 		//arrange
 		const reading = new Reading(1, new Point(2, 3), ReadingTests.signals);
 		const access_point = new AccessPoint("ssid1");

@@ -4,7 +4,7 @@ import Color from "../App/Color";
 
 export default class ColorTests extends TestSuite {
 	@Test()
-	async canCreateColor() {
+	canCreateColor() {
 		//arrange
 		const red = 12, green = 23, blue = 34, alpha = 45;
 
@@ -19,7 +19,7 @@ export default class ColorTests extends TestSuite {
 	}
 
 	@Test()
-	async componentsAreClamped() {
+	componentsAreClamped() {
 		//arrange
 		const too_low = -1;
 		const too_high = 256;
@@ -35,7 +35,7 @@ export default class ColorTests extends TestSuite {
 	}
 
 	@Test()
-	async componentsAreFloored() {
+	componentsAreFloored() {
 		//arrange
 		const low = 127.25;
 		const mid = 127.5;
@@ -52,7 +52,7 @@ export default class ColorTests extends TestSuite {
 	}
 
 	@Test()
-	async canConvertToRGB() {
+	canConvertToRGB() {
 		//arrange
 		const color = new Color(12, 23, 34);
 
@@ -64,7 +64,7 @@ export default class ColorTests extends TestSuite {
 	}
 
 	@Test()
-	async canConvertToRGBA() {
+	canConvertToRGBA() {
 		//arrange
 		const color = new Color(12, 23, 34, 63);
 
@@ -76,7 +76,7 @@ export default class ColorTests extends TestSuite {
 	}
 
 	@Test()
-	async canConvertAlphaFloatCorrectly() {
+	canConvertAlphaFloatCorrectly() {
 		//act
 		const clear = new Color(12, 23, 34, 0).toRGBA();
 		const half = new Color(12, 23, 34, 127).toRGBA();
@@ -89,7 +89,7 @@ export default class ColorTests extends TestSuite {
 	}
 
 	@Test()
-	async canConvertToHEX() {
+	canConvertToHEX() {
 		//arrange
 		const color = new Color(127, 63, 255);
 
@@ -101,7 +101,7 @@ export default class ColorTests extends TestSuite {
 	}
 
 	@Test()
-	async canConvertToHEXA() {
+	canConvertToHEXA() {
 		//arrange
 		const color = new Color(127, 63, 31);
 
@@ -113,7 +113,7 @@ export default class ColorTests extends TestSuite {
 	}
 
 	@Test()
-	async canConvertBlackToHEXA() {
+	canConvertBlackToHEXA() {
 		//arrange
 		const color = new Color(0, 0, 0);
 

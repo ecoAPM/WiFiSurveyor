@@ -4,7 +4,7 @@ import Compare from "../App/Compare";
 
 export default class CompareTests extends TestSuite {
 	@Test()
-	async canCompareNumbers() {
+	canCompareNumbers() {
 		//arrange
 		const number1 = 1;
 		const number2 = 2;
@@ -22,7 +22,7 @@ export default class CompareTests extends TestSuite {
 	}
 
 	@Test()
-	async canCompareStrings() {
+	canCompareStrings() {
 		//arrange
 		const string1 = "test1";
 		const string2 = "test2";

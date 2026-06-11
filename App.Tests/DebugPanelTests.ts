@@ -10,7 +10,7 @@ import Signal from "../App/Signal";
 
 export default class DebugPanelTests extends TestSuite {
 	@Test()
-	async displayedWhenEnabled() {
+	displayedWhenEnabled() {
 		//arrange
 		const state = new AppViewModel();
 		state.debug = true;
@@ -23,7 +23,7 @@ export default class DebugPanelTests extends TestSuite {
 	}
 
 	@Test()
-	async notDisplayedWhenNotEnabled() {
+	notDisplayedWhenNotEnabled() {
 		//arrange
 		const state = new AppViewModel();
 		state.debug = false;
@@ -36,7 +36,7 @@ export default class DebugPanelTests extends TestSuite {
 	}
 
 	@Test()
-	async canSortSignalsByStrength() {
+	canSortSignalsByStrength() {
 		//arrange
 		const signals = [
 			new Signal("mac1", "ssid1", 2, 1, -50),
@@ -55,7 +55,7 @@ export default class DebugPanelTests extends TestSuite {
 	}
 
 	@Test()
-	async canSortSignalsBySNR() {
+	canSortSignalsBySNR() {
 		//arrange
 		const signals = [
 			new Signal("mac1", "ssid1", 2, 5, -40),
@@ -77,7 +77,7 @@ export default class DebugPanelTests extends TestSuite {
 	}
 
 	@Test()
-	async canGetColorForSignal() {
+	canGetColorForSignal() {
 		//arrange
 		const signals = [
 			new Signal("mac", "ssid", 2, 1, -40)

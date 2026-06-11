@@ -4,7 +4,7 @@ import Point from "../App/Point";
 
 export default class PointTests extends TestSuite {
 	@Test()
-	async canCreatePoint() {
+	canCreatePoint() {
 		//arrange
 		const x = 12, y = 23;
 

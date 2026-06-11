@@ -22,7 +22,7 @@ export default class SignalServiceTests extends TestSuite {
 	}
 
 	@Test()
-	async signalsAreUpdatedOnNewMessage() {
+	signalsAreUpdatedOnNewMessage() {
 		//arrange
 		const connection = Mockito.mock<HubConnection>();
 		Mockito.when(connection.start()).thenResolve();

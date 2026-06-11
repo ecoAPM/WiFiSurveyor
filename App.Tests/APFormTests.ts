@@ -21,7 +21,7 @@ export default class APFormTests extends TestSuite {
 	];
 
 	@Test()
-	async accessPointsAreSortedWhenGroupedBySSIDAndFrequency() {
+	accessPointsAreSortedWhenGroupedBySSIDAndFrequency() {
 		//arrange
 		const state = new AppViewModel();
 		state.current = new Reading(0, new Point(0, 0), APFormTests.signals);
@@ -78,7 +78,7 @@ export default class APFormTests extends TestSuite {
 	}
 
 	@Test()
-	async selectingAccessPointSetsState() {
+	selectingAccessPointSetsState() {
 		//arrange
 		const state = new AppViewModel();
 		const component = mount(APForm, { data: () => ({ state: state }) });
@@ -123,7 +123,7 @@ export default class APFormTests extends TestSuite {
 	}
 
 	@Test()
-	async combinesDuplicateLabels() {
+	combinesDuplicateLabels() {
 		//arrange
 		const state = new AppViewModel();
 		state.current = new Reading(0, new Point(0, 0), APFormTests.signals);

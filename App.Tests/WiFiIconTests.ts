@@ -5,7 +5,7 @@ import WiFiIcon from "../App/wifi-icon.vue";
 
 export default class WiFiIconTests extends TestSuite {
 	@Test()
-	async colorGetsPassedToSVG() {
+	colorGetsPassedToSVG() {
 		//arrange
 		const color = "rgba(0, 255, 0, 0.9)";
 

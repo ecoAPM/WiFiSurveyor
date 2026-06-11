@@ -8,7 +8,7 @@ import Reading from "../App/Reading";
 
 export default class ActionsTests extends TestSuite {
 	@Test()
-	async undoIsEnabledWhenReadingsExist() {
+	undoIsEnabledWhenReadingsExist() {
 		//arrange
 		const state = new AppViewModel();
 		state.readings = [ Mockito.instance(Mockito.mock(Reading)) ];
@@ -22,7 +22,7 @@ export default class ActionsTests extends TestSuite {
 	}
 
 	@Test()
-	async undoIsDisabledWhenReadingsAreEmpty() {
+	undoIsDisabledWhenReadingsAreEmpty() {
 		//arrange
 		const state = new AppViewModel();
 		state.readings = [];
@@ -66,7 +66,7 @@ export default class ActionsTests extends TestSuite {
 	}
 
 	@Test()
-	async resetIsEnabledWhenReadingsExist() {
+	resetIsEnabledWhenReadingsExist() {
 		//arrange
 		const state = new AppViewModel();
 		state.readings = [ Mockito.instance(Mockito.mock(Reading)) ];
@@ -80,7 +80,7 @@ export default class ActionsTests extends TestSuite {
 	}
 
 	@Test()
-	async resetIsDisabledWhenReadingsAreEmpty() {
+	resetIsDisabledWhenReadingsAreEmpty() {
 		//arrange
 		const state = new AppViewModel();
 		state.readings = [];

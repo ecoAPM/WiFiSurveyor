@@ -6,7 +6,7 @@ import MockFactory from "./MockFactory";
 
 export default class RenderFactoryTests extends TestSuite {
 	@Test()
-	async canGetContextFromCanvas() {
+	canGetContextFromCanvas() {
 		//arrange
 		const context = Mockito.mock<WebGL2RenderingContext>();
 		const instance = Mockito.instance(context);
@@ -22,7 +22,7 @@ export default class RenderFactoryTests extends TestSuite {
 	}
 
 	@Test()
-	async shaderProgramIsCompiled() {
+	shaderProgramIsCompiled() {
 		//arrange
 		const gl = MockFactory.webGL2RenderingContext();
 

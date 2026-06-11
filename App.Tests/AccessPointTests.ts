@@ -4,7 +4,7 @@ import AccessPoint from "../App/AccessPoint";
 
 export default class AccessPointTests extends TestSuite {
 	@Test()
-	async canCreateAccessPoint() {
+	canCreateAccessPoint() {
 		//arrange
 		const ssid = "test", frequency = 2, mac = "ab:cd:ef";
 
@@ -18,7 +18,7 @@ export default class AccessPointTests extends TestSuite {
 	}
 
 	@Test()
-	async canCreateAggregateAP() {
+	canCreateAggregateAP() {
 		//arrange
 		const ssid = "test";
 
@@ -32,7 +32,7 @@ export default class AccessPointTests extends TestSuite {
 	}
 
 	@Test()
-	async canGetLabel() {
+	canGetLabel() {
 		//arrange
 		const ap = new AccessPoint("test", 2, "ab:cd:ef");
 
@@ -44,7 +44,7 @@ export default class AccessPointTests extends TestSuite {
 	}
 
 	@Test()
-	async canGetFrequencyGroupedLabel() {
+	canGetFrequencyGroupedLabel() {
 		//arrange
 		const ap = new AccessPoint("test", 2);
 
@@ -56,7 +56,7 @@ export default class AccessPointTests extends TestSuite {
 	}
 
 	@Test()
-	async canGetSSIDGroupedLabel() {
+	canGetSSIDGroupedLabel() {
 		//arrange
 		const ap = new AccessPoint("test");
 
@@ -68,7 +68,7 @@ export default class AccessPointTests extends TestSuite {
 	}
 
 	@Test()
-	async canCompareLabels() {
+	canCompareLabels() {
 		//arrange
 		const ap1 = new AccessPoint("test1");
 		const ap2 = new AccessPoint("test2");

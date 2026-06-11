@@ -4,7 +4,7 @@ import Signal from "../App/Signal";
 
 export default class SignalTests extends TestSuite {
 	@Test()
-	async canCreateSignal() {
+	canCreateSignal() {
 		//arrange
 		const mac = "12:34:56:78:90:ab", ssid = "test", frequency = 2, channel = 1, strength = -50;
 
@@ -19,7 +19,7 @@ export default class SignalTests extends TestSuite {
 	}
 
 	@Test()
-	async canCompareSignals() {
+	canCompareSignals() {
 		//arrange
 		const s1 = new Signal("12:34:56:78:90:ab", "test1", 2, 1, -20);
 		const s2 = new Signal("12:34:56:78:90:ac", "test1", 2, 11, -20);
@@ -49,7 +49,7 @@ export default class SignalTests extends TestSuite {
 	}
 
 	@Test()
-	async canGetSNRFromStrongestNeighbor() {
+	canGetSNRFromStrongestNeighbor() {
 		//arrange
 		const signals = [
 			new Signal("12:34:56:78:90:ab", "test1", 2, 1, -20),
@@ -68,7 +68,7 @@ export default class SignalTests extends TestSuite {
 	}
 
 	@Test()
-	async canGetSNRWhenNoNeighbors() {
+	canGetSNRWhenNoNeighbors() {
 		//arrange
 		const signals = [
 			new Signal("12:34:56:78:90:ab", "test1", 2, 1, -20),

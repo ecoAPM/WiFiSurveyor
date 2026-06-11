@@ -9,7 +9,7 @@ import Triangulation from "../App/Triangulation";
 
 export default class TriangulationTests extends TestSuite {
 	@Test()
-	async canConvertReadingsToVertexCoordinates() {
+	canConvertReadingsToVertexCoordinates() {
 		//arrange
 		const readings = [
 			new Reading(1, new Point(2, 1), []),
@@ -30,7 +30,7 @@ export default class TriangulationTests extends TestSuite {
 	}
 
 	@Test()
-	async canConvertSignalsToColorParts() {
+	canConvertSignalsToColorParts() {
 		//arrange
 		const readings = [
 			new Reading(1, new Point(2, 1), [new Signal("12:34:56", "test", 2, 1, -40)]),
@@ -52,7 +52,7 @@ export default class TriangulationTests extends TestSuite {
 	}
 
 	@Test()
-	async canConvertSNRToColorParts() {
+	canConvertSNRToColorParts() {
 		//arrange
 		const readings = [
 			new Reading(1, new Point(2, 1), [new Signal("12:34:56", "test", 2, 1, -30)]),
