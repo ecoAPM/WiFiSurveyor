@@ -1,4 +1,5 @@
 import { Test, TestSuite } from "xunit.ts";
+
 import Color from "../App/Color";
 
 export default class ColorTests extends TestSuite {

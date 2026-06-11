@@ -1,10 +1,11 @@
+import Mockito from "ts-mockito";
 import { Test, TestSuite } from "xunit.ts";
+
 import Factory from "../App/Factory";
+import Renderer from "../App/Renderer";
 import Signal from "../App/Signal";
 import SignalService from "../App/SignalService";
 import MockFactory from "./MockFactory";
-import Mockito from "ts-mockito";
-import Renderer from "../App/Renderer";
 
 export default class FactoryTests extends TestSuite {
 	@Test()

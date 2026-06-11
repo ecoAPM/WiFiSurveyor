@@ -1,6 +1,7 @@
 import { Test, TestSuite } from "xunit.ts";
-import ColorConverter from "../App/ColorConverter";
+
 import Color from "../App/Color";
+import ColorConverter from "../App/ColorConverter";
 
 export default class ColorConverterTests extends TestSuite {
 	@Test()

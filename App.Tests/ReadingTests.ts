@@ -1,8 +1,9 @@
 import { Test, TestSuite } from "xunit.ts";
-import Reading from "../App/Reading";
-import Point from "../App/Point";
-import Signal from "../App/Signal";
+
 import AccessPoint from "../App/AccessPoint";
+import Point from "../App/Point";
+import Reading from "../App/Reading";
+import Signal from "../App/Signal";
 
 export default class ReadingTests extends TestSuite {
 	private static readonly signals: Signal[] = [

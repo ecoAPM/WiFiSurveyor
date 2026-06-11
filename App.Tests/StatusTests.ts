@@ -1,6 +1,7 @@
-import { Test, TestSuite } from "xunit.ts";
-import Status from "../App/status.vue";
 import { shallowMount as mount } from "@vue/test-utils";
+import { Test, TestSuite } from "xunit.ts";
+
+import Status from "../App/status.vue";
 
 export default class StatusTests extends TestSuite {
 	@Test()

@@ -1,7 +1,8 @@
-import { Test, TestSuite } from "xunit.ts";
 import { shallowMount as mount } from "@vue/test-utils";
-import BackgroundForm from "../App/background-form.vue";
+import { Test, TestSuite } from "xunit.ts";
+
 import AppViewModel from "../App/AppViewModel";
+import BackgroundForm from "../App/background-form.vue";
 
 export default class BackgroundFormTests extends TestSuite {
 	@Test()

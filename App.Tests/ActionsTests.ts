@@ -1,8 +1,9 @@
-import { Test, TestSuite } from "xunit.ts";
-import Actions from "../App/actions.vue";
 import { shallowMount as mount } from "@vue/test-utils";
-import AppViewModel from "../App/AppViewModel";
 import Mockito from "ts-mockito";
+import { Test, TestSuite } from "xunit.ts";
+
+import Actions from "../App/actions.vue";
+import AppViewModel from "../App/AppViewModel";
 import Reading from "../App/Reading";
 
 export default class ActionsTests extends TestSuite {

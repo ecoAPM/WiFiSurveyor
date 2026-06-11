@@ -1,7 +1,8 @@
-import { Test, TestSuite } from "xunit.ts";
 import { shallowMount as mount } from "@vue/test-utils";
-import WiFiStatus from "../App/wifi-status.vue";
+import { Test, TestSuite } from "xunit.ts";
+
 import { Mode } from "../App/Mode";
+import WiFiStatus from "../App/wifi-status.vue";
 
 export default class WiFiStatusTests extends TestSuite {
 	@Test()

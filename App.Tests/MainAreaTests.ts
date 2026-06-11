@@ -1,9 +1,10 @@
-import { Test, TestSuite } from "xunit.ts";
-import MainArea from "../App/main-area.vue";
 import { shallowMount as mount } from "@vue/test-utils";
-import Reading from "../App/Reading";
-import Point from "../App/Point";
+import { Test, TestSuite } from "xunit.ts";
+
 import AppViewModel from "../App/AppViewModel";
+import MainArea from "../App/main-area.vue";
+import Point from "../App/Point";
+import Reading from "../App/Reading";
 
 export default class MainAreaTests extends TestSuite {
 	@Test()

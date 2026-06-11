@@ -1,4 +1,5 @@
 import { createApp, h } from "vue";
+
 import App from "./app.vue";
 import Factory from "./Factory";
 import Signal from "./Signal";

@@ -1,6 +1,7 @@
-import {Test, TestSuite} from "xunit.ts";
-import AppViewModel from "../App/AppViewModel";
 import Mockito from "ts-mockito";
+import { Test, TestSuite } from "xunit.ts";
+
+import AppViewModel from "../App/AppViewModel";
 
 export default class AppViewModelTests extends TestSuite {
 	@Test()
@@ -31,7 +32,7 @@ export default class AppViewModelTests extends TestSuite {
 		readings: [
 			{
 				id: 1,
-				location: {x: 123, y: 234},
+				location: { x: 123, y: 234 },
 				signals: [
 					{
 						ssid: "Wi-Fi",

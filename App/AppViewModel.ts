@@ -1,11 +1,11 @@
-import SignalService from "./SignalService";
-import Renderer from "./Renderer";
-import Reading from "./Reading";
 import AccessPoint from "./AccessPoint";
-import Point from "./Point";
 import AccessPointGrouping from "./AccessPointGrouping";
+import { Mode } from "./Mode";
+import Point from "./Point";
+import Reading from "./Reading";
+import Renderer from "./Renderer";
 import Signal from "./Signal";
-import {Mode} from './Mode';
+import SignalService from "./SignalService";
 
 export default class AppViewModel {
 	name: string = "";

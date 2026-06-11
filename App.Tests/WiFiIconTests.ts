@@ -1,5 +1,6 @@
-import { Test, TestSuite } from "xunit.ts";
 import { shallowMount as mount } from "@vue/test-utils";
+import { Test, TestSuite } from "xunit.ts";
+
 import WiFiIcon from "../App/wifi-icon.vue";
 
 export default class WiFiIconTests extends TestSuite {

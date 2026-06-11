@@ -1,4 +1,5 @@
 import { Test, TestSuite } from "xunit.ts";
+
 import Point from "../App/Point";
 
 export default class PointTests extends TestSuite {

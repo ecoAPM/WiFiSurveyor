@@ -1,8 +1,9 @@
 import Delaunator from "delaunator";
-import ColorConverter from "./ColorConverter";
-import Reading from "./Reading";
+
 import AccessPoint from "./AccessPoint";
-import {Mode} from "./Mode";
+import ColorConverter from "./ColorConverter";
+import { Mode } from "./Mode";
+import Reading from "./Reading";
 
 export default class Triangulation {
 	readonly vertex_coordinates: number[] = [];

@@ -1,5 +1,6 @@
-import { Test, TestSuite } from "xunit.ts";
 import { shallowMount as mount } from "@vue/test-utils";
+import { Test, TestSuite } from "xunit.ts";
+
 import AppViewModel from "../App/AppViewModel";
 import FileForm from "../App/file-form.vue";
 

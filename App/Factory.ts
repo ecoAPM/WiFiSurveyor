@@ -1,7 +1,8 @@
-import SignalService from "./SignalService";
-import {HubConnectionBuilder} from "@microsoft/signalr";
+import { HubConnectionBuilder } from "@microsoft/signalr";
+
 import Renderer from "./Renderer";
 import Signal from "./Signal";
+import SignalService from "./SignalService";
 
 export default class Factory {
 

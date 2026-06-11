@@ -1,10 +1,11 @@
-import { Test, TestSuite } from "xunit.ts";
-import HeaderMenu from "../App/header-menu.vue";
 import { shallowMount as mount } from "@vue/test-utils";
-import AppViewModel from "../App/AppViewModel";
+import { Test, TestSuite } from "xunit.ts";
+
 import AccessPoint from "../App/AccessPoint";
-import Reading from "../App/Reading";
+import AppViewModel from "../App/AppViewModel";
+import HeaderMenu from "../App/header-menu.vue";
 import Point from "../App/Point";
+import Reading from "../App/Reading";
 import Signal from "../App/Signal";
 
 export default class HeaderMenuTests extends TestSuite {

@@ -1,11 +1,12 @@
-import { Test, TestSuite } from "xunit.ts";
-import DataPoint from "../App/data-point.vue";
 import { shallowMount as mount } from "@vue/test-utils";
-import Reading from "../App/Reading";
-import Point from "../App/Point";
-import Signal from "../App/Signal";
+import { Test, TestSuite } from "xunit.ts";
+
 import AccessPoint from "../App/AccessPoint";
 import AppViewModel from "../App/AppViewModel";
+import DataPoint from "../App/data-point.vue";
+import Point from "../App/Point";
+import Reading from "../App/Reading";
+import Signal from "../App/Signal";
 
 export default class DataPointTests extends TestSuite {
 	@Test()

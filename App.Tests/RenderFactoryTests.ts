@@ -1,6 +1,7 @@
-import { Test, TestSuite } from "xunit.ts";
-import RenderFactory from "../App/RenderFactory";
 import Mockito from "ts-mockito";
+import { Test, TestSuite } from "xunit.ts";
+
+import RenderFactory from "../App/RenderFactory";
 import MockFactory from "./MockFactory";
 
 export default class RenderFactoryTests extends TestSuite {

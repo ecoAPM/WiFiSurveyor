@@ -1,9 +1,10 @@
-import { Test, TestSuite } from "xunit.ts";
-import SignalService from "../App/SignalService";
-import Signal from "../App/Signal";
-import Message from "../App/Message";
 import { HubConnection } from "@microsoft/signalr";
 import Mockito from "ts-mockito";
+import { Test, TestSuite } from "xunit.ts";
+
+import Message from "../App/Message";
+import Signal from "../App/Signal";
+import SignalService from "../App/SignalService";
 
 export default class SignalServiceTests extends TestSuite {
 	@Test()

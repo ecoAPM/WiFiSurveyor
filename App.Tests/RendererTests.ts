@@ -1,11 +1,12 @@
-import { Test, TestSuite } from "xunit.ts";
-import Renderer from "../App/Renderer";
 import Mockito from "ts-mockito";
-import Reading from "../App/Reading";
-import Point from "../App/Point";
+import { Test, TestSuite } from "xunit.ts";
+
 import AccessPoint from "../App/AccessPoint";
-import MockFactory from "./MockFactory";
 import { Mode } from "../App/Mode";
+import Point from "../App/Point";
+import Reading from "../App/Reading";
+import Renderer from "../App/Renderer";
+import MockFactory from "./MockFactory";
 
 export default class RendererTests extends TestSuite {
 	@Test()

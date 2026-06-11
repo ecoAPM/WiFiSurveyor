@@ -1,8 +1,8 @@
-import Reading from "./Reading";
-import Triangulation from "./Triangulation";
-import RenderFactory from "./RenderFactory";
 import AccessPoint from "./AccessPoint";
 import { Mode } from "./Mode";
+import Reading from "./Reading";
+import RenderFactory from "./RenderFactory";
+import Triangulation from "./Triangulation";
 
 export default class Renderer {
 	private readonly canvas: HTMLCanvasElement;

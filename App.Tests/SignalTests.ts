@@ -1,4 +1,5 @@
 import { Test, TestSuite } from "xunit.ts";
+
 import Signal from "../App/Signal";
 
 export default class SignalTests extends TestSuite {

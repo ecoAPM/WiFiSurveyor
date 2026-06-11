@@ -1,11 +1,12 @@
-import { Test, TestSuite } from "xunit.ts";
-import App from "../App/app.vue";
 import { shallowMount as mount } from "@vue/test-utils";
 import Mockito from "ts-mockito";
+import { Test, TestSuite } from "xunit.ts";
+
+import AccessPoint from "../App/AccessPoint";
+import App from "../App/app.vue";
+import { Mode } from "../App/Mode";
 import Renderer from "../App/Renderer";
 import MockFactory from "./MockFactory";
-import { Mode } from "../App/Mode";
-import AccessPoint from "../App/AccessPoint";
 
 export default class AppTests extends TestSuite {
 	@Test()

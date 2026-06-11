@@ -1,10 +1,11 @@
-import { Test, TestSuite } from "xunit.ts";
-import APForm from "../App/ap-form.vue";
 import { shallowMount as mount } from "@vue/test-utils";
-import Reading from "../App/Reading";
-import Point from "../App/Point";
-import Signal from "../App/Signal";
+import { Test, TestSuite } from "xunit.ts";
+
+import APForm from "../App/ap-form.vue";
 import AppViewModel from "../App/AppViewModel";
+import Point from "../App/Point";
+import Reading from "../App/Reading";
+import Signal from "../App/Signal";
 
 export default class APFormTests extends TestSuite {
 

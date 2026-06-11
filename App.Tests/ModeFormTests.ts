@@ -1,8 +1,9 @@
-import { Test, TestSuite } from "xunit.ts";
 import { shallowMount as mount } from "@vue/test-utils";
-import ModeForm from "../App/mode-form.vue";
+import { Test, TestSuite } from "xunit.ts";
+
 import AppViewModel from "../App/AppViewModel";
 import { Mode } from "../App/Mode";
+import ModeForm from "../App/mode-form.vue";
 
 export default class ModeFormTests extends TestSuite {
 	@Test()

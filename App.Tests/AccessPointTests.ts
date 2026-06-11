@@ -1,4 +1,5 @@
 import { Test, TestSuite } from "xunit.ts";
+
 import AccessPoint from "../App/AccessPoint";
 
 export default class AccessPointTests extends TestSuite {

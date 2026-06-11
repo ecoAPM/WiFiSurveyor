@@ -1,4 +1,5 @@
 import Mockito from "ts-mockito";
+
 import SignalService from "../App/SignalService";
 
 export default class MockFactory {

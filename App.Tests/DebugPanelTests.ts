@@ -1,11 +1,12 @@
-import { Test, TestSuite } from "xunit.ts";
-import DebugPanel from "../App/debug-panel.vue";
 import { shallowMount as mount } from "@vue/test-utils";
-import Signal from "../App/Signal";
+import { Test, TestSuite } from "xunit.ts";
+
 import AppViewModel from "../App/AppViewModel";
-import Reading from "../App/Reading";
-import Point from "../App/Point";
+import DebugPanel from "../App/debug-panel.vue";
 import { Mode } from "../App/Mode";
+import Point from "../App/Point";
+import Reading from "../App/Reading";
+import Signal from "../App/Signal";
 
 export default class DebugPanelTests extends TestSuite {
 	@Test()

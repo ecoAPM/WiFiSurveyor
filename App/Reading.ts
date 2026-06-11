@@ -1,6 +1,6 @@
+import AccessPoint from "./AccessPoint";
 import Point from "./Point";
 import Signal from "./Signal";
-import AccessPoint from "./AccessPoint";
 
 export default class Reading {
 	readonly id: number;

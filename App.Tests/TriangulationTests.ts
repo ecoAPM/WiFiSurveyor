@@ -1,10 +1,11 @@
 import { Test, TestSuite } from "xunit.ts";
-import Reading from "../App/Reading";
-import Point from "../App/Point";
-import Triangulation from "../App/Triangulation";
-import Signal from "../App/Signal";
+
 import AccessPoint from "../App/AccessPoint";
 import { Mode } from "../App/Mode";
+import Point from "../App/Point";
+import Reading from "../App/Reading";
+import Signal from "../App/Signal";
+import Triangulation from "../App/Triangulation";
 
 export default class TriangulationTests extends TestSuite {
 	@Test()

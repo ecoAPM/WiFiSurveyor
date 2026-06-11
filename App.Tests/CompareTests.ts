@@ -1,4 +1,5 @@
 ﻿import { Test, TestSuite } from "xunit.ts";
+
 import Compare from "../App/Compare";
 
 export default class CompareTests extends TestSuite {
