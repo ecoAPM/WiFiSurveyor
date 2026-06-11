@@ -10,7 +10,7 @@ export default class AppViewModelTests extends TestSuite {
 		const data = new TextEncoder().encode("abc123");
 
 		const mockFile = Mockito.mock<File>();
-		Mockito.when(mockFile.type).thenReturn("image/png")
+		Mockito.when(mockFile.type).thenReturn("image/png");
 		Mockito.when(mockFile.arrayBuffer()).thenResolve(data.buffer);
 		const file = Mockito.instance(mockFile);
 

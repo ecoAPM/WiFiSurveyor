@@ -26,7 +26,7 @@ export default class ModeFormTests extends TestSuite {
 		const component = mount(ModeForm, { data: () => ({ state: state }) });
 
 		//act
-		await component.get("#mode-snr").setChecked()
+		await component.get("#mode-snr").setChecked();
 
 		//assert
 		this.assert.equal(Mode.SNR, state.mode);
