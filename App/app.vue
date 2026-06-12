@@ -1,6 +1,6 @@
 <template>
 	<div class="app">
-		<status :status="connection_status" />
+		<service-status :status="connection_status" />
 		<header-menu :last_updated="last_updated" @background="setBackground($event)" />
 		<main-area :enabled="!connection_status" />
 		<debug-panel />
@@ -13,12 +13,12 @@ import { defineComponent } from "vue";
 import DebugPanel from "./debug-panel.vue";
 import HeaderMenu from "./header-menu.vue";
 import MainArea from "./main-area.vue";
+import ServiceStatus from "./service-status.vue";
 import SharedState from "./SharedState";
-import Status from "./status.vue";
 
 export default defineComponent({
 	components: {
-		"status": Status,
+		"service-status": ServiceStatus,
 		"header-menu": HeaderMenu,
 		"main-area": MainArea,
 		"debug-panel": DebugPanel

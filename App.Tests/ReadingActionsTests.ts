@@ -2,17 +2,17 @@ import { shallowMount as mount } from "@vue/test-utils";
 import Mockito from "ts-mockito";
 import { Test, TestSuite } from "xunit.ts";
 
-import Actions from "../App/actions.vue";
 import AppViewModel from "../App/AppViewModel";
 import Reading from "../App/Reading";
+import ReadingActions from "../App/reading-actions.vue";
 
-export default class ActionsTests extends TestSuite {
+export default class ReadingActionsTests extends TestSuite {
 	@Test()
 	undoIsEnabledWhenReadingsExist() {
 		//arrange
 		const state = new AppViewModel();
 		state.readings = [ Mockito.instance(Mockito.mock(Reading)) ];
-		const component = mount(Actions, { data: () => ({ state: state }) });
+		const component = mount(ReadingActions, { data: () => ({ state: state }) });
 
 		//act
 		const button = component.get("#undo");
@@ -26,7 +26,7 @@ export default class ActionsTests extends TestSuite {
 		//arrange
 		const state = new AppViewModel();
 		state.readings = [];
-		const component = mount(Actions, { data: () => ({ state: state }) });
+		const component = mount(ReadingActions, { data: () => ({ state: state }) });
 
 		//act
 		const button = component.get("#undo");
@@ -40,7 +40,7 @@ export default class ActionsTests extends TestSuite {
 		//arrange
 		const state = new AppViewModel();
 		state.readings = [ Mockito.instance(Mockito.mock(Reading)), Mockito.instance(Mockito.mock(Reading)) ];
-		const component = mount(Actions, { data: () => ({ state: state }) });
+		const component = mount(ReadingActions, { data: () => ({ state: state }) });
 		global.confirm = () => true;
 
 		//act
@@ -55,7 +55,7 @@ export default class ActionsTests extends TestSuite {
 		//arrange
 		const state = new AppViewModel();
 		state.readings = [ Mockito.instance(Mockito.mock(Reading)), Mockito.instance(Mockito.mock(Reading)) ];
-		const component = mount(Actions, { data: () => ({ state: state }) });
+		const component = mount(ReadingActions, { data: () => ({ state: state }) });
 		global.confirm = () => false;
 
 		//act
@@ -70,7 +70,7 @@ export default class ActionsTests extends TestSuite {
 		//arrange
 		const state = new AppViewModel();
 		state.readings = [ Mockito.instance(Mockito.mock(Reading)) ];
-		const component = mount(Actions, { data: () => ({ state: state }) });
+		const component = mount(ReadingActions, { data: () => ({ state: state }) });
 
 		//act
 		const button = component.get("#reset");
@@ -84,7 +84,7 @@ export default class ActionsTests extends TestSuite {
 		//arrange
 		const state = new AppViewModel();
 		state.readings = [];
-		const component = mount(Actions, { data: () => ({ state: state }) });
+		const component = mount(ReadingActions, { data: () => ({ state: state }) });
 
 		//act
 		const button = component.get("#reset");
@@ -98,7 +98,7 @@ export default class ActionsTests extends TestSuite {
 		//arrange
 		const state = new AppViewModel();
 		state.readings = [ Mockito.instance(Mockito.mock(Reading)) ];
-		const component = mount(Actions, { data: () => ({ state: state }) });
+		const component = mount(ReadingActions, { data: () => ({ state: state }) });
 		global.confirm = () => true;
 
 		//act
@@ -113,7 +113,7 @@ export default class ActionsTests extends TestSuite {
 		//arrange
 		const state = new AppViewModel();
 		state.readings = [ Mockito.instance(Mockito.mock(Reading)) ];
-		const component = mount(Actions, { data: () => ({ state: state }) });
+		const component = mount(ReadingActions, { data: () => ({ state: state }) });
 		global.confirm = () => false;
 
 		//act
@@ -128,7 +128,7 @@ export default class ActionsTests extends TestSuite {
 		//arrange
 		const state = new AppViewModel();
 		state.readings = [ Mockito.instance(Mockito.mock(Reading)) ];
-		const component = mount(Actions, { data: () => ({ state: state }) });
+		const component = mount(ReadingActions, { data: () => ({ state: state }) });
 
 		//act
 		const checkbox = component.get("#debug");

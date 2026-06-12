@@ -28,7 +28,7 @@ export default defineConfig(
 			tseslint.configs.recommended,
 			tseslint.configs.strictTypeChecked,
 			tseslint.configs.stylisticTypeChecked,
-			vue.configs["flat/essential"]
+			vue.configs["flat/recommended"]
 		],
 		rules: {
 			"indent": ["warn", "tab"],

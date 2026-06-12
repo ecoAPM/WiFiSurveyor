@@ -1,16 +1,16 @@
 import { shallowMount as mount } from "@vue/test-utils";
 import { Test, TestSuite } from "xunit.ts";
 
-import Status from "../App/status.vue";
+import ServiceStatus from "../App/service-status.vue";
 
-export default class StatusTests extends TestSuite {
+export default class ServiceStatusTests extends TestSuite {
 	@Test()
 	showsStatusWhenOneExists() {
 		//arrange
 		const status = "test message";
 
 		//act
-		const component = mount(Status, { propsData: { status: status } });
+		const component = mount(ServiceStatus, { propsData: { status: status } });
 
 		//assert
 		this.assert.equal("test message", component.text());
@@ -22,7 +22,7 @@ export default class StatusTests extends TestSuite {
 		const status = "";
 
 		//act
-		const component = mount(Status, { propsData: { status: status } });
+		const component = mount(ServiceStatus, { propsData: { status: status } });
 
 		//assert
 		const text = component.text().split("");

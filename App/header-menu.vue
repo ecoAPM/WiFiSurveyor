@@ -5,25 +5,25 @@
 		<ap-form />
 		<file-form />
 		<background-form />
-		<actions />
+		<reading-actions />
 	</header>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import Actions from "./actions.vue";
 import APForm from "./ap-form.vue";
 import BackgroundForm from "./background-form.vue";
 import FileForm from "./file-form.vue";
 import { Mode } from "./Mode";
 import ModeForm from "./mode-form.vue";
+import ReadingActions from "./reading-actions.vue";
 import SharedState from "./SharedState";
 import WiFiStatus from "./wifi-status.vue";
 
 export default defineComponent({
 	components: {
-		"actions": Actions,
+		"reading-actions": ReadingActions,
 		"ap-form": APForm,
 		"background-form": BackgroundForm,
 		"file-form": FileForm,
