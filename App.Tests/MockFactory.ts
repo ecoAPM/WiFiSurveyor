@@ -1,6 +1,7 @@
 import Mockito from "ts-mockito";
 
 import SignalService from "../App/SignalService";
+import { any } from "./MockHelpers";
 
 export default class MockFactory {
 	static signalService(): SignalService {
@@ -15,7 +16,7 @@ export default class MockFactory {
 		const program = Mockito.mock<WebGLProgram>();
 
 		const gl = Mockito.mock<WebGL2RenderingContext>();
-		Mockito.when(gl.createShader(Mockito.anything())).thenReturn(Mockito.instance(shader));
+		Mockito.when(gl.createShader(any())).thenReturn(Mockito.instance(shader));
 		Mockito.when(gl.createProgram()).thenReturn(Mockito.instance(program));
 
 		return gl;

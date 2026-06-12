@@ -7,10 +7,11 @@ import App from "../App/app.vue";
 import { Mode } from "../App/Mode";
 import Renderer from "../App/Renderer";
 import MockFactory from "./MockFactory";
+import { any } from "./MockHelpers";
 
 export default class AppTests extends TestSuite {
 	@Test()
-	async canCreateApp() {
+	canCreateApp() {
 		//arrange
 		const signal_service = MockFactory.signalService();
 
@@ -56,7 +57,7 @@ export default class AppTests extends TestSuite {
 	}
 
 	@Test()
-	async showsDefaultStatusWhenLoading() {
+	showsDefaultStatusWhenLoading() {
 		//arrange
 		const canvas = MockFactory.canvas();
 		const renderer = new Renderer(Mockito.instance(canvas));
@@ -93,7 +94,7 @@ export default class AppTests extends TestSuite {
 		await component.vm.$nextTick();
 
 		//assert
-		Mockito.verify(renderer.render(Mockito.anything(), Mockito.anything(), Mockito.anything())).atLeast(1);
+		Mockito.verify(renderer.render(any(), any(), any())).atLeast(1);
 	}
 
 	@Test()
@@ -114,6 +115,6 @@ export default class AppTests extends TestSuite {
 		await component.vm.$nextTick();
 
 		//assert
-		Mockito.verify(renderer.render(Mode.SNR, Mockito.anything(), Mockito.anything())).atLeast(1);
+		Mockito.verify(renderer.render(Mode.SNR, any(), any())).atLeast(1);
 	}
 }

@@ -7,10 +7,11 @@ import Point from "../App/Point";
 import Reading from "../App/Reading";
 import Renderer from "../App/Renderer";
 import MockFactory from "./MockFactory";
+import { any } from "./MockHelpers";
 
 export default class RendererTests extends TestSuite {
 	@Test()
-	async renderDrawsTrianglesWithCorrectNumberOfVertices() {
+	renderDrawsTrianglesWithCorrectNumberOfVertices() {
 		//arrange
 		const gl = MockFactory.webGL2RenderingContext();
 		const canvas = Mockito.mock<HTMLCanvasElement>();
@@ -29,11 +30,11 @@ export default class RendererTests extends TestSuite {
 		renderer.render(Mode.Signal, readings, access_point);
 
 		//assert
-		Mockito.verify(gl.drawArrays(Mockito.anything(), Mockito.anything(), 6)).once();
+		Mockito.verify(gl.drawArrays(any(), any(), 6)).once();
 	}
 
 	@Test()
-	async canClearCanvas() {
+	canClearCanvas() {
 		//arrange
 		const gl = MockFactory.webGL2RenderingContext();
 		const canvas = Mockito.mock<HTMLCanvasElement>();

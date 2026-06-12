@@ -5,7 +5,7 @@ import Status from "../App/status.vue";
 
 export default class StatusTests extends TestSuite {
 	@Test()
-	async showsStatusWhenOneExists() {
+	showsStatusWhenOneExists() {
 		//arrange
 		const status = "test message";
 
@@ -17,7 +17,7 @@ export default class StatusTests extends TestSuite {
 	}
 
 	@Test()
-	async componentDoesNotDisplayWhenNoStatus() {
+	componentDoesNotDisplayWhenNoStatus() {
 		//arrange
 		const status = "";
 
@@ -25,6 +25,7 @@ export default class StatusTests extends TestSuite {
 		const component = mount(Status, { propsData: { status: status } });
 
 		//assert
-		this.assert.empty(component.text());
+		const text = component.text().split("");
+		this.assert.empty(text);
 	}
 }
