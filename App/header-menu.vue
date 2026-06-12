@@ -1,24 +1,25 @@
 <template>
 	<header>
-		<wifi-status :last_updated="last_updated" :value="current_signal" :units="state.mode"/>
-		<mode-form/>
-		<ap-form/>
-		<file-form/>
-		<background-form/>
-		<actions/>
+		<wifi-status :last_updated="last_updated" :value="current_signal" :units="state.mode" />
+		<mode-form />
+		<ap-form />
+		<file-form />
+		<background-form />
+		<actions />
 	</header>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+
 import Actions from "./actions.vue";
 import APForm from "./ap-form.vue";
 import BackgroundForm from "./background-form.vue";
 import FileForm from "./file-form.vue";
+import { Mode } from "./Mode";
 import ModeForm from "./mode-form.vue";
 import SharedState from "./SharedState";
 import WiFiStatus from "./wifi-status.vue";
-import { Mode } from "./Mode";
 
 export default defineComponent({
 	components: {

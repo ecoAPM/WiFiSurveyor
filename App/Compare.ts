@@ -7,7 +7,7 @@ export default class Compare {
 		return this.base(s1, s2);
 	}
 
-	private static base(x: any, y: any): number {
+	private static base(x: number | string, y: number | string): number {
 		if (x < y) {
 			return -1;
 		}

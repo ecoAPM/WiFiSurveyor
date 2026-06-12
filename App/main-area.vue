@@ -19,6 +19,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+
 import DataPoint from "./data-point.vue";
 import Point from "./Point";
 import Reading from "./Reading";

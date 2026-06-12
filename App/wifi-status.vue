@@ -12,9 +12,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import wifi_icon from "./wifi-icon.vue";
+
 import ColorConverter from "./ColorConverter";
 import { Mode } from "./Mode";
+import wifi_icon from "./wifi-icon.vue";
 
 export default defineComponent({
 	components: {

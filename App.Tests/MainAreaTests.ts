@@ -70,7 +70,6 @@ export default class MainAreaTests extends TestSuite {
 
 		//act
 		await component.get("canvas").trigger("click");
-		await component.vm.$nextTick();
 
 		//assert
 		this.assert.equal(1, state.readings.length);
@@ -84,7 +83,6 @@ export default class MainAreaTests extends TestSuite {
 
 		//act
 		await component.get("canvas").trigger("click");
-		await component.vm.$nextTick();
 
 		//assert
 		this.assert.empty(state.readings);

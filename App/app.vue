@@ -9,11 +9,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Status from "./status.vue";
+
+import DebugPanel from "./debug-panel.vue";
 import HeaderMenu from "./header-menu.vue";
 import MainArea from "./main-area.vue";
-import DebugPanel from "./debug-panel.vue";
 import SharedState from "./SharedState";
+import Status from "./status.vue";
 
 export default defineComponent({
 	components: {

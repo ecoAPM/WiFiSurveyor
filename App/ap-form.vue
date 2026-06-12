@@ -29,6 +29,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+
 import AccessPoint from "./AccessPoint";
 import SharedState from "./SharedState";
 import Signal from "./Signal";

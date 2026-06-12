@@ -15,8 +15,6 @@ export default class RenderFactory {
 
 	static getShaderProgram(gl: WebGL2RenderingContext): WebGLProgram {
 		const shader_program = gl.createProgram();
-		if (shader_program == null)
-			throw new Error("Could not create shader program");
 
 		const vertex_shader = RenderFactory.getVertexShader(gl);
 		gl.attachShader(shader_program, vertex_shader);

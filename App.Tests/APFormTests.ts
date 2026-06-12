@@ -1,6 +1,7 @@
 import { shallowMount as mount } from "@vue/test-utils";
 import { Test, TestSuite } from "xunit.ts";
 
+import AccessPoint from "../App/AccessPoint";
 import APForm from "../App/ap-form.vue";
 import AppViewModel from "../App/AppViewModel";
 import Point from "../App/Point";
@@ -43,8 +44,7 @@ export default class APFormTests extends TestSuite {
 		const component = mount(APForm, { data: () => ({ state: state }) });
 
 		//act
-		component.get("#group-by-frequency").setChecked(false);
-		await component.vm.$nextTick();
+		await component.get("#group-by-frequency").setValue(false);
 
 		//assert
 		const options = component.findAll("option").map(o => o.text());
@@ -62,8 +62,7 @@ export default class APFormTests extends TestSuite {
 		const component = mount(APForm, { data: () => ({ state: state }) });
 
 		//act
-		component.get("#group-by-ssid").setChecked(false);
-		await component.vm.$nextTick();
+		await component.get("#group-by-ssid").setValue(false);
 
 		//assert
 		const options = component.findAll("option").map(o => o.text());
@@ -98,12 +97,11 @@ export default class APFormTests extends TestSuite {
 		const component = mount(APForm, { data: () => ({ state: state }) });
 
 		//act
-		component.get("#group-by-ssid").setChecked(true);
-		await component.vm.$nextTick();
+		await component.get("#group-by-ssid").setValue(true);
 
 		//assert
-		const checkbox = component.get("#group-by-frequency");
-		this.assert.undefined(checkbox.attributes("disabled"));
+		const freqCheckbox = component.get("#group-by-frequency");
+		this.assert.undefined(freqCheckbox.attributes("disabled"));
 	}
 
 	@Test()
@@ -113,8 +111,7 @@ export default class APFormTests extends TestSuite {
 		const component = mount(APForm, { data: () => ({ state: state }) });
 
 		//act
-		component.get("#group-by-ssid").setChecked(false);
-		await component.vm.$nextTick();
+		await component.get("#group-by-ssid").setValue(false);
 
 		//assert
 		const checkbox = component.get("#group-by-frequency");
@@ -134,7 +131,8 @@ export default class APFormTests extends TestSuite {
 		const component = mount(APForm, { data: () => ({ state: state }) });
 
 		//act
-		const signals = component.vm.access_points;
+		const vm = component.vm as { access_points: AccessPoint[] };
+		const signals = vm.access_points;
 
 		//assert
 		this.assert.equal(2, signals.length);

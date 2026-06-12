@@ -33,11 +33,19 @@
 				<tr v-for="signal in sorted_signals" :key="signal.ssid + signal.mac">
 					<td :style="{ 'background-color': color(signal) }"></td>
 					<td>{{ signal.ssid }}</td>
-					<td class="center">{{ signal.frequency }} GHz</td>
-					<td class="center">{{ signal.channel }}</td>
+					<td class="center">
+						{{ signal.frequency }} GHz
+					</td>
+					<td class="center">
+						{{ signal.channel }}
+					</td>
 					<td>{{ signal.mac }}</td>
-					<td class="right">{{ signal.strength }} dBm</td>
-					<td class="right">{{ signal.snr(state.current.signals) }} dB</td>
+					<td class="right">
+						{{ signal.strength }} dBm
+					</td>
+					<td class="right">
+						{{ signal.snr(state.current.signals) }} dB
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -46,10 +54,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Signal from "./Signal";
-import SharedState from "./SharedState";
+
 import ColorConverter from "./ColorConverter";
 import { Mode } from "./Mode";
+import SharedState from "./SharedState";
+import Signal from "./Signal";
 
 export default defineComponent({
 	data: () => ({

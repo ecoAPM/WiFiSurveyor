@@ -59,8 +59,10 @@ export default class AppViewModel {
 
 		const file = files.item(0);
 		if (file != null) {
-			const buffer = Buffer.from(await file.arrayBuffer());
-			this.background = "data:" + file.type + ';base64,' + buffer.toString('base64');
+			const arrayBuffer = await file.arrayBuffer();
+			const buffer = Buffer.from(arrayBuffer);
+			const encoded = buffer.toString("base64");
+			this.background = `data:${file.type};base64,${encoded}`;
 		}
 	}
 

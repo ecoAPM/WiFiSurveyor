@@ -13,12 +13,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+
+import AccessPoint from "./AccessPoint";
 import Color from "./Color";
 import ColorConverter from "./ColorConverter";
-import AccessPoint from "./AccessPoint";
+import { Mode } from "./Mode";
 import Reading from "./Reading";
 import SharedState from "./SharedState";
-import { Mode } from "./Mode";
 
 export default defineComponent({
 	props: {

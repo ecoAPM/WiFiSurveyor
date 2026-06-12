@@ -18,6 +18,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+
 import SharedState from "./SharedState";
 
 export default defineComponent({

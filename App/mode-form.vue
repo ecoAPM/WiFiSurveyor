@@ -14,12 +14,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+
 import AppViewModel from "./AppViewModel";
 import { Mode } from "./Mode";
 import SharedState from "./SharedState";
 
 export default defineComponent({
-	data: function (): {state: AppViewModel, mode: typeof Mode } {
+	data: function (): { state: AppViewModel, mode: typeof Mode } {
 		return {
 			state: SharedState,
 			mode: Mode
