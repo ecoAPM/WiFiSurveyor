@@ -30,7 +30,7 @@ export default defineComponent({
 			type: String,
 			default: Mode.Signal
 		},
-		last_updated: {
+		lastUpdated: {
 			type: String,
 			default: ""
 		}
@@ -48,7 +48,7 @@ export default defineComponent({
 		}
 	},
 	watch: {
-		async last_updated() {
+		async lastUpdated() {
 			this.fading = false;
 			await this.$nextTick();
 			await new Promise<void>((resolve) => setTimeout(() => {

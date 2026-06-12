@@ -11,6 +11,13 @@ export default defineConfig(
 	},
 	{
 		languageOptions: {
+			globals: {
+				confirm: "readonly",
+				document: "readonly",
+				process: "readonly",
+				setTimeout: "readonly",
+				window: "readonly"
+			},
 			parserOptions: {
 				parser: tseslint.parser,
 				projectService: true,

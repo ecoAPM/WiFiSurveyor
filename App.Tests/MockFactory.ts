@@ -7,7 +7,7 @@ export default class MockFactory {
 	static signalService(): SignalService {
 		const signal_service = Mockito.mock<SignalService>();
 		Mockito.when(signal_service.status).thenReturn("");
-		Mockito.when(signal_service.last_updated).thenReturn("");
+		Mockito.when(signal_service.lastUpdated).thenReturn("");
 		return signal_service;
 	}
 

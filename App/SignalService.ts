@@ -8,7 +8,7 @@ export default class SignalService {
 	private readonly connection: HubConnection;
 	readonly signals: Signal[];
 	status: string = "Connecting...";
-	last_updated: string = "";
+	lastUpdated: string = "";
 
 	constructor(connection: HubConnection, signals: Signal[]) {
 		this.connection = connection;
@@ -32,7 +32,7 @@ export default class SignalService {
 	}
 
 	update(message: Message): void {
-		this.last_updated = message.lastUpdated;
+		this.lastUpdated = message.lastUpdated;
 		this.status = message.status;
 
 		this.signals.splice(0);

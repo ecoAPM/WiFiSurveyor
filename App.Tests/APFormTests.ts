@@ -77,17 +77,21 @@ export default class APFormTests extends TestSuite {
 	}
 
 	@Test()
-	selectingAccessPointSetsState() {
+	async selectingAccessPointSetsState() {
 		//arrange
 		const state = new AppViewModel();
+		state.current = new Reading(0, new Point(0, 0), APFormTests.signals);
 		const component = mount(APForm, { data: () => ({ state: state }) });
 
 		//act
-		const option = component.get("option:first-child");
-		option.setSelected();
+		const select = component.get("select");
+		const option = select.get("option:first-child");
+		await select.setValue(option);
 
 		//assert
-		this.assert.stringContains(state.selected?.ssid ?? "", option.text());
+		const ssid = state.selected?.ssid ?? "";
+		this.assert.notEmpty(ssid);
+		this.assert.stringContains(ssid, option.text());
 	}
 
 	@Test()

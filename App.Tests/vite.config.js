@@ -1,16 +1,16 @@
-import {defineConfig} from "vite";
 import vue from "@vitejs/plugin-vue";
-import path from "path";
 import fs from "fs";
+import path from "path";
+import {defineConfig} from "vite";
 
 const files = fs.readdirSync(__dirname)
-	.filter(file => file.match("\\.ts$"))
+	.filter(file => /\.ts$/.exec(file))
 	.map(file => path.resolve(__dirname, file));
 
 export default defineConfig({
 	root: "App.Tests",
 	plugins: [vue()],
-	logLevel: "Warn",
+	logLevel: "warn",
 	build: {
 		lib: {
 			entry: "",
@@ -21,7 +21,7 @@ export default defineConfig({
 		emptyOutDir: true,
 		minify: false,
 		sourcemap: true,
-		rollupOptions: {
+		rolldownOptions: {
 			input: files,
 			output: {
 				intro: "require('global-jsdom/register');"

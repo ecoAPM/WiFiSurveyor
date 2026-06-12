@@ -1,6 +1,6 @@
 <template>
 	<header>
-		<wifi-status :last_updated="last_updated" :value="current_signal" :units="state.mode" />
+		<wifi-status :last-updated="lastUpdated" :value="current_signal" :units="state.mode" />
 		<mode-form />
 		<ap-form />
 		<file-form />
@@ -31,7 +31,7 @@ export default defineComponent({
 		"wifi-status": WiFiStatus
 	},
 	props: {
-		last_updated: {
+		lastUpdated: {
 			type: String,
 			default: ""
 		}

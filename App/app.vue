@@ -1,7 +1,7 @@
 <template>
 	<div class="app">
 		<service-status :status="connection_status" />
-		<header-menu :last_updated="last_updated" @background="setBackground($event)" />
+		<header-menu :last-updated="lastUpdated" @background="setBackground($event)" />
 		<main-area :enabled="!connection_status" />
 		<debug-panel />
 	</div>
@@ -32,8 +32,8 @@ export default defineComponent({
 		connection_status(): string {
 			return this.signal_service?.status ??  "(loading...)";
 		},
-		last_updated(): string {
-			return this.signal_service?.last_updated ?? "";
+		lastUpdated(): string {
+			return this.signal_service?.lastUpdated ?? "";
 		}
 	},
 	watch: {

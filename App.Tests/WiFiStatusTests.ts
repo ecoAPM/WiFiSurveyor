@@ -62,10 +62,10 @@ export default class WiFiStatusTests extends TestSuite {
 	@Test()
 	async colorFadesAsReadingGoesStale() {
 		//arrange
-		const component = mount(WiFiStatus, { propsData: { color: "rgba(0, 255, 0, 1)", last_updated: "earlier" } });
+		const component = mount(WiFiStatus, { propsData: { color: "rgba(0, 255, 0, 1)", lastUpdated: "earlier" } });
 
 		//act
-		await component.setProps({ last_updated: "now" });
+		await component.setProps({ lastUpdated: "now" });
 		await component.vm.$nextTick();
 		await new Promise<void>((resolve) => setTimeout(() => resolve(), 100));
 
