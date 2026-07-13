@@ -1,4 +1,3 @@
-import { shallowMount as mount } from "@vue/test-utils";
 import { Test, TestSuite } from "xunit.ts";
 
 import AppViewModel from "../App/AppViewModel";
@@ -7,36 +6,37 @@ import { Mode } from "../App/Mode";
 import Point from "../App/Point";
 import Reading from "../App/Reading";
 import Signal from "../App/Signal";
+import { ComponentDefinition, mount } from "./TestHelpers";
 
 export default class DebugPanelTests extends TestSuite {
 	@Test()
-	displayedWhenEnabled() {
+	async displayedWhenEnabled() {
 		//arrange
 		const state = new AppViewModel();
 		state.debug = true;
 
 		//act
-		const component = mount(DebugPanel, { data: () => ({ state: state }) });
+		const component = await mount(DebugPanel as ComponentDefinition, state);
 
 		//assert
-		this.assert.undefined(component.attributes("style"));
+		this.assert.empty(component.attributes("style"));
 	}
 
 	@Test()
-	notDisplayedWhenNotEnabled() {
+	async notDisplayedWhenNotEnabled() {
 		//arrange
 		const state = new AppViewModel();
 		state.debug = false;
 
 		//act
-		const component = mount(DebugPanel, { data: () => ({ state: state }) });
+		const component = await mount(DebugPanel as ComponentDefinition, state);
 
 		//assert
 		this.assert.stringContains("display: none;", component.attributes("style"));
 	}
 
 	@Test()
-	canSortSignalsByStrength() {
+	async canSortSignalsByStrength() {
 		//arrange
 		const signals = [
 			new Signal("mac1", "ssid1", 2, 1, -50),
@@ -44,7 +44,8 @@ export default class DebugPanelTests extends TestSuite {
 		];
 		const state = new AppViewModel();
 		state.current = new Reading(0, new Point(0, 0), signals);
-		const component = mount(DebugPanel, { data: () => ({ state: state }) });
+
+		const component = await mount(DebugPanel as ComponentDefinition, state);
 
 		//act
 		const sorted_signals = component.findAll("table tbody tr td:nth-child(6)").map(s => s.text());
@@ -55,7 +56,7 @@ export default class DebugPanelTests extends TestSuite {
 	}
 
 	@Test()
-	canSortSignalsBySNR() {
+	async canSortSignalsBySNR() {
 		//arrange
 		const signals = [
 			new Signal("mac1", "ssid1", 2, 5, -40),
@@ -65,7 +66,8 @@ export default class DebugPanelTests extends TestSuite {
 		const state = new AppViewModel();
 		state.current = new Reading(0, new Point(0, 0), signals);
 		state.mode = Mode.SNR;
-		const component = mount(DebugPanel, { data: () => ({ state: state }) });
+
+		const component = await mount(DebugPanel as ComponentDefinition, state);
 
 		//act
 		const sorted_snr = component.findAll("table tbody tr td:nth-child(7)").map(s => s.text());
@@ -77,14 +79,15 @@ export default class DebugPanelTests extends TestSuite {
 	}
 
 	@Test()
-	canGetColorForSignal() {
+	async canGetColorForSignal() {
 		//arrange
 		const signals = [
 			new Signal("mac", "ssid", 2, 1, -40)
 		];
 		const state = new AppViewModel();
 		state.current = new Reading(0, new Point(0, 0), signals);
-		const component = mount(DebugPanel, { data: () => ({ state: state }) });
+
+		const component = await mount(DebugPanel as ComponentDefinition, state);
 
 		//act
 		const style = component.get("td[style]").attributes("style");

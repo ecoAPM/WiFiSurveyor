@@ -52,42 +52,39 @@
 	</aside>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { computed, defineExpose, ref } from "vue";
 
 import ColorConverter from "./ColorConverter";
 import { Mode } from "./Mode";
 import SharedState from "./SharedState";
 import Signal from "./Signal";
 
-export default defineComponent({
-	data: () => ({
-		state: SharedState
-	}),
-	computed: {
-		sorted_signals(): Signal[] {
-			return this.state.mode == Mode.Signal
-				? this.signals_by_strength
-				: this.signals_by_snr;
-		},
-		signals_by_strength(): Signal[] {
-			return this.state.current.signals.slice()
-				.sort((s1, s2) => s1.compareTo(s2));
-		},
-		signals_by_snr(): Signal[] {
-			return this.state.current.signals.slice()
-				.sort((s1, s2) => s1.compareTo(s2))
-				.sort((s1, s2) => s2.snr(this.state.current.signals) - s1.snr(this.state.current.signals));
-		}
-	},
-	methods: {
-		color(signal: Signal): string {
-			return this.state.mode == Mode.Signal
-				? ColorConverter.fromSignal(signal.strength).toRGBA()
-				: ColorConverter.fromSNR(signal.snr(this.state.current.signals)).toRGBA();
-		}
-	}
-});
+const state = ref(SharedState);
+
+const sorted_signals = computed(() =>
+	state.value.mode == Mode.Signal
+		? signals_by_strength.value
+		: signals_by_snr.value
+);
+
+const signals_by_strength = computed(() =>
+	state.value.current.signals.slice()
+		.sort((s1, s2) => s1.compareTo(s2))
+);
+
+const signals_by_snr = computed(() =>
+	state.value.current.signals.slice()
+		.sort((s1, s2) => s1.compareTo(s2))
+		.sort((s1, s2) => s2.snr(state.value.current.signals) - s1.snr(state.value.current.signals))
+);
+
+const color = (signal: Signal) =>
+	state.value.mode == Mode.Signal
+		? ColorConverter.fromSignal(signal.strength).toRGBA()
+		: ColorConverter.fromSNR(signal.snr(state.value.current.signals)).toRGBA();
+
+defineExpose({ state });
 </script>
 
 <style scoped>
