@@ -8,33 +8,30 @@
 		</button>
 
 		<label for="debug">
-			<input id="debug" v-model="state.debug" type="checkbox" />
+			<input id="debug" v-model="state.debug" type="checkbox"/>
 			Debug
 		</label>
 	</section>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { ref } from "vue";
 
 import SharedState from "./SharedState";
 
-export default defineComponent({
-	data: () => ({
-		state: SharedState
-	}),
-	methods: {
-		undo(): void {
-			if (confirm("Are you sure you want to remove your most recent reading?"))
-				this.state.deleteDataPoint(this.state.readings.length - 1);
-		},
-		reset(): void {
-			if (confirm("Are you sure you want to delete all signal readings?")) {
-				this.state.clearAllDataPoints();
-			}
-		}
-	}
-});
+const state = ref(SharedState);
+
+const undo = () => {
+	if (confirm("Are you sure you want to remove your most recent reading?"))
+		state.value.deleteDataPoint(state.value.readings.length - 1);
+};
+
+const reset = () => {
+	if (confirm("Are you sure you want to delete all signal readings?"))
+		state.value.clearAllDataPoints();
+};
+
+defineExpose({ state });
 </script>
 
 <style scoped>
