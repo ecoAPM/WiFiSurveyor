@@ -1,3 +1,5 @@
+import { Buffer } from "buffer";
+
 import AccessPoint from "./AccessPoint";
 import AccessPointGrouping from "./AccessPointGrouping";
 import { Mode } from "./Mode";
