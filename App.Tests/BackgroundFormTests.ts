@@ -1,8 +1,8 @@
-import { shallowMount as mount } from "@vue/test-utils";
 import { Test, TestSuite } from "xunit.ts";
 
 import AppViewModel from "../App/AppViewModel";
 import BackgroundForm from "../App/background-form.vue";
+import { ComponentDefinition, mount } from "./TestHelpers";
 
 export default class BackgroundFormTests extends TestSuite {
 	@Test()
@@ -10,7 +10,8 @@ export default class BackgroundFormTests extends TestSuite {
 		//arrange
 		const state = new AppViewModel();
 		state.background = "old.png";
-		const component = mount(BackgroundForm, { data: () => ({ state: state }) });
+
+		const component = await mount(BackgroundForm as ComponentDefinition, state);
 
 		//act
 		await component.get("#background-file").setValue("");
@@ -24,11 +25,13 @@ export default class BackgroundFormTests extends TestSuite {
 	async pixelateCheckboxSetsValue() {
 		//arrange
 		const state = new AppViewModel();
-		const component = mount(BackgroundForm, { data: () => ({ state: state }) });
+
+		const component = await mount(BackgroundForm as ComponentDefinition, state);
 
 		//act
-		await component.get("#pixelate").trigger("click");
-		await component.get("#pixelate").trigger("change");
+		const checkbox = component.get("#pixelate");
+		await checkbox.trigger("click");
+		await checkbox.trigger("change");
 
 		//assert
 		this.assert.false(state.pixelated);
