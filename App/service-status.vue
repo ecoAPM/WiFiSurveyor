@@ -4,17 +4,10 @@
 	</div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { defineProps } from "vue";
 
-export default defineComponent({
-	props: {
-		status: {
-			type: String,
-			default: ""
-		}
-	}
-});
+const { status } = defineProps<{ status: string }>();
 </script>
 
 <style scoped>
