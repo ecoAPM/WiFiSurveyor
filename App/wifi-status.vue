@@ -1,6 +1,6 @@
 <template>
 	<figure :class="{ 'full': !fading, 'fading': fading }">
-		<wifi-icon :color="color" />
+		<WiFiIcon :color="color"/>
 		<figcaption v-if="value != null">
 			{{ value }} {{ units }}
 		</figcaption>
@@ -10,53 +10,35 @@
 	</figure>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { computed, nextTick, ref, watch } from "vue";
 
 import ColorConverter from "./ColorConverter";
 import { Mode } from "./Mode";
-import wifi_icon from "./wifi-icon.vue";
+import WiFiIcon from "./wifi-icon.vue";
 
-export default defineComponent({
-	components: {
-		"wifi-icon": wifi_icon
-	},
-	props: {
-		value: {
-			type: Number,
-			default: 0
-		},
-		units: {
-			type: String,
-			default: Mode.Signal
-		},
-		lastUpdated: {
-			type: String,
-			default: ""
-		}
-	},
-	data(): { fading: boolean } {
-		return {
-			fading: false
-		};
-	},
-	computed: {
-		color(): string {
-			return this.units == Mode.Signal && this.value != null
-				? ColorConverter.fromSignal(this.value).toRGBA()
-				: ColorConverter.fromSNR(this.value).toRGBA();
-		}
-	},
-	watch: {
-		async lastUpdated() {
-			this.fading = false;
-			await this.$nextTick();
-			await new Promise<void>((resolve) => setTimeout(() => {
-				this.fading = true;
-				resolve();
-			}, 100));
-		}
-	}
+interface Props {
+	value: number | null,
+	units: string,
+	lastUpdated: string
+};
+
+const { value, units, lastUpdated } = defineProps<Props>();
+
+const fading = ref(false);
+const color = computed(() =>
+	units == Mode.Signal.toString() && value != null
+		? ColorConverter.fromSignal(value).toRGBA()
+		: ColorConverter.fromSNR(value).toRGBA()
+);
+
+watch(() => lastUpdated, async () => {
+	fading.value = false;
+	await nextTick();
+	await new Promise<void>((resolve) => setTimeout(() => {
+		fading.value = true;
+		resolve();
+	}, 100));
 });
 </script>
 

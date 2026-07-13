@@ -1,4 +1,5 @@
 import { shallowMount as mount } from "@vue/test-utils";
+import { nextTick } from "vue";
 import { Test, TestSuite } from "xunit.ts";
 
 import { Mode } from "../App/Mode";
@@ -66,7 +67,7 @@ export default class WiFiStatusTests extends TestSuite {
 
 		//act
 		await component.setProps({ lastUpdated: "now" });
-		await component.vm.$nextTick();
+		await nextTick();
 		await new Promise<void>((resolve) => setTimeout(() => resolve(), 100));
 
 		//assert

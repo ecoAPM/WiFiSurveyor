@@ -1,5 +1,5 @@
 import { shallowMount, VueWrapper } from "@vue/test-utils";
-import { ComponentPublicInstance, DefineComponent } from "vue";
+import { ComponentPublicInstance, DefineComponent, nextTick } from "vue";
 
 import AppViewModel from "../App/AppViewModel";
 
@@ -15,5 +15,5 @@ export async function mount(component: ComponentDefinition, state: AppViewModel)
 
 async function setState(wrapper: Component, state: AppViewModel) {
 	wrapper.vm.state = state;
-	await wrapper.vm.$nextTick();
+	await nextTick();
 }
