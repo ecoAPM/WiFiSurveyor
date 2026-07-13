@@ -15,7 +15,7 @@ export default class FileFormTests extends TestSuite {
 		const component = mount(FileForm, { data: () => ({ state: state }) });
 
 		//act
-		const json = component.vm.objectURL();
+		const json = component.vm.objectURL;
 
 		//assert
 		this.assert.stringContains("\"name\":\"Test\"", json);
