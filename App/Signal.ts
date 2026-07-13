@@ -29,7 +29,7 @@ export default class Signal {
 		return this.strength - noise;
 	}
 
-	private noise(others: Signal[]): number {
+	noise(others: Signal[]): number {
 		const neighbors = others.filter(s => s.mac != this.mac
 			&& s.frequency == this.frequency
 			&& s.channel - 4 < this.channel

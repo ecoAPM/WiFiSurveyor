@@ -49,6 +49,25 @@ export default class SignalTests extends TestSuite {
 	}
 
 	@Test()
+	canGetNoiseFromStrongestNeighbor() {
+		//arrange
+		const signals = [
+			new Signal("12:34:56:78:90:ab", "test1", 2, 1, -20),
+			new Signal("12:34:56:78:90:ab", "test2", 2, 2, -20),
+			new Signal("12:34:56:78:90:ac", "test3", 2, 2, -60),
+			new Signal("12:34:56:78:90:ad", "test4", 2, 3, -50),
+			new Signal("12:34:56:78:90:ae", "test5", 2, 4, -40),
+			new Signal("12:34:56:78:90:af", "test6", 2, 5, -30)
+		];
+
+		//act
+		const snr = signals[0].noise(signals);
+
+		//assert
+		this.assert.equal(-40, snr);
+	}
+
+	@Test()
 	canGetSNRFromStrongestNeighbor() {
 		//arrange
 		const signals = [
