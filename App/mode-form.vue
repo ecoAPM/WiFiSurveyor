@@ -2,31 +2,25 @@
 	<form>
 		<label for="mode-signal">Mode</label>
 		<label>
-			<input id="mode-signal" v-model="state.mode" type="radio" name="type" :value="mode.Signal" />
+			<input id="mode-signal" v-model="state.mode" type="radio" name="type" :value="Mode.Signal" />
 			Signal
 		</label>
 		<label>
-			<input id="mode-snr" v-model="state.mode" type="radio" name="type" :value="mode.SNR" />
+			<input id="mode-snr" v-model="state.mode" type="radio" name="type" :value="Mode.SNR" />
 			SNR
 		</label>
 	</form>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { defineExpose, ref } from "vue";
 
-import AppViewModel from "./AppViewModel";
 import { Mode } from "./Mode";
 import SharedState from "./SharedState";
 
-export default defineComponent({
-	data: function (): { state: AppViewModel, mode: typeof Mode } {
-		return {
-			state: SharedState,
-			mode: Mode
-		};
-	}
-});
+const state = ref(SharedState);
+
+defineExpose({ state });
 </script>
 
 <style scoped>

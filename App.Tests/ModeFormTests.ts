@@ -1,16 +1,16 @@
-import { shallowMount as mount } from "@vue/test-utils";
 import { Test, TestSuite } from "xunit.ts";
 
 import AppViewModel from "../App/AppViewModel";
 import { Mode } from "../App/Mode";
 import ModeForm from "../App/mode-form.vue";
+import { ComponentDefinition, mount } from "./TestHelpers";
 
 export default class ModeFormTests extends TestSuite {
 	@Test()
 	async canSetModeToSignal() {
 		//arrange
 		const state = new AppViewModel();
-		const component = mount(ModeForm, { data: () => ({ state: state }) });
+		const component = await mount(ModeForm as ComponentDefinition, state);
 
 		//act
 		await component.get("#mode-signal").setValue(true);
@@ -23,7 +23,7 @@ export default class ModeFormTests extends TestSuite {
 	async canSetModeToSNR() {
 		//arrange
 		const state = new AppViewModel();
-		const component = mount(ModeForm, { data: () => ({ state: state }) });
+		const component = await mount(ModeForm as ComponentDefinition, state);
 
 		//act
 		await component.get("#mode-snr").setValue(true);
