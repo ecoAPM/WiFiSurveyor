@@ -1,12 +1,11 @@
-import { shallowMount as mount } from "@vue/test-utils";
 import { Test, TestSuite } from "xunit.ts";
 
-import AccessPoint from "../App/AccessPoint";
 import APForm from "../App/ap-form.vue";
 import AppViewModel from "../App/AppViewModel";
 import Point from "../App/Point";
 import Reading from "../App/Reading";
 import Signal from "../App/Signal";
+import { ComponentDefinition, mount } from "./TestHelpers";
 
 export default class APFormTests extends TestSuite {
 
@@ -22,11 +21,12 @@ export default class APFormTests extends TestSuite {
 	];
 
 	@Test()
-	accessPointsAreSortedWhenGroupedBySSIDAndFrequency() {
+	async accessPointsAreSortedWhenGroupedBySSIDAndFrequency() {
 		//arrange
 		const state = new AppViewModel();
 		state.current = new Reading(0, new Point(0, 0), APFormTests.signals);
-		const component = mount(APForm, { data: () => ({ state: state }) });
+
+		const component = await mount(APForm as ComponentDefinition, state);
 
 		//act
 		const options = component.findAll("option").map(o => o.text());
@@ -41,7 +41,8 @@ export default class APFormTests extends TestSuite {
 		//arrange
 		const state = new AppViewModel();
 		state.current = new Reading(0, new Point(0, 0), APFormTests.signals);
-		const component = mount(APForm, { data: () => ({ state: state }) });
+
+		const component = await mount(APForm as ComponentDefinition, state);
 
 		//act
 		await component.get("#group-by-frequency").setValue(false);
@@ -59,7 +60,8 @@ export default class APFormTests extends TestSuite {
 		//arrange
 		const state = new AppViewModel();
 		state.current = new Reading(0, new Point(0, 0), APFormTests.signals);
-		const component = mount(APForm, { data: () => ({ state: state }) });
+
+		const component = await mount(APForm as ComponentDefinition, state);
 
 		//act
 		await component.get("#group-by-ssid").setValue(false);
@@ -81,7 +83,8 @@ export default class APFormTests extends TestSuite {
 		//arrange
 		const state = new AppViewModel();
 		state.current = new Reading(0, new Point(0, 0), APFormTests.signals);
-		const component = mount(APForm, { data: () => ({ state: state }) });
+
+		const component = await mount(APForm as ComponentDefinition, state);
 
 		//act
 		const select = component.get("select");
@@ -98,7 +101,8 @@ export default class APFormTests extends TestSuite {
 	async groupBySSIDEnablesGroupByFrequency() {
 		//arrange
 		const state = new AppViewModel();
-		const component = mount(APForm, { data: () => ({ state: state }) });
+
+		const component = await mount(APForm as ComponentDefinition, state);
 
 		//act
 		await component.get("#group-by-ssid").setValue(true);
@@ -112,7 +116,7 @@ export default class APFormTests extends TestSuite {
 	async disablingGroupBySSIDDisablesAndUnchecksGroupByFrequency() {
 		//arrange
 		const state = new AppViewModel();
-		const component = mount(APForm, { data: () => ({ state: state }) });
+		const component = await mount(APForm as ComponentDefinition, state);
 
 		//act
 		await component.get("#group-by-ssid").setValue(false);
@@ -124,7 +128,7 @@ export default class APFormTests extends TestSuite {
 	}
 
 	@Test()
-	combinesDuplicateLabels() {
+	async combinesDuplicateLabels() {
 		//arrange
 		const state = new AppViewModel();
 		state.current = new Reading(0, new Point(0, 0), APFormTests.signals);
@@ -132,11 +136,11 @@ export default class APFormTests extends TestSuite {
 			new Reading(1, new Point(3, 4), APFormTests.signals),
 			new Reading(2, new Point(5, 6), APFormTests.signals)
 		];
-		const component = mount(APForm, { data: () => ({ state: state }) });
+
+		const component = await mount(APForm as ComponentDefinition, state);
 
 		//act
-		const vm = component.vm as { access_points: AccessPoint[] };
-		const signals = vm.access_points;
+		const signals = component.findAll("option");
 
 		//assert
 		this.assert.equal(2, signals.length);

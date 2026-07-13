@@ -13,7 +13,7 @@
 		</section>
 
 		<label>
-			<input id="group-by-ssid" v-model="state.group_by.ssid" type="checkbox" @change="state.group_by.update()" />
+			<input id="group-by-ssid" v-model="state.group_by.ssid" type="checkbox" @change="state.group_by.update()"/>
 			Group by SSID
 		</label>
 
@@ -27,36 +27,33 @@
 	</form>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { computed, ref } from "vue";
 
 import AccessPoint from "./AccessPoint";
 import SharedState from "./SharedState";
 import Signal from "./Signal";
 
-export default defineComponent({
-	data: () => ({
-		state: SharedState,
-	}),
-	computed: {
-		all_signals(): Signal[] {
-			return [ ...this.state.current.signals, ...this.state.readings.flatMap(r => r.signals) ];
-		},
-		all_access_points(): AccessPoint[] {
-			return this.all_signals.map(s =>
-				new AccessPoint(s.ssid,
-					this.state.group_by.frequency ? null : s.frequency,
-					this.state.group_by.ssid ? null : s.mac)
-			);
-		},
-		access_points(): AccessPoint[] {
-			const labels = this.all_access_points.map(a => a.label());
-			return this.all_access_points
-				.filter((ap, index) => labels.indexOf(ap.label()) === index)
-				.sort((ap1, ap2) => ap1.compareTo(ap2));
-		}
-	}
+const state = ref(SharedState);
+
+const all_signals = computed<Signal[]>(() =>
+	state.value.current.signals.concat(state.value.readings.flatMap(r => r.signals))
+);
+
+const all_access_points = computed<AccessPoint[]>(() =>
+	all_signals.value.map(s =>
+		new AccessPoint(s.ssid, state.value.group_by.frequency ? null : s.frequency, state.value.group_by.ssid ? null : s.mac)
+	)
+);
+
+const access_points = computed<AccessPoint[]>(() => {
+	const labels = all_access_points.value.map(a => a.label());
+	return all_access_points.value
+		.filter((ap, index) => labels.indexOf(ap.label()) === index)
+		.sort((ap1, ap2) => ap1.compareTo(ap2));
 });
+
+defineExpose({ state });
 </script>
 
 <style scoped>
