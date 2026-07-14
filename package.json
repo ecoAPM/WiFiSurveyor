@@ -39,7 +39,7 @@
 		"@types/delaunator": "5.0.3",
 		"@types/jsdom": "28.0.3",
 		"@types/node": "26.1.1",
-		"@vitejs/plugin-vue": "6.0.7",
+		"@vitejs/plugin-vue": "6.0.8",
 		"@vue/compiler-dom": "3.5.39",
 		"@vue/test-utils": "2.4.11",
 		"buffer": "6.0.3",
