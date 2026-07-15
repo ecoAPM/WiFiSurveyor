@@ -4,11 +4,11 @@ import { ComponentPublicInstance, DefineComponent, nextTick } from "vue";
 import AppViewModel from "../App/AppViewModel";
 
 export type Component = VueWrapper<unknown, ComponentInstance>;
-export type ComponentInstance = ComponentPublicInstance<unknown, { state: AppViewModel }>;
+export type ComponentInstance = ComponentPublicInstance<object, { state: AppViewModel }>;
 export type ComponentDefinition = DefineComponent<ComponentInstance>;
 
-export async function mount(component: ComponentDefinition, state: AppViewModel) {
-	const wrapper = shallowMount(component);
+export async function mount(component: ComponentDefinition, state: AppViewModel = new AppViewModel(), props: object = {}) {
+	const wrapper = shallowMount(component, { props: props });
 	await setState(wrapper, state);
 	return wrapper;
 }

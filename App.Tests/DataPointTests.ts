@@ -1,4 +1,3 @@
-import { shallowMount as mount } from "@vue/test-utils";
 import { Test, TestSuite } from "xunit.ts";
 
 import AccessPoint from "../App/AccessPoint";
@@ -7,42 +6,47 @@ import DataPoint from "../App/data-point.vue";
 import Point from "../App/Point";
 import Reading from "../App/Reading";
 import Signal from "../App/Signal";
+import { mount } from "./TestHelpers";
+import { Mode } from "../App/Mode";
 
 export default class DataPointTests extends TestSuite {
 	@Test()
-	showsSignalOnDataPoint() {
+	async showsSignalOnDataPoint() {
 		//arrange
 		const reading = new Reading(1, new Point(0, 0), [ new Signal("mac", "test", 2, 1, -30) ]);
 		const selected = new AccessPoint("test");
+		const props = { mode: Mode.Signal, reading: reading, selected: selected };
 
 		//act
-		const component = mount(DataPoint, { propsData: { reading: reading, selected: selected } });
+		const component = await mount(DataPoint, null, props);
 
 		//assert
 		this.assert.equal("-30 dBm", component.text());
 	}
 
 	@Test()
-	showsNoSignalWhenNoSignal() {
+	async showsNoSignalWhenNoSignal() {
 		//arrange
 		const reading = new Reading(1, new Point(0, 0), []);
 		const selected = new AccessPoint("test");
+		const props = { mode: Mode.Signal, reading: reading, selected: selected };
 
 		//act
-		const component = mount(DataPoint, { propsData: { reading: reading, selected: selected } });
+		const component = await mount(DataPoint, null, props);
 
 		//assert
 		this.assert.equal("(no signal)", component.text());
 	}
 
 	@Test()
-	positionMatchesReadingLocation() {
+	async positionMatchesReadingLocation() {
 		//arrange
 		const reading = new Reading(1, new Point(12, 34), [ new Signal("mac", "test", 2, 1, -30) ]);
 		const selected = new AccessPoint("test");
+		const props = { mode: Mode.Signal, reading: reading, selected: selected };
 
 		//act
-		const component = mount(DataPoint, { propsData: { reading: reading, selected: selected } });
+		const component = await mount(DataPoint, null, props);
 
 		//assert
 		this.assert.stringContains("left: 12px;", component.html());
@@ -50,13 +54,14 @@ export default class DataPointTests extends TestSuite {
 	}
 
 	@Test()
-	colorMatchesReadingStrength() {
+	async colorMatchesReadingStrength() {
 		//arrange
 		const reading = new Reading(1, new Point(12, 34), [ new Signal("mac", "test", 2, 1, -30) ]);
 		const selected = new AccessPoint("test");
+		const props = { mode: Mode.Signal, reading: reading, selected: selected };
 
 		//act
-		const component = mount(DataPoint, { propsData: { reading: reading, selected: selected } });
+		const component = await mount(DataPoint, null, props);
 
 		//assert
 		this.assert.stringContains("background-color: rgb(0, 127, 0);", component.html());
@@ -71,12 +76,12 @@ export default class DataPointTests extends TestSuite {
 			new Reading(2, new Point(0, 0), []),
 			new Reading(3, new Point(0, 0), [])
 		];
+
 		const reading = new Reading(1, new Point(12, 34), [ new Signal("mac", "test", 2, 1, -30) ]);
 		const selected = new AccessPoint("test");
-		const component = mount(DataPoint, {
-			data: () => ({ state: state }),
-			propsData: { index: 1, reading: reading, selected: selected }
-		});
+		const props = {mode: Mode.Signal,  index: 1, reading: reading, selected: selected };
+
+		const component = await mount(DataPoint, state, props);
 		global.confirm = () => true;
 
 		//act
@@ -97,12 +102,12 @@ export default class DataPointTests extends TestSuite {
 			new Reading(2, new Point(0, 0), []),
 			new Reading(3, new Point(0, 0), [])
 		];
+
 		const reading = new Reading(1, new Point(12, 34), [ new Signal("mac", "test", 2, 1, -30) ]);
 		const selected = new AccessPoint("test");
-		const component = mount(DataPoint, {
-			data: () => ({ state: state }),
-			propsData: { index: 1, reading: reading, selected: selected }
-		});
+		const props = { mode: Mode.Signal, index: 1, reading: reading, selected: selected };
+
+		const component = await mount(DataPoint, state, props);
 		global.confirm = () => false;
 
 		//act

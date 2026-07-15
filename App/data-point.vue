@@ -11,51 +11,43 @@
 	</div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { computed, ref } from "vue";
 
 import AccessPoint from "./AccessPoint";
-import Color from "./Color";
 import ColorConverter from "./ColorConverter";
 import { Mode } from "./Mode";
 import Reading from "./Reading";
 import SharedState from "./SharedState";
 
-export default defineComponent({
-	props: {
-		index: {
-			type: Number,
-			default: -1
-		},
-		reading: Reading,
-		selected: AccessPoint,
-		mode: {
-			type: String,
-			default: Mode.Signal
-		}
-	},
-	data: () => ({
-		state: SharedState,
-	}),
-	computed: {
-		signal(): number | null {
-			return this.mode == Mode.Signal
-				? this.reading.signalFor(this.selected)
-				: this.reading.snrFor(this.selected);
-		},
-		color(): Color {
-			return this.mode == Mode.Signal
-				? ColorConverter.fromSignal(this.signal)
-				: ColorConverter.fromSNR(this.signal);
-		}
-	},
-	methods: {
-		remove(): void {
-			if (confirm("Are you sure you want to remove this reading?"))
-				this.state.deleteDataPoint(this.index);
-		}
-	},
-});
+interface Props {
+	mode: string
+	index: number,
+	reading: Reading,
+	selected: AccessPoint,
+}
+
+const props = defineProps<Props>();
+const state = ref(SharedState);
+
+const signal = computed(() =>
+	props.mode == Mode.Signal.toString()
+		? props.reading.signalFor(props.selected)
+		: props.reading.snrFor(props.selected)
+);
+
+const color = computed(() =>
+	props.mode == Mode.Signal.toString()
+		? ColorConverter.fromSignal(signal.value)
+		: ColorConverter.fromSNR(signal.value)
+);
+
+const remove = () => {
+	if (props.index > -1 && confirm("Are you sure you want to remove this reading?"))
+		state.value.deleteDataPoint(props.index);
+};
+
+defineExpose({ state, props });
 </script>
 
 <style scoped>
