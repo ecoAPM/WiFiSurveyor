@@ -33,7 +33,7 @@
 	"devDependencies": {
 		"@eslint/js": "10.0.1",
 		"@fontsource/noto-sans": "5.3.0",
-		"@fontsource/roboto": "5.2.10",
+		"@fontsource/roboto": "5.3.0",
 		"@microsoft/signalr": "10.0.0",
 		"@stylistic/eslint-plugin": "5.10.0",
 		"@types/delaunator": "5.0.3",
