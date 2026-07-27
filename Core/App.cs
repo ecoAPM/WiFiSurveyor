@@ -15,7 +15,7 @@ public sealed class App
 			EnvironmentName = args.All(a => a != "dev")
 				? Environments.Production
 				: Environments.Development,
-			WebRootPath = Path.Combine(AppContext.BaseDirectory, "wwwroot", "_content", "WiFiSurveyor.Core")
+			WebRootPath = Path.Combine(AppContext.BaseDirectory, "wwwroot")
 		};
 
 		var builder = WebApplication.CreateBuilder(options);
