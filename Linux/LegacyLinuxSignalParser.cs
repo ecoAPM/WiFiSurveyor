@@ -2,7 +2,7 @@ using WiFiSurveyor.Core;
 
 namespace WiFiSurveyor.Linux;
 
-public sealed class LinuxSignalParser(ILogger logger) : ISignalParser<string>
+public sealed class LegacyLinuxSignalParser(ILogger logger) : ISignalParser<string>
 {
 	public IReadOnlyList<Signal> Parse(string results)
 		=> results
@@ -17,11 +17,11 @@ public sealed class LinuxSignalParser(ILogger logger) : ISignalParser<string>
 	{
 		try
 		{
-			var mac = Patterns.Address().Match(result).Groups[1].Value;
-			var ssid = Patterns.SSID().Match(result).Groups[1].Value;
-			var freq = Patterns.Frequency().Match(result).Groups[1].Value;
-			var channel = Patterns.Channel().Match(result).Groups[1].Value;
-			var dbm = Patterns.Signal().Match(result).Groups[1].Value;
+			var mac = LegacyPatterns.Address().Match(result).Groups[1].Value;
+			var ssid = LegacyPatterns.SSID().Match(result).Groups[1].Value;
+			var freq = LegacyPatterns.Frequency().Match(result).Groups[1].Value;
+			var channel = LegacyPatterns.Channel().Match(result).Groups[1].Value;
+			var dbm = LegacyPatterns.Signal().Match(result).Groups[1].Value;
 
 			return new Signal
 			{

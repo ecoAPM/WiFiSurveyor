@@ -5,14 +5,14 @@ using Xunit;
 
 namespace WiFiSurveyor.Linux.Tests;
 
-public sealed class LinuxSignalParserTests
+public sealed class LegacyLinuxSignalParserTests
 {
 	[Fact]
 	public async Task ResultsAreParsedIntoSignals()
 	{
 		//arrange
 		var logger = Substitute.For<ILogger>();
-		var signalParser = new LinuxSignalParser(logger);
+		var signalParser = new LegacyLinuxSignalParser(logger);
 		var contents = await File.ReadAllTextAsync("iwlist-output.txt");
 
 		//act
@@ -45,7 +45,7 @@ public sealed class LinuxSignalParserTests
 	{
 		//arrange
 		var logger = Substitute.For<ILogger>();
-		var signalParser = new LinuxSignalParser(logger);
+		var signalParser = new LegacyLinuxSignalParser(logger);
 		var contents = await File.ReadAllTextAsync("iwlist-output.txt");
 		contents = contents
 			.Replace("-65 dBm", "X")

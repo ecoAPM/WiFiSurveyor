@@ -6,7 +6,7 @@ using Xunit;
 
 namespace WiFiSurveyor.Linux.Tests;
 
-public sealed class LinuxSignalReaderTests
+public sealed class LegacyLinuxSignalReaderTests
 {
 	[Fact]
 	public async Task ReturnsOutputFromProcess()
@@ -14,7 +14,7 @@ public sealed class LinuxSignalReaderTests
 		//arrange
 		var commandService = Substitute.For<ICommandService>();
 		commandService.Run(Arg.Any<ProcessStartInfo>()).Returns("file contents");
-		var reader = new LinuxSignalReader(commandService);
+		var reader = new LegacyLinuxSignalReader(commandService);
 
 		//act
 		var results = await reader.Read();
@@ -30,7 +30,7 @@ public sealed class LinuxSignalReaderTests
 		var exception = new Win32Exception(2, "x");
 		var commandService = Substitute.For<ICommandService>();
 		commandService.When(c => c.Run(Arg.Any<ProcessStartInfo>())).Throw(exception);
-		var reader = new LinuxSignalReader(commandService);
+		var reader = new LegacyLinuxSignalReader(commandService);
 
 		try
 		{
@@ -52,7 +52,7 @@ public sealed class LinuxSignalReaderTests
 		var exception = new Win32Exception(1, "other error");
 		var commandService = Substitute.For<ICommandService>();
 		commandService.When(c => c.Run(Arg.Any<ProcessStartInfo>())).Throw(exception);
-		var reader = new LinuxSignalReader(commandService);
+		var reader = new LegacyLinuxSignalReader(commandService);
 
 		try
 		{

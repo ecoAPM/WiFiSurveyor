@@ -2,7 +2,7 @@
 
 namespace WiFiSurveyor.Linux;
 
-public static partial class Patterns
+public static partial class LegacyPatterns
 {
 	[GeneratedRegex("Address: (.+)")]
 	public static partial Regex Address();

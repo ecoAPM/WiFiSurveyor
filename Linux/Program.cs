@@ -8,8 +8,8 @@ public static class Program
 	{
 		services.AddPosixHandlers();
 		services.AddSingleton<IBrowserLauncher, LinuxBrowserLauncher>();
-		services.AddSingleton<ISignalReader<string>, LinuxSignalReader>();
-		services.AddSingleton<ISignalParser<string>, LinuxSignalParser>();
+		services.AddSingleton<ISignalReader<string>, LegacyLinuxSignalReader>();
+		services.AddSingleton<ISignalParser<string>, LegacyLinuxSignalParser>();
 	}
 
 	public static async Task Main(string[] args)
