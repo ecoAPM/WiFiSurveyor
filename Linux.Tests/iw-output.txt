@@ -1,0 +1,719 @@
+BSS 02:00:00:00:00:01(on wlp2s0)
+	last seen: 21026.131s [boottime]
+	TSF: 26275848259455 usec (304d, 02:50:48)
+	freq: 2422.0
+	beacon interval: 100 TUs
+	capability: ESS Privacy ShortSlotTime APSD RadioMeasure (0x1c11)
+	signal: -65.00 dBm
+	last seen: 4385 ms ago
+	Information elements from Probe Response frame:
+	SSID: Net1
+	Supported rates: 1.0* 2.0* 5.5* 11.0* 9.0 18.0 36.0 54.0
+	DS Parameter set: channel 1
+	ERP: Use_Protection Barker_Preamble_Mode
+	Extended supported rates: 6.0 12.0 24.0 48.0
+	RSN:	 * Version: 1
+		 * Group cipher: CCMP
+		 * Pairwise ciphers: CCMP
+		 * Authentication suites: PSK
+		 * Capabilities: 1-PTKSA-RC 1-GTKSA-RC (0x0000)
+	HT capabilities:
+		Capabilities: 0x19ef
+			RX LDPC
+			HT20/HT40
+			SM Power Save disabled
+			RX HT20 SGI
+			RX HT40 SGI
+			TX STBC
+			RX STBC 1-stream
+			Max AMSDU length: 7935 bytes
+			DSSS/CCK HT40
+		Maximum RX AMPDU length 65535 bytes (exponent: 0x003)
+		Minimum RX AMPDU time spacing: 4 usec (0x05)
+		HT RX MCS rate indexes supported: 0-15
+		HT TX MCS rate indexes are undefined
+	HT operation:
+		 * primary channel: 1
+		 * secondary channel offset: no secondary
+		 * STA channel width: 20 MHz
+		 * RIFS: 0
+		 * HT protection: 20 MHz
+		 * non-GF present: 1
+		 * OBSS non-GF present: 0
+		 * dual beacon: 0
+		 * dual CTS protection: 0
+		 * STBC beacon: 0
+		 * L-SIG TXOP Prot: 0
+		 * PCO active: 0
+		 * PCO phase: 0
+	Overlapping BSS scan params:
+		 * passive dwell: 20 TUs
+		 * active dwell: 10 TUs
+		 * channel width trigger scan interval: 300 s
+		 * scan passive total per channel: 200 TUs
+		 * scan active total per channel: 20 TUs
+		 * BSS width channel transition delay factor: 5
+		 * OBSS Scan Activity Threshold: 0.25 %
+	Extended capabilities:
+		 * HT Information Exchange Supported
+		 * BSS Transition
+		 * Interworking
+		 * TWT Responder Support
+		 * Max Number Of MSDUs In A-MSDU is unlimited
+	WMM:	 * Parameter version 1
+		 * u-APSD
+		 * BE: CW 15-1023, AIFSN 3
+		 * BK: CW 15-1023, AIFSN 7
+		 * VI: CW 7-15, AIFSN 2, TXOP 3008 usec
+		 * VO: CW 3-7, AIFSN 2, TXOP 1504 usec
+	RM enabled capabilities:
+		Capabilities: 0x02 0x00 0x01 0x00 0x00
+			Neighbor Report
+			AP Channel Report
+		Nonoperating Channel Max Measurement Duration: 0
+		Measurement Pilot Capability: 0
+	AP Channel Report:
+		 * operating class: 32
+		 * channel(s): 1 2 3 4 5 6 7
+	Power constraint: 0 dB
+	TPC report: TX power: 22 dBm
+	Transmit Power Envelope:
+	Country: US	Environment: Indoor/Outdoor
+		Channels [1 - 11] @ 30 dBm
+	VHT capabilities:
+		VHT Capabilities (0x33c17991):
+			Max MPDU length: 7991
+			Supported Channel Width: neither 160 nor 80+80
+			RX LDPC
+			TX STBC
+			SU Beamformer
+			SU Beamformee
+			+HTC-VHT
+			RX antenna pattern consistency
+			TX antenna pattern consistency
+		VHT RX MCS set:
+			1 streams: MCS 0-9
+			2 streams: MCS 0-9
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		VHT RX highest supported: 360 Mbps
+		VHT TX MCS set:
+			1 streams: MCS 0-9
+			2 streams: MCS 0-9
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		VHT TX highest supported: 360 Mbps
+		VHT extended NSS: not supported
+	VHT operation:
+		 * channel width: 0 (20 or 40 MHz)
+		 * center freq segment 1: 3
+		 * center freq segment 2: 0
+		 * VHT basic MCS set: 0xfffc
+	HE capabilities:
+		HE MAC Capabilities (0x00051a081044):
+			+HTC HE Supported
+			TWT Responder
+			BSR
+			OM Control
+			Maximum A-MPDU Length Exponent: 3
+			BQR
+			A-MSDU in A-MPDU
+			OM Control UL MU Data Disable RX
+		HE PHY Capabilities: (0x0220ce926f09af08000000):
+			HE40/2.4GHz
+			LDPC Coding in Payload
+			NDP with 4x HE-LTF and 3.2us GI
+			STBC Tx <= 80MHz
+			STBC Rx <= 80MHz
+			Full Bandwidth UL MU-MIMO
+			Partial Bandwidth UL MU-MIMO
+			DCM Max Constellation: 2
+			DCM Max Constellation Rx: 2
+			SU Beamformer
+			SU Beamformee
+			MU Beamformer
+			Beamformee STS <= 80MHz: 3
+			Beamformee STS > 80MHz: 3
+			Sounding Dimensions <= 80MHz: 1
+			Sounding Dimensions > 80MHz: 1
+			Codebook Size SU Feedback
+			Codebook Size MU Feedback
+			Triggered SU Beamforming Feedback
+			Triggered MU Beamforming Feedback
+			Partial Bandwidth Extended Range
+			PPE Threshold Present
+			Max NC: 1
+		HE RX MCS and NSS set <= 80 MHz
+			1 streams: MCS 0-11
+			2 streams: MCS 0-11
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		HE TX MCS and NSS set <= 80 MHz
+			1 streams: MCS 0-11
+			2 streams: MCS 0-11
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		PPE Threshold 0x19 0x1c 0xc7 0x71
+	HE Operation:
+		HE Operation Parameters: (0x003ff4)
+			Default PE Duration: 4
+			TXOP Duration RTS Threshold: 1023
+		BSS Color: 60
+		Basic HE-MCS NSS Set: 0xfffc
+			1 streams: MCS 0-7
+			2 streams: not supported
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+	WPS:	 * Version: 1.0
+		 * Wi-Fi Protected Setup State: 2 (Configured)
+		 * Response Type: 3 (AP)
+		 * UUID: 00000000-0000-1000-0000-0c8063e6bb10
+		 * Manufacturer: TP-LINK
+		 * Model: Archer AX21
+		 * Model Number: 4.6
+		 * Serial Number: 4.6
+		 * Primary Device Type: 6-0050f204-1
+		 * Device name: Archer AX21 4.6
+		 * Config methods: Label, Display, Keypad
+		 * RF Bands: 0x1
+		 * Version2: 2.0
+BSS 02:00:00:00:00:02(on wlp2s0) -- associated
+	last seen: 21030.492s [boottime]
+	TSF: 26275851936419 usec (304d, 02:50:51)
+	freq: 5785.0
+	beacon interval: 100 TUs
+	capability: ESS Privacy RadioMeasure (0x1011)
+	signal: -83.00 dBm
+	last seen: 26 ms ago
+	Information elements from Probe Response frame:
+	SSID: Net1
+	Supported rates: 6.0* 9.0 12.0* 18.0 24.0* 36.0 48.0 54.0
+	DS Parameter set: channel 36
+	ERP: Use_Protection Barker_Preamble_Mode
+	RSN:	 * Version: 1
+		 * Group cipher: CCMP
+		 * Pairwise ciphers: CCMP
+		 * Authentication suites: PSK
+		 * Capabilities: 1-PTKSA-RC 1-GTKSA-RC (0x0000)
+	HT capabilities:
+		Capabilities: 0x9ef
+			RX LDPC
+			HT20/HT40
+			SM Power Save disabled
+			RX HT20 SGI
+			RX HT40 SGI
+			TX STBC
+			RX STBC 1-stream
+			Max AMSDU length: 7935 bytes
+			No DSSS/CCK HT40
+		Maximum RX AMPDU length 65535 bytes (exponent: 0x003)
+		Minimum RX AMPDU time spacing: 4 usec (0x05)
+		HT RX MCS rate indexes supported: 0-15
+		HT TX MCS rate indexes are undefined
+	HT operation:
+		 * primary channel: 36
+		 * secondary channel offset: above
+		 * STA channel width: any
+		 * RIFS: 0
+		 * HT protection: 20 MHz
+		 * non-GF present: 1
+		 * OBSS non-GF present: 0
+		 * dual beacon: 0
+		 * dual CTS protection: 0
+		 * STBC beacon: 0
+		 * L-SIG TXOP Prot: 0
+		 * PCO active: 0
+		 * PCO phase: 0
+	Extended capabilities:
+		 * BSS Transition
+		 * Interworking
+		 * Operating Mode Notification
+		 * TWT Responder Support
+		 * Max Number Of MSDUs In A-MSDU is unlimited
+	WMM:	 * Parameter version 1
+		 * u-APSD
+		 * BE: CW 15-1023, AIFSN 3
+		 * BK: CW 15-1023, AIFSN 7
+		 * VI: CW 7-15, AIFSN 2, TXOP 3008 usec
+		 * VO: CW 3-7, AIFSN 2, TXOP 1504 usec
+	RM enabled capabilities:
+		Capabilities: 0x02 0x00 0x01 0x00 0x00
+			Neighbor Report
+			AP Channel Report
+		Nonoperating Channel Max Measurement Duration: 0
+		Measurement Pilot Capability: 0
+	Power constraint: 0 dB
+	TPC report: TX power: 22 dBm
+	Transmit Power Envelope:
+	Country: US	Environment: Indoor/Outdoor
+		Channels [36 - 48] @ 30 dBm
+		Channels [149 - 165] @ 30 dBm
+	VHT capabilities:
+		VHT Capabilities (0x33c979b1):
+			Max MPDU length: 7991
+			Supported Channel Width: neither 160 nor 80+80
+			RX LDPC
+			short GI (80 MHz)
+			TX STBC
+			SU Beamformer
+			SU Beamformee
+			MU Beamformer
+			+HTC-VHT
+			RX antenna pattern consistency
+			TX antenna pattern consistency
+		VHT RX MCS set:
+			1 streams: MCS 0-9
+			2 streams: MCS 0-9
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		VHT RX highest supported: 780 Mbps
+		VHT TX MCS set:
+			1 streams: MCS 0-9
+			2 streams: MCS 0-9
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		VHT TX highest supported: 780 Mbps
+		VHT extended NSS: not supported
+	VHT operation:
+		 * channel width: 1 (80 MHz)
+		 * center freq segment 1: 155
+		 * center freq segment 2: 0
+		 * VHT basic MCS set: 0xfffc
+	HE capabilities:
+		HE MAC Capabilities (0x00051a081044):
+			+HTC HE Supported
+			TWT Responder
+			BSR
+			OM Control
+			Maximum A-MPDU Length Exponent: 3
+			BQR
+			A-MSDU in A-MPDU
+			OM Control UL MU Data Disable RX
+		HE PHY Capabilities: (0x0420ce926f09af08000000):
+			HE40/HE80/5GHz
+			LDPC Coding in Payload
+			NDP with 4x HE-LTF and 3.2us GI
+			STBC Tx <= 80MHz
+			STBC Rx <= 80MHz
+			Full Bandwidth UL MU-MIMO
+			Partial Bandwidth UL MU-MIMO
+			DCM Max Constellation: 2
+			DCM Max Constellation Rx: 2
+			SU Beamformer
+			SU Beamformee
+			MU Beamformer
+			Beamformee STS <= 80MHz: 3
+			Beamformee STS > 80MHz: 3
+			Sounding Dimensions <= 80MHz: 1
+			Sounding Dimensions > 80MHz: 1
+			Codebook Size SU Feedback
+			Codebook Size MU Feedback
+			Triggered SU Beamforming Feedback
+			Triggered MU Beamforming Feedback
+			Partial Bandwidth Extended Range
+			PPE Threshold Present
+			Max NC: 1
+		HE RX MCS and NSS set <= 80 MHz
+			1 streams: MCS 0-11
+			2 streams: MCS 0-11
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		HE TX MCS and NSS set <= 80 MHz
+			1 streams: MCS 0-11
+			2 streams: MCS 0-11
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		PPE Threshold 0x39 0x1c 0xc7 0x71 0x1c 0x07
+	HE Operation:
+		HE Operation Parameters: (0x003ff4)
+			Default PE Duration: 4
+			TXOP Duration RTS Threshold: 1023
+		BSS Color: 4
+		Basic HE-MCS NSS Set: 0xfffc
+			1 streams: MCS 0-7
+			2 streams: not supported
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+	WPS:	 * Version: 1.0
+		 * Wi-Fi Protected Setup State: 2 (Configured)
+		 * Response Type: 3 (AP)
+		 * UUID: 00000000-0000-1000-0000-0c8063e6bb10
+		 * Manufacturer: TP-LINK
+		 * Model: Archer AX21
+		 * Model Number: 4.6
+		 * Serial Number: 4.6
+		 * Primary Device Type: 6-0050f204-1
+		 * Device name: Archer AX21 4.6
+		 * Config methods: Label, Display, Keypad
+		 * RF Bands: 0x2
+		 * Version2: 2.0
+BSS 02:00:00:00:00:03(on wlp2s0)
+	last seen: 21030.165s [boottime]
+	TSF: 26275851937170 usec (304d, 02:50:51)
+	freq: 2400.0
+	beacon interval: 100 TUs
+	capability: ESS Privacy (0x0011)
+	signal: -72.00 dBm
+	last seen: 354 ms ago
+	Information elements from Probe Response frame:
+	SSID: Net2🏎
+	Supported rates: 6.0* 9.0 12.0* 18.0 24.0* 36.0 48.0 54.0
+	DS Parameter set: channel 5
+	ERP: Use_Protection Barker_Preamble_Mode
+	WPA:	 * Version: 1
+		 * Group cipher: CCMP
+		 * Pairwise ciphers: CCMP
+		 * Authentication suites: PSK
+	RSN:	 * Version: 1
+		 * Group cipher: CCMP
+		 * Pairwise ciphers: CCMP
+		 * Authentication suites: PSK
+		 * Capabilities: 1-PTKSA-RC 1-GTKSA-RC (0x0000)
+	HT capabilities:
+		Capabilities: 0x9ef
+			RX LDPC
+			HT20/HT40
+			SM Power Save disabled
+			RX HT20 SGI
+			RX HT40 SGI
+			TX STBC
+			RX STBC 1-stream
+			Max AMSDU length: 7935 bytes
+			No DSSS/CCK HT40
+		Maximum RX AMPDU length 65535 bytes (exponent: 0x003)
+		Minimum RX AMPDU time spacing: 4 usec (0x05)
+		HT RX MCS rate indexes supported: 0-15
+		HT TX MCS rate indexes are undefined
+	HT operation:
+		 * primary channel: 5
+		 * secondary channel offset: above
+		 * STA channel width: any
+		 * RIFS: 0
+		 * HT protection: 20 MHz
+		 * non-GF present: 1
+		 * OBSS non-GF present: 0
+		 * dual beacon: 0
+		 * dual CTS protection: 0
+		 * STBC beacon: 0
+		 * L-SIG TXOP Prot: 0
+		 * PCO active: 0
+		 * PCO phase: 0
+	Extended capabilities:
+		 * Interworking
+		 * Operating Mode Notification
+		 * Max Number Of MSDUs In A-MSDU is unlimited
+	WMM:	 * Parameter version 1
+		 * BE: CW 15-1023, AIFSN 3
+		 * BK: CW 15-1023, AIFSN 7
+		 * VI: CW 7-15, AIFSN 2, TXOP 3008 usec
+		 * VO: CW 3-7, AIFSN 2, TXOP 1504 usec
+	Country: US	Environment: Indoor/Outdoor
+		Channels [36 - 48] @ 30 dBm
+		Channels [149 - 165] @ 30 dBm
+	VHT capabilities:
+		VHT Capabilities (0x33c179b1):
+			Max MPDU length: 7991
+			Supported Channel Width: neither 160 nor 80+80
+			RX LDPC
+			short GI (80 MHz)
+			TX STBC
+			SU Beamformer
+			SU Beamformee
+			+HTC-VHT
+			RX antenna pattern consistency
+			TX antenna pattern consistency
+		VHT RX MCS set:
+			1 streams: MCS 0-9
+			2 streams: MCS 0-9
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		VHT RX highest supported: 780 Mbps
+		VHT TX MCS set:
+			1 streams: MCS 0-9
+			2 streams: MCS 0-9
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		VHT TX highest supported: 780 Mbps
+		VHT extended NSS: not supported
+	VHT operation:
+		 * channel width: 1 (80 MHz)
+		 * center freq segment 1: 155
+		 * center freq segment 2: 0
+		 * VHT basic MCS set: 0xfffc
+	HE capabilities:
+		HE MAC Capabilities (0x00011a081044):
+			+HTC HE Supported
+			BSR
+			OM Control
+			Maximum A-MPDU Length Exponent: 3
+			BQR
+			A-MSDU in A-MPDU
+			OM Control UL MU Data Disable RX
+		HE PHY Capabilities: (0x04200e926d09a508000000):
+			HE40/HE80/5GHz
+			LDPC Coding in Payload
+			NDP with 4x HE-LTF and 3.2us GI
+			STBC Tx <= 80MHz
+			STBC Rx <= 80MHz
+			DCM Max Constellation: 2
+			DCM Max Constellation Rx: 2
+			SU Beamformer
+			SU Beamformee
+			Beamformee STS <= 80MHz: 3
+			Beamformee STS > 80MHz: 3
+			Sounding Dimensions <= 80MHz: 1
+			Sounding Dimensions > 80MHz: 1
+			Codebook Size SU Feedback
+			Triggered SU Beamforming Feedback
+			Partial Bandwidth Extended Range
+			PPE Threshold Present
+			Max NC: 1
+		HE RX MCS and NSS set <= 80 MHz
+			1 streams: MCS 0-11
+			2 streams: MCS 0-11
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		HE TX MCS and NSS set <= 80 MHz
+			1 streams: MCS 0-11
+			2 streams: MCS 0-11
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		PPE Threshold 0x39 0x1c 0xc7 0x71 0x1c 0x07
+	HE Operation:
+		HE Operation Parameters: (0x003ff4)
+			Default PE Duration: 4
+			TXOP Duration RTS Threshold: 1023
+		BSS Color: 13
+		Basic HE-MCS NSS Set: 0xfffc
+			1 streams: MCS 0-7
+			2 streams: not supported
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+BSS 02:00:00:00:00:04(on wlp2s0)
+	last seen: 21026.135s [boottime]
+	TSF: 26275848263944 usec (304d, 02:50:48)
+	freq: 2422.0
+	beacon interval: 100 TUs
+	capability: ESS Privacy ShortSlotTime (0x0411)
+	signal: -90.00 dBm
+	last seen: 4382 ms ago
+	Information elements from Probe Response frame:
+	SSID: Net3
+	Supported rates: 1.0* 2.0* 5.5* 11.0* 9.0 18.0 36.0 54.0
+	DS Parameter set: channel 6
+	ERP: Use_Protection Barker_Preamble_Mode
+	Extended supported rates: 6.0 12.0 24.0 48.0
+	WPA:	 * Version: 1
+		 * Group cipher: CCMP
+		 * Pairwise ciphers: CCMP
+		 * Authentication suites: PSK
+	RSN:	 * Version: 1
+		 * Group cipher: CCMP
+		 * Pairwise ciphers: CCMP
+		 * Authentication suites: PSK
+		 * Capabilities: 1-PTKSA-RC 1-GTKSA-RC (0x0000)
+	HT capabilities:
+		Capabilities: 0x19ef
+			RX LDPC
+			HT20/HT40
+			SM Power Save disabled
+			RX HT20 SGI
+			RX HT40 SGI
+			TX STBC
+			RX STBC 1-stream
+			Max AMSDU length: 7935 bytes
+			DSSS/CCK HT40
+		Maximum RX AMPDU length 65535 bytes (exponent: 0x003)
+		Minimum RX AMPDU time spacing: 4 usec (0x05)
+		HT RX MCS rate indexes supported: 0-15
+		HT TX MCS rate indexes are undefined
+	HT operation:
+		 * secondary channel offset: no secondary
+		 * STA channel width: 20 MHz
+		 * RIFS: 0
+		 * HT protection: 20 MHz
+		 * non-GF present: 1
+		 * OBSS non-GF present: 0
+		 * dual beacon: 0
+		 * dual CTS protection: 0
+		 * STBC beacon: 0
+		 * L-SIG TXOP Prot: 0
+		 * PCO active: 0
+		 * PCO phase: 0
+	Overlapping BSS scan params:
+		 * passive dwell: 20 TUs
+		 * active dwell: 10 TUs
+		 * channel width trigger scan interval: 300 s
+		 * scan passive total per channel: 200 TUs
+		 * scan active total per channel: 20 TUs
+		 * BSS width channel transition delay factor: 5
+		 * OBSS Scan Activity Threshold: 0.25 %
+	Extended capabilities:
+		 * HT Information Exchange Supported
+		 * Interworking
+		 * Max Number Of MSDUs In A-MSDU is unlimited
+	WMM:	 * Parameter version 1
+		 * BE: CW 15-1023, AIFSN 3
+		 * BK: CW 15-1023, AIFSN 7
+		 * VI: CW 7-15, AIFSN 2, TXOP 3008 usec
+		 * VO: CW 3-7, AIFSN 2, TXOP 1504 usec
+	Country: US	Environment: Indoor/Outdoor
+		Channels [1 - 11] @ 30 dBm
+	VHT capabilities:
+		VHT Capabilities (0x33c17991):
+			Max MPDU length: 7991
+			Supported Channel Width: neither 160 nor 80+80
+			RX LDPC
+			TX STBC
+			SU Beamformer
+			SU Beamformee
+			+HTC-VHT
+			RX antenna pattern consistency
+			TX antenna pattern consistency
+		VHT RX MCS set:
+			1 streams: MCS 0-9
+			2 streams: MCS 0-9
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		VHT RX highest supported: 360 Mbps
+		VHT TX MCS set:
+			1 streams: MCS 0-9
+			2 streams: MCS 0-9
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		VHT TX highest supported: 360 Mbps
+		VHT extended NSS: not supported
+	VHT operation:
+		 * channel width: 0 (20 or 40 MHz)
+		 * center freq segment 1: 3
+		 * center freq segment 2: 0
+		 * VHT basic MCS set: 0xfffc
+	HE capabilities:
+		HE MAC Capabilities (0x00011a081044):
+			+HTC HE Supported
+			BSR
+			OM Control
+			Maximum A-MPDU Length Exponent: 3
+			BQR
+			A-MSDU in A-MPDU
+			OM Control UL MU Data Disable RX
+		HE PHY Capabilities: (0x02200e926d09a508000000):
+			HE40/2.4GHz
+			LDPC Coding in Payload
+			NDP with 4x HE-LTF and 3.2us GI
+			STBC Tx <= 80MHz
+			STBC Rx <= 80MHz
+			DCM Max Constellation: 2
+			DCM Max Constellation Rx: 2
+			SU Beamformer
+			SU Beamformee
+			Beamformee STS <= 80MHz: 3
+			Beamformee STS > 80MHz: 3
+			Sounding Dimensions <= 80MHz: 1
+			Sounding Dimensions > 80MHz: 1
+			Codebook Size SU Feedback
+			Triggered SU Beamforming Feedback
+			Partial Bandwidth Extended Range
+			PPE Threshold Present
+			Max NC: 1
+		HE RX MCS and NSS set <= 80 MHz
+			1 streams: MCS 0-11
+			2 streams: MCS 0-11
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		HE TX MCS and NSS set <= 80 MHz
+			1 streams: MCS 0-11
+			2 streams: MCS 0-11
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		PPE Threshold 0x19 0x1c 0xc7 0x71
+	HE Operation:
+		HE Operation Parameters: (0x003ff4)
+			Default PE Duration: 4
+			TXOP Duration RTS Threshold: 1023
+		BSS Color: 45
+		Basic HE-MCS NSS Set: 0xfffc
+			1 streams: MCS 0-7
+			2 streams: not supported
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported

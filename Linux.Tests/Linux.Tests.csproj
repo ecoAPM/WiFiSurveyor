@@ -13,6 +13,6 @@
 		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
 		<PackageReference Include="coverlet.collector" Version="10.0.1" />
 		<ProjectReference Include="..\Linux\Linux.csproj" />
-		<None Include="iwlist-output.txt" CopyToOutputDirectory="PreserveNewest" />
+		<None Include="*.txt" CopyToOutputDirectory="Always" />
 	</ItemGroup>
 </Project>
