@@ -19,6 +19,6 @@ public sealed class SignalHubTests
 		await hub.SendMessage(new Message());
 
 		//assert
-		await context.Clients.All.Received().SendCoreAsync("Update", Arg.Is<object[]>(array => array[0] is Message));
+		await context.Clients.All.Received().SendCoreAsync("Update", Arg.Is<object[]>(array => array != null && array[0] is Message));
 	}
 }

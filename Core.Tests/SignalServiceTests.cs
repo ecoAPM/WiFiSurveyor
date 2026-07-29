@@ -21,7 +21,7 @@ public sealed class SignalServiceTests
 		await service.GetSignals();
 
 		//assert
-		await hub.Received().SendMessage(Arg.Is<Message>(m => m.Status == "unit test exception"));
+		await hub.Received().SendMessage(Arg.Is<Message>(m => m != null && m.Status == "unit test exception"));
 	}
 
 	[Fact]
@@ -67,6 +67,6 @@ public sealed class SignalServiceTests
 		await service.GetSignals();
 
 		//assert
-		await hub.Received().SendMessage(Arg.Is<Message>(m => m.Signals.Equals(signals)));
+		await hub.Received().SendMessage(Arg.Is<Message>(m => m != null && m.Signals.Equals(signals)));
 	}
 }
