@@ -2,15 +2,10 @@
 
 namespace WiFiSurveyor.Windows;
 
-public sealed class WindowsNetworkReport : IWiFiNetworkReport
+public sealed class WindowsNetworkReport(WiFiNetworkReport report) : IWiFiNetworkReport
 {
-	private readonly WiFiNetworkReport _report;
-
-	public WindowsNetworkReport(WiFiNetworkReport report)
-		=> _report = report;
-
 	public IReadOnlyList<IWiFiAvailableNetwork> AvailableNetworks()
-		=> _report.AvailableNetworks
+		=> report.AvailableNetworks
 			.Select(GetNetwork)
 			.ToArray();
 

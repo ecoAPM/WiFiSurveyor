@@ -2,22 +2,17 @@
 
 namespace WiFiSurveyor.Windows;
 
-public sealed class WindowsAvailableNetwork : IWiFiAvailableNetwork
+public sealed class WindowsAvailableNetwork(WiFiAvailableNetwork network) : IWiFiAvailableNetwork
 {
-	private readonly WiFiAvailableNetwork _network;
-
-	public WindowsAvailableNetwork(WiFiAvailableNetwork network)
-		=> _network = network;
-
 	public string Bssid
-		=> _network.Bssid;
+		=> network.Bssid;
 
 	public string Ssid
-		=> _network.Ssid;
+		=> network.Ssid;
 
 	public int ChannelCenterFrequencyInKilohertz
-		=> _network.ChannelCenterFrequencyInKilohertz;
+		=> network.ChannelCenterFrequencyInKilohertz;
 
 	public double NetworkRssiInDecibelMilliwatts
-		=> _network.NetworkRssiInDecibelMilliwatts;
+		=> network.NetworkRssiInDecibelMilliwatts;
 }

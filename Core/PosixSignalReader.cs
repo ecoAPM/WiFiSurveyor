@@ -4,20 +4,15 @@ using System.Reflection;
 
 namespace WiFiSurveyor.Core;
 
-public abstract class PosixSignalReader : ISignalReader<string>
+public abstract class PosixSignalReader(ICommandService commandService) : ISignalReader<string>
 {
-	private readonly ICommandService _commandService;
-
-	protected PosixSignalReader(ICommandService commandService)
-		=> _commandService = commandService;
-
 	protected abstract ProcessStartInfo Info { get; }
 
 	public async Task<string> Read()
 	{
 		try
 		{
-			return await _commandService.Run(Info);
+			return await commandService.Run(Info);
 		}
 		catch (Win32Exception e)
 		{

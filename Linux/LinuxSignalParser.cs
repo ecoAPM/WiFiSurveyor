@@ -2,13 +2,8 @@ using WiFiSurveyor.Core;
 
 namespace WiFiSurveyor.Linux;
 
-public sealed class LinuxSignalParser : ISignalParser<string>
+public sealed class LinuxSignalParser(ILogger logger) : ISignalParser<string>
 {
-	private readonly ILogger _logger;
-
-	public LinuxSignalParser(ILogger logger)
-		=> _logger = logger;
-
 	public IReadOnlyList<Signal> Parse(string results)
 		=> results
 			.Split(" Cell ")
@@ -39,8 +34,8 @@ public sealed class LinuxSignalParser : ISignalParser<string>
 		}
 		catch (Exception e)
 		{
-			_logger.LogIf(LogLevel.Warning, "{now}: Could not parse signal data -- {result}", DateTime.Now, result);
-			_logger.LogIf(LogLevel.Debug, "{exception}", e.ToString());
+			logger.LogIf(LogLevel.Warning, "{now}: Could not parse signal data -- {result}", DateTime.Now, result);
+			logger.LogIf(LogLevel.Debug, "{exception}", e.ToString());
 			return null;
 		}
 	}

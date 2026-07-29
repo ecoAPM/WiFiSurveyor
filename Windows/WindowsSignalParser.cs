@@ -2,13 +2,8 @@ using WiFiSurveyor.Core;
 
 namespace WiFiSurveyor.Windows;
 
-public sealed class WindowsSignalParser : ISignalParser<IWiFiNetworkReport>
+public sealed class WindowsSignalParser(ILogger logger) : ISignalParser<IWiFiNetworkReport>
 {
-	private readonly ILogger _logger;
-
-	public WindowsSignalParser(ILogger logger)
-		=> _logger = logger;
-
 	public IReadOnlyList<Signal> Parse(IWiFiNetworkReport results)
 		=> results.AvailableNetworks()
 			.Select(GetSignal)
@@ -31,8 +26,8 @@ public sealed class WindowsSignalParser : ISignalParser<IWiFiNetworkReport>
 		}
 		catch (Exception e)
 		{
-			_logger.LogIf(LogLevel.Warning, "{now}: Could not parse signal data -- {result}", DateTime.Now, result);
-			_logger.LogIf(LogLevel.Debug, "{exception}", e.ToString());
+			logger.LogIf(LogLevel.Warning, "{now}: Could not parse signal data -- {result}", DateTime.Now, result);
+			logger.LogIf(LogLevel.Debug, "{exception}", e.ToString());
 			return null;
 		}
 	}

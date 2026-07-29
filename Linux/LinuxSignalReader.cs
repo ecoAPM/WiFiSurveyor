@@ -3,12 +3,8 @@ using WiFiSurveyor.Core;
 
 namespace WiFiSurveyor.Linux;
 
-public sealed class LinuxSignalReader : PosixSignalReader
+public sealed class LinuxSignalReader(ICommandService commandService) : PosixSignalReader(commandService)
 {
-	public LinuxSignalReader(ICommandService commandService) : base(commandService)
-	{
-	}
-
 	protected override ProcessStartInfo Info
 		=> new("/sbin/iwlist", "wlan0 scanning");
 }

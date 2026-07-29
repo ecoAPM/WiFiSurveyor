@@ -3,9 +3,4 @@ using WiFiSurveyor.Core;
 
 namespace WiFiSurveyor.Windows;
 
-public sealed class WindowsBrowserLauncher : BrowserLauncher
-{
-	public WindowsBrowserLauncher(Func<ProcessStartInfo, Process?> start) : base(start, "cmd", "/c start")
-	{
-	}
-}
+public sealed class WindowsBrowserLauncher(Func<ProcessStartInfo, Process?> start) : BrowserLauncher(start, "cmd", "/c start");

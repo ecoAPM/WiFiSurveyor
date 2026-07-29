@@ -3,11 +3,7 @@ using WiFiSurveyor.Core;
 
 namespace WiFiSurveyor.Mac;
 
-public sealed class MacSignalReader : PosixSignalReader
+public sealed class MacSignalReader(ICommandService commandService) : PosixSignalReader(commandService)
 {
-	public MacSignalReader(ICommandService commandService) : base(commandService)
-	{
-	}
-
 	protected override ProcessStartInfo Info => new("system_profiler", "SPAirPortDataType -detailLevel full -json");
 }

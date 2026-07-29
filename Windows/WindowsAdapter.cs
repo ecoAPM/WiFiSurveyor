@@ -2,18 +2,13 @@
 
 namespace WiFiSurveyor.Windows;
 
-public sealed class WindowsAdapter : IWiFiAdapter
+public sealed class WindowsAdapter(WiFiAdapter adapter) : IWiFiAdapter
 {
-	private readonly WiFiAdapter _adapter;
-
-	public WindowsAdapter(WiFiAdapter adapter)
-		=> _adapter = adapter;
-
 	public async Task ScanAsync()
-		=> await _adapter.ScanAsync();
+		=> await adapter.ScanAsync();
 
 	public IWiFiNetworkReport NetworkReport
-		=> new WindowsNetworkReport(_adapter.NetworkReport);
+		=> new WindowsNetworkReport(adapter.NetworkReport);
 
 	public static async Task<IWiFiAdapter> Default()
 	{

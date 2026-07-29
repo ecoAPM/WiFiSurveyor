@@ -4,13 +4,8 @@ using WiFiSurveyor.Core;
 
 namespace WiFiSurveyor.Mac;
 
-public sealed class MacSignalParser : ISignalParser<string>
+public sealed class MacSignalParser(ILogger logger) : ISignalParser<string>
 {
-	private readonly ILogger _logger;
-
-	public MacSignalParser(ILogger logger)
-		=> _logger = logger;
-
 	public IReadOnlyList<Signal> Parse(string results)
 		=> JsonSerializer.Deserialize<JsonElement>(results)
 			.GetProperty("SPAirPortDataType").EnumerateArray().First()
@@ -36,8 +31,8 @@ public sealed class MacSignalParser : ISignalParser<string>
 		}
 		catch (Exception e)
 		{
-			_logger.LogIf(LogLevel.Warning, "{now}: Could not parse signal data -- {data}", DateTime.Now, json.ToString());
-			_logger.LogIf(LogLevel.Debug, "{exception}", e.ToString());
+			logger.LogIf(LogLevel.Warning, "{now}: Could not parse signal data -- {data}", DateTime.Now, json.ToString());
+			logger.LogIf(LogLevel.Debug, "{exception}", e.ToString());
 			return null;
 		}
 	}
