@@ -5,13 +5,15 @@ namespace WiFiSurveyor.Linux;
 public sealed class LegacyLinuxSignalParser(ILogger logger) : ISignalParser<string>
 {
 	public IReadOnlyList<Signal> Parse(string results)
-		=> results
-			.Split(" Cell ")
-			.Skip(1)
-			.Select(GetSignal)
-			.Where(s => s is not null)
-			.Cast<Signal>()
-			.ToArray();
+		=>
+		[
+			.. results
+				.Split(" Cell ")
+				.Skip(1)
+				.Select(GetSignal)
+				.Where(s => s is not null)
+				.Cast<Signal>()
+		];
 
 	private Signal? GetSignal(string result)
 	{

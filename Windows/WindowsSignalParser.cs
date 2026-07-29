@@ -5,11 +5,13 @@ namespace WiFiSurveyor.Windows;
 public sealed class WindowsSignalParser(ILogger logger) : ISignalParser<IWiFiNetworkReport>
 {
 	public IReadOnlyList<Signal> Parse(IWiFiNetworkReport results)
-		=> results.AvailableNetworks()
-			.Select(GetSignal)
-			.Where(s => s is not null)
-			.Cast<Signal>()
-			.ToArray();
+		=>
+		[
+			.. results.AvailableNetworks()
+				.Select(GetSignal)
+				.Where(s => s is not null)
+				.Cast<Signal>()
+		];
 
 	private Signal? GetSignal(IWiFiAvailableNetwork result)
 	{

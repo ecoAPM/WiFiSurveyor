@@ -7,14 +7,16 @@ namespace WiFiSurveyor.Mac;
 public sealed class MacSignalParser(ILogger logger) : ISignalParser<string>
 {
 	public IReadOnlyList<Signal> Parse(string results)
-		=> JsonSerializer.Deserialize<JsonElement>(results)
-			.GetProperty("SPAirPortDataType").EnumerateArray().First()
-			.GetProperty("spairport_airport_interfaces").EnumerateArray().First()
-			.GetProperty("spairport_airport_other_local_wireless_networks").EnumerateArray()
-			.Select(j => GetSignal(j))
-			.Where(s => s is not null)
-			.Cast<Signal>()
-			.ToArray();
+		=>
+		[
+			.. JsonSerializer.Deserialize<JsonElement>(results)
+				.GetProperty("SPAirPortDataType").EnumerateArray().First()
+				.GetProperty("spairport_airport_interfaces").EnumerateArray().First()
+				.GetProperty("spairport_airport_other_local_wireless_networks").EnumerateArray()
+				.Select(j => GetSignal(j))
+				.Where(s => s is not null)
+				.Cast<Signal>()
+		];
 
 	private Signal? GetSignal(JsonElement json)
 	{
