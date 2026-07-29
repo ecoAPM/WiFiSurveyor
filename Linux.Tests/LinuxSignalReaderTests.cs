@@ -1,8 +1,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
-using NSubstitute;
 using WiFiSurveyor.Core;
-using Xunit;
 
 namespace WiFiSurveyor.Linux.Tests;
 
@@ -40,7 +38,7 @@ public sealed class LinuxSignalReaderTests
 		catch (Exception e)
 		{
 			//assert
-			Assert.Contains("\"wireless-tools\" is installed", e.Message);
+			Assert.Contains("\"iw\" is installed", e.Message);
 			Assert.Contains("running as root", e.Message);
 		}
 	}

@@ -7,6 +7,7 @@ namespace WiFiSurveyor.Core;
 public abstract class PosixSignalReader(ICommandService commandService) : ISignalReader<string>
 {
 	protected abstract ProcessStartInfo Info { get; }
+	protected abstract string Package { get; }
 
 	public async Task<string> Read()
 	{
@@ -19,7 +20,7 @@ public abstract class PosixSignalReader(ICommandService commandService) : ISigna
 			switch (e.NativeErrorCode)
 			{
 				case 2:
-					var msg = $"Executable \"{Info.FileName}\" was not found. Please ensure \"wireless-tools\" is installed and \"{Assembly.GetExecutingAssembly().GetName().Name}\" is running as root.";
+					var msg = $"Executable \"{Info.FileName}\" was not found. Please ensure \"{Package}\" is installed and \"{Assembly.GetExecutingAssembly().GetName().Name}\" is running as root.";
 					throw new FileNotFoundException(msg, Info.FileName, e);
 				default:
 					throw;

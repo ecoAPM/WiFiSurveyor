@@ -1,8 +1,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
-using NSubstitute;
 using WiFiSurveyor.Core;
-using Xunit;
 
 namespace WiFiSurveyor.Linux.Tests;
 
