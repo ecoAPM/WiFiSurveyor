@@ -8,10 +8,10 @@ public sealed class CommandService(Func<ProcessStartInfo, Process?> startProcess
 
 	public async Task<string> Run(ProcessStartInfo info)
 	{
-		info.RedirectStandardOutput = true;
 		logger.LogIf(LogLevel.Debug, "{now}: Starting \"{cmd} {args}\"...", DateTime.Now, info.FileName, info.Arguments);
-
+		info.RedirectStandardOutput = true;
 		var process = startProcess(info);
+
 		if (process == null)
 		{
 			logger.LogIf(LogLevel.Warning, "{now}: Could not start {cmd}", DateTime.Now, info.FileName);
@@ -19,18 +19,25 @@ public sealed class CommandService(Func<ProcessStartInfo, Process?> startProcess
 		}
 
 		logger.LogIf(LogLevel.Debug, "{now}: \"{cmd} {args}\" started", DateTime.Now, info.FileName, info.Arguments);
-		var complete = process.WaitForExit(Convert.ToUInt16(_timeout.TotalMilliseconds));
+
+		var msTimeout = Convert.ToUInt16(_timeout.TotalMilliseconds);
+		var complete = process.WaitForExit(msTimeout);
+		var output = await process.StandardOutput.ReadToEndAsync();
 
 		if (complete)
 		{
 			logger.LogIf(LogLevel.Debug, "{now}: Process ended successfully", DateTime.Now);
 		}
+		else if (!string.IsNullOrEmpty(output))
+		{
+			logger.LogIf(LogLevel.Debug, "{now}: Process stuck but {size} bytes of output received", DateTime.Now, output.Length);
+		}
 		else
 		{
-			logger.LogIf(LogLevel.Warning, "{now}: Process not complete after {time}, forcing to end...", DateTime.Now, _timeout);
-			process.Kill(true);
+			logger.LogIf(LogLevel.Warning, "{now}: Process not completed after {time}, forced to end...", DateTime.Now, _timeout);
 		}
 
-		return await process.StandardOutput.ReadToEndAsync();
+		process.Kill(true);
+		return output;
 	}
 }
