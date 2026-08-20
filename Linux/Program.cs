@@ -8,9 +8,9 @@ public static class Program
 	{
 		services.AddPosixHandlers();
 		services.AddSingleton<IBrowserLauncher, LinuxBrowserLauncher>();
-		services.AddSingleton<IDeviceLocator, LegacyLinuxDeviceLocator>();
-		services.AddSingleton<ISignalParser<string>, LegacyLinuxSignalParser>();
-		services.AddSingleton<ISignalReader<string>, LegacyLinuxSignalReader>();
+		services.AddSingleton<IDeviceLocator, LinuxDeviceLocator>();
+		services.AddSingleton<ISignalParser<string>, LinuxSignalParser>();
+		services.AddSingleton<ISignalReader<string>, LinuxSignalReader>();
 	}
 
 	public static async Task Main(string[] args)
