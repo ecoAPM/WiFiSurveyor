@@ -40,7 +40,7 @@ public sealed class LinuxSignalReaderTests
 		catch (Exception e)
 		{
 			//assert
-			Assert.Contains("\"wireless-tools\" is installed", e.Message);
+			Assert.Contains("\"iw\" is installed", e.Message);
 			Assert.Contains("running as root", e.Message);
 		}
 	}
