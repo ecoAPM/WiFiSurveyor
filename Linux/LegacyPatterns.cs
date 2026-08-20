@@ -18,4 +18,7 @@ public static partial class LegacyPatterns
 
 	[GeneratedRegex("Signal level=(-\\d+)")]
 	public static partial Regex Signal();
+
+	[GeneratedRegex(@"(.+)[\s\t]+IEEE 802.11")]
+	public static partial Regex Interface();
 }

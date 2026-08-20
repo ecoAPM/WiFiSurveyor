@@ -21,4 +21,7 @@ public static partial class Patterns
 
 	[GeneratedRegex(@"signal: (-\d+)")]
 	public static partial Regex Signal();
+
+	[GeneratedRegex("Interface (.+)")]
+	public static partial Regex Interface();
 }
