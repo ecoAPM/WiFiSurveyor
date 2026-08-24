@@ -6,7 +6,7 @@ namespace WiFiSurveyor.Linux;
 public sealed class LinuxSignalReader(ICommandService commandService, IDeviceLocator device) : PosixSignalReader(commandService)
 {
 	protected override ProcessStartInfo Info
-		=> new("iw", $"dev {Device} scan flush");
+		=> new("/usr/sbin/iw", $"dev {Device} scan flush");
 
 	protected override string Package => "iw";
 

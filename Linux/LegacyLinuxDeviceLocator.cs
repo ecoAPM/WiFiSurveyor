@@ -7,7 +7,7 @@ public sealed class LegacyLinuxDeviceLocator(ICommandService commandService) : I
 {
 	public async Task<string> GetDefaultDeviceName()
 	{
-		var info = new ProcessStartInfo("/sbin/iwconfig");
+		var info = new ProcessStartInfo("/usr/sbin/iwconfig");
 		var response = await commandService.Run(info);
 
 		var regex = LegacyPatterns.Interface().Match(response);

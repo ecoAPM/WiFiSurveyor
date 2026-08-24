@@ -7,7 +7,7 @@ public sealed class LinuxDeviceLocator(ICommandService commandService) : IDevice
 {
 	public async Task<string> GetDefaultDeviceName()
 	{
-		var info = new ProcessStartInfo("iw", "dev");
+		var info = new ProcessStartInfo("/usr/sbin/iw", "dev");
 		var response = await commandService.Run(info);
 
 		var regex = Patterns.Interface().Match(response);
