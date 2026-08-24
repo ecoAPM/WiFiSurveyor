@@ -13,8 +13,10 @@ public sealed class LegacyLinuxSignalReaderTests
 	{
 		//arrange
 		var commandService = Substitute.For<ICommandService>();
+		var deviceLocator = Substitute.For<IDeviceLocator>();
+		var reader = new LegacyLinuxSignalReader(commandService, deviceLocator);
+
 		commandService.Run(Arg.Any<ProcessStartInfo>()).Returns("file contents");
-		var reader = new LegacyLinuxSignalReader(commandService);
 
 		//act
 		var results = await reader.Read();
@@ -27,10 +29,13 @@ public sealed class LegacyLinuxSignalReaderTests
 	public async Task ReturnsDecentMessageWhenNotFound()
 	{
 		//arrange
-		var exception = new Win32Exception(2, "x");
 		var commandService = Substitute.For<ICommandService>();
+		var deviceLocator = Substitute.For<IDeviceLocator>();
+		var reader = new LegacyLinuxSignalReader(commandService, deviceLocator);
+
+		var exception = new Win32Exception(2, "x");
 		commandService.When(c => c.Run(Arg.Any<ProcessStartInfo>())).Throw(exception);
-		var reader = new LegacyLinuxSignalReader(commandService);
+		deviceLocator.GetDefaultDeviceName().Returns("wlan0");
 
 		try
 		{
@@ -49,10 +54,12 @@ public sealed class LegacyLinuxSignalReaderTests
 	public async Task OtherExceptionsAreThrown()
 	{
 		//arrange
-		var exception = new Win32Exception(1, "other error");
 		var commandService = Substitute.For<ICommandService>();
+		var deviceLocator = Substitute.For<IDeviceLocator>();
+		var reader = new LegacyLinuxSignalReader(commandService, deviceLocator);
+
+		var exception = new Win32Exception(1, "other error");
 		commandService.When(c => c.Run(Arg.Any<ProcessStartInfo>())).Throw(exception);
-		var reader = new LegacyLinuxSignalReader(commandService);
 
 		try
 		{

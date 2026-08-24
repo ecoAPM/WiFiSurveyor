@@ -3,8 +3,12 @@ using WiFiSurveyor.Core;
 
 namespace WiFiSurveyor.Linux;
 
-public sealed class LinuxSignalReader(ICommandService commandService) : PosixSignalReader(commandService)
+public sealed class LinuxSignalReader(ICommandService commandService, IDeviceLocator device) : PosixSignalReader(commandService)
 {
 	protected override ProcessStartInfo Info
-		=> new("/usr/bin/iw", "wlan0 scan");
+		=> new("iw", $"dev {Device} scan flush");
+
+	protected override string Package => "iw";
+
+	private string Device => field ??= device.GetDefaultDeviceName().GetAwaiter().GetResult();
 }

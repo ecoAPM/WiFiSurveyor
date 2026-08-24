@@ -13,8 +13,10 @@ public sealed class LinuxSignalReaderTests
 	{
 		//arrange
 		var commandService = Substitute.For<ICommandService>();
+		var deviceLocator = Substitute.For<IDeviceLocator>();
+		var reader = new LinuxSignalReader(commandService, deviceLocator);
+
 		commandService.Run(Arg.Any<ProcessStartInfo>()).Returns("file contents");
-		var reader = new LinuxSignalReader(commandService);
 
 		//act
 		var results = await reader.Read();
@@ -27,10 +29,12 @@ public sealed class LinuxSignalReaderTests
 	public async Task ReturnsDecentMessageWhenNotFound()
 	{
 		//arrange
-		var exception = new Win32Exception(2, "x");
 		var commandService = Substitute.For<ICommandService>();
+		var deviceLocator = Substitute.For<IDeviceLocator>();
+		var reader = new LinuxSignalReader(commandService, deviceLocator);
+
+		var exception = new Win32Exception(2, "x");
 		commandService.When(c => c.Run(Arg.Any<ProcessStartInfo>())).Throw(exception);
-		var reader = new LinuxSignalReader(commandService);
 
 		try
 		{
@@ -40,7 +44,7 @@ public sealed class LinuxSignalReaderTests
 		catch (Exception e)
 		{
 			//assert
-			Assert.Contains("\"wireless-tools\" is installed", e.Message);
+			Assert.Contains("\"iw\" is installed", e.Message);
 			Assert.Contains("running as root", e.Message);
 		}
 	}
@@ -49,10 +53,12 @@ public sealed class LinuxSignalReaderTests
 	public async Task OtherExceptionsAreThrown()
 	{
 		//arrange
-		var exception = new Win32Exception(1, "other error");
 		var commandService = Substitute.For<ICommandService>();
+		var deviceLocator = Substitute.For<IDeviceLocator>();
+		var reader = new LinuxSignalReader(commandService, deviceLocator);
+
+		var exception = new Win32Exception(1, "other error");
 		commandService.When(c => c.Run(Arg.Any<ProcessStartInfo>())).Throw(exception);
-		var reader = new LinuxSignalReader(commandService);
 
 		try
 		{

@@ -17,6 +17,7 @@ public class ProgramTests
 
 		//assert
 		var types = services.Select(s => s.ServiceType).ToArray();
+		Assert.Contains(typeof(IDeviceLocator), types);
 		Assert.Contains(typeof(ISignalParser<string>), types);
 		Assert.Contains(typeof(ISignalReader<string>), types);
 		Assert.Contains(typeof(IBrowserLauncher), types);
