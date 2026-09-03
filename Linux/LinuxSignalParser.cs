@@ -8,7 +8,7 @@ public sealed class LinuxSignalParser(ILogger logger) : ISignalParser<string>
 		=>
 		[
 			.. results
-				.Split("\nBSS ")
+				.Split($"{Environment.NewLine}BSS ")
 				.Select(GetSignal)
 				.Where(s => s is not null)
 				.Cast<Signal>()
