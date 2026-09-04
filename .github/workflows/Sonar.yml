@@ -76,7 +76,9 @@ jobs:
         run: yarn global add c8
 
       - name: Install dependencies
-        run: yarn
+        run: yarn install
+        env:
+          YARN_ENABLE_SCRIPTS: false
 
       - name: Build
         run: yarn build

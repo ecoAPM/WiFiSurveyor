@@ -42,7 +42,9 @@ jobs:
           node-version: 24
 
       - name: Install dependencies
-        run: yarn
+        run: yarn install
+        env:
+          YARN_ENABLE_SCRIPTS: false
 
       - name: Build
         run: yarn build

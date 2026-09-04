@@ -36,7 +36,9 @@ jobs:
         run: dotnet test
 
       - name: Install app dependencies
-        run: yarn
+        run: yarn install
+        env:
+          YARN_ENABLE_SCRIPTS: false
 
       - name: Run app tests
         run: yarn test
