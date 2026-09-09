@@ -46,7 +46,7 @@
 		"delaunator": "5.1.0",
 		"eslint": "10.10.0",
 		"eslint-plugin-simple-import-sort": "14.0.0",
-		"eslint-plugin-vue": "10.10.0",
+		"eslint-plugin-vue": "10.11.0",
 		"global-jsdom": "30.0.0",
 		"jiti": "2.7.0",
 		"jsdom": "30.0.1",
