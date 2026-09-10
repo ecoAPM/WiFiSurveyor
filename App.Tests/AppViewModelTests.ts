@@ -2,16 +2,17 @@ import Mockito from "ts-mockito";
 import { Test, TestSuite } from "xunit.ts";
 
 import AppViewModel from "../App/AppViewModel";
+import BackgroundParser from "../App/BackgroundParser";
+import {any} from "./MockHelpers";
 
 export default class AppViewModelTests extends TestSuite {
 	@Test()
 	async canSetBackgroundFromFileData() {
 		//arrange
-		const data = new TextEncoder().encode("abc123");
+		const backgroundParser = Mockito.mock<BackgroundParser>();
+		Mockito.when(backgroundParser.read(any<File>())).thenResolve("data:image/png;base64,YWJjMTIz");
 
 		const mockFile = Mockito.mock<File>();
-		Mockito.when(mockFile.type).thenReturn("image/png");
-		Mockito.when(mockFile.arrayBuffer()).thenResolve(data.buffer);
 		const file = Mockito.instance(mockFile);
 
 		const files = Mockito.mock<FileList>();
@@ -19,6 +20,7 @@ export default class AppViewModelTests extends TestSuite {
 		Mockito.when(files.item(0)).thenReturn(file);
 
 		const vm = new AppViewModel();
+		vm.background_parser = Mockito.instance(backgroundParser);
 
 		//act
 		await vm.setBackground(Mockito.instance(files));

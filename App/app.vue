@@ -24,6 +24,7 @@ export default defineComponent({
 		"debug-panel": DebugPanel
 	},
 	inject: {
+		background_parser_factory: "background_parser",
 		signal_service_factory: "signal_service",
 		renderer_factory: "renderer"
 	},
@@ -45,6 +46,8 @@ export default defineComponent({
 		}
 	},
 	async mounted(): void {
+		this.background_parser = this.background_parser_factory();
+
 		this.signal_service = this.signal_service_factory(this.current.signals);
 		const start = this.signal_service?.start();
 

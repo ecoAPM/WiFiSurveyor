@@ -1,5 +1,3 @@
-import { Buffer } from "buffer";
-
 import AccessPoint from "./AccessPoint";
 import AccessPointGrouping from "./AccessPointGrouping";
 import { Mode } from "./Mode";
@@ -8,6 +6,7 @@ import Reading from "./Reading";
 import Renderer from "./Renderer";
 import Signal from "./Signal";
 import SignalService from "./SignalService";
+import BackgroundParser from "./BackgroundParser";
 
 export default class AppViewModel {
 	name: string = "";
@@ -20,6 +19,7 @@ export default class AppViewModel {
 	group_by: AccessPointGrouping = new AccessPointGrouping();
 	debug: boolean = false;
 
+	background_parser: BackgroundParser | null = null;
 	signal_service: SignalService | null = null;
 	renderer: Renderer | null = null;
 
@@ -61,10 +61,7 @@ export default class AppViewModel {
 
 		const file = files.item(0);
 		if (file != null) {
-			const arrayBuffer = await file.arrayBuffer();
-			const buffer = Buffer.from(arrayBuffer);
-			const encoded = buffer.toString("base64");
-			this.background = `data:${file.type};base64,${encoded}`;
+			this.background = await this.background_parser?.read(file) ?? "";
 		}
 	}
 

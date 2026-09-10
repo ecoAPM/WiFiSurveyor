@@ -22,6 +22,7 @@ export default class AppTests extends TestSuite {
 		const component = mount(App, {
 			global: {
 				provide: {
+					background_parser: () => MockFactory.backgroundParser(),
 					signal_service: () => Mockito.instance(signal_service),
 					renderer: () => renderer
 				}
@@ -45,6 +46,7 @@ export default class AppTests extends TestSuite {
 		const component = mount(App, {
 			global: {
 				provide: {
+					background_parser: () => MockFactory.backgroundParser(),
 					signal_service: () => Mockito.instance(signal_service),
 					renderer: () => renderer
 				}
@@ -66,6 +68,7 @@ export default class AppTests extends TestSuite {
 		const component = mount(App, {
 			global: {
 				provide: {
+					background_parser: () => MockFactory.backgroundParser(),
 					signal_service: () => null,
 					renderer: () => renderer
 				}
@@ -83,6 +86,7 @@ export default class AppTests extends TestSuite {
 		const component = mount(App, {
 			global: {
 				provide: {
+					background_parser: () => MockFactory.backgroundParser(),
 					signal_service: () => null,
 					renderer: () => Mockito.instance(renderer)
 				}
@@ -104,6 +108,7 @@ export default class AppTests extends TestSuite {
 		const component = mount(App, {
 			global: {
 				provide: {
+					background_parser: () => MockFactory.backgroundParser(),
 					signal_service: () => null,
 					renderer: () => Mockito.instance(renderer)
 				}

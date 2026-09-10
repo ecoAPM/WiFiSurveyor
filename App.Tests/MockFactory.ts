@@ -1,9 +1,14 @@
 import Mockito from "ts-mockito";
 
+import Factory from "../App/Factory";
 import SignalService from "../App/SignalService";
 import { any } from "./MockHelpers";
 
 export default class MockFactory {
+	static backgroundParser() {
+		return Factory.backgroundParser();
+	}
+
 	static signalService(): SignalService {
 		const signal_service = Mockito.mock<SignalService>();
 		Mockito.when(signal_service.status).thenReturn("");

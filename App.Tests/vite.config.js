@@ -1,7 +1,7 @@
 import vue from "@vitejs/plugin-vue";
 import fs from "fs";
 import path from "path";
-import {defineConfig} from "vite";
+import { defineConfig } from "vite";
 
 const files = fs.readdirSync(__dirname)
 	.filter(file => /\.ts$/.exec(file))
