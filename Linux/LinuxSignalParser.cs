@@ -21,9 +21,7 @@ public sealed class LinuxSignalParser(ILogger logger) : ISignalParser<string>
 			var mac = Patterns.Address().Match(result).Groups[1].Value;
 			var ssid = Patterns.SSID().Match(result).Groups[1].Value;
 			var freq = Patterns.Frequency().Match(result).Groups[1].Value;
-			var channel = Patterns.Channel().IsMatch(result) ? Patterns.Channel().Match(result).Groups[1].Value
-				: Patterns.BackupChannel().IsMatch(result) ? Patterns.BackupChannel().Match(result).Groups[1].Value
-				: CalculateChannelFromFrequency(freq).ToString();
+			var channel = GetChannel(result, freq);
 			var dbm = Patterns.Signal().Match(result).Groups[1].Value;
 
 			return new Signal
@@ -41,6 +39,16 @@ public sealed class LinuxSignalParser(ILogger logger) : ISignalParser<string>
 			logger.LogIf(LogLevel.Debug, "{exception}", e.ToString());
 			return null;
 		}
+	}
+
+	private static string GetChannel(string result, string freq)
+	{
+		if (Patterns.Channel().IsMatch(result))
+			return Patterns.Channel().Match(result).Groups[1].Value;
+
+		return Patterns.BackupChannel().IsMatch(result)
+			? Patterns.BackupChannel().Match(result).Groups[1].Value
+			: CalculateChannelFromFrequency(freq).ToString();
 	}
 
 	private static int CalculateChannelFromFrequency(string frequency)
