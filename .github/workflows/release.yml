@@ -28,9 +28,9 @@ jobs:
           dotnet-version: 10.0.x
 
       - name: Setup Node.JS
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version: 26
 
       - name: Run server tests
         run: dotnet test

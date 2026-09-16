@@ -37,9 +37,9 @@ jobs:
           persist-credentials: false
 
       - name: Setup Node.JS
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version: 26
 
       - name: Install dependencies
         run: yarn install

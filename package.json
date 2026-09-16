@@ -3,6 +3,9 @@
 	"version": "2.1.0",
 	"description": "Visualize Wi-Fi signal strength over a geographic area",
 	"main": "app.js",
+	"engines": {
+		"node": ">= 26"
+	},
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build --outDir ../Core/wwwroot --emptyOutDir --assetsDir .",
