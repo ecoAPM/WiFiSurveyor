@@ -43,7 +43,7 @@
 		"@types/jsdom": "30.0.0",
 		"@types/node": "26.6.1",
 		"@vitejs/plugin-vue": "6.0.9",
-		"@vue/compiler-dom": "3.5.42",
+		"@vue/compiler-dom": "3.5.43",
 		"@vue/test-utils": "2.5.1",
 		"buffer": "6.0.3",
 		"delaunator": "5.1.0",
