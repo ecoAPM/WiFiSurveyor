@@ -1,0 +1,75 @@
+name: Release
+on:
+  push:
+    tags:
+      - '*'
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  Publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    strategy:
+      matrix:
+        os: [linux, osx, win]
+        arch: [x64, arm64]
+        include:
+          - dir: Linux
+            os: linux
+          - dir: Mac
+            os: osx
+          - dir: Windows
+            os: win
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          ref: ${{ github.ref }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Setup Node.JS
+        uses: actions/setup-node@v6
+        with:
+          node-version: 26
+
+      - name: Install zip packager
+        run: apt install zip
+
+      - name: Run server tests
+        run: dotnet test
+
+      - name: Install app dependencies
+        run: yarn install
+        env:
+          YARN_ENABLE_SCRIPTS: false
+
+      - name: Run app tests
+        run: yarn test
+
+      - name: Build app
+        run: yarn build
+
+      - name: Publish ${{ matrix.dir }} ${{ matrix.arch }} release
+        run: dotnet publish ${{ matrix.dir }} --sc -c Release -r ${{ matrix.os }}-${{ matrix.arch }} -o publish/${{ matrix.os }}-${{ matrix.arch }}
+
+      - name: Package ${{ matrix.dir }} ${{ matrix.arch }} release
+        working-directory: publish/${{ matrix.os }}-${{ matrix.arch }}
+        run: zip -9 ../WiFiSurveyor-$(echo ${{ github.ref }} | sed 's/refs\/tags\///')-${{ matrix.dir }}--${{ matrix.arch }}.zip *
+
+      - name: Upload packaged release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: |
+            publish/*.zip
