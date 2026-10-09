@@ -6,6 +6,21 @@ defaults:
     shell: bash
 
 jobs:
+  Mac:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Test Mac scanner
+        run: dotnet test Mac.Tests -p:RuntimeIdentifier= -p:PublishSingleFile=false
+
   Server:
     runs-on: ubuntu-latest
 
@@ -20,13 +35,13 @@ jobs:
           dotnet-version: 10.0.x
 
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore -p:RuntimeIdentifier= -p:PublishSingleFile=false
 
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build --no-restore -p:RuntimeIdentifier= -p:PublishSingleFile=false
 
       - name: Test
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test --no-build --verbosity normal -p:RuntimeIdentifier= -p:PublishSingleFile=false
 
   App:
     runs-on: ubuntu-latest

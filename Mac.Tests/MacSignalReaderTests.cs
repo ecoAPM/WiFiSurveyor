@@ -9,6 +9,18 @@ namespace WiFiSurveyor.Mac.Tests;
 public sealed class MacSignalReaderTests
 {
 	[Fact]
+	public async Task UsesTheBundledScanner()
+	{
+		var commandService = Substitute.For<ICommandService>();
+		commandService.Run(Arg.Is<ProcessStartInfo>(p =>
+			p != null && p.FileName.EndsWith("WiFiSurveyor.Scanner") && p.Arguments == string.Empty))
+			.Returns("{\"Signals\":[]}");
+
+		var reader = new MacSignalReader(commandService);
+		Assert.Equal("{\"Signals\":[]}", await reader.Read());
+	}
+
+	[Fact]
 	public async Task ReturnsOutputFromProcess()
 	{
 		//arrange

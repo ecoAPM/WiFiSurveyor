@@ -12,5 +12,18 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Core\Core.csproj" />
+		<None Include="Scanner/bin/WiFiSurveyor.Scanner"
+			Condition="$([MSBuild]::IsOSPlatform('OSX')) Or Exists('Scanner/bin/WiFiSurveyor.Scanner')"
+			TargetPath="WiFiSurveyor.Scanner" CopyToOutputDirectory="PreserveNewest"
+			CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
 	</ItemGroup>
+	<Target Name="BuildMacScanner" BeforeTargets="AssignTargetPaths"
+		Condition="$([MSBuild]::IsOSPlatform('OSX'))"
+		Inputs="Scanner/main.swift;Scanner/build.sh" Outputs="Scanner/bin/WiFiSurveyor.Scanner">
+		<Exec Command="bash &quot;$(MSBuildProjectDirectory)/Scanner/build.sh&quot; &quot;$(MSBuildProjectDirectory)/Scanner/bin/WiFiSurveyor.Scanner&quot;" />
+	</Target>
+	<Target Name="CheckMacScanner" BeforeTargets="Publish">
+		<Error Condition="!Exists('Scanner/bin/WiFiSurveyor.Scanner')"
+			Text="Build the native scanner on macOS with: bash Mac/Scanner/build.sh Mac/Scanner/bin/WiFiSurveyor.Scanner" />
+	</Target>
 </Project>

@@ -8,6 +8,51 @@ namespace WiFiSurveyor.Core.Tests;
 public sealed class CommandServiceTests
 {
 	[Fact]
+	public async Task DrainsOutputWhileTheProcessIsRunning()
+	{
+		var service = new CommandService(Process.Start, Substitute.For<ILogger>());
+		var info = new ProcessStartInfo("sh");
+		info.ArgumentList.Add("-c");
+		info.ArgumentList.Add("printf '%131072s' x");
+		var watch = Stopwatch.StartNew();
+
+		var output = await service.Run(info);
+
+		Assert.Equal(131072, output.Length);
+		Assert.EndsWith("x", output);
+		Assert.True(watch.Elapsed < TimeSpan.FromSeconds(5));
+	}
+
+	[Fact]
+	public async Task AProcessThatDoesNotCloseStdoutIsTerminated()
+	{
+		Process? observer = null;
+		var service = new CommandService(info =>
+		{
+			var process = Process.Start(info)!;
+			observer = Process.GetProcessById(process.Id);
+			return process;
+		},
+			Substitute.For<ILogger>(), TimeSpan.FromMilliseconds(50));
+		try
+		{
+			var output = await service.Run(new ProcessStartInfo("sleep", "30"))
+				.WaitAsync(TimeSpan.FromSeconds(3));
+			Assert.Empty(output);
+			Assert.True(observer!.HasExited);
+		}
+		finally
+		{
+			if (observer is not null)
+			{
+				if (!observer.HasExited)
+					observer.Kill(true);
+				observer.Dispose();
+			}
+		}
+	}
+
+	[Fact]
 	public async Task CanReadFromStdOut()
 	{
 		//arrange
