@@ -3,10 +3,9 @@ using WiFiSurveyor.Core;
 
 namespace WiFiSurveyor.Mac;
 
-public sealed class MacSignalReader(ICommandService commandService) : PosixSignalReader(commandService)
+public sealed class MacSignalReader(ICommandService commandService) : ISignalReader<string>
 {
-	protected override ProcessStartInfo Info
-		=> new("/usr/sbin/system_profiler", "SPAirPortDataType -detailLevel full -json");
-
-	protected override string Package => "system_profiler";
+	public async Task<string> Read()
+		=> await commandService.Run(new ProcessStartInfo(
+			Path.Combine(AppContext.BaseDirectory, "WiFiSurveyor.Scanner")));
 }

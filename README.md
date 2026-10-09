@@ -78,6 +78,7 @@ Contibutions are welcome for improving the following:
 
 - .NET SDK
 - Node.JS with `yarn`
+- Xcode Command Line Tools for the native Wi-Fi scanner when building on macOS
 
 ### Building from source
 
@@ -88,5 +89,5 @@ Contibutions are welcome for improving the following:
 
 ### Running tests
 
-- Run `dotnet test` from the repo root directory for back-end tests
+- Run `dotnet test -p:RuntimeIdentifier= -p:PublishSingleFile=false` from the repo root directory for back-end tests
 - Run `yarn test` from the repo root directory for front-end tests
