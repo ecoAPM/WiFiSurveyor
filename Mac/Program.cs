@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using WiFiSurveyor.Core;
 
 namespace WiFiSurveyor.Mac;
@@ -7,6 +8,9 @@ public static class Program
 	public static void AddMacHandlers(this IServiceCollection services)
 	{
 		services.AddPosixHandlers();
+		services.AddSingleton<ICommandService>(provider => new CommandService(
+			provider.GetRequiredService<Func<ProcessStartInfo, Process?>>(),
+			provider.GetRequiredService<ILogger>(), TimeSpan.FromSeconds(90)));
 		services.AddSingleton<IBrowserLauncher, MacBrowserLauncher>();
 		services.AddSingleton<ISignalReader<string>, MacSignalReader>();
 		services.AddSingleton<ISignalParser<string>, MacSignalParser>();

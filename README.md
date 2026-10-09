@@ -30,6 +30,8 @@ Visualize Wi-Fi signal strength over a geographic area
 
 1. Wait for the app to appear in your browser
 
+   On macOS, allow **WiFiSurveyor Scanner** to access Location Services when prompted. macOS requires this permission to reveal Wi-Fi network names and access point addresses. If access was denied, enable it in **System Settings → Privacy & Security → Location Services**. Wi-Fi must be turned on; connecting to a network is optional.
+
 1. Under "Background", select a floorplan or map image representing the area to survey
 
 1. Select your SSID from the "Access Point" dropdown menu
@@ -78,6 +80,7 @@ Contibutions are welcome for improving the following:
 
 - .NET SDK
 - Node.JS with `yarn`
+- Xcode Command Line Tools for the native Wi-Fi scanner when building on macOS
 
 ### Building from source
 
@@ -86,7 +89,9 @@ Contibutions are welcome for improving the following:
 - Browse to `http://localhost:3000`
 - Back-end and front-end can be stopped and restarted independently during inner dev loop
 
+The macOS build includes `WiFiSurveyor.Scanner.app` beside the server executable; keep them together when distributing the app. The scanner requests location permission but does not use, store, or send coordinates. For signed releases, set `MACOS_SIGNING_IDENTITY` to a Developer ID Application identity when building the scanner and notarize the distribution. Local builds use an ad hoc signature and may require permission again after rebuilding.
+
 ### Running tests
 
-- Run `dotnet test` from the repo root directory for back-end tests
+- Run `dotnet test -p:RuntimeIdentifier= -p:PublishSingleFile=false` from the repo root directory for back-end tests
 - Run `yarn test` from the repo root directory for front-end tests

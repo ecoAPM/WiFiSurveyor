@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key><string>com.ecoapm.WiFiSurveyor.Scanner</string>
+    <key>CFBundleName</key><string>WiFiSurveyor Scanner</string>
+    <key>CFBundleExecutable</key><string>WiFiSurveyor.Scanner</string>
+    <key>CFBundlePackageType</key><string>APPL</string>
+    <key>CFBundleVersion</key><string>1</string>
+    <key>LSUIElement</key><true/>
+    <key>NSLocationUsageDescription</key><string>WiFiSurveyor needs location permission to read nearby Wi-Fi network names and access point addresses. Your location is not stored or sent.</string>
+</dict>
+</plist>
