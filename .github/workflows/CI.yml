@@ -6,23 +6,23 @@ defaults:
     shell: bash
 
 jobs:
-  Mac:
-    runs-on: macos-latest
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          persist-credentials: false
-
-      - uses: actions/setup-dotnet@v5
-        with:
-          dotnet-version: 10.0.x
-
-      - name: Test Mac scanner
-        run: dotnet test Mac.Tests -p:RuntimeIdentifier= -p:PublishSingleFile=false
-
   Server:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        include:
+          - project: Core.Tests
+            runner: ubuntu-latest
+            options: -p:RuntimeIdentifier=
+          - project: Linux.Tests
+            runner: ubuntu-latest
+            options: -p:RuntimeIdentifier=
+          - project: Windows.Tests
+            runner: ubuntu-latest
+            options: -p:RuntimeIdentifier=
+          - project: Mac.Tests
+            runner: xcode-27
+            options: ''
 
     steps:
       - uses: actions/checkout@v6
@@ -34,14 +34,20 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
+      - name: Install macOS workload
+        if: matrix.project == 'Mac.Tests'
+        run: |
+          dotnet workload install macos --version 10.0.401.1
+          dotnet workload restore Mac.Tests/Mac.Tests.csproj
+
       - name: Install dependencies
-        run: dotnet restore -p:RuntimeIdentifier= -p:PublishSingleFile=false
+        run: dotnet restore ${{ matrix.project }} ${{ matrix.options }}
 
       - name: Build
-        run: dotnet build --no-restore -p:RuntimeIdentifier= -p:PublishSingleFile=false
+        run: dotnet build ${{ matrix.project }} ${{ matrix.options }} --no-restore
 
       - name: Test
-        run: dotnet test --no-build --verbosity normal -p:RuntimeIdentifier= -p:PublishSingleFile=false
+        run: dotnet test ${{ matrix.project }} ${{ matrix.options }} --no-build --verbosity normal
 
   App:
     runs-on: ubuntu-latest

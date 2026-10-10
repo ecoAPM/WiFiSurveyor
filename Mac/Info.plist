@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string>com.ecoapm.WiFiSurveyor</string>
+	<key>CFBundleName</key>
+	<string>WiFiSurveyor</string>
+	<key>CFBundleExecutable</key>
+	<string>WiFiSurveyor</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleVersion</key>
+	<string>2.2.0</string>
+	<key>LSUIElement</key>
+	<true/>
+	<key>NSLocationUsageDescription</key>
+	<string>Read nearby Wi-Fi network names. Location coordinates are not used, stored or sent.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Read nearby Wi-Fi network names. Location coordinates are not used, stored or sent.</string>
+</dict>
+</plist>

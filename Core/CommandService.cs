@@ -10,7 +10,7 @@ public sealed class CommandService(Func<ProcessStartInfo, Process?> startProcess
 	{
 		logger.LogIf(LogLevel.Debug, "{now}: Starting \"{cmd} {args}\"...", DateTime.Now, info.FileName, info.Arguments);
 		info.RedirectStandardOutput = true;
-		using var process = startProcess(info);
+		var process = startProcess(info);
 
 		if (process == null)
 		{
@@ -20,21 +20,24 @@ public sealed class CommandService(Func<ProcessStartInfo, Process?> startProcess
 
 		logger.LogIf(LogLevel.Debug, "{now}: \"{cmd} {args}\" started", DateTime.Now, info.FileName, info.Arguments);
 
-		var output = process.StandardOutput.ReadToEndAsync();
-		using var cancellation = new CancellationTokenSource(_timeout);
-		try
+		var msTimeout = Convert.ToUInt16(_timeout.TotalMilliseconds);
+		var complete = process.WaitForExit(msTimeout);
+		var output = await process.StandardOutput.ReadToEndAsync();
+
+		if (complete)
 		{
-			await process.WaitForExitAsync(cancellation.Token);
 			logger.LogIf(LogLevel.Debug, "{now}: Process ended successfully", DateTime.Now);
 		}
-		catch (OperationCanceledException)
+		else if (!string.IsNullOrEmpty(output))
 		{
-			if (!process.HasExited)
-				process.Kill(true);
-			await process.WaitForExitAsync();
+			logger.LogIf(LogLevel.Debug, "{now}: Process stuck but {size} bytes of output received", DateTime.Now, output.Length);
+		}
+		else
+		{
 			logger.LogIf(LogLevel.Warning, "{now}: Process not completed after {time}, forced to end...", DateTime.Now, _timeout);
 		}
 
-		return await output;
+		process.Kill(true);
+		return output;
 	}
 }

@@ -25,12 +25,12 @@ Visualize Wi-Fi signal strength over a geographic area
 
 1. Launch the executable for your OS:
    - `WiFiSurveyor.exe` on Windows
-   - `WiFiSurveyor` on MacOS
+   - `WiFiSurveyor.app` on macOS (open from Finder)
    - `sudo ./WiFiSurveyor` on Linux (must be `root`)
 
-1. Wait for the app to appear in your browser
+1. On macOS, allow Location Services when prompted so Wi-Fi network names can be read. Coordinates are not collected.
 
-   On macOS, allow **WiFiSurveyor Scanner** to access Location Services when prompted. macOS requires this permission to reveal Wi-Fi network names and access point addresses. If access was denied, enable it in **System Settings → Privacy & Security → Location Services**. Wi-Fi must be turned on; connecting to a network is optional.
+1. Wait for the app to appear in your browser
 
 1. Under "Background", select a floorplan or map image representing the area to survey
 
@@ -80,18 +80,18 @@ Contibutions are welcome for improving the following:
 
 - .NET SDK
 - Node.JS with `yarn`
-- Xcode Command Line Tools for the native Wi-Fi scanner when building on macOS
+- For macOS: Xcode 27 and `dotnet workload install macos --version 10.0.401.1`, followed by `dotnet workload restore Mac.Tests/Mac.Tests.csproj`
 
 ### Building from source
 
-- Run `dotnet run --project {Linux|Mac|Windows} -- dev` (with `sudo` for Linux) from the repo root directory to start the back-end server
+- On macOS, run `dotnet build Mac -r osx-arm64`, then `open Mac/bin/Debug/net10.0-macos27.0/osx-arm64/WiFiSurveyor.app --args dev` (use `osx-x64` on Intel Macs)
+- Run `dotnet run --project {Linux|Windows} -- dev` (with `sudo` for Linux) from the repo root directory to start the back-end server
 - Run `yarn dev` from the repo root directory to start the front-end development server
 - Browse to `http://localhost:3000`
 - Back-end and front-end can be stopped and restarted independently during inner dev loop
 
-The macOS build includes `WiFiSurveyor.Scanner.app` beside the server executable; keep them together when distributing the app. The scanner requests location permission but does not use, store, or send coordinates. For signed releases, set `MACOS_SIGNING_IDENTITY` to a Developer ID Application identity when building the scanner and notarize the distribution. Local builds use an ad hoc signature and may require permission again after rebuilding.
-
 ### Running tests
 
-- Run `dotnet test -p:RuntimeIdentifier= -p:PublishSingleFile=false` from the repo root directory for back-end tests
+- Run `dotnet test Mac.Tests` on macOS for macOS back-end tests
+- Run `dotnet test {Core|Linux|Windows}.Tests -p:RuntimeIdentifier=` for other back-end tests
 - Run `yarn test` from the repo root directory for front-end tests

@@ -9,30 +9,8 @@ defaults:
     shell: bash
 
 jobs:
-  Mac-Scanner:
-    runs-on: macos-latest
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          persist-credentials: false
-          ref: ${{ github.ref }}
-
-      - name: Build native Mac scanner
-        run: bash Mac/Scanner/build.sh Mac/Scanner/bin/WiFiSurveyor.Scanner.app
-
-      - name: Archive native Mac scanner
-        run: tar -czf mac-scanner.tar.gz -C Mac/Scanner/bin WiFiSurveyor.Scanner.app
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: mac-scanner
-          path: mac-scanner.tar.gz
-          if-no-files-found: error
-
   Publish:
-    runs-on: ubuntu-latest
-    needs: Mac-Scanner
+    runs-on: ${{ matrix.os == 'osx' && 'xcode-27' || 'ubuntu-latest' }}
 
     permissions:
       contents: write
@@ -61,16 +39,29 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
+      - name: Install macOS workload
+        if: matrix.os == 'osx'
+        run: |
+          dotnet workload install macos --version 10.0.401.1
+          dotnet workload restore Mac.Tests/Mac.Tests.csproj
+
       - name: Setup Node.JS
         uses: actions/setup-node@v6
         with:
           node-version: 26
 
       - name: Install zip packager
+        if: runner.os == 'Linux'
         run: sudo apt install zip
 
       - name: Run server tests
-        run: dotnet test -p:RuntimeIdentifier= -p:PublishSingleFile=false
+        run: |
+          dotnet test Core.Tests -p:RuntimeIdentifier=
+          if [[ '${{ matrix.os }}' == 'osx' ]]; then
+            dotnet test Mac.Tests
+          else
+            dotnet test ${{ matrix.dir }}.Tests -p:RuntimeIdentifier=
+          fi
 
       - name: Install app dependencies
         run: yarn install
@@ -83,23 +74,21 @@ jobs:
       - name: Build app
         run: yarn build
 
-      - uses: actions/download-artifact@v4
-        if: matrix.os == 'osx'
-        with:
-          name: mac-scanner
-
-      - name: Extract native Mac scanner
-        if: matrix.os == 'osx'
-        run: |
-          mkdir -p Mac/Scanner/bin
-          tar -xzf mac-scanner.tar.gz -C Mac/Scanner/bin
-
       - name: Publish ${{ matrix.dir }} ${{ matrix.arch }} release
-        run: dotnet publish ${{ matrix.dir }} --sc -c Release -r ${{ matrix.os }}-${{ matrix.arch }} -o publish/${{ matrix.os }}-${{ matrix.arch }}
+        run: |
+          dotnet publish ${{ matrix.dir }} --sc -c Release -r ${{ matrix.os }}-${{ matrix.arch }} -o publish/${{ matrix.os }}-${{ matrix.arch }}
+          if [[ '${{ matrix.os }}' == 'osx' ]]; then
+            cp -R Mac/bin/Release/net10.0-macos27.0/osx-${{ matrix.arch }}/WiFiSurveyor.app publish/osx-${{ matrix.arch }}/
+          fi
 
       - name: Package ${{ matrix.dir }} ${{ matrix.arch }} release
         working-directory: publish/${{ matrix.os }}-${{ matrix.arch }}
-        run: zip -9 -r ../WiFiSurveyor-$(echo ${{ github.ref }} | sed 's/refs\/tags\///')-${{ matrix.dir }}-${{ matrix.arch }}.zip *
+        run: |
+          paths=(*)
+          if [[ '${{ matrix.os }}' == 'osx' ]]; then
+            paths=(WiFiSurveyor.app)
+          fi
+          zip -9 -r ../WiFiSurveyor-${GITHUB_REF_NAME}-${{ matrix.dir }}-${{ matrix.arch }}.zip "${paths[@]}"
 
       - name: Upload packaged release
         uses: softprops/action-gh-release@v3

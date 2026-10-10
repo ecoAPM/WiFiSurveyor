@@ -28,6 +28,9 @@ public sealed class SignalService<T>(ISignalReader<T> reader, ISignalParser<T> p
 
 			await hub.SendMessage(message);
 		}
+		catch (OperationCanceledException e) when (e.CancellationToken.IsCancellationRequested)
+		{
+		}
 		catch (Exception e)
 		{
 			var message = new Message { Status = e.Message };

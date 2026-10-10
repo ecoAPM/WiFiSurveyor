@@ -6,6 +6,21 @@ namespace WiFiSurveyor.Core.Tests;
 
 public sealed class SignalServiceTests
 {
+	[Theory]
+	[InlineData(false)]
+	[InlineData(true)]
+	public async Task ReportsCancellationOnlyWhenItWasNotRequested(bool canceled)
+	{
+		var reader = Substitute.For<ISignalReader<string>>();
+		reader.When(r => r.Read()).Throw(new OperationCanceledException(new CancellationToken(canceled)));
+		var hub = Substitute.For<ISignalHub>();
+		var service = new SignalService<string>(reader, Substitute.For<ISignalParser<string>>(), hub, Substitute.For<ILogger>());
+
+		await service.GetSignals();
+
+		await hub.Received(canceled ? 0 : 1).SendMessage(Arg.Any<Message>());
+	}
+
 	[Fact]
 	public async Task SetsStatusOnException()
 	{

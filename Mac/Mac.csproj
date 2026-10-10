@@ -2,33 +2,24 @@
 	<PropertyGroup>
 		<PackageVersion>2.2.0</PackageVersion>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net10.0</TargetFramework>
+		<TargetFramework>net10.0-macos27.0</TargetFramework>
+		<SupportedOSPlatformVersion>14.0</SupportedOSPlatformVersion>
 		<AssemblyName>WiFiSurveyor</AssemblyName>
 		<RootNamespace>WiFiSurveyor.Mac</RootNamespace>
-		<RuntimeIdentifier>osx-x64</RuntimeIdentifier>
-		<PublishSingleFile>true</PublishSingleFile>
+		<RuntimeIdentifier>$(NETCoreSdkRuntimeIdentifier)</RuntimeIdentifier>
+		<ServerGarbageCollection>false</ServerGarbageCollection>
+		<LinkMode>None</LinkMode>
+		<CodesignKey>-</CodesignKey>
+		<CreatePackage>false</CreatePackage>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Core\Core.csproj" />
+		<InternalsVisibleTo Include="WiFiSurveyor.Mac.Tests" />
 	</ItemGroup>
-	<Target Name="BuildMacScanner" BeforeTargets="AssignTargetPaths"
-		Condition="$([MSBuild]::IsOSPlatform('OSX'))">
-		<Exec Command="bash &quot;$(MSBuildProjectDirectory)/Scanner/build.sh&quot; &quot;$(MSBuildProjectDirectory)/Scanner/bin/WiFiSurveyor.Scanner.app&quot;" />
-	</Target>
-	<Target Name="IncludeMacScanner" BeforeTargets="AssignTargetPaths" DependsOnTargets="BuildMacScanner">
-		<ItemGroup>
-			<Content Include="Scanner/bin/WiFiSurveyor.Scanner.app/**/*"
-				CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
-				ExcludeFromSingleFile="true" />
-			<Content Update="Scanner/bin/WiFiSurveyor.Scanner.app/**/*">
-				<TargetPath>WiFiSurveyor.Scanner.app/%(Content.RecursiveDir)%(Content.Filename)%(Content.Extension)</TargetPath>
-			</Content>
-		</ItemGroup>
-	</Target>
-	<Target Name="CheckMacScanner" BeforeTargets="Publish">
-		<Error Condition="!Exists('Scanner/bin/WiFiSurveyor.Scanner.app/Contents/MacOS/WiFiSurveyor.Scanner')"
-			Text="Build the native scanner on macOS with: bash Mac/Scanner/build.sh Mac/Scanner/bin/WiFiSurveyor.Scanner.app" />
-	</Target>
+	<ItemGroup>
+		<BundleResource Include="..\Core\wwwroot\**\*" Link="wwwroot\%(RecursiveDir)%(Filename)%(Extension)" />
+		<BundleResource Include="..\Core\appsettings.json" Link="appsettings.json" />
+	</ItemGroup>
 </Project>

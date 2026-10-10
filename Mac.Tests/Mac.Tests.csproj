@@ -1,6 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net10.0</TargetFramework>
+		<TargetFramework>net10.0-macos27.0</TargetFramework>
+		<SupportedOSPlatformVersion>14.0</SupportedOSPlatformVersion>
+		<ApplicationId>com.ecoapm.WiFiSurveyor.Tests</ApplicationId>
+		<RuntimeIdentifier>$(NETCoreSdkRuntimeIdentifier)</RuntimeIdentifier>
+		<SelfContained>true</SelfContained>
+		<LinkMode>None</LinkMode>
+		<CreatePackage>false</CreatePackage>
 		<AssemblyName>WiFiSurveyor.Mac.Tests</AssemblyName>
 		<RootNamespace>WiFiSurveyor.Mac.Tests</RootNamespace>
 		<ImplicitUnsings>enable</ImplicitUnsings>
@@ -13,6 +19,5 @@
 		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
 		<PackageReference Include="coverlet.collector" Version="10.1.0" />
 		<ProjectReference Include="..\Mac\Mac.csproj" />
-		<None Include="scanner-output.json" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup>
 </Project>

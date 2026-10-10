@@ -1,8 +1,0 @@
-{
-  "Signals": [
-    { "SSID": "net1", "MAC": "02:00:00:00:00:01", "Frequency": 2, "Channel": 9, "Strength": -39 },
-    { "SSID": "ssid🏎2", "MAC": "02:00:00:00:00:02", "Frequency": 5, "Channel": 44, "Strength": -50 },
-    { "SSID": "access_point_3", "MAC": "02:00:00:00:00:03", "Frequency": 5, "Channel": 149, "Strength": -42 },
-    { "SSID": "wap-4", "MAC": "02:00:00:00:00:04", "Frequency": 2, "Channel": 11, "Strength": -90 }
-  ]
-}

@@ -1,19 +1,43 @@
-using System.Text.Json;
+using CoreWlan;
+using Microsoft.Extensions.Logging;
 using WiFiSurveyor.Core;
 
 namespace WiFiSurveyor.Mac;
 
-public sealed class MacSignalParser : ISignalParser<string>
+public sealed class MacSignalParser(ILogger logger) : ISignalParser<IReadOnlyList<IWiFiNetwork>>
 {
-	public IReadOnlyList<Signal> Parse(string results)
-	{
-		using var json = JsonDocument.Parse(results);
-		if (json.RootElement.TryGetProperty("Error", out var error))
-			throw new InvalidOperationException(error.GetString());
+	public IReadOnlyList<Signal> Parse(IReadOnlyList<IWiFiNetwork> networks)
+		=> [.. networks.Select(GetSignal).OfType<Signal>().Distinct()];
 
-		if (!json.RootElement.TryGetProperty("Signals", out var signals)
-			|| signals.ValueKind != JsonValueKind.Array)
-			throw new JsonException("The Wi-Fi scanner did not return signal data.");
-		return signals.Deserialize<Signal[]>()!;
+	private Signal? GetSignal(IWiFiNetwork network)
+	{
+		try
+		{
+			var frequency = network.Band switch
+			{
+				CWChannelBand.TwoGHz => Frequency._2_4_GHz,
+				CWChannelBand.FiveGHz => Frequency._5_GHz,
+				_ => (Frequency?)null
+			};
+			if (frequency is null || string.IsNullOrEmpty(network.Bssid))
+			{
+				return null;
+			}
+
+			return new Signal
+			{
+				SSID = network.Ssid ?? string.Empty,
+				MAC = network.Bssid,
+				Strength = checked((short)network.Rssi),
+				Channel = checked((byte)network.Channel),
+				Frequency = frequency.Value
+			};
+		}
+		catch (Exception e)
+		{
+			logger.LogIf(LogLevel.Warning, "{now}: Could not parse Wi-Fi signal data", DateTime.Now);
+			logger.LogIf(LogLevel.Debug, "{exception}", e.ToString());
+			return null;
+		}
 	}
 }

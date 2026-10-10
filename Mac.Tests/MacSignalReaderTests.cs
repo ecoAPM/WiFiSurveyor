@@ -1,10 +1,9 @@
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using NSubstitute;
-using WiFiSurveyor.Core;
 using Xunit;
 
 namespace WiFiSurveyor.Mac.Tests;
@@ -12,47 +11,79 @@ namespace WiFiSurveyor.Mac.Tests;
 public sealed class MacSignalReaderTests
 {
 	[Fact]
-	public async Task LaunchesTheScannerAsAnApplication()
+	public async Task NonemptyScanDoesNotRetry()
 	{
-		var commandService = Substitute.For<ICommandService>();
-		string? outputFile = null;
-		commandService.Run(Arg.Any<ProcessStartInfo>()).Returns(call =>
-		{
-			var info = call.Arg<ProcessStartInfo>()!;
-			Assert.Equal("/usr/bin/open", info.FileName);
-			Assert.Equal(new[] { "-n", "-W", "-g", "--stdout" }, info.ArgumentList.Take(4));
-			outputFile = info.ArgumentList[4];
-			Assert.True(File.Exists(outputFile));
-			Assert.Equal(Path.Combine(AppContext.BaseDirectory, "WiFiSurveyor.Scanner.app"), info.ArgumentList[5]);
-			File.WriteAllText(outputFile, "{\"Signals\":[]}");
-			return string.Empty;
-		});
+		IReadOnlyList<IWiFiNetwork> networks = [Substitute.For<IWiFiNetwork>()];
+		var calls = 0;
 
-		Assert.Equal("{\"Signals\":[]}", await new MacSignalReader(commandService).Read());
-		Assert.False(File.Exists(outputFile));
+		var result = await MacSignalReader.Read(() => { calls++; return networks; }, CancellationToken.None);
+
+		Assert.Same(networks, result);
+		Assert.Equal(1, calls);
 	}
 
 	[Fact]
-	public async Task DeletesOutputIfLaunchFails()
+	public async Task EmptyScanIsConfirmedBeforeReturningNoNetworks()
 	{
-		var commandService = Substitute.For<ICommandService>();
-		string? outputFile = null;
-		commandService.Run(Arg.Any<ProcessStartInfo>()).Returns<string>(call =>
-		{
-			outputFile = call.Arg<ProcessStartInfo>()!.ArgumentList[4];
-			throw new InvalidOperationException("Launch failed.");
-		});
+		IReadOnlyList<IWiFiNetwork> networks = [Substitute.For<IWiFiNetwork>()];
+		var calls = 0;
 
-		await Assert.ThrowsAsync<InvalidOperationException>(() => new MacSignalReader(commandService).Read());
-		Assert.False(File.Exists(outputFile));
+		var result = await MacSignalReader.Read(() => ++calls == 1 ? [] : networks, CancellationToken.None);
+
+		Assert.Same(networks, result);
+		Assert.Equal(2, calls);
 	}
 
 	[Fact]
-	public async Task MissingScannerOutputIsReported()
+	public async Task PersistentEmptyScanReturnsNoNetworks()
 	{
-		var commandService = Substitute.For<ICommandService>();
-		commandService.Run(Arg.Any<ProcessStartInfo>()).Returns(string.Empty);
-		var error = await Assert.ThrowsAsync<InvalidOperationException>(() => new MacSignalReader(commandService).Read());
-		Assert.Equal("The Wi-Fi scanner did not return data.", error.Message);
+		var calls = 0;
+
+		var result = await MacSignalReader.Read(() => { calls++; return []; }, CancellationToken.None);
+
+		Assert.Empty(result);
+		Assert.Equal(2, calls);
+	}
+
+	[Fact]
+	public async Task PoweredOffInterfaceDoesNotRetry()
+	{
+		var calls = 0;
+
+		var result = await MacSignalReader.Read(() => { calls++; return null; }, CancellationToken.None);
+
+		Assert.Empty(result);
+		Assert.Equal(1, calls);
+	}
+
+	[Fact]
+	public async Task ScanFailureIsNotRetried()
+	{
+		var calls = 0;
+		await Assert.ThrowsAsync<IOException>(() => MacSignalReader.Read(() => { calls++; throw new IOException(); }, CancellationToken.None));
+		Assert.Equal(1, calls);
+	}
+
+	[Fact]
+	public async Task ShutdownCancelsEmptyScanRetry()
+	{
+		using var stopping = new CancellationTokenSource();
+		var calls = 0;
+		var read = MacSignalReader.Read(() => { calls++; return []; }, stopping.Token);
+
+		stopping.Cancel();
+
+		await Assert.ThrowsAnyAsync<OperationCanceledException>(() => read);
+		Assert.Equal(1, calls);
+	}
+
+	[Fact]
+	public async Task ShutdownPreventsStartingAScan()
+	{
+		var calls = 0;
+
+		await Assert.ThrowsAnyAsync<OperationCanceledException>(() => MacSignalReader.Read(() => { calls++; return []; }, new CancellationToken(true)));
+
+		Assert.Equal(0, calls);
 	}
 }
