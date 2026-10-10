@@ -7,7 +7,22 @@ defaults:
 
 jobs:
   Server:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        include:
+          - project: Core.Tests
+            runner: ubuntu-latest
+            options: -p:RuntimeIdentifier=
+          - project: Linux.Tests
+            runner: ubuntu-latest
+            options: -p:RuntimeIdentifier=
+          - project: Windows.Tests
+            runner: ubuntu-latest
+            options: -p:RuntimeIdentifier=
+          - project: Mac.Tests
+            runner: xcode-27
+            options: ''
 
     steps:
       - uses: actions/checkout@v6
@@ -19,14 +34,20 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
+      - name: Install macOS workload
+        if: matrix.project == 'Mac.Tests'
+        run: |
+          dotnet workload install macos --version 10.0.401.1
+          dotnet workload restore Mac.Tests/Mac.Tests.csproj
+
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore ${{ matrix.project }} ${{ matrix.options }}
 
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build ${{ matrix.project }} ${{ matrix.options }} --no-restore
 
       - name: Test
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test ${{ matrix.project }} ${{ matrix.options }} --no-build --verbosity normal
 
   App:
     runs-on: ubuntu-latest

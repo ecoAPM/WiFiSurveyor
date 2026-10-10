@@ -7,7 +7,7 @@ defaults:
 
 jobs:
   Code-Quality:
-    runs-on: ubuntu-latest
+    runs-on: xcode-27
     if: github.actor != 'dependabot[bot]'
 
     steps:
@@ -22,6 +22,11 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
+      - name: Install macOS workload
+        run: |
+          dotnet workload install macos --version 10.0.401.1
+          dotnet workload restore Mac.Tests/Mac.Tests.csproj
+
       - name: Install Java
         uses: actions/setup-java@v5
         with:
@@ -32,7 +37,11 @@ jobs:
         run: dotnet tool install --global dotnet-sonarscanner
 
       - name: Install dependencies
-        run: dotnet restore
+        run: |
+          dotnet restore Mac.Tests
+          for project in Core.Tests Linux.Tests Windows.Tests; do
+            dotnet restore "$project" -p:RuntimeIdentifier=
+          done
 
       - name: Start Sonar Analysis
         run: dotnet-sonarscanner begin -d:sonar.host.url="https://sonarcloud.io" -d:sonar.token="$SONAR_TOKEN" -o:"ecoapm" -k:"ecoAPM_WiFiSurveyor-Server" -d:sonar.cs.vstest.reportsPaths="*.Tests/**/results.trx" -d:sonar.cs.opencover.reportsPaths="*.Tests/**/coverage.opencover.xml" -d:sonar.exclusions="App*/**"
@@ -40,12 +49,20 @@ jobs:
           SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
 
       - name: Build
-        run: dotnet build --no-restore
+        run: |
+          dotnet build Mac.Tests --no-restore
+          for project in Core.Tests Linux.Tests Windows.Tests; do
+            dotnet build "$project" -p:RuntimeIdentifier= --no-restore
+          done
         env:
           SONAR_DOTNET_ENABLE_CONCURRENT_EXECUTION: true
 
       - name: Test
-        run: dotnet test --no-build --logger "trx;LogFileName=results.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+        run: |
+          dotnet test Mac.Tests --no-build --logger "trx;LogFileName=results.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+          for project in Core.Tests Linux.Tests Windows.Tests; do
+            dotnet test "$project" -p:RuntimeIdentifier= --no-build --logger "trx;LogFileName=results.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+          done
 
       - name: Remove client-side Sonar properties
         run: rm sonar-project.properties

@@ -2,15 +2,24 @@
 	<PropertyGroup>
 		<PackageVersion>2.2.0</PackageVersion>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net10.0</TargetFramework>
+		<TargetFramework>net10.0-macos27.0</TargetFramework>
+		<SupportedOSPlatformVersion>14.0</SupportedOSPlatformVersion>
 		<AssemblyName>WiFiSurveyor</AssemblyName>
 		<RootNamespace>WiFiSurveyor.Mac</RootNamespace>
-		<RuntimeIdentifier>osx-x64</RuntimeIdentifier>
-		<PublishSingleFile>true</PublishSingleFile>
+		<RuntimeIdentifier>$(NETCoreSdkRuntimeIdentifier)</RuntimeIdentifier>
+		<ServerGarbageCollection>false</ServerGarbageCollection>
+		<LinkMode>None</LinkMode>
+		<CodesignKey>-</CodesignKey>
+		<CreatePackage>false</CreatePackage>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Core\Core.csproj" />
+		<InternalsVisibleTo Include="WiFiSurveyor.Mac.Tests" />
+	</ItemGroup>
+	<ItemGroup>
+		<BundleResource Include="..\Core\wwwroot\**\*" Link="wwwroot\%(RecursiveDir)%(Filename)%(Extension)" />
+		<BundleResource Include="..\Core\appsettings.json" Link="appsettings.json" />
 	</ItemGroup>
 </Project>

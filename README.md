@@ -25,8 +25,10 @@ Visualize Wi-Fi signal strength over a geographic area
 
 1. Launch the executable for your OS:
    - `WiFiSurveyor.exe` on Windows
-   - `WiFiSurveyor` on MacOS
+   - `WiFiSurveyor.app` on macOS (open from Finder)
    - `sudo ./WiFiSurveyor` on Linux (must be `root`)
+
+1. On macOS, allow Location Services when prompted so Wi-Fi network names can be read. Coordinates are not collected.
 
 1. Wait for the app to appear in your browser
 
@@ -78,15 +80,18 @@ Contibutions are welcome for improving the following:
 
 - .NET SDK
 - Node.JS with `yarn`
+- For macOS: Xcode 27 and `dotnet workload install macos --version 10.0.401.1`, followed by `dotnet workload restore Mac.Tests/Mac.Tests.csproj`
 
 ### Building from source
 
-- Run `dotnet run --project {Linux|Mac|Windows} -- dev` (with `sudo` for Linux) from the repo root directory to start the back-end server
+- On macOS, run `dotnet build Mac -r osx-arm64`, then `open Mac/bin/Debug/net10.0-macos27.0/osx-arm64/WiFiSurveyor.app --args dev` (use `osx-x64` on Intel Macs)
+- Run `dotnet run --project {Linux|Windows} -- dev` (with `sudo` for Linux) from the repo root directory to start the back-end server
 - Run `yarn dev` from the repo root directory to start the front-end development server
 - Browse to `http://localhost:3000`
 - Back-end and front-end can be stopped and restarted independently during inner dev loop
 
 ### Running tests
 
-- Run `dotnet test` from the repo root directory for back-end tests
+- Run `dotnet test Mac.Tests` on macOS for macOS back-end tests
+- Run `dotnet test {Core|Linux|Windows}.Tests -p:RuntimeIdentifier=` for other back-end tests
 - Run `yarn test` from the repo root directory for front-end tests

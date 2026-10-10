@@ -1,6 +1,5 @@
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using System;
+using CoreWlan;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using WiFiSurveyor.Core;
@@ -10,40 +9,62 @@ namespace WiFiSurveyor.Mac.Tests;
 
 public sealed class MacSignalParserTests
 {
-	[Fact]
-	public async Task ResultsAreParsedIntoSignals()
+	[Theory]
+	[InlineData(CWChannelBand.TwoGHz, 9, Frequency._2_4_GHz)]
+	[InlineData(CWChannelBand.FiveGHz, 44, Frequency._5_GHz)]
+	public void ResultsAreParsedIntoSignals(CWChannelBand band, int channel, Frequency frequency)
 	{
-		//arrange
-		var logger = Substitute.For<ILogger>();
-		var signalParser = new MacSignalParser(logger);
-		var contents = await File.ReadAllTextAsync("system_profiler-output.txt");
+		var network = Network("ssid🏎", "02:00:00:00:00:01", band, channel, -39);
+		var signal = Assert.Single(new MacSignalParser(Substitute.For<ILogger>()).Parse([network]));
 
-		//act
-		var signals = signalParser.Parse(contents).ToList();
+		Assert.Equal("ssid🏎", signal.SSID);
+		Assert.Equal("02:00:00:00:00:01", signal.MAC);
+		Assert.Equal(frequency, signal.Frequency);
+		Assert.Equal(channel, signal.Channel);
+		Assert.Equal(-39, signal.Strength);
+	}
 
-		//assert
-		Assert.Equal("net1", signals[0].SSID);
-		Assert.Empty(signals[0].MAC);
-		Assert.Equal(Frequency._2_4_GHz, signals[0].Frequency);
-		Assert.Equal(9, signals[0].Channel);
-		Assert.Equal(-39, signals[0].Strength);
+	[Fact]
+	public void HiddenNetworkKeepsItsBssid()
+	{
+		var network = Network(null, "02:00:00:00:00:01", CWChannelBand.TwoGHz, 9, -39);
+		var signal = Assert.Single(new MacSignalParser(Substitute.For<ILogger>()).Parse([network]));
+		Assert.Empty(signal.SSID);
+		Assert.Equal("02:00:00:00:00:01", signal.MAC);
+	}
 
-		Assert.Equal("ssid🏎2", signals[1].SSID);
-		Assert.Empty(signals[1].MAC);
-		Assert.Equal(Frequency._5_GHz, signals[1].Frequency);
-		Assert.Equal(44, signals[1].Channel);
-		Assert.Equal(-50, signals[1].Strength);
+	[Fact]
+	public void UnsupportedOrInvalidNetworksDoNotDiscardValidNetworks()
+	{
+		var good = Network("good", "02:00:00:00:00:01", CWChannelBand.TwoGHz, 9, -39);
+		var unsupported = Network("other", "02:00:00:00:00:02", CWChannelBand.Unknown, 1, -40);
+		var withoutBssid = Network("other", null, CWChannelBand.FiveGHz, 44, -40);
+		var invalid = Network("other", "02:00:00:00:00:03", CWChannelBand.FiveGHz, 256, -40);
+		var signal = Assert.Single(new MacSignalParser(Substitute.For<ILogger>()).Parse([unsupported, withoutBssid, invalid, good]));
+		Assert.Equal("good", signal.SSID);
+	}
 
-		Assert.Equal("access_point_3", signals[2].SSID);
-		Assert.Empty(signals[2].MAC);
-		Assert.Equal(Frequency._5_GHz, signals[2].Frequency);
-		Assert.Equal(149, signals[2].Channel);
-		Assert.Equal(-42, signals[2].Strength);
+	[Fact]
+	public void RepeatedScanResultsDoNotDuplicateHiddenNetworks()
+	{
+		var first = Network(null, "02:00:00:00:00:01", CWChannelBand.FiveGHz, 44, -39);
+		var repeated = Network(null, "02:00:00:00:00:01", CWChannelBand.FiveGHz, 44, -39);
+		var other = Network(null, "02:00:00:00:00:02", CWChannelBand.FiveGHz, 44, -40);
+		var signals = new MacSignalParser(Substitute.For<ILogger>()).Parse([first, repeated, other]);
 
-		Assert.Equal("wap-4", signals[3].SSID);
-		Assert.Empty(signals[3].MAC);
-		Assert.Equal(Frequency._2_4_GHz, signals[3].Frequency);
-		Assert.Equal(11, signals[3].Channel);
-		Assert.Equal(-90, signals[3].Strength);
+		Assert.Collection(signals,
+			signal => Assert.Equal("02:00:00:00:00:01", signal.MAC),
+			signal => Assert.Equal("02:00:00:00:00:02", signal.MAC));
+	}
+
+	private static IWiFiNetwork Network(string? ssid, string? bssid, CWChannelBand band, int channel, int rssi)
+	{
+		var network = Substitute.For<IWiFiNetwork>();
+		network.Ssid.Returns(ssid);
+		network.Bssid.Returns(bssid);
+		network.Band.Returns(band);
+		network.Channel.Returns((nint)channel);
+		network.Rssi.Returns((nint)rssi);
+		return network;
 	}
 }

@@ -7,7 +7,7 @@ public sealed class App
 
 	private const string BaseURL = "http://127.0.0.1:0";
 
-	public App(Action<IServiceCollection> addHandlers, string[] args)
+	public App(Action<IServiceCollection> addHandlers, string[] args, string? contentRootPath = null)
 	{
 		var options = new WebApplicationOptions
 		{
@@ -15,7 +15,8 @@ public sealed class App
 			EnvironmentName = args.All(a => a != "dev")
 				? Environments.Production
 				: Environments.Development,
-			WebRootPath = Path.Combine(AppContext.BaseDirectory, "wwwroot")
+			ContentRootPath = contentRootPath,
+			WebRootPath = Path.Combine(contentRootPath ?? AppContext.BaseDirectory, "wwwroot")
 		};
 
 		var builder = WebApplication.CreateBuilder(options);
