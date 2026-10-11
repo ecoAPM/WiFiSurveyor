@@ -32,7 +32,7 @@ public sealed class CommandServiceTests
 		var info = new ProcessStartInfo("not installed");
 
 		//act
-		var task = service.Run(info);
+		using var task = service.Run(info);
 		await task;
 
 		//assert
@@ -48,7 +48,7 @@ public sealed class CommandServiceTests
 		var info = new ProcessStartInfo("sleep", "1");
 
 		//act
-		var task = service.Run(info);
+		using var task = service.Run(info);
 		await task;
 
 		//assert

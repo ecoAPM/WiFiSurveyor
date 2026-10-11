@@ -39,10 +39,10 @@ public sealed class AppHelpersTests
 		var feature = Substitute.For<IServerAddressesFeature>();
 		feature.Addresses.Returns(Addresses);
 
-		var server = Substitute.For<IServer>();
+		using var server = Substitute.For<IServer>();
 		server.Features.Get<IServerAddressesFeature>().Returns(feature);
 
-		var app = Substitute.For<IHost>();
+		using var app = Substitute.For<IHost>();
 		app.Services.GetService<IBrowserLauncher>().Returns(launcher);
 		app.Services.GetService<IServer>().Returns(server);
 
@@ -66,10 +66,10 @@ public sealed class AppHelpersTests
 		var feature = Substitute.For<IServerAddressesFeature>();
 		feature.Addresses.Returns(Addresses);
 
-		var server = Substitute.For<IServer>();
+		using var server = Substitute.For<IServer>();
 		server.Features.Get<IServerAddressesFeature>().Returns(feature);
 
-		var app = Substitute.For<IHost>();
+		using var app = Substitute.For<IHost>();
 		app.Services.GetService<IBrowserLauncher>().Returns(launcher);
 		app.Services.GetService<IServer>().Returns(server);
 

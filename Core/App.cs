@@ -29,7 +29,7 @@ public sealed class App
 		builder.Services.AddCommonServices();
 		addHandlers(builder.Services);
 
-		var app = builder.Build();
+		using var app = builder.Build();
 		app.AddMiddleware(Environment);
 
 		_app = app;

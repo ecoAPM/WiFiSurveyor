@@ -13,7 +13,7 @@ public sealed class SignalHubTests
 		var context = Substitute.For<IHubContext<SignalHub>>();
 		context.Clients.All.Returns(Substitute.For<IClientProxy>());
 
-		var hub = new SignalHub(context);
+		using var hub = new SignalHub(context);
 
 		//act
 		await hub.SendMessage(new Message());
