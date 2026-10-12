@@ -10,7 +10,7 @@ public sealed class CommandService(Func<ProcessStartInfo, Process?> startProcess
 	{
 		logger.LogIf(LogLevel.Debug, "{now}: Starting \"{cmd} {args}\"...", DateTime.Now, info.FileName, info.Arguments);
 		info.RedirectStandardOutput = true;
-		var process = startProcess(info);
+		using var process = startProcess(info);
 
 		if (process == null)
 		{

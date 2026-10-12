@@ -30,7 +30,7 @@ public sealed class SignalServiceTests
 		var parser = Substitute.For<ISignalParser<string>>();
 		var hub = Substitute.For<ISignalHub>();
 		var logger = Substitute.For<ILogger>();
-		var service = new SignalService<string>(reader, parser, hub, logger);
+		using var service = new SignalService<string>(reader, parser, hub, logger);
 
 		//act
 		await service.GetSignals();
@@ -47,8 +47,8 @@ public sealed class SignalServiceTests
 		var parser = Substitute.For<ISignalParser<string>>();
 		var hub = Substitute.For<ISignalHub>();
 		var logger = Substitute.For<ILogger>();
-		var service = new SignalService<string>(reader, parser, hub, logger);
-		var task = service.StartAsync(CancellationToken.None);
+		using var service = new SignalService<string>(reader, parser, hub, logger);
+		using var task = service.StartAsync(CancellationToken.None);
 
 		//act
 		await service.StopAsync(CancellationToken.None);
@@ -76,7 +76,7 @@ public sealed class SignalServiceTests
 		};
 		parser.Parse(Arg.Any<string>()).Returns(signals);
 		var logger = Substitute.For<ILogger>();
-		var service = new SignalService<string>(reader, parser, hub, logger);
+		using var service = new SignalService<string>(reader, parser, hub, logger);
 
 		//act
 		await service.GetSignals();

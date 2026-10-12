@@ -14,7 +14,7 @@ public sealed class SignalHubTests
 		var context = Substitute.For<IHubContext<SignalHub>>();
 		context.Clients.All.Returns(Substitute.For<IClientProxy>());
 
-		var hub = new SignalHub(context, Substitute.For<IHostApplicationLifetime>());
+		using var hub = new SignalHub(context, Substitute.For<IHostApplicationLifetime>());
 
 		//act
 		await hub.SendMessage(new Message());
@@ -31,7 +31,7 @@ public sealed class SignalHubTests
 		var lifetime = Substitute.For<IHostApplicationLifetime>();
 		lifetime.ApplicationStopping.Returns(new CancellationToken(stopping));
 		var caller = Substitute.For<HubCallerContext>();
-		var hub = new SignalHub(Substitute.For<IHubContext<SignalHub>>(), lifetime) { Context = caller };
+		using var hub = new SignalHub(Substitute.For<IHubContext<SignalHub>>(), lifetime) { Context = caller };
 
 		await hub.OnConnectedAsync();
 
