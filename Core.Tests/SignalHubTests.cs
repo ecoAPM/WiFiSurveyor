@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Hosting;
 using NSubstitute;
 using Xunit;
 
@@ -6,6 +7,21 @@ namespace WiFiSurveyor.Core.Tests;
 
 public sealed class SignalHubTests
 {
+	[Theory]
+	[InlineData(false)]
+	[InlineData(true)]
+	public async Task AcceptsConnectionsOnlyBeforeShutdown(bool stopping)
+	{
+		var lifetime = Substitute.For<IHostApplicationLifetime>();
+		lifetime.ApplicationStopping.Returns(new CancellationToken(stopping));
+		var caller = Substitute.For<HubCallerContext>();
+		using var hub = new SignalHub(Substitute.For<IHubContext<SignalHub>>(), lifetime) { Context = caller };
+
+		await hub.OnConnectedAsync();
+
+		caller.Received(stopping ? 1 : 0).Abort();
+	}
+
 	[Fact]
 	public async Task SendsUpdateToAllClients()
 	{
@@ -13,7 +29,7 @@ public sealed class SignalHubTests
 		var context = Substitute.For<IHubContext<SignalHub>>();
 		context.Clients.All.Returns(Substitute.For<IClientProxy>());
 
-		using var hub = new SignalHub(context);
+		using var hub = new SignalHub(context, Substitute.For<IHostApplicationLifetime>());
 
 		//act
 		await hub.SendMessage(new Message());
