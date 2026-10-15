@@ -1,6 +1,3 @@
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using WiFiSurveyor.Core;
@@ -10,40 +7,43 @@ namespace WiFiSurveyor.Mac.Tests;
 
 public sealed class MacSignalParserTests
 {
-	[Fact]
-	public async Task ResultsAreParsedIntoSignals()
+	[Theory]
+	[InlineData("ssid🏎", "02:00:00:00:00:01", -39, 9, 1, Frequency._2_4_GHz)]
+	[InlineData(null, "02:00:00:00:00:02", -50, 44, 2, Frequency._5_GHz)]
+	public void ResultsAreParsedIntoSignals(string? ssid, string? bssid, long rssi, long channel, long band, Frequency frequency)
 	{
-		//arrange
-		var logger = Substitute.For<ILogger>();
-		var signalParser = new MacSignalParser(logger);
-		var contents = await File.ReadAllTextAsync("system_profiler-output.txt");
+		var parser = new MacSignalParser(Substitute.For<ILogger>());
+		var signal = Assert.Single(parser.Parse([new WiFiNetwork(ssid, bssid, rssi, channel, band)]));
 
-		//act
-		var signals = signalParser.Parse(contents).ToList();
-
-		//assert
-		Assert.Equal("net1", signals[0].SSID);
-		Assert.Empty(signals[0].MAC);
-		Assert.Equal(Frequency._2_4_GHz, signals[0].Frequency);
-		Assert.Equal(9, signals[0].Channel);
-		Assert.Equal(-39, signals[0].Strength);
-
-		Assert.Equal("ssid🏎2", signals[1].SSID);
-		Assert.Empty(signals[1].MAC);
-		Assert.Equal(Frequency._5_GHz, signals[1].Frequency);
-		Assert.Equal(44, signals[1].Channel);
-		Assert.Equal(-50, signals[1].Strength);
-
-		Assert.Equal("access_point_3", signals[2].SSID);
-		Assert.Empty(signals[2].MAC);
-		Assert.Equal(Frequency._5_GHz, signals[2].Frequency);
-		Assert.Equal(149, signals[2].Channel);
-		Assert.Equal(-42, signals[2].Strength);
-
-		Assert.Equal("wap-4", signals[3].SSID);
-		Assert.Empty(signals[3].MAC);
-		Assert.Equal(Frequency._2_4_GHz, signals[3].Frequency);
-		Assert.Equal(11, signals[3].Channel);
-		Assert.Equal(-90, signals[3].Strength);
+		Assert.Equal(ssid ?? string.Empty, signal.SSID);
+		Assert.Equal(bssid ?? string.Empty, signal.MAC);
+		Assert.Equal(rssi, signal.Strength);
+		Assert.Equal(channel, signal.Channel);
+		Assert.Equal(frequency, signal.Frequency);
 	}
+
+	[Fact]
+	public void UnsupportedBandsAndInvalidMeasurementsDoNotDiscardValidNetworks()
+	{
+		var parser = new MacSignalParser(Substitute.For<ILogger>());
+		var signals = parser.Parse([
+			new("unsupported", "02:00:00:00:00:01", -50, 5, 3),
+			new("redacted", null, -50, 1, 1),
+			new("invalid", "02:00:00:00:00:02", long.MinValue, 1, 1),
+			new("valid", "02:00:00:00:00:03", -60, 36, 2)
+		]);
+
+		Assert.Equal("valid", Assert.Single(signals).SSID);
+	}
+
+	[Fact]
+	public void DuplicateResultsAreRemovedWithoutMergingDifferentAccessPoints()
+	{
+		var parser = new MacSignalParser(Substitute.For<ILogger>());
+		var first = new WiFiNetwork(null, "02:00:00:00:00:01", -50, 1, 1);
+		var second = first with { Bssid = "02:00:00:00:00:02" };
+
+		Assert.Equal(2, parser.Parse([first, first, second]).Count);
+	}
+
 }
