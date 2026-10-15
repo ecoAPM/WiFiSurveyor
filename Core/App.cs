@@ -29,12 +29,15 @@ public sealed class App
 		builder.Services.AddCommonServices();
 		addHandlers(builder.Services);
 
-		using var app = builder.Build();
+		var app = builder.Build();
 		app.AddMiddleware(Environment);
 
 		_app = app;
 	}
 
 	public async Task Run()
-		=> await _app.Run(Environment);
+	{
+		using var app = _app;
+		await app.Run(Environment);
+	}
 }
