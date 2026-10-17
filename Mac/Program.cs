@@ -6,10 +6,11 @@ public static class Program
 {
 	public static void AddMacHandlers(this IServiceCollection services)
 	{
-		services.AddPosixHandlers();
+		services.AddHostedService<SignalService<IReadOnlyList<WiFiNetwork>>>();
+		services.AddSingleton<Func<IReadOnlyList<WiFiNetwork>?>>(_ => CoreWlan.Scan);
 		services.AddSingleton<IBrowserLauncher, MacBrowserLauncher>();
-		services.AddSingleton<ISignalReader<string>, MacSignalReader>();
-		services.AddSingleton<ISignalParser<string>, MacSignalParser>();
+		services.AddSingleton<ISignalReader<IReadOnlyList<WiFiNetwork>>, MacSignalReader>();
+		services.AddSingleton<ISignalParser<IReadOnlyList<WiFiNetwork>>, MacSignalParser>();
 	}
 
 	public static async Task Main(string[] args)
