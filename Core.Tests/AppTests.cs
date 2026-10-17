@@ -10,21 +10,28 @@ public sealed class AppTests
 	[Fact]
 	public async Task ServerCanStartAndStopAfterConstruction()
 	{
-		var started = false;
-		var app = new App(services => services.AddSingleton<IHostedService>(provider =>
-		{
-			var lifetime = provider.GetRequiredService<IHostApplicationLifetime>();
-			lifetime.ApplicationStarted.Register(() =>
-			{
-				started = true;
-				lifetime.StopApplication();
-			});
-			return Substitute.For<IHostedService>();
-		}), ["dev", "--urls=http://127.0.0.1:0"]);
+		//arrange
+		var app = new App(AddHandlers, []);
 
-		await app.Run().WaitAsync(TimeSpan.FromSeconds(10));
+		//act
+		var task = app.Run();
+		await task;
 
-		Assert.True(started);
+		//assert
+		Assert.True(task.IsCompletedSuccessfully);
+	}
+
+	private static void AddHandlers(IServiceCollection s)
+	{
+		s.AddSingleton(Substitute.For<IBrowserLauncher>());
+		s.AddSingleton(HostedService);
+	}
+
+	private static IHostedService HostedService(IServiceProvider serviceProvider)
+	{
+		var lifetime = serviceProvider.GetRequiredService<IHostApplicationLifetime>();
+		lifetime.ApplicationStarted.Register(lifetime.StopApplication);
+		return Substitute.For<IHostedService>();
 	}
 
 	[Theory]

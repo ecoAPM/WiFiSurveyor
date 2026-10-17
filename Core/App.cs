@@ -36,8 +36,5 @@ public sealed class App
 	}
 
 	public async Task Run()
-	{
-		using var app = _app;
-		await app.Run(Environment);
-	}
+		=> await _app.Run(Environment);
 }
