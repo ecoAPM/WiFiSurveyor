@@ -48,10 +48,13 @@ public sealed class CommandServiceTests
 		var info = new ProcessStartInfo("sleep", "1");
 
 		//act
+		var stopwatch = Stopwatch.StartNew();
 		using var task = service.Run(info);
 		await task;
+		stopwatch.Stop();
 
 		//assert
 		Assert.True(task.IsCompletedSuccessfully);
+		Assert.True(stopwatch.Elapsed.TotalSeconds < 1);
 	}
 }

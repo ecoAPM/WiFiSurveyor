@@ -22,22 +22,22 @@ public sealed class CommandService(Func<ProcessStartInfo, Process?> startProcess
 
 		var msTimeout = Convert.ToUInt16(_timeout.TotalMilliseconds);
 		var complete = process.WaitForExit(msTimeout);
-		var output = await process.StandardOutput.ReadToEndAsync();
 
 		if (complete)
 		{
+			var output = await process.StandardOutput.ReadToEndAsync();
 			logger.LogIf(LogLevel.Debug, "{now}: Process ended successfully", DateTime.Now);
-		}
-		else if (!string.IsNullOrEmpty(output))
-		{
-			logger.LogIf(LogLevel.Debug, "{now}: Process stuck but {size} bytes of output received", DateTime.Now, output.Length);
-		}
-		else
-		{
-			logger.LogIf(LogLevel.Warning, "{now}: Process not completed after {time}, forced to end...", DateTime.Now, _timeout);
+			return output;
 		}
 
 		process.Kill(true);
-		return output;
+		var truncatedOutput = await process.StandardOutput.ReadToEndAsync();
+
+		if (!string.IsNullOrEmpty(truncatedOutput))
+			logger.LogIf(LogLevel.Debug, "{now}: Process stuck but {size} bytes of output received", DateTime.Now, truncatedOutput.Length);
+		else
+			logger.LogIf(LogLevel.Warning, "{now}: Process not completed after {time}, forced to end...", DateTime.Now, _timeout);
+
+		return truncatedOutput;
 	}
 }
