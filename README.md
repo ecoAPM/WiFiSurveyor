@@ -40,6 +40,8 @@ Visualize Wi-Fi signal strength over a geographic area
 
 1. Save your data to be loaded again later, or shared with other users
 
+On macOS, run `./WiFiSurveyor` from Terminal and allow Location Services when prompted. Keep `WiFiSurveyor.app` beside the launcher; it supplies the permission metadata. Press Ctrl+C in Terminal to stop the server.
+
 ### Access Point Filters
 
 - The default selection of both "Group by SSID" and "Combine 2.4 + 5GHz" will show one option per SSID
@@ -80,6 +82,8 @@ Contibutions are welcome for improving the following:
 - Node.JS with `yarn`
 
 ### Building from source
+
+On macOS, `dotnet run` does not include the app bundle needed to request location permission and read Wi-Fi identifiers.
 
 - Run `dotnet run --project {Linux|Mac|Windows} -- dev` (with `sudo` for Linux) from the repo root directory to start the back-end server
 - Run `yarn dev` from the repo root directory to start the front-end development server
