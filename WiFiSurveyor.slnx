@@ -1,0 +1,15 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Core.Tests/Core.Tests.csproj" />
+  <Project Path="Core/Core.csproj" />
+  <Project Path="Linux.Tests/Linux.Tests.csproj" />
+  <Project Path="Linux/Linux.csproj" />
+  <Project Path="Mac.Tests/Mac.Tests.csproj" />
+  <Project Path="Mac/Mac.csproj" />
+  <Project Path="Windows.Tests/Windows.Tests.csproj" />
+  <Project Path="Windows/Windows.csproj" />
+</Solution>
