@@ -12,6 +12,9 @@ jobs:
   Publish:
     runs-on: ubuntu-latest
 
+    env:
+      ZIPOPT: ${{ matrix.os == 'osx' && '-y' || '' }}
+
     permissions:
       contents: write
 
@@ -63,6 +66,23 @@ jobs:
 
       - name: Publish ${{ matrix.dir }} ${{ matrix.arch }} release
         run: dotnet publish ${{ matrix.dir }} --sc -c Release -r ${{ matrix.os }}-${{ matrix.arch }} -o publish/${{ matrix.os }}-${{ matrix.arch }}
+
+      - name: Prepare macOS command-line application
+        if: matrix.os == 'osx'
+        run: |
+          curl -fsSL https://github.com/indygreg/apple-platform-rs/releases/download/apple-codesign/0.29.0/apple-codesign-0.29.0-x86_64-unknown-linux-musl.tar.gz -o "$RUNNER_TEMP/rcodesign.tar.gz"
+          echo "dbe85cedd8ee4217b64e9a0e4c2aef92ab8bcaaa41f20bde99781ff02e600002  $RUNNER_TEMP/rcodesign.tar.gz" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/rcodesign.tar.gz" -C "$RUNNER_TEMP"
+          release="publish/osx-${{ matrix.arch }}"
+          contents="$release/WiFiSurveyor.app/Contents"
+          mkdir -p "$contents/MacOS" "$contents/Resources"
+          mv "$release/WiFiSurveyor" "$contents/MacOS/"
+          mv "$release/wwwroot" "$contents/Resources/"
+          ln -s ../Resources/wwwroot "$contents/MacOS/wwwroot"
+          cp Mac/Info.plist "$contents/"
+          cp Mac/WiFiSurveyor "$release/WiFiSurveyor"
+          chmod +x "$release/WiFiSurveyor"
+          "$RUNNER_TEMP/apple-codesign-0.29.0-x86_64-unknown-linux-musl/rcodesign" sign "$release/WiFiSurveyor.app"
 
       - name: Package ${{ matrix.dir }} ${{ matrix.arch }} release
         working-directory: publish/${{ matrix.os }}-${{ matrix.arch }}

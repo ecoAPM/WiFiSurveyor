@@ -11,6 +11,7 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
+		<InternalsVisibleTo Include="WiFiSurveyor.Mac.Tests" />
 		<ProjectReference Include="..\Core\Core.csproj" />
 	</ItemGroup>
 </Project>

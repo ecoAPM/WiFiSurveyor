@@ -12,6 +12,6 @@ public static class Program
 		services.AddSingleton<ISignalParser<string>, MacSignalParser>();
 	}
 
-	public static async Task Main(string[] args)
-		=> await new App(AddMacHandlers, args).Run();
+	public static void Main(string[] args)
+		=> MacApplication.Run(() => new App(AddMacHandlers, args).Run());
 }
