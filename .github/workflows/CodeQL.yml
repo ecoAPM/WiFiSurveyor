@@ -18,15 +18,11 @@ on:
     # The branches below must be a subset of the branches above
     branches: [ main ]
 
-defaults:
-  run:
-    shell: bash
-
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
-
+    if: github.actor != 'dependabot[bot]'
     permissions:
       actions: read
       contents: read

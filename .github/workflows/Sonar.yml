@@ -1,10 +1,6 @@
 name: Sonar
 on: push
 
-defaults:
-  run:
-    shell: bash
-
 jobs:
   Code-Quality:
     runs-on: ubuntu-latest
