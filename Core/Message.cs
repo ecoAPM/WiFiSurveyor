@@ -3,6 +3,6 @@ namespace WiFiSurveyor.Core;
 public sealed class Message
 {
 	public string Status { get; init; } = string.Empty;
-	public IReadOnlyList<Signal> Signals { get; init; } = new List<Signal>();
+	public Signal[] Signals { get; init; } = [];
 	public DateTime LastUpdated { get; } = DateTime.Now;
 }

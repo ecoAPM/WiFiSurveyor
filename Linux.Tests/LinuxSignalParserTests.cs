@@ -16,7 +16,7 @@ public sealed class LinuxSignalParserTests
 		var contents = await File.ReadAllTextAsync("iw-output.txt");
 
 		//act
-		var signals = signalParser.Parse(contents).ToList();
+		var signals = signalParser.Parse(contents);
 
 		//assert
 		Assert.Equal("Net1", signals[0].SSID);

@@ -4,7 +4,7 @@ namespace WiFiSurveyor.Windows;
 
 public sealed class WindowsSignalParser(ILogger logger) : ISignalParser<IWiFiNetworkReport>
 {
-	public IReadOnlyList<Signal> Parse(IWiFiNetworkReport results)
+	public Signal[] Parse(IWiFiNetworkReport results)
 		=>
 		[
 			.. results.AvailableNetworks()

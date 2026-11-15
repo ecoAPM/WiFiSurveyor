@@ -50,15 +50,15 @@ public sealed class SignalServiceTests
 		var reader = Substitute.For<ISignalReader<string>>();
 		var parser = Substitute.For<ISignalParser<string>>();
 		var hub = Substitute.For<ISignalHub>();
-		var signals = new List<Signal>
-		{
+		Signal[] signals =
+		[
 			new()
 			{
 				SSID = "UnitTest",
 				Frequency = Frequency._2_4_GHz,
 				Strength = -30
 			}
-		};
+		];
 		parser.Parse(Arg.Any<string>()).Returns(signals);
 		var logger = Substitute.For<ILogger>();
 		using var service = new SignalService<string>(reader, parser, hub, logger);

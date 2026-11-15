@@ -4,7 +4,7 @@ namespace WiFiSurveyor.Windows;
 
 public sealed class WindowsNetworkReport(WiFiNetworkReport report) : IWiFiNetworkReport
 {
-	public IReadOnlyList<IWiFiAvailableNetwork> AvailableNetworks()
+	public IWiFiAvailableNetwork[] AvailableNetworks()
 		=>
 		[
 			.. report.AvailableNetworks

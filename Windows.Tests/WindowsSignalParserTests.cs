@@ -46,7 +46,7 @@ public sealed class WindowsSignalParserTests
 		var signalParser = new WindowsSignalParser(logger);
 
 		//act
-		var signals = signalParser.Parse(report).ToList();
+		var signals = signalParser.Parse(report);
 
 		//assert
 		Assert.Equal("Net1", signals[0].SSID);

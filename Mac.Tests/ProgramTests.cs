@@ -17,7 +17,7 @@ public class ProgramTests
 		services.AddMacHandlers();
 
 		//assert
-		var types = services.Select(s => s.ServiceType).ToArray();
+		var types = services.Select(s => s.ServiceType);
 		Assert.Contains(typeof(ISignalParser<string>), types);
 		Assert.Contains(typeof(ISignalReader<string>), types);
 		Assert.Contains(typeof(IBrowserLauncher), types);

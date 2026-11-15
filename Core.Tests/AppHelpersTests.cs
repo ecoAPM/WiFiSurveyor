@@ -22,7 +22,7 @@ public sealed class AppHelpersTests
 		services.AddPosixHandlers();
 
 		//assert
-		var types = services.Select(s => s.ImplementationType).ToArray();
+		var types = services.Select(s => s.ImplementationType);
 		Assert.Contains(typeof(CommandService), types);
 		Assert.Contains(typeof(SignalService<string>), types);
 	}

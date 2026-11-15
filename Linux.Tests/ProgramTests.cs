@@ -16,7 +16,7 @@ public class ProgramTests
 		services.AddLinuxHandlers();
 
 		//assert
-		var types = services.Select(s => s.ServiceType).ToArray();
+		var types = services.Select(s => s.ServiceType);
 		Assert.Contains(typeof(IDeviceLocator), types);
 		Assert.Contains(typeof(ISignalParser<string>), types);
 		Assert.Contains(typeof(ISignalReader<string>), types);

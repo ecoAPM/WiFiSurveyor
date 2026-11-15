@@ -16,7 +16,7 @@ public class ProgramTests
 		services.AddWindowsHandlers();
 
 		//assert
-		var types = services.Select(s => s.ServiceType).ToArray();
+		var types = services.Select(s => s.ServiceType);
 		Assert.Contains(typeof(ISignalParser<IWiFiNetworkReport>), types);
 		Assert.Contains(typeof(ISignalReader<IWiFiNetworkReport>), types);
 		Assert.Contains(typeof(IBrowserLauncher), types);

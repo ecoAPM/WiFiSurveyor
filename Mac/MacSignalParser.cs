@@ -1,12 +1,14 @@
-using System.Text;
+using System;
+using System.Linq;
 using System.Text.Json;
+using Microsoft.Extensions.Logging;
 using WiFiSurveyor.Core;
 
 namespace WiFiSurveyor.Mac;
 
 public sealed class MacSignalParser(ILogger logger) : ISignalParser<string>
 {
-	public IReadOnlyList<Signal> Parse(string results)
+	public Signal[] Parse(string results)
 		=>
 		[
 			.. JsonSerializer.Deserialize<JsonElement>(results)

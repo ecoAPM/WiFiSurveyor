@@ -4,7 +4,7 @@ namespace WiFiSurveyor.Linux;
 
 public sealed class LinuxSignalParser(ILogger logger) : ISignalParser<string>
 {
-	public IReadOnlyList<Signal> Parse(string results)
+	public Signal[] Parse(string results)
 		=>
 		[
 			.. results

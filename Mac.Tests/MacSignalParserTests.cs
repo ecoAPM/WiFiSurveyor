@@ -1,5 +1,4 @@
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
@@ -19,7 +18,7 @@ public sealed class MacSignalParserTests
 		var contents = await File.ReadAllTextAsync("system_profiler-output.txt");
 
 		//act
-		var signals = signalParser.Parse(contents).ToList();
+		var signals = signalParser.Parse(contents);
 
 		//assert
 		Assert.Equal("net1", signals[0].SSID);
@@ -57,7 +56,7 @@ public sealed class MacSignalParserTests
 		contents = contents.Replace(MacSignalHelpers.ConnectedNetworkKey, MacSignalHelpers.DisconnectedNetworkKey);
 
 		//act
-		var signals = signalParser.Parse(contents).ToList();
+		var signals = signalParser.Parse(contents);
 
 		//assert
 		Assert.Equal("net1", signals[0].SSID);

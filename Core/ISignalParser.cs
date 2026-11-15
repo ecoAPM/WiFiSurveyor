@@ -2,5 +2,5 @@ namespace WiFiSurveyor.Core;
 
 public interface ISignalParser<in T>
 {
-	IReadOnlyList<Signal> Parse(T results);
+	Signal[] Parse(T results);
 }

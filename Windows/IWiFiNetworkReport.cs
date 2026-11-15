@@ -2,5 +2,5 @@
 
 public interface IWiFiNetworkReport
 {
-	IReadOnlyList<IWiFiAvailableNetwork> AvailableNetworks();
+	IWiFiAvailableNetwork[] AvailableNetworks();
 }
