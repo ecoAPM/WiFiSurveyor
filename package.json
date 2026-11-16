@@ -52,7 +52,7 @@
 		"eslint-plugin-vue": "10.12.1",
 		"global-jsdom": "31.0.0",
 		"jiti": "2.7.0",
-		"jsdom": "31.0.0",
+		"jsdom": "31.0.1",
 		"ts-mockito": "2.6.1",
 		"typescript": "6.0.3",
 		"typescript-eslint": "8.72.2",
