@@ -47,7 +47,7 @@
 		"@vue/test-utils": "2.5.1",
 		"buffer": "6.0.3",
 		"delaunator": "5.1.0",
-		"eslint": "10.14.0",
+		"eslint": "10.15.0",
 		"eslint-plugin-simple-import-sort": "14.0.0",
 		"eslint-plugin-vue": "10.12.1",
 		"global-jsdom": "31.0.0",
