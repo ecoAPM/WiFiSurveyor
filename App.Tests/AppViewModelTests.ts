@@ -3,7 +3,7 @@ import { Test, TestSuite } from "xunit.ts";
 
 import AppViewModel from "../App/AppViewModel";
 import BackgroundParser from "../App/BackgroundParser";
-import {any} from "./MockHelpers";
+import { any } from "./MockHelpers";
 
 export default class AppViewModelTests extends TestSuite {
 	@Test()

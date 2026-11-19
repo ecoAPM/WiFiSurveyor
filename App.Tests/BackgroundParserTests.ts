@@ -7,7 +7,7 @@ export default class BackgroundParserTests extends TestSuite {
 	@Test()
 	async canLoadDataFromFile() {
 		//arrange
-		const file = new Blob(["abc123"], { type: "image/png" });
+		const file = new Blob([ "abc123" ], { type: "image/png" });
 		const mockReader = Mockito.mock<FileReader>();
 		const fileReader = Mockito.instance(mockReader);
 

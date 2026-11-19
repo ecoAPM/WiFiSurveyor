@@ -7,7 +7,7 @@ import tseslint from "typescript-eslint";
 
 export default defineConfig(
 	{
-		ignores: ["dist"]
+		ignores: [ "dist" ]
 	},
 	{
 		languageOptions: {
@@ -21,7 +21,7 @@ export default defineConfig(
 			parserOptions: {
 				parser: tseslint.parser,
 				projectService: true,
-				extraFileExtensions: ["vue"]
+				extraFileExtensions: [ "vue" ]
 			}
 		},
 		plugins: {
@@ -29,7 +29,7 @@ export default defineConfig(
 			"simple-import-sort": sort,
 			"vue": vue
 		},
-		files: ["**/*.{ts,vue}"],
+		files: [ "**/*.{ts,vue}" ],
 		extends: [
 			js.configs.recommended,
 			tseslint.configs.recommended,
@@ -38,15 +38,24 @@ export default defineConfig(
 			vue.configs["flat/recommended"]
 		],
 		rules: {
-			"indent": ["warn", "tab"],
-			"quotes": ["warn", "double"],
+			"indent": [ "warn", "tab" ],
+			"quotes": [ "warn", "double" ],
 
 			"simple-import-sort/imports": "warn",
 			"simple-import-sort/exports": "warn",
 			"sort-imports": "off",
 
-			"@stylistic/object-curly-spacing": ["warn", "always"],
-			"@stylistic/semi": ["error", "always"],
+			"@stylistic/comma-spacing": [ "warn", { before: false, after: true } ],
+			"@stylistic/list-style": ["warn", {
+				empty: "never",
+				singleLine: { spacing: "always" },
+				multiLine: { minItems: 0 },
+				overrides: {
+					"()": { singleLine: { spacing: "never" } },
+					"<>": { singleLine: { spacing: "never" } }
+				}
+			}],
+			"@stylistic/semi": [ "error", "always" ],
 
 			"@typescript-eslint/no-confusing-void-expression": "off",
 			"@typescript-eslint/no-extraneous-class": "off",
@@ -54,7 +63,7 @@ export default defineConfig(
 			"@typescript-eslint/no-unsafe-function-type": "off",
 			"@typescript-eslint/restrict-template-expressions": "off",
 
-			"vue/html-indent": ["warn", "tab"],
+			"vue/html-indent": [ "warn", "tab" ],
 			"vue/html-self-closing": "off",
 			"vue/max-attributes-per-line": "off"
 		}

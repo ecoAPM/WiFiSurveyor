@@ -1,7 +1,7 @@
 <template>
 	<form>
 		<label for="name">Name</label>
-		<input id="name" v-model="state.name" type="text"/>
+		<input id="name" v-model="state.name" type="text" />
 
 		<section>
 			<a id="save-file" class="button" :download="state.name + '.json'" :href="objectURL">
@@ -11,7 +11,7 @@
 			<button type="button" @click="$event.target.children[0].click()">
 				<label for="load-file" @click.stop>Load</label>
 			</button>
-			<input v-show="false" id="load-file" type="file" accept="application/json,.json" @change="load($event.target as HTMLInputElement)"/>
+			<input v-show="false" id="load-file" type="file" accept="application/json,.json" @change="load($event.target as HTMLInputElement)" />
 		</section>
 	</form>
 </template>
@@ -25,7 +25,7 @@ const state = ref(SharedState);
 
 const objectURL = computed(() => {
 	const json = JSON.stringify(state.value);
-	const blob = new Blob([json], { type: "application/json" });
+	const blob = new Blob([ json ], { type: "application/json" });
 	return URL.createObjectURL(blob);
 });
 

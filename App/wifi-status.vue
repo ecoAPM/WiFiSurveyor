@@ -1,6 +1,6 @@
 <template>
 	<figure :class="{ 'full': !fading, 'fading': fading }">
-		<WiFiIcon :color="color"/>
+		<WiFiIcon :color="color" />
 		<figcaption v-if="value != null">
 			{{ value }} {{ units }}
 		</figcaption>

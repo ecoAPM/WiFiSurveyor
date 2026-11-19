@@ -3,11 +3,11 @@ import { Test, TestSuite } from "xunit.ts";
 import AccessPoint from "../App/AccessPoint";
 import AppViewModel from "../App/AppViewModel";
 import DataPoint from "../App/data-point.vue";
+import { Mode } from "../App/Mode";
 import Point from "../App/Point";
 import Reading from "../App/Reading";
 import Signal from "../App/Signal";
 import { mount } from "./TestHelpers";
-import { Mode } from "../App/Mode";
 
 export default class DataPointTests extends TestSuite {
 	@Test()
@@ -79,7 +79,7 @@ export default class DataPointTests extends TestSuite {
 
 		const reading = new Reading(1, new Point(12, 34), [ new Signal("mac", "test", 2, 1, -30) ]);
 		const selected = new AccessPoint("test");
-		const props = {mode: Mode.Signal,  index: 1, reading: reading, selected: selected };
+		const props = { mode: Mode.Signal,  index: 1, reading: reading, selected: selected };
 
 		const component = await mount(DataPoint, state, props);
 		global.confirm = () => true;

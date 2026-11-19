@@ -8,7 +8,7 @@
 		</button>
 
 		<label for="debug">
-			<input id="debug" v-model="state.debug" type="checkbox"/>
+			<input id="debug" v-model="state.debug" type="checkbox" />
 			Debug
 		</label>
 	</section>

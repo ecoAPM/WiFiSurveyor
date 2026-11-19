@@ -13,7 +13,7 @@
 		</section>
 
 		<label>
-			<input id="group-by-ssid" v-model="state.group_by.ssid" type="checkbox" @change="state.group_by.update()"/>
+			<input id="group-by-ssid" v-model="state.group_by.ssid" type="checkbox" @change="state.group_by.update()" />
 			Group by SSID
 		</label>
 

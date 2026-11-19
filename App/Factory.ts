@@ -1,9 +1,9 @@
 import { HubConnectionBuilder } from "@microsoft/signalr";
 
+import BackgroundParser from "./BackgroundParser";
 import Renderer from "./Renderer";
 import Signal from "./Signal";
 import SignalService from "./SignalService";
-import BackgroundParser from "./BackgroundParser";
 
 export default class Factory {
 

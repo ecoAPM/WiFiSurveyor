@@ -30,7 +30,7 @@ export default class AppTests extends TestSuite {
 		});
 
 		//assert
-		this.assert.notEmpty([...component.html()]);
+		this.assert.notEmpty([ ...component.html() ]);
 	}
 
 	@Test()

@@ -1,12 +1,12 @@
 import AccessPoint from "./AccessPoint";
 import AccessPointGrouping from "./AccessPointGrouping";
+import BackgroundParser from "./BackgroundParser";
 import { Mode } from "./Mode";
 import Point from "./Point";
 import Reading from "./Reading";
 import Renderer from "./Renderer";
 import Signal from "./Signal";
 import SignalService from "./SignalService";
-import BackgroundParser from "./BackgroundParser";
 
 export default class AppViewModel {
 	name: string = "";
