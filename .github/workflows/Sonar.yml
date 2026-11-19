@@ -72,7 +72,7 @@ jobs:
         run: yarn global add c8
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
         env:
           YARN_ENABLE_SCRIPTS: false
 
